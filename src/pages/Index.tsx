@@ -4,9 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollY, setScrollY] = useState(0);
+
   const skills = [{
     name: 'Python',
     level: 90
@@ -32,25 +34,30 @@ const Index = () => {
     name: 'Data Engineering',
     level: 75
   }];
+
   const projects = [{
-    title: 'NexaOS Flow',
-    description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
-    tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
-    type: 'AI Automation',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop'
-  }, {
     title: 'Copilot for Data Science',
     description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
     tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
     type: 'AI Agent',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
+    github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science'
+  }, {
+    title: 'NexaOS Flow',
+    description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
+    tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
+    type: 'AI Automation',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop',
+    github: 'https://github.com/sohamjadhav95/Neuro-Intelligence'
   }, {
     title: 'Tennis Match Predictor',
     description: 'ML model with 77% accuracy predicting ATP tennis outcomes using Elo ratings, form, and fatigue analysis.',
     tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
     type: 'Machine Learning',
-    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=400&fit=crop',
+    github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor'
   }];
+
   const socialLinks = [{
     name: 'GitHub',
     icon: Github,
@@ -76,6 +83,7 @@ const Index = () => {
     icon: Code,
     url: 'https://leetcode.com/sohamjadhav95'
   }];
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -104,22 +112,24 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
+
   return <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/70 backdrop-blur-xl border-b border-slate-800/50 transition-all duration-300">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md border-b border-white/10 transition-all duration-300">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
               SJ
             </div>
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg' : 'text-gray-300 hover:text-white'}`}>
+              {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
                   {item}
                 </button>)}
             </div>
@@ -184,7 +194,7 @@ const Index = () => {
               </p>
             </div>
 
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-600">        AI Engineer in the making | Building AI solutions that work
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-600">        AI Engineer in the making | Building AI solutions that work
 Passionate about AI and Innovation</p>
 
             {/* CTA Buttons */}
@@ -267,20 +277,25 @@ Passionate about AI and Innovation</p>
             Skills & <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Expertise</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => <div key={skill.name} className="space-y-2 scroll-animate opacity-0 translate-y-8 transition-all duration-1000" style={{
+            {skills.map((skill, index) => <div key={skill.name} className="space-y-3 scroll-animate opacity-0 translate-y-8 transition-all duration-1000" style={{
             transitionDelay: `${index * 100}ms`
           }}>
                 <div className="flex justify-between">
-                  <span className="text-white font-medium">{skill.name}</span>
-                  <span className="text-blue-400">{skill.level}%</span>
+                  <span className="text-white font-medium text-lg">{skill.name}</span>
+                  <span className="text-blue-400 font-bold text-lg">{skill.level}%</span>
                 </div>
-                <Progress value={skill.level} className="h-3 bg-slate-800/50 backdrop-blur-sm overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-1000 ease-out rounded-full" style={{
-                width: `${skill.level}%`
-              }} />
-                </Progress>
+                <div className="relative">
+                  <Progress value={skill.level} className="h-4 bg-slate-800/70 backdrop-blur-sm overflow-hidden border border-slate-700/50">
+                    <div 
+                      className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-blue-500/30" 
+                      style={{ width: `${skill.level}%` }} 
+                    />
+                  </Progress>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-sm"></div>
+                </div>
               </div>)}
           </div>
+          {/* Core Competencies */}
           <div className="mt-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
             <h3 className="text-2xl font-semibold text-center mb-6 text-blue-400">Core Competencies</h3>
             <div className="flex flex-wrap justify-center gap-3">
@@ -301,34 +316,42 @@ Passionate about AI and Innovation</p>
             Featured <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
           </h2>
           <div className="max-w-4xl mx-auto space-y-16">
-            {projects.map((project, index) => <div key={index} className={`scroll-animate opacity-0 translate-y-8 transition-all duration-1000 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} flex flex-col md:flex gap-8 items-center`} style={{
+            {projects.map((project, index) => <div key={project.title} className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 flex flex-col gap-8" style={{
             transitionDelay: `${index * 200}ms`
           }}>
-                <div className="md:w-1/2">
-                  <div className="relative overflow-hidden rounded-xl group">
+                <div className="text-center">
+                  <div className="relative overflow-hidden rounded-xl group mb-6">
                     <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                </div>
-                <div className="md:w-1/2 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                    <Badge className="bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1">
-                      {project.type}
-                    </Badge>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-center gap-3">
+                      <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                      <Badge className="bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1">
+                        {project.type}
+                      </Badge>
+                    </div>
+                    <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {project.tech.map(tech => <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
+                          {tech}
+                        </Badge>)}
+                    </div>
+                    <div className="flex justify-center gap-4 mt-6">
+                      <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="mr-2 h-4 w-4" />
+                          View Code
+                        </a>
+                      </Button>
+                      <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Live Demo
+                      </Button>
+                    </div>
                   </div>
-                  <p className="text-gray-300 text-lg leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map(tech => <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
-                        {tech}
-                      </Badge>)}
-                  </div>
-                  <Button variant="outline" className="mt-4 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Project
-                  </Button>
                 </div>
               </div>)}
           </div>
@@ -390,13 +413,13 @@ Passionate about AI and Innovation</p>
               </div>
             </div>
             <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-              <h3 className="text-2xl font-semibold mb-6 text-blue-400">Services</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-blue-400">Areas of Interest</h3>
               <div className="space-y-3">
-                {['AI & ML Model Development', 'Natural Language Processing Applications', 'Data Automation & Analytics Tools', 'AI Copilot and Workflow Agents'].map((service, index) => <Card key={service} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105" style={{
+                {['Machine Learning & AI Research', 'Natural Language Processing', 'Computer Vision Applications', 'Generative AI & LLMs', 'Data Science & Analytics', 'AI-Powered Automation'].map((area, index) => <Card key={area} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105" style={{
                 transitionDelay: `${index * 100}ms`
               }}>
                     <CardContent className="p-4">
-                      <p className="text-white">{service}</p>
+                      <p className="text-white">{area}</p>
                     </CardContent>
                   </Card>)}
               </div>
@@ -415,4 +438,5 @@ Passionate about AI and Innovation</p>
       </footer>
     </div>;
 };
+
 export default Index;
