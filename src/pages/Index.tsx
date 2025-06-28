@@ -184,9 +184,8 @@ const Index = () => {
               </p>
             </div>
 
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-600">
-              AI Engineer in the making | Building AI solutions that work | Passionate about automation and innovation
-            </p>
+            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-600">        AI Engineer in the making | Building AI solutions that work
+Passionate about AI and Innovation</p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
