@@ -1,63 +1,84 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronDown, Download, ExternalLink, Github, Linkedin, Mail, Phone, Twitter, Instagram, Facebook, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollY, setScrollY] = useState(0);
-
-  const skills = [
-    { name: 'Python', level: 90 },
-    { name: 'Machine Learning', level: 85 },
-    { name: 'Deep Learning', level: 80 },
-    { name: 'NLP', level: 85 },
-    { name: 'TensorFlow', level: 80 },
-    { name: 'PyTorch', level: 75 },
-    { name: 'SQL', level: 85 },
-    { name: 'Data Engineering', level: 75 }
-  ];
-
-  const projects = [
-    {
-      title: 'NexaOS Flow',
-      description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
-      tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
-      type: 'AI Automation',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop'
-    },
-    {
-      title: 'Copilot for Data Science',
-      description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
-      tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
-      type: 'AI Agent',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop'
-    },
-    {
-      title: 'Tennis Match Predictor',
-      description: 'ML model with 77% accuracy predicting ATP tennis outcomes using Elo ratings, form, and fatigue analysis.',
-      tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
-      type: 'Machine Learning',
-      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop'
-    }
-  ];
-
-  const socialLinks = [
-    { name: 'GitHub', icon: Github, url: 'https://github.com/sohamjadhav95' },
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/in/sohamjadhav95' },
-    { name: 'Twitter', icon: Twitter, url: 'https://twitter.com/sohamjadhav95' },
-    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/sohamjadhav95' },
-    { name: 'Facebook', icon: Facebook, url: 'https://facebook.com/sohamjadhav95' },
-    { name: 'LeetCode', icon: Code, url: 'https://leetcode.com/sohamjadhav95' }
-  ];
-
+  const skills = [{
+    name: 'Python',
+    level: 90
+  }, {
+    name: 'Machine Learning',
+    level: 85
+  }, {
+    name: 'Deep Learning',
+    level: 80
+  }, {
+    name: 'NLP',
+    level: 85
+  }, {
+    name: 'TensorFlow',
+    level: 80
+  }, {
+    name: 'PyTorch',
+    level: 75
+  }, {
+    name: 'SQL',
+    level: 85
+  }, {
+    name: 'Data Engineering',
+    level: 75
+  }];
+  const projects = [{
+    title: 'NexaOS Flow',
+    description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
+    tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
+    type: 'AI Automation',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop'
+  }, {
+    title: 'Copilot for Data Science',
+    description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
+    tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
+    type: 'AI Agent',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop'
+  }, {
+    title: 'Tennis Match Predictor',
+    description: 'ML model with 77% accuracy predicting ATP tennis outcomes using Elo ratings, form, and fatigue analysis.',
+    tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
+    type: 'Machine Learning',
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop'
+  }];
+  const socialLinks = [{
+    name: 'GitHub',
+    icon: Github,
+    url: 'https://github.com/sohamjadhav95'
+  }, {
+    name: 'LinkedIn',
+    icon: Linkedin,
+    url: 'https://linkedin.com/in/sohamjadhav95'
+  }, {
+    name: 'Twitter',
+    icon: Twitter,
+    url: 'https://twitter.com/sohamjadhav95'
+  }, {
+    name: 'Instagram',
+    icon: Instagram,
+    url: 'https://instagram.com/sohamjadhav95'
+  }, {
+    name: 'Facebook',
+    icon: Facebook,
+    url: 'https://facebook.com/sohamjadhav95'
+  }, {
+    name: 'LeetCode',
+    icon: Code,
+    url: 'https://leetcode.com/sohamjadhav95'
+  }];
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
@@ -74,25 +95,22 @@ const Index = () => {
       animateElements.forEach(element => {
         const rect = element.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        
         if (isVisible) {
           element.classList.add('animate-fade-in');
           element.classList.remove('opacity-0', 'translate-y-8');
         }
       });
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-x-hidden">
+  return <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/70 backdrop-blur-xl border-b border-slate-800/50 transition-all duration-300">
         <div className="container mx-auto px-4 py-4">
@@ -101,19 +119,9 @@ const Index = () => {
               SJ
             </div>
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${
-                    activeSection === item.toLowerCase()
-                      ? 'text-blue-400 drop-shadow-lg'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
-                >
+              {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg' : 'text-gray-300 hover:text-white'}`}>
                   {item}
-                </button>
-              ))}
+                </button>)}
             </div>
           </div>
         </div>
@@ -124,27 +132,18 @@ const Index = () => {
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-teal-600/20 animate-pulse"></div>
-          <div 
-            className="absolute inset-0 opacity-40"
-            style={{
-              transform: `translateY(${scrollY * 0.5}px)`,
-              background: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.2) 0%, transparent 50%)',
-            }}
-          ></div>
+          <div className="absolute inset-0 opacity-40" style={{
+          transform: `translateY(${scrollY * 0.5}px)`,
+          background: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.2) 0%, transparent 50%)'
+        }}></div>
           {/* Floating particles */}
           <div className="absolute inset-0">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${i * 0.5}s`,
-                  animationDuration: `${3 + Math.random() * 2}s`
-                }}
-              ></div>
-            ))}
+            {[...Array(6)].map((_, i) => <div key={i} className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse" style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${i * 0.5}s`,
+            animationDuration: `${3 + Math.random() * 2}s`
+          }}></div>)}
           </div>
         </div>
 
@@ -153,16 +152,14 @@ const Index = () => {
           <div className="mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
             <div className="relative w-56 h-56 mx-auto group">
               {/* Animated ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 p-1 animate-spin" style={{ animationDuration: '3s' }}>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 p-1 animate-spin" style={{
+              animationDuration: '3s'
+            }}>
                 <div className="w-full h-full bg-slate-950 rounded-full"></div>
               </div>
               {/* Profile image */}
               <div className="absolute inset-2 rounded-full overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/10 group-hover:scale-105 transition-all duration-500">
-                <img 
-                  src="https://i.postimg.cc/44ccsfZW/59.png" 
-                  alt="Soham Jadhav - AI Engineer"
-                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700"
-                />
+                <img src="https://i.postimg.cc/44ccsfZW/59.png" alt="Soham Jadhav - AI Engineer" className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700" />
               </div>
               {/* Glowing effect */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
@@ -173,7 +170,7 @@ const Index = () => {
           <div className="space-y-6">
             <h1 className="text-6xl md:text-8xl font-bold scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
               <span className="block">Soham</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent animate-pulse">
+              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
                 Jadhav
               </span>
             </h1>
@@ -197,11 +194,7 @@ const Index = () => {
                 <Download className="mr-3 h-5 w-5" />
                 Download Resume
               </Button>
-              <Button 
-                variant="outline" 
-                className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40"
-                onClick={() => scrollToSection('projects')}
-              >
+              <Button variant="outline" className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40" onClick={() => scrollToSection('projects')}>
                 View My Work
               </Button>
             </div>
@@ -218,7 +211,9 @@ const Index = () => {
 
         {/* Decorative gradient orbs */}
         <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{
+        animationDelay: '1s'
+      }}></div>
       </section>
 
       {/* About Section */}
@@ -273,33 +268,28 @@ const Index = () => {
             Skills & <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Expertise</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <div key={skill.name} className="space-y-2 scroll-animate opacity-0 translate-y-8 transition-all duration-1000" style={{ transitionDelay: `${index * 100}ms` }}>
+            {skills.map((skill, index) => <div key={skill.name} className="space-y-2 scroll-animate opacity-0 translate-y-8 transition-all duration-1000" style={{
+            transitionDelay: `${index * 100}ms`
+          }}>
                 <div className="flex justify-between">
                   <span className="text-white font-medium">{skill.name}</span>
                   <span className="text-blue-400">{skill.level}%</span>
                 </div>
                 <Progress value={skill.level} className="h-3 bg-slate-800/50 backdrop-blur-sm overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-1000 ease-out rounded-full"
-                    style={{ width: `${skill.level}%` }}
-                  />
+                  <div className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-1000 ease-out rounded-full" style={{
+                width: `${skill.level}%`
+              }} />
                 </Progress>
-              </div>
-            ))}
+              </div>)}
           </div>
           <div className="mt-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
             <h3 className="text-2xl font-semibold text-center mb-6 text-blue-400">Core Competencies</h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {['AI Agents', 'NLP', 'Deep Learning', 'RAG', 'ML Deployment', 'Statistics', 'AutoML', 'XAI', 'Data Engineering'].map((comp, index) => (
-                <Badge 
-                  key={comp} 
-                  className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm text-white px-4 py-2 hover:scale-110 transition-all duration-300"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
+              {['AI Agents', 'NLP', 'Deep Learning', 'RAG', 'ML Deployment', 'Statistics', 'AutoML', 'XAI', 'Data Engineering'].map((comp, index) => <Badge key={comp} className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm text-white px-4 py-2 hover:scale-110 transition-all duration-300" style={{
+              animationDelay: `${index * 100}ms`
+            }}>
                   {comp}
-                </Badge>
-              ))}
+                </Badge>)}
             </div>
           </div>
         </div>
@@ -312,21 +302,12 @@ const Index = () => {
             Featured <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
           </h2>
           <div className="max-w-4xl mx-auto space-y-16">
-            {projects.map((project, index) => (
-              <div 
-                key={index} 
-                className={`scroll-animate opacity-0 translate-y-8 transition-all duration-1000 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex flex-col md:flex gap-8 items-center`}
-                style={{ transitionDelay: `${index * 200}ms` }}
-              >
+            {projects.map((project, index) => <div key={index} className={`scroll-animate opacity-0 translate-y-8 transition-all duration-1000 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} flex flex-col md:flex gap-8 items-center`} style={{
+            transitionDelay: `${index * 200}ms`
+          }}>
                 <div className="md:w-1/2">
                   <div className="relative overflow-hidden rounded-xl group">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                    <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 </div>
@@ -341,26 +322,16 @@ const Index = () => {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <Badge 
-                        key={tech} 
-                        variant="outline" 
-                        className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300"
-                      >
+                    {project.tech.map(tech => <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
                         {tech}
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
-                  <Button 
-                    variant="outline" 
-                    className="mt-4 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30"
-                  >
+                  <Button variant="outline" className="mt-4 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30">
                     <ExternalLink className="mr-2 h-4 w-4" />
                     View Project
                   </Button>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -411,40 +382,24 @@ const Index = () => {
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-4 text-white">Connect with me</h4>
                 <div className="flex space-x-4">
-                  {socialLinks.map((link, index) => (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-blue-600/80 transition-all duration-300 transform hover:scale-110 hover:rotate-6"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
+                  {socialLinks.map((link, index) => <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-blue-600/80 transition-all duration-300 transform hover:scale-110 hover:rotate-6" style={{
+                  animationDelay: `${index * 100}ms`
+                }}>
                       <link.icon className="h-5 w-5" />
-                    </a>
-                  ))}
+                    </a>)}
                 </div>
               </div>
             </div>
             <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
               <h3 className="text-2xl font-semibold mb-6 text-blue-400">Services</h3>
               <div className="space-y-3">
-                {[
-                  'AI & ML Model Development',
-                  'Natural Language Processing Applications',
-                  'Data Automation & Analytics Tools',
-                  'AI Copilot and Workflow Agents'
-                ].map((service, index) => (
-                  <Card 
-                    key={service} 
-                    className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105"
-                    style={{ transitionDelay: `${index * 100}ms` }}
-                  >
+                {['AI & ML Model Development', 'Natural Language Processing Applications', 'Data Automation & Analytics Tools', 'AI Copilot and Workflow Agents'].map((service, index) => <Card key={service} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105" style={{
+                transitionDelay: `${index * 100}ms`
+              }}>
                     <CardContent className="p-4">
                       <p className="text-white">{service}</p>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
           </div>
@@ -459,8 +414,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
