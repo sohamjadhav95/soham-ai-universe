@@ -128,7 +128,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-teal-600/20 animate-pulse"></div>
@@ -149,7 +149,7 @@ const Index = () => {
 
         <div className="container mx-auto px-4 text-center relative z-10">
           {/* Profile Picture */}
-          <div className="mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
+          <div className="mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 mt-8">
             <div className="relative w-56 h-56 mx-auto group">
               {/* Animated ring */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 p-1 animate-spin" style={{
