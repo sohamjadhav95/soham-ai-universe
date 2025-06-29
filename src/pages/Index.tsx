@@ -8,6 +8,7 @@ import { Progress } from '@/components/ui/progress';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollY, setScrollY] = useState(0);
+  const [expandedProjects, setExpandedProjects] = useState<{[key: string]: boolean}>({});
 
   const skills = [{
     name: 'Python',
@@ -38,6 +39,7 @@ const Index = () => {
   const projects = [{
     title: 'Copilot for Data Science',
     description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
+    detailedDescription: 'This comprehensive AI-powered data science assistant revolutionizes analytics workflows by combining natural language processing with automated machine learning capabilities. The system intelligently interprets user queries, automatically selects appropriate algorithms, performs feature engineering, and generates insights with minimal human intervention. Built with advanced NLP models for query understanding, integrated AutoML pipelines for model selection and hyperparameter tuning, and sophisticated data processing engines that handle diverse data formats and sources.',
     tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
     type: 'AI Agent',
     image: 'https://i.postimg.cc/023DDBFs/Screenshot-2025-06-29-135302.png',
@@ -45,6 +47,7 @@ const Index = () => {
   }, {
     title: 'NexaOS Flow',
     description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
+    detailedDescription: 'An innovative voice-controlled operating system interface that transforms how users interact with their computers through natural language commands. The system combines advanced speech recognition technology with natural language understanding to execute complex system operations, file management tasks, and application control through voice commands. Features real-time speech processing, context-aware command interpretation, multi-language support, and intelligent automation workflows that learn from user behavior patterns.',
     tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
     type: 'AI Automation',
     image: 'https://i.postimg.cc/VL74TghG/4799410.jpg',
@@ -52,6 +55,7 @@ const Index = () => {
   }, {
     title: 'Tennis Match Predictor',
     description: 'ML model with 77% accuracy predicting ATP tennis outcomes using Elo ratings, form, and fatigue analysis.',
+    detailedDescription: 'A sophisticated machine learning system that analyzes comprehensive tennis data to predict match outcomes with high accuracy. The model incorporates multiple advanced features including dynamic Elo rating systems that adjust based on recent performance, detailed player form analysis considering recent match history and surface preferences, fatigue calculations based on tournament schedules and travel patterns, and head-to-head statistical analysis. Uses ensemble methods combining XGBoost and LightGBM with custom feature engineering for optimal prediction performance.',
     tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
     type: 'Machine Learning',
     image: 'https://i.postimg.cc/QMg7Lxt8/6396.jpg',
@@ -110,6 +114,13 @@ const Index = () => {
     image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png',
     verification: null
   }];
+
+  const toggleProjectExpansion = (projectTitle: string) => {
+    setExpandedProjects(prev => ({
+      ...prev,
+      [projectTitle]: !prev[projectTitle]
+    }));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -275,25 +286,27 @@ Passionate about AI and Innovation</p>
             </div>
             <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
               <h3 className="text-xl font-semibold text-blue-400 mb-4">Certifications</h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {certificates.map((cert, index) => (
                   <Card key={cert.title} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
                     <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <p className="text-white font-medium text-sm">{cert.title}</p>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white font-medium text-sm leading-tight">{cert.title}</p>
                           <p className="text-gray-400 text-xs mt-1">{cert.status}</p>
                         </div>
-                        <div className="flex items-center gap-2 ml-4">
+                        <div className="flex items-center gap-3 flex-shrink-0">
                           {cert.image && (
-                            <img 
-                              src={cert.image} 
-                              alt={cert.title} 
-                              className="w-12 h-12 object-cover rounded border border-slate-600"
-                            />
+                            <div className="w-16 h-16 flex-shrink-0">
+                              <img 
+                                src={cert.image} 
+                                alt={cert.title} 
+                                className="w-full h-full object-contain rounded border border-slate-600 bg-white/5"
+                              />
+                            </div>
                           )}
                           {cert.verification && (
-                            <Button variant="outline" size="sm" asChild className="text-xs px-2 py-1 h-auto">
+                            <Button variant="outline" size="sm" asChild className="text-xs px-3 py-2 h-auto whitespace-nowrap">
                               <a href={cert.verification} target="_blank" rel="noopener noreferrer">
                                 Verify
                               </a>
@@ -357,12 +370,12 @@ Passionate about AI and Innovation</p>
           </h2>
           <div className="max-w-6xl mx-auto">
             {projects.map((project, index) => (
-              <div key={project.title} className={`mb-20 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`} style={{
+              <div key={project.title} className={`mb-20 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
                 transitionDelay: `${index * 200}ms`
               }}>
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                   {/* Project Image */}
-                  <div className="relative overflow-hidden rounded-xl group">
+                  <div className={`relative overflow-hidden rounded-xl group ${index % 2 === 1 ? 'md:order-2' : ''}`}>
                     <img 
                       src={project.image} 
                       alt={project.title} 
@@ -372,7 +385,7 @@ Passionate about AI and Innovation</p>
                   </div>
                   
                   {/* Project Details */}
-                  <div className="space-y-6">
+                  <div className={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
                     <div className="flex items-center gap-3">
                       <h3 className="text-3xl font-bold text-white">{project.title}</h3>
                       <Badge className="bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1">
@@ -380,8 +393,15 @@ Passionate about AI and Innovation</p>
                       </Badge>
                     </div>
                     <p className="text-gray-300 text-lg leading-relaxed">
-                      {project.description}
+                      {expandedProjects[project.title] ? project.detailedDescription : project.description}
                     </p>
+                    <Button 
+                      variant="ghost" 
+                      className="text-blue-400 hover:text-blue-300 p-0 h-auto font-medium"
+                      onClick={() => toggleProjectExpansion(project.title)}
+                    >
+                      {expandedProjects[project.title] ? 'Show Less' : 'See More'}
+                    </Button>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map(tech => (
                         <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
@@ -420,13 +440,20 @@ Passionate about AI and Innovation</p>
               {/* Featured Image/Visual */}
               <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 backdrop-blur-sm border border-slate-700/50">
                 <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">GDG</span>
+                  <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden">
+                    <img 
+                      src="https://i.postimg.cc/fWqBq5pH/image.png" 
+                      alt="Google Developers Groups" 
+                      className="w-24 h-24 object-contain"
+                    />
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-center gap-2 text-blue-400">
                       <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                       <span className="text-sm uppercase tracking-wide">Leadership Role</span>
+                    </div>
+                    <div className="text-purple-300 text-sm font-medium">
+                      Artificial Intelligence and Machine Learning
                     </div>
                   </div>
                 </div>
