@@ -11,7 +11,7 @@ const Index = () => {
 
   const skills = [{
     name: 'Python',
-    level: 90
+    level: 95
   }, {
     name: 'Machine Learning',
     level: 85
@@ -20,7 +20,7 @@ const Index = () => {
     level: 80
   }, {
     name: 'NLP',
-    level: 85
+    level: 75
   }, {
     name: 'TensorFlow',
     level: 80
@@ -28,8 +28,8 @@ const Index = () => {
     name: 'PyTorch',
     level: 75
   }, {
-    name: 'SQL',
-    level: 85
+    name: 'Database',
+    level: 75
   }, {
     name: 'Data Engineering',
     level: 75
@@ -40,21 +40,21 @@ const Index = () => {
     description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
     tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
     type: 'AI Agent',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
+    image: 'https://i.postimg.cc/023DDBFs/Screenshot-2025-06-29-135302.png',
     github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science'
   }, {
     title: 'NexaOS Flow',
     description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
     tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
     type: 'AI Automation',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop',
+    image: 'https://i.postimg.cc/VL74TghG/4799410.jpg',
     github: 'https://github.com/sohamjadhav95/Neuro-Intelligence'
   }, {
     title: 'Tennis Match Predictor',
     description: 'ML model with 77% accuracy predicting ATP tennis outcomes using Elo ratings, form, and fatigue analysis.',
     tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
     type: 'Machine Learning',
-    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=400&fit=crop',
+    image: 'https://i.postimg.cc/QMg7Lxt8/6396.jpg',
     github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor'
   }];
 
@@ -69,7 +69,7 @@ const Index = () => {
   }, {
     name: 'Twitter',
     icon: Twitter,
-    url: 'https://twitter.com/sohamjadhav95'
+    url: 'https://x.com/sohamjadhav_95'
   }, {
     name: 'Instagram',
     icon: Instagram,
@@ -87,7 +87,7 @@ const Index = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'featured', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -129,7 +129,7 @@ const Index = () => {
               SJ
             </div>
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
+              {['Home', 'About', 'Skills', 'Projects', 'Featured', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
                   {item}
                 </button>)}
             </div>
@@ -180,7 +180,7 @@ const Index = () => {
           <div className="space-y-6">
             <h1 className="text-6xl md:text-8xl font-bold scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
               <span className="block">Soham</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Jadhav
               </span>
             </h1>
@@ -282,16 +282,16 @@ Passionate about AI and Innovation</p>
           }}>
                 <div className="flex justify-between">
                   <span className="text-white font-medium text-lg">{skill.name}</span>
-                  <span className="text-blue-400 font-bold text-lg">{skill.level}%</span>
+                  <span className="text-cyan-400 font-bold text-lg">{skill.level}%</span>
                 </div>
                 <div className="relative">
-                  <Progress value={skill.level} className="h-4 bg-slate-800/70 backdrop-blur-sm overflow-hidden border border-slate-700/50">
+                  <div className="h-4 bg-slate-800/70 backdrop-blur-sm rounded-full border border-slate-700/50 overflow-hidden">
                     <div 
-                      className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-blue-500/30" 
+                      className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-cyan-400/40" 
                       style={{ width: `${skill.level}%` }} 
                     />
-                  </Progress>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-sm"></div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-purple-500/30 rounded-full blur-sm pointer-events-none"></div>
                 </div>
               </div>)}
           </div>
@@ -305,6 +305,30 @@ Passionate about AI and Innovation</p>
                   {comp}
                 </Badge>)}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Section */}
+      <section id="featured" className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Featured</span>
+          </h2>
+          <div className="max-w-2xl mx-auto scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
+            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
+              <CardHeader>
+                <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
+                <CardDescription className="text-blue-400">Sept 2024 – Present</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="text-gray-300 space-y-2">
+                  <li>• Organized sessions on AI & ML for the developer community</li>
+                  <li>• Mentored peers on AI, ML, and Generative AI tools and technologies</li>
+                  <li>• Led workshops and technical discussions on cutting-edge AI developments</li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
