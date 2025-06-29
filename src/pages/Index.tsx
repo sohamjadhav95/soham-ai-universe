@@ -84,6 +84,33 @@ const Index = () => {
     url: 'https://leetcode.com/sohamjadhav95'
   }];
 
+  const certificates = [{
+    title: 'IBM: AI Engineering Professional Certificate',
+    status: 'Pursuing Professional Certification',
+    image: null,
+    verification: null
+  }, {
+    title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
+    status: 'Completed',
+    image: 'https://i.postimg.cc/CdyMLkPW/IBM-Deep-Learning-with-Py-Torch-Keras-and-Tensorflow.png',
+    verification: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB'
+  }, {
+    title: 'HackerRank: Python (Advanced)',
+    status: 'Completed',
+    image: 'https://i.postimg.cc/gjhXDYfb/python-basic-certificate.png',
+    verification: null
+  }, {
+    title: 'HackerRank: SQL (Advanced)',
+    status: 'Completed',
+    image: 'https://i.postimg.cc/zD4TRQ91/sql-advanced-certificate.png',
+    verification: null
+  }, {
+    title: 'Career Essentials in Generative AI by Microsoft and LinkedIn',
+    status: 'Completed',
+    image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png',
+    verification: null
+  }];
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -249,21 +276,34 @@ Passionate about AI and Innovation</p>
             <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
               <h3 className="text-xl font-semibold text-blue-400 mb-4">Certifications</h3>
               <div className="space-y-3">
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                  <CardContent className="p-4">
-                    <p className="text-white font-medium">IBM: AI Engineering Professional Certificate</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                  <CardContent className="p-4">
-                    <p className="text-white font-medium">IBM: Deep Learning with PyTorch, Keras, TensorFlow</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                  <CardContent className="p-4">
-                    <p className="text-white font-medium">HackerRank: Python & SQL (Advanced)</p>
-                  </CardContent>
-                </Card>
+                {certificates.map((cert, index) => (
+                  <Card key={cert.title} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <p className="text-white font-medium text-sm">{cert.title}</p>
+                          <p className="text-gray-400 text-xs mt-1">{cert.status}</p>
+                        </div>
+                        <div className="flex items-center gap-2 ml-4">
+                          {cert.image && (
+                            <img 
+                              src={cert.image} 
+                              alt={cert.title} 
+                              className="w-12 h-12 object-cover rounded border border-slate-600"
+                            />
+                          )}
+                          {cert.verification && (
+                            <Button variant="outline" size="sm" asChild className="text-xs px-2 py-1 h-auto">
+                              <a href={cert.verification} target="_blank" rel="noopener noreferrer">
+                                Verify
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </div>
@@ -309,61 +349,47 @@ Passionate about AI and Innovation</p>
         </div>
       </section>
 
-      {/* Featured Section */}
-      <section id="featured" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Featured</span>
-          </h2>
-          <div className="max-w-2xl mx-auto scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-              <CardHeader>
-                <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
-                <CardDescription className="text-blue-400">Sept 2024 – Present</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-gray-300 space-y-2">
-                  <li>• Organized sessions on AI & ML for the developer community</li>
-                  <li>• Mentored peers on AI, ML, and Generative AI tools and technologies</li>
-                  <li>• Led workshops and technical discussions on cutting-edge AI developments</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
+      {/* Projects Section - Zigzag Layout */}
       <section id="projects" className="py-20 bg-slate-900/30 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
             Featured <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
           </h2>
-          <div className="max-w-4xl mx-auto space-y-16">
-            {projects.map((project, index) => <div key={project.title} className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 flex flex-col gap-8" style={{
-            transitionDelay: `${index * 200}ms`
-          }}>
-                <div className="text-center">
-                  <div className="relative overflow-hidden rounded-xl group mb-6">
-                    <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div className="max-w-6xl mx-auto">
+            {projects.map((project, index) => (
+              <div key={project.title} className={`mb-20 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`} style={{
+                transitionDelay: `${index * 200}ms`
+              }}>
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                  {/* Project Image */}
+                  <div className="relative overflow-hidden rounded-xl group">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" 
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-center gap-3">
-                      <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                  
+                  {/* Project Details */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-3xl font-bold text-white">{project.title}</h3>
                       <Badge className="bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1">
                         {project.type}
                       </Badge>
                     </div>
-                    <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-gray-300 text-lg leading-relaxed">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {project.tech.map(tech => <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map(tech => (
+                        <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
                           {tech}
-                        </Badge>)}
+                        </Badge>
+                      ))}
                     </div>
-                    <div className="flex justify-center gap-4 mt-6">
+                    <div className="flex gap-4">
                       <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                         <a href={project.github} target="_blank" rel="noopener noreferrer">
                           <Github className="mr-2 h-4 w-4" />
@@ -377,31 +403,52 @@ Passionate about AI and Innovation</p>
                     </div>
                   </div>
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20">
+      {/* Featured Section - Zigzag Layout */}
+      <section id="featured" className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Experience</span>
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Featured</span>
           </h2>
-          <div className="max-w-2xl mx-auto scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-              <CardHeader>
-                <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
-                <CardDescription className="text-blue-400">Sept 2024 – Present</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-gray-300 space-y-2">
-                  <li>• Organized sessions on AI & ML for the developer community</li>
-                  <li>• Mentored peers on AI, ML, and Generative AI tools and technologies</li>
-                  <li>• Led workshops and technical discussions on cutting-edge AI developments</li>
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
+              {/* Featured Image/Visual */}
+              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 backdrop-blur-sm border border-slate-700/50">
+                <div className="text-center">
+                  <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-4xl font-bold text-white">GDG</span>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-center gap-2 text-blue-400">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                      <span className="text-sm uppercase tracking-wide">Leadership Role</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Featured Details */}
+              <div className="space-y-6">
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
+                  <CardHeader>
+                    <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
+                    <CardDescription className="text-blue-400">Sept 2024 – Present</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="text-gray-300 space-y-2">
+                      <li>• Organized sessions on AI & ML for the developer community</li>
+                      <li>• Mentored peers on AI, ML, and Generative AI tools and technologies</li>
+                      <li>• Led workshops and technical discussions on cutting-edge AI developments</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
