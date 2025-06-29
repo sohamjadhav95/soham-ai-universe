@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { ChevronDown, Download, ExternalLink, Github, Linkedin, Mail, Phone, Twitter, Instagram, Facebook, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -92,17 +93,18 @@ const Index = () => {
     title: 'IBM: AI Engineering Professional Certificate',
     status: 'Pursuing Professional Certification',
     image: null,
-    verification: null
+    verification: null,
+    logoImage: 'https://i.postimg.cc/SxRr69DB/image.png'
   }, {
     title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
     status: 'Completed',
     image: 'https://i.postimg.cc/CdyMLkPW/IBM-Deep-Learning-with-Py-Torch-Keras-and-Tensorflow.png',
     verification: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB'
   }, {
-    title: 'HackerRank: Python (Advanced)',
+    title: 'Machine Learning with Python',
     status: 'Completed',
-    image: 'https://i.postimg.cc/gjhXDYfb/python-basic-certificate.png',
-    verification: null
+    image: 'https://i.postimg.cc/fWYgyYr5/Machine-Learning-With-Python.png',
+    verification: 'https://coursera.org/verify/CTGCLPT5MP9N'
   }, {
     title: 'HackerRank: SQL (Advanced)',
     status: 'Completed',
@@ -452,8 +454,12 @@ Passionate about AI and Innovation</p>
                       ) : (
                         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-12 flex items-center justify-center hover:bg-slate-800/70 transition-all duration-300">
                           <div className="text-center">
-                            <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                              <span className="text-white text-2xl font-bold">IBM</span>
+                            <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center p-2 overflow-hidden">
+                              <img 
+                                src={cert.logoImage} 
+                                alt="IBM Logo" 
+                                className="w-full h-full object-contain"
+                              />
                             </div>
                             <p className="text-blue-400 font-medium">In Progress</p>
                           </div>
