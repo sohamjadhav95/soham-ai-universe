@@ -122,10 +122,17 @@ const Index = () => {
     }));
   };
 
+  const downloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/lovable-uploads/fcdbe0f7-a238-4640-ae36-4db13ca191f9.png';
+    link.download = 'Soham_Jadhav_Resume.png';
+    link.click();
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      const sections = ['home', 'about', 'skills', 'projects', 'featured', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'certifications', 'featured', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -167,7 +174,7 @@ const Index = () => {
               SJ
             </div>
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Projects', 'Featured', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
+              {['Home', 'About', 'Skills', 'Projects', 'Certifications', 'Featured', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
                   {item}
                 </button>)}
             </div>
@@ -237,7 +244,10 @@ Passionate about AI and Innovation</p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm">
+              <Button 
+                onClick={downloadResume}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm"
+              >
                 <Download className="mr-3 h-5 w-5" />
                 Download Resume
               </Button>
@@ -285,38 +295,14 @@ Passionate about AI and Innovation</p>
               </div>
             </div>
             <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-              <h3 className="text-xl font-semibold text-blue-400 mb-4">Certifications</h3>
-              <div className="space-y-4">
-                {certificates.map((cert, index) => (
-                  <Card key={cert.title} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-white font-medium text-sm leading-tight">{cert.title}</p>
-                          <p className="text-gray-400 text-xs mt-1">{cert.status}</p>
-                        </div>
-                        <div className="flex items-center gap-3 flex-shrink-0">
-                          {cert.image && (
-                            <div className="w-16 h-16 flex-shrink-0">
-                              <img 
-                                src={cert.image} 
-                                alt={cert.title} 
-                                className="w-full h-full object-contain rounded border border-slate-600 bg-white/5"
-                              />
-                            </div>
-                          )}
-                          {cert.verification && (
-                            <Button variant="outline" size="sm" asChild className="text-xs px-3 py-2 h-auto whitespace-nowrap">
-                              <a href={cert.verification} target="_blank" rel="noopener noreferrer">
-                                Verify
-                              </a>
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="text-center">
+                <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-slate-700/50">
+                  <img 
+                    src="https://i.postimg.cc/44ccsfZW/59.png" 
+                    alt="About Soham" 
+                    className="w-40 h-40 object-cover rounded-full border-4 border-gradient-to-r from-blue-500 to-purple-500"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -393,8 +379,16 @@ Passionate about AI and Innovation</p>
                       </Badge>
                     </div>
                     <p className="text-gray-300 text-lg leading-relaxed">
-                      {expandedProjects[project.title] ? project.detailedDescription : project.description}
+                      {project.description}
                     </p>
+                    {expandedProjects[project.title] && (
+                      <div className="border-t border-slate-700/50 pt-4 mt-4">
+                        <h4 className="text-lg font-semibold text-blue-400 mb-2">Detailed Overview:</h4>
+                        <p className="text-gray-300 text-base leading-relaxed">
+                          {project.detailedDescription}
+                        </p>
+                      </div>
+                    )}
                     <Button 
                       variant="ghost" 
                       className="text-blue-400 hover:text-blue-300 p-0 h-auto font-medium"
@@ -429,18 +423,87 @@ Passionate about AI and Innovation</p>
         </div>
       </section>
 
+      {/* Certifications Section */}
+      <section id="certifications" className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Certifications</span>
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+              
+              {certificates.map((cert, index) => (
+                <div key={cert.title} className={`mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
+                  transitionDelay: `${index * 200}ms`
+                }}>
+                  <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                    {/* Certificate Image */}
+                    <div className={`relative ${index % 2 === 1 ? 'md:order-2 md:pl-12' : 'md:pr-12'}`}>
+                      {cert.image ? (
+                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
+                          <img 
+                            src={cert.image} 
+                            alt={cert.title} 
+                            className="w-full h-auto object-contain rounded-lg"
+                          />
+                        </div>
+                      ) : (
+                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-12 flex items-center justify-center hover:bg-slate-800/70 transition-all duration-300">
+                          <div className="text-center">
+                            <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                              <span className="text-white text-2xl font-bold">IBM</span>
+                            </div>
+                            <p className="text-blue-400 font-medium">In Progress</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Certificate Details */}
+                    <div className={`space-y-4 ${index % 2 === 1 ? 'md:order-1 md:pr-12' : 'md:pl-12'}`}>
+                      <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300">
+                        <CardHeader>
+                          <CardTitle className="text-white text-xl">{cert.title}</CardTitle>
+                          <CardDescription className={`text-lg font-medium ${cert.status === 'Pursuing Professional Certification' ? 'text-yellow-400' : 'text-green-400'}`}>
+                            {cert.status}
+                          </CardDescription>
+                        </CardHeader>
+                        {cert.verification && (
+                          <CardContent>
+                            <Button variant="outline" size="sm" asChild className="text-blue-400 border-blue-400/50 hover:bg-blue-400/20">
+                              <a href={cert.verification} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                View Certificate
+                              </a>
+                            </Button>
+                          </CardContent>
+                        )}
+                      </Card>
+                    </div>
+
+                    {/* Timeline dot */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Section - Zigzag Layout */}
-      <section id="featured" className="py-20">
+      <section id="featured" className="py-20 bg-slate-900/30 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Featured</span>
           </h2>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              {/* Featured Image/Visual */}
               <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 backdrop-blur-sm border border-slate-700/50">
                 <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden">
+                  <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
                     <img 
                       src="https://i.postimg.cc/fWqBq5pH/image.png" 
                       alt="Google Developers Groups" 
@@ -459,7 +522,6 @@ Passionate about AI and Innovation</p>
                 </div>
               </div>
               
-              {/* Featured Details */}
               <div className="space-y-6">
                 <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
                   <CardHeader>
@@ -481,7 +543,7 @@ Passionate about AI and Innovation</p>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-slate-900/30 backdrop-blur-sm">
+      <section id="contact" className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
             Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
