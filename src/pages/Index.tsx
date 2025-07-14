@@ -125,10 +125,7 @@ const Index = () => {
   };
 
   const downloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/lovable-uploads/fcdbe0f7-a238-4640-ae36-4db13ca191f9.png';
-    link.download = 'Soham_Jadhav_Resume.png';
-    link.click();
+    window.open('https://drive.google.com/file/d/1MPJqXbYoDE3z2D9OWJSlgEfvd-sjCrbM/view', '_blank');
   };
 
   useEffect(() => {
@@ -149,7 +146,7 @@ const Index = () => {
       const animateElements = document.querySelectorAll('.scroll-animate');
       animateElements.forEach(element => {
         const rect = element.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 0;
         if (isVisible) {
           element.classList.add('animate-fade-in');
           element.classList.remove('opacity-0', 'translate-y-8');
@@ -251,7 +248,7 @@ Passionate about AI and Innovation</p>
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm"
               >
                 <Download className="mr-3 h-5 w-5" />
-                Download Resume
+                View/Download Resume
               </Button>
               <Button variant="outline" className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40" onClick={() => scrollToSection('projects')}>
                 View My Work
@@ -490,7 +487,11 @@ Passionate about AI and Innovation</p>
                     </div>
 
                     {/* Timeline dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950"></div>
+                    <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-pulse' : ''}`}>
+                      {cert.status === 'Pursuing Professional Certification' && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-ping opacity-50"></div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
