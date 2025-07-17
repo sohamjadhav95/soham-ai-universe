@@ -44,7 +44,9 @@ const Index = () => {
     tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
     type: 'AI Agent',
     image: 'https://i.postimg.cc/023DDBFs/Screenshot-2025-06-29-135302.png',
-    github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science'
+    github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science',
+    overview: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor/blob/main/README.md',
+    setup: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/setup.md'
   }, {
     title: 'NexaOS Flow',
     description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
@@ -60,7 +62,8 @@ const Index = () => {
     tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
     type: 'Machine Learning',
     image: 'https://i.postimg.cc/QMg7Lxt8/6396.jpg',
-    github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor'
+    github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor',
+    liveDemo: 'https://ai-powered-tennis-match-outcome-predict.streamlit.app/'
   }];
 
   const socialLinks = [{
@@ -248,7 +251,7 @@ Passionate about AI and Innovation</p>
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm"
               >
                 <Download className="mr-3 h-5 w-5" />
-                View/Download Resume
+                View Resume
               </Button>
               <Button variant="outline" className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40" onClick={() => scrollToSection('projects')}>
                 View My Work
@@ -390,7 +393,7 @@ Passionate about AI and Innovation</p>
                     )}
                     <Button 
                       variant="ghost" 
-                      className="text-blue-400 hover:text-blue-300 p-0 h-auto font-medium"
+                      className="bg-gradient-to-r from-slate-800/40 to-slate-700/40 border border-slate-600/30 text-slate-300 hover:from-slate-700/60 hover:to-slate-600/60 hover:text-white hover:border-slate-500/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 px-4 py-2 rounded-md"
                       onClick={() => toggleProjectExpansion(project.title)}
                     >
                       {expandedProjects[project.title] ? 'Show Less' : 'See More'}
@@ -402,17 +405,37 @@ Passionate about AI and Innovation</p>
                         </Badge>
                       ))}
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 flex-wrap">
                       <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                         <a href={project.github} target="_blank" rel="noopener noreferrer">
                           <Github className="mr-2 h-4 w-4" />
                           View Code
                         </a>
                       </Button>
-                      <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
-                      </Button>
+                      {project.liveDemo && (
+                        <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                          <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      )}
+                      {project.overview && (
+                        <Button variant="outline" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                          <a href={project.overview} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Overview
+                          </a>
+                        </Button>
+                      )}
+                      {project.setup && (
+                        <Button variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                          <a href={project.setup} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Setup
+                          </a>
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
