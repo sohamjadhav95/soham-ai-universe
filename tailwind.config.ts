@@ -84,11 +84,23 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'color-shift': {
+					'0%, 100%': { 
+						filter: 'hue-rotate(0deg)'
+					},
+					'33%': {
+						filter: 'hue-rotate(120deg)'
+					},
+					'66%': {
+						filter: 'hue-rotate(240deg)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'color-shift': 'color-shift 2s ease-in-out infinite'
 			}
 		}
 	},

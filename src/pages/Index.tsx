@@ -397,7 +397,7 @@ Passionate about AI and Innovation</p>
                       className="text-xs px-3 py-1 h-7 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-400/30 hover:border-purple-400/50 text-blue-300 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-purple-500/20"
                       onClick={() => toggleProjectExpansion(project.title)}
                     >
-                      <span className="animate-pulse">
+                      <span className="animate-[color-shift_2s_ease-in-out_infinite] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                         {expandedProjects[project.title] ? 'Show Less' : 'See More'}
                       </span>
                     </Button>
