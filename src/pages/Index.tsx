@@ -45,7 +45,7 @@ const Index = () => {
     type: 'AI Agent',
     image: 'https://i.postimg.cc/023DDBFs/Screenshot-2025-06-29-135302.png',
     github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science',
-    overview: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor/blob/main/README.md',
+    overview: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/readme.md',
     setup: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/setup.md'
   }, {
     title: 'NexaOS Flow',
@@ -393,7 +393,8 @@ Passionate about AI and Innovation</p>
                     )}
                     <Button 
                       variant="ghost" 
-                      className="bg-gradient-to-r from-slate-800/40 to-slate-700/40 border border-slate-600/30 text-slate-300 hover:from-slate-700/60 hover:to-slate-600/60 hover:text-white hover:border-slate-500/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 px-4 py-2 rounded-md"
+                      size="sm"
+                      className="text-xs px-3 py-1 h-7 bg-slate-800/30 hover:bg-slate-700/50 border border-slate-600/20 hover:border-slate-500/40 text-slate-400 hover:text-blue-300 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md"
                       onClick={() => toggleProjectExpansion(project.title)}
                     >
                       {expandedProjects[project.title] ? 'Show Less' : 'See More'}
