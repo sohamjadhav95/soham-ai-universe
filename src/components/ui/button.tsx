@@ -38,19 +38,26 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
-  soundEffect?: 'hover' | 'click' | 'navigation' | 'cta' | 'project' | false
+  soundEffect?: 'hover' | 'click' | 'success' | 'navigation' | 'cta' | 'project' | false
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, soundEffect = 'hover', onMouseEnter, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, soundEffect = 'hover', onMouseEnter, onClick, ...props }, ref) => {
     const { playSound } = useSoundEffect()
     const Comp = asChild ? Slot : "button"
     
     const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (soundEffect) {
+      if (soundEffect === 'hover' || soundEffect === 'navigation') {
         playSound(soundEffect)
       }
       onMouseEnter?.(e)
+    }
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (soundEffect && soundEffect !== 'hover' && soundEffect !== 'navigation') {
+        playSound(soundEffect)
+      }
+      onClick?.(e)
     }
 
     return (
@@ -58,6 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         onMouseEnter={handleMouseEnter}
+        onClick={handleClick}
         {...props}
       />
     )
