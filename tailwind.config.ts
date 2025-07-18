@@ -87,17 +87,17 @@ export default {
 				},
 				'color-shift': {
 					'0%, 100%': { 
-						filter: 'hue-rotate(0deg)'
+						color: 'rgb(96 165 250)' // blue-400
 					},
 					'50%': {
-						filter: 'hue-rotate(240deg)'
+						color: 'rgb(192 132 252)' // purple-400
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'color-shift': 'color-shift 4s ease-in-out infinite'
+				'color-shift': 'color-shift 6s ease-in-out infinite'
 			}
 		}
 	},

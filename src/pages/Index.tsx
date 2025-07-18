@@ -397,7 +397,7 @@ Passionate about AI and Innovation</p>
                       className="text-xs px-3 py-1 h-7 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-400/30 hover:border-purple-400/50 text-blue-300 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-purple-500/20"
                       onClick={() => toggleProjectExpansion(project.title)}
                     >
-                      <span className="animate-[color-shift_2s_ease-in-out_infinite] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                      <span className="animate-[color-shift_6s_ease-in-out_infinite]">
                         {expandedProjects[project.title] ? 'Show Less' : 'See More'}
                       </span>
                     </Button>
@@ -513,9 +513,9 @@ Passionate about AI and Innovation</p>
                     </div>
 
                     {/* Timeline dot */}
-                    <div className={`absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-pulse' : ''}`}>
+                    <div className={`absolute left-1/2 transform -translate-x-1/2 ${cert.status === 'Pursuing Professional Certification' ? 'w-6 h-6' : 'w-4 h-4'} bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-[pulse_3s_ease-in-out_infinite]' : ''}`}>
                       {cert.status === 'Pursuing Professional Certification' && (
-                        <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-ping opacity-75"></div>
+                        <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-[ping_3s_ease-in-out_infinite] opacity-75"></div>
                       )}
                     </div>
                   </div>
