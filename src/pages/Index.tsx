@@ -513,9 +513,9 @@ Passionate about AI and Innovation</p>
                     </div>
 
                     {/* Timeline dot */}
-                    <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-pulse' : ''}`}>
+                    <div className={`absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-pulse' : ''}`}>
                       {cert.status === 'Pursuing Professional Certification' && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-ping opacity-50"></div>
+                        <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-ping opacity-75"></div>
                       )}
                     </div>
                   </div>

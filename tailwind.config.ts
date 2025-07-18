@@ -89,10 +89,7 @@ export default {
 					'0%, 100%': { 
 						filter: 'hue-rotate(0deg)'
 					},
-					'33%': {
-						filter: 'hue-rotate(120deg)'
-					},
-					'66%': {
+					'50%': {
 						filter: 'hue-rotate(240deg)'
 					}
 				}
@@ -100,7 +97,7 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'color-shift': 'color-shift 2s ease-in-out infinite'
+				'color-shift': 'color-shift 4s ease-in-out infinite'
 			}
 		}
 	},
