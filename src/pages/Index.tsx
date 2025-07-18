@@ -176,9 +176,9 @@ const Index = () => {
               SJ
             </div>
             <div className="hidden md:flex space-x-8">
-            {['Home', 'About', 'Skills', 'Projects', 'Certifications', 'Featured', 'Contact'].map(item => <Button key={item} variant="ghost" soundEffect="navigation" onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
+              {['Home', 'About', 'Skills', 'Projects', 'Certifications', 'Featured', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
                   {item}
-                </Button>)}
+                </button>)}
             </div>
           </div>
         </div>
@@ -248,13 +248,12 @@ Passionate about AI and Innovation</p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
               <Button 
                 onClick={downloadResume}
-                soundEffect="cta"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm"
               >
                 <Download className="mr-3 h-5 w-5" />
                 View Resume
               </Button>
-              <Button variant="outline" soundEffect="cta" className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40" onClick={() => scrollToSection('projects')}>
+              <Button variant="outline" className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40" onClick={() => scrollToSection('projects')}>
                 View My Work
               </Button>
             </div>
@@ -395,7 +394,6 @@ Passionate about AI and Innovation</p>
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      soundEffect="hover"
                       className="text-xs px-3 py-1 h-7 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-400/30 hover:border-purple-400/50 text-blue-300 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-purple-500/20"
                       onClick={() => toggleProjectExpansion(project.title)}
                     >
@@ -411,14 +409,14 @@ Passionate about AI and Innovation</p>
                       ))}
                     </div>
                     <div className="flex gap-4 flex-wrap">
-                      <Button variant="outline" soundEffect="project" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                      <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                         <a href={project.github} target="_blank" rel="noopener noreferrer">
                           <Github className="mr-2 h-4 w-4" />
                           View Code
                         </a>
                       </Button>
                       {project.liveDemo && (
-                        <Button variant="outline" soundEffect="project" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                        <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                           <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Live Demo
@@ -426,7 +424,7 @@ Passionate about AI and Innovation</p>
                         </Button>
                       )}
                       {project.overview && (
-                        <Button variant="outline" soundEffect="project" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                        <Button variant="outline" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                           <a href={project.overview} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Overview
@@ -434,7 +432,7 @@ Passionate about AI and Innovation</p>
                         </Button>
                       )}
                       {project.setup && (
-                        <Button variant="outline" soundEffect="project" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                        <Button variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                           <a href={project.setup} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Setup
@@ -503,7 +501,7 @@ Passionate about AI and Innovation</p>
                         </CardHeader>
                         {cert.verification && (
                           <CardContent>
-                            <Button variant="outline" size="sm" soundEffect="hover" asChild className="text-blue-400 border-blue-400/50 hover:bg-blue-400/20">
+                            <Button variant="outline" size="sm" asChild className="text-blue-400 border-blue-400/50 hover:bg-blue-400/20">
                               <a href={cert.verification} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="mr-2 h-4 w-4" />
                                 View Certificate
