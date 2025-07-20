@@ -128,7 +128,7 @@ const Index = () => {
   };
 
   const downloadResume = () => {
-    window.open('https://drive.google.com/file/d/1MPJqXbYoDE3z2D9OWJSlgEfvd-sjCrbM/view', '_blank');
+    window.open('https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing', '_blank');
   };
 
   useEffect(() => {
