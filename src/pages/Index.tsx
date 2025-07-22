@@ -95,27 +95,32 @@ const Index = () => {
   const certificates = [{
     title: 'IBM: AI Engineering Professional Certificate',
     status: 'Pursuing Professional Certification',
+    date: null,
     image: null,
     verification: null,
     logoImage: 'https://i.postimg.cc/SxRr69DB/image.png'
   }, {
     title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
     status: 'Completed',
+    date: 'Jun 15, 2025',
     image: 'https://i.postimg.cc/CdyMLkPW/IBM-Deep-Learning-with-Py-Torch-Keras-and-Tensorflow.png',
     verification: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB'
   }, {
     title: 'Machine Learning with Python',
     status: 'Completed',
+    date: 'Sep 21, 2024',
     image: 'https://i.postimg.cc/fWYgyYr5/Machine-Learning-With-Python.png',
     verification: 'https://coursera.org/verify/CTGCLPT5MP9N'
   }, {
     title: 'HackerRank: SQL (Advanced)',
     status: 'Completed',
+    date: 'Sep 06, 2024',
     image: 'https://i.postimg.cc/zD4TRQ91/sql-advanced-certificate.png',
     verification: null
   }, {
     title: 'Career Essentials in Generative AI by Microsoft and LinkedIn',
     status: 'Completed',
+    date: 'Aug 04, 2024',
     image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png',
     verification: null
   }];
@@ -498,6 +503,11 @@ Passionate about AI and Innovation</p>
                           <CardDescription className={`text-lg font-medium ${cert.status === 'Pursuing Professional Certification' ? 'text-yellow-400' : 'text-green-400'}`}>
                             {cert.status}
                           </CardDescription>
+                          {cert.date && (
+                            <CardDescription className="text-gray-400 text-sm">
+                              {cert.date}
+                            </CardDescription>
+                          )}
                         </CardHeader>
                         {cert.verification && (
                           <CardContent>
