@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import ibmDeepLearningCert from '@/assets/ibm-deep-learning-cert.png';
+import mlPythonCert from '@/assets/ml-python-cert.png';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -103,13 +105,13 @@ const Index = () => {
     title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
     status: 'Completed',
     date: 'Jun 15, 2025',
-    image: 'https://i.postimg.cc/CdyMLkPW/IBM-Deep-Learning-with-Py-Torch-Keras-and-Tensorflow.png',
+    image: ibmDeepLearningCert,
     verification: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB'
   }, {
     title: 'Machine Learning with Python',
     status: 'Completed',
     date: 'Sep 21, 2024',
-    image: 'https://i.postimg.cc/fWYgyYr5/Machine-Learning-With-Python.png',
+    image: mlPythonCert,
     verification: 'https://coursera.org/verify/CTGCLPT5MP9N'
   }, {
     title: 'HackerRank: SQL (Advanced)',
