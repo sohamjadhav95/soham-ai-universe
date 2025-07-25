@@ -111,7 +111,7 @@ const Index = () => {
     title: 'Machine Learning with Python',
     status: 'Completed',
     date: 'Sep 21, 2024',
-    image: mlPythonCert,
+    image: '/lovable-uploads/86f9ccbd-bf97-4896-a49f-dcc4fdbe9707.png',
     verification: 'https://coursera.org/verify/CTGCLPT5MP9N'
   }, {
     title: 'HackerRank: SQL (Advanced)',
