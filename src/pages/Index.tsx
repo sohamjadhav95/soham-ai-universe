@@ -480,6 +480,8 @@ const Index = () => {
                             src={cert.image} 
                             alt={cert.title} 
                             className="w-full h-auto object-contain rounded-lg"
+                            style={{ imageRendering: 'crisp-edges' }}
+                            loading="lazy"
                           />
                         </div>
                       ) : (
