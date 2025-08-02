@@ -40,14 +40,6 @@ const Index = () => {
   }];
 
   const projects = [{
-    title: 'Cover Letter Tailoring Gen AI',
-    description: 'Custom AI solution that automatically generates tailored cover letters from any resume and job description using fine-tuned TinyLlama model.',
-    detailedDescription: 'A comprehensive AI-powered solution designed to automatically generate highly personalized cover letters from any resume and job description. Utilizes a fine-tuned TinyLlama model (1.1B parameters) trained on a high-quality dataset of resume–job description pairs to produce tailored application documents. Features a Gradio-based web interface for real-time cover letter generation, along with scripts and utilities for fine-tuning and model management. Supports both simple and fully customized instruction modes, can be deployed locally or on Colab, and provides downloadable standalone model checkpoints for advanced users with cloud-ready deployment capabilities.',
-    tech: ['Python', 'HuggingFace Transformers', 'PyTorch', 'Gradio', 'LoRA', 'NLP'],
-    type: 'Gen AI',
-    image: '/lovable-uploads/33599dff-7d87-4deb-a724-f5c0a649444b.png',
-    github: 'https://github.com/sohamjadhav95/Cover-Letter-Tailoring-Gen-AI'
-  }, {
     title: 'Copilot for Data Science',
     description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
     detailedDescription: 'This comprehensive AI-powered data science assistant revolutionizes analytics workflows by combining natural language processing with automated machine learning capabilities. The system intelligently interprets user queries, automatically selects appropriate algorithms, performs feature engineering, and generates insights with minimal human intervention. Built with advanced NLP models for query understanding, integrated AutoML pipelines for model selection and hyperparameter tuning, and sophisticated data processing engines that handle diverse data formats and sources.',
@@ -57,6 +49,14 @@ const Index = () => {
     github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science',
     overview: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/readme.md',
     setup: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/setup.md'
+  }, {
+    title: 'Cover Letter Tailoring Gen AI',
+    description: 'Custom AI solution that automatically generates tailored cover letters from any resume and job description using fine-tuned TinyLlama model.',
+    detailedDescription: 'A comprehensive AI-powered solution designed to automatically generate highly personalized cover letters from any resume and job description. Utilizes a fine-tuned TinyLlama model (1.1B parameters) trained on a high-quality dataset of resume–job description pairs to produce tailored application documents. Features a Gradio-based web interface for real-time cover letter generation, along with scripts and utilities for fine-tuning and model management. Supports both simple and fully customized instruction modes, can be deployed locally or on Colab, and provides downloadable standalone model checkpoints for advanced users with cloud-ready deployment capabilities.',
+    tech: ['Python', 'HuggingFace Transformers', 'PyTorch', 'Gradio', 'LoRA', 'NLP'],
+    type: 'Gen AI',
+    image: '/lovable-uploads/33599dff-7d87-4deb-a724-f5c0a649444b.png',
+    github: 'https://github.com/sohamjadhav95/Cover-Letter-Tailoring-Gen-AI'
   }, {
     title: 'NexaOS Flow',
     description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
