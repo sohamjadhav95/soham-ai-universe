@@ -105,17 +105,17 @@ const Index = () => {
   }];
 
   const certificates = [{
-    title: 'Generative AI with Large Language Models',
-    status: 'Completed',
-    date: 'Dec 7, 2025',
-    image: genAiLlmsCert,
-    verification: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD'
-  }, {
     title: 'IBM: AI Engineering Professional Certificate',
     status: 'Completed',
     date: 'Dec 7, 2025',
     image: ibmAiEngineeringCert,
     verification: 'https://coursera.org/verify/professional-cert/IJ5Z0ADQ8EC2'
+  }, {
+    title: 'Generative AI with Large Language Models',
+    status: 'Completed',
+    date: 'Dec 7, 2025',
+    image: genAiLlmsCert,
+    verification: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD'
   }, {
     title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
     status: 'Completed',
