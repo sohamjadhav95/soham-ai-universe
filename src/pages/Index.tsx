@@ -547,8 +547,8 @@ const Index = () => {
                       <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Communication</span>
                       <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Technical Mentorship</span>
                       <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Community Building</span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Leadership
-                    </span>
+                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Leadership</span>
+                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Team</span>
                     </div>
                   </CardContent>
                 </Card>
