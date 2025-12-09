@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import ibmDeepLearningCert from '@/assets/ibm-deep-learning-cert.png';
 import mlPythonCert from '@/assets/ml-python-cert.png';
+import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
+import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -103,12 +105,17 @@ const Index = () => {
   }];
 
   const certificates = [{
+    title: 'Generative AI with Large Language Models',
+    status: 'Completed',
+    date: 'Dec 7, 2025',
+    image: genAiLlmsCert,
+    verification: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD'
+  }, {
     title: 'IBM: AI Engineering Professional Certificate',
-    status: 'Pursuing Professional Certification',
-    date: null,
-    image: null,
-    verification: null,
-    logoImage: 'https://i.postimg.cc/SxRr69DB/image.png'
+    status: 'Completed',
+    date: 'Dec 7, 2025',
+    image: ibmAiEngineeringCert,
+    verification: 'https://coursera.org/verify/professional-cert/IJ5Z0ADQ8EC2'
   }, {
     title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
     status: 'Completed',
@@ -482,30 +489,15 @@ const Index = () => {
                   <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                     {/* Certificate Image */}
                     <div className={`relative ${index % 2 === 1 ? 'md:order-2 md:pl-12' : 'md:pr-12'}`}>
-                      {cert.image ? (
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                          <img 
-                            src={cert.image} 
-                            alt={cert.title} 
-                            className="w-full h-auto object-contain rounded-lg"
-                            style={{ imageRendering: 'crisp-edges' }}
-                            loading="lazy"
-                          />
-                        </div>
-                      ) : (
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-12 flex items-center justify-center hover:bg-slate-800/70 transition-all duration-300">
-                          <div className="text-center">
-                            <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center p-2 overflow-hidden">
-                              <img 
-                                src={cert.logoImage} 
-                                alt="IBM Logo" 
-                                className="w-full h-full object-contain"
-                              />
-                            </div>
-                            <p className="text-blue-400 font-medium">In Progress</p>
-                          </div>
-                        </div>
-                      )}
+                      <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
+                        <img 
+                          src={cert.image} 
+                          alt={cert.title} 
+                          className="w-full h-auto object-contain rounded-lg"
+                          style={{ imageRendering: 'crisp-edges' }}
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
                     
                     {/* Certificate Details */}
