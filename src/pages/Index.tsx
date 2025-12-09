@@ -550,24 +550,36 @@ const Index = () => {
           </h2>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 backdrop-blur-sm border border-slate-700/50">
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
-                    <img 
-                      src="https://i.postimg.cc/fWqBq5pH/image.png" 
-                      alt="Google Developers Groups" 
-                      className="w-24 h-24 object-contain"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-center gap-2 text-blue-400">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                      <span className="text-sm uppercase tracking-wide">Leadership Role</span>
+              <div className="space-y-6">
+                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 backdrop-blur-sm border border-slate-700/50">
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
+                      <img 
+                        src="https://i.postimg.cc/fWqBq5pH/image.png" 
+                        alt="Google Developers Groups" 
+                        className="w-24 h-24 object-contain"
+                      />
                     </div>
-                    <div className="text-purple-300 text-sm font-medium">
-                      Artificial Intelligence and Machine Learning
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center gap-2 text-blue-400">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                        <span className="text-sm uppercase tracking-wide">Leadership Role</span>
+                      </div>
+                      <div className="text-purple-300 text-sm font-medium">
+                        Artificial Intelligence and Machine Learning
+                      </div>
                     </div>
                   </div>
+                </div>
+                
+                {/* Certificate - Below logo card */}
+                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-4 backdrop-blur-sm border border-slate-700/50 hover:scale-105 transition-all duration-300">
+                  <img 
+                    src={gdgCoLeadCert} 
+                    alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
+                    className="w-full h-auto object-contain rounded-lg"
+                    loading="lazy"
+                  />
                 </div>
               </div>
               
@@ -575,7 +587,7 @@ const Index = () => {
                 <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
                   <CardHeader>
                     <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
-                    <CardDescription className="text-blue-400">Sept 2024 – Oct 2025</CardDescription>
+                    <CardDescription className="text-blue-400">Sept 2024 – Oct 2025 · 1 Year 1 Month</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="text-gray-300 space-y-2">
@@ -585,16 +597,6 @@ const Index = () => {
                     </ul>
                   </CardContent>
                 </Card>
-                
-                {/* Certificate - Same size as logo card */}
-                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105 aspect-square flex items-center justify-center">
-                  <img 
-                    src={gdgCoLeadCert} 
-                    alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
-                    className="w-full h-full object-contain rounded-lg"
-                    loading="lazy"
-                  />
-                </div>
               </div>
             </div>
           </div>
