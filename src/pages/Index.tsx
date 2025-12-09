@@ -550,22 +550,22 @@ const Index = () => {
           </h2>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              <div className="space-y-6">
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-8 backdrop-blur-sm border border-slate-700/50">
+              <div className="space-y-4">
+                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-6 backdrop-blur-sm border border-slate-700/50">
                   <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
+                    <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
                       <img 
                         src="https://i.postimg.cc/fWqBq5pH/image.png" 
                         alt="Google Developers Groups" 
-                        className="w-24 h-24 object-contain"
+                        className="w-20 h-20 object-contain"
                       />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                       <div className="flex items-center justify-center gap-2 text-blue-400">
                         <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span className="text-sm uppercase tracking-wide">Leadership Role</span>
+                        <span className="text-xs uppercase tracking-wide">Leadership Role</span>
                       </div>
-                      <div className="text-purple-300 text-sm font-medium">
+                      <div className="text-purple-300 text-xs font-medium">
                         Artificial Intelligence and Machine Learning
                       </div>
                     </div>
@@ -573,7 +573,7 @@ const Index = () => {
                 </div>
                 
                 {/* Certificate - Below logo card */}
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-4 backdrop-blur-sm border border-slate-700/50 hover:scale-105 transition-all duration-300">
+                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-3 backdrop-blur-sm border border-slate-700/50 hover:scale-105 transition-all duration-300">
                   <img 
                     src={gdgCoLeadCert} 
                     alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
@@ -594,7 +594,20 @@ const Index = () => {
                       <li>• Organized sessions on AI & ML for the developer community</li>
                       <li>• Mentored peers on AI, ML, and Generative AI tools and technologies</li>
                       <li>• Led workshops and technical discussions on cutting-edge AI developments</li>
+                      <li>• Collaborated with industry professionals to bring real-world insights to the community</li>
+                      <li>• Facilitated networking opportunities between developers and tech enthusiasts</li>
                     </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
+                  <CardContent className="pt-6">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Event Management</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Technical Mentorship</span>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Community Building</span>
+                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Workshop Facilitation</span>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
