@@ -9,6 +9,7 @@ import ibmDeepLearningCert from '@/assets/ibm-deep-learning-cert.png';
 import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
+import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -574,7 +575,7 @@ const Index = () => {
                 <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
                   <CardHeader>
                     <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
-                    <CardDescription className="text-blue-400">Sept 2024 – Present</CardDescription>
+                    <CardDescription className="text-blue-400">Sept 2024 – Oct 2025</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="text-gray-300 space-y-2">
@@ -584,6 +585,18 @@ const Index = () => {
                     </ul>
                   </CardContent>
                 </Card>
+              </div>
+            </div>
+            
+            {/* Certificate Section */}
+            <div className="mt-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-[1.02]">
+                <img 
+                  src={gdgCoLeadCert} 
+                  alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
+                  className="w-full h-auto object-contain rounded-lg"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
