@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronDown, Download, ExternalLink, Github, Linkedin, Mail, Phone, Twitter, Instagram, Facebook, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,12 +9,12 @@ import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
-
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollY, setScrollY] = useState(0);
-  const [expandedProjects, setExpandedProjects] = useState<{[key: string]: boolean}>({});
-
+  const [expandedProjects, setExpandedProjects] = useState<{
+    [key: string]: boolean;
+  }>({});
   const skills = [{
     name: 'Python',
     level: 95
@@ -41,7 +40,6 @@ const Index = () => {
     name: 'Data Engineering',
     level: 75
   }];
-
   const projects = [{
     title: 'Copilot for Data Science',
     description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
@@ -78,7 +76,6 @@ const Index = () => {
     github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor',
     liveDemo: 'https://ai-powered-tennis-match-outcome-predict.streamlit.app/'
   }];
-
   const socialLinks = [{
     name: 'GitHub',
     icon: Github,
@@ -104,7 +101,6 @@ const Index = () => {
     icon: Code,
     url: 'https://leetcode.com/sohamjadhav95'
   }];
-
   const certificates = [{
     title: 'IBM: AI Engineering Professional Certificate',
     status: 'Completed',
@@ -142,18 +138,15 @@ const Index = () => {
     image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png',
     verification: null
   }];
-
   const toggleProjectExpansion = (projectTitle: string) => {
     setExpandedProjects(prev => ({
       ...prev,
       [projectTitle]: !prev[projectTitle]
     }));
   };
-
   const downloadResume = () => {
     window.open('https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing', '_blank');
   };
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -182,14 +175,12 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-
   return <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md border-b border-white/10 transition-all duration-300">
@@ -270,10 +261,7 @@ const Index = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
-              <Button 
-                onClick={downloadResume}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm"
-              >
+              <Button onClick={downloadResume} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm">
                 <Download className="mr-3 h-5 w-5" />
                 View Resume
               </Button>
@@ -323,11 +311,7 @@ const Index = () => {
             <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
               <div className="text-center">
                 <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-slate-700/50">
-                  <img 
-                    src="https://i.postimg.cc/44ccsfZW/59.png" 
-                    alt="About Soham" 
-                    className="w-40 h-40 object-cover rounded-full border-4 border-gradient-to-r from-blue-500 to-purple-500"
-                  />
+                  <img src="https://i.postimg.cc/44ccsfZW/59.png" alt="About Soham" className="w-40 h-40 object-cover rounded-full border-4 border-gradient-to-r from-blue-500 to-purple-500" />
                 </div>
               </div>
             </div>
@@ -351,10 +335,9 @@ const Index = () => {
                 </div>
                 <div className="relative">
                   <div className="h-4 bg-slate-800/70 backdrop-blur-sm rounded-full border border-slate-700/50 overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-cyan-400/40" 
-                      style={{ width: `${skill.level}%` }} 
-                    />
+                    <div className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-cyan-400/40" style={{
+                  width: `${skill.level}%`
+                }} />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-purple-500/30 rounded-full blur-sm pointer-events-none"></div>
                 </div>
@@ -381,18 +364,13 @@ const Index = () => {
             Featured <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
           </h2>
           <div className="max-w-6xl mx-auto">
-            {projects.map((project, index) => (
-              <div key={project.title} className={`mb-20 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
-                transitionDelay: `${index * 200}ms`
-              }}>
+            {projects.map((project, index) => <div key={project.title} className={`mb-20 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
+            transitionDelay: `${index * 200}ms`
+          }}>
                 <div className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                   {/* Project Image */}
                   <div className={`relative overflow-hidden rounded-xl group ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" 
-                    />
+                    <img src={project.image} alt={project.title} className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   
@@ -407,30 +385,21 @@ const Index = () => {
                     <p className="text-gray-300 text-lg leading-relaxed">
                       {project.description}
                     </p>
-                    {expandedProjects[project.title] && (
-                      <div className="border-t border-slate-700/50 pt-4 mt-4">
+                    {expandedProjects[project.title] && <div className="border-t border-slate-700/50 pt-4 mt-4">
                         <h4 className="text-lg font-semibold text-blue-400 mb-2">Detailed Overview:</h4>
                         <p className="text-gray-300 text-base leading-relaxed">
                           {project.detailedDescription}
                         </p>
-                      </div>
-                    )}
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="text-xs px-3 py-1 h-7 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-400/30 hover:border-purple-400/50 text-blue-300 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-purple-500/20"
-                      onClick={() => toggleProjectExpansion(project.title)}
-                    >
+                      </div>}
+                    <Button variant="ghost" size="sm" className="text-xs px-3 py-1 h-7 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-400/30 hover:border-purple-400/50 text-blue-300 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-purple-500/20" onClick={() => toggleProjectExpansion(project.title)}>
                       <span className="animate-[color-shift_6s_ease-in-out_infinite]">
                         {expandedProjects[project.title] ? 'Show Less' : 'See More'}
                       </span>
                     </Button>
                     <div className="flex flex-wrap gap-2">
-                      {project.tech.map(tech => (
-                        <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
+                      {project.tech.map(tech => <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
                           {tech}
-                        </Badge>
-                      ))}
+                        </Badge>)}
                     </div>
                     <div className="flex gap-4 flex-wrap">
                       <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
@@ -439,35 +408,28 @@ const Index = () => {
                           View Code
                         </a>
                       </Button>
-                      {project.liveDemo && (
-                        <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                      {project.liveDemo && <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                           <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Live Demo
                           </a>
-                        </Button>
-                      )}
-                      {project.overview && (
-                        <Button variant="outline" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                        </Button>}
+                      {project.overview && <Button variant="outline" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                           <a href={project.overview} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Overview
                           </a>
-                        </Button>
-                      )}
-                      {project.setup && (
-                        <Button variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
+                        </Button>}
+                      {project.setup && <Button variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
                           <a href={project.setup} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Setup
                           </a>
-                        </Button>
-                      )}
+                        </Button>}
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -483,21 +445,16 @@ const Index = () => {
               {/* Vertical line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
               
-              {certificates.map((cert, index) => (
-                <div key={cert.title} className={`mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
-                  transitionDelay: `${index * 200}ms`
-                }}>
+              {certificates.map((cert, index) => <div key={cert.title} className={`mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
+              transitionDelay: `${index * 200}ms`
+            }}>
                   <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                     {/* Certificate Image */}
                     <div className={`relative ${index % 2 === 1 ? 'md:order-2 md:pl-12' : 'md:pr-12'}`}>
                       <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                        <img 
-                          src={cert.image} 
-                          alt={cert.title} 
-                          className="w-full h-auto object-contain rounded-lg"
-                          style={{ imageRendering: 'crisp-edges' }}
-                          loading="lazy"
-                        />
+                        <img src={cert.image} alt={cert.title} className="w-full h-auto object-contain rounded-lg" style={{
+                      imageRendering: 'crisp-edges'
+                    }} loading="lazy" />
                       </div>
                     </div>
                     
@@ -509,34 +466,27 @@ const Index = () => {
                           <CardDescription className={`text-lg font-medium ${cert.status === 'Pursuing Professional Certification' ? 'text-yellow-400' : 'text-green-400'}`}>
                             {cert.status}
                           </CardDescription>
-                          {cert.date && (
-                            <CardDescription className="text-gray-400 text-sm">
+                          {cert.date && <CardDescription className="text-gray-400 text-sm">
                               {cert.date}
-                            </CardDescription>
-                          )}
+                            </CardDescription>}
                         </CardHeader>
-                        {cert.verification && (
-                          <CardContent>
+                        {cert.verification && <CardContent>
                             <Button variant="outline" size="sm" asChild className="text-blue-400 border-blue-400/50 hover:bg-blue-400/20">
                               <a href={cert.verification} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="mr-2 h-4 w-4" />
                                 View Certificate
                               </a>
                             </Button>
-                          </CardContent>
-                        )}
+                          </CardContent>}
                       </Card>
                     </div>
 
                     {/* Timeline dot */}
                     <div className={`absolute left-1/2 transform -translate-x-1/2 ${cert.status === 'Pursuing Professional Certification' ? 'w-6 h-6' : 'w-4 h-4'} bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-[pulse_3s_ease-in-out_infinite]' : ''}`}>
-                      {cert.status === 'Pursuing Professional Certification' && (
-                        <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-[ping_3s_ease-in-out_infinite] opacity-75"></div>
-                      )}
+                      {cert.status === 'Pursuing Professional Certification' && <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-[ping_3s_ease-in-out_infinite] opacity-75"></div>}
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -554,11 +504,7 @@ const Index = () => {
                 <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-6 backdrop-blur-sm border border-slate-700/50">
                   <div className="text-center">
                     <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
-                      <img 
-                        src="https://i.postimg.cc/fWqBq5pH/image.png" 
-                        alt="Google Developers Groups" 
-                        className="w-20 h-20 object-contain"
-                      />
+                      <img src="https://i.postimg.cc/fWqBq5pH/image.png" alt="Google Developers Groups" className="w-20 h-20 object-contain" />
                     </div>
                     <div className="space-y-1">
                       <div className="flex items-center justify-center gap-2 text-blue-400">
@@ -574,12 +520,7 @@ const Index = () => {
                 
                 {/* Certificate - Below logo card */}
                 <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-3 backdrop-blur-sm border border-slate-700/50 hover:scale-105 transition-all duration-300">
-                  <img 
-                    src={gdgCoLeadCert} 
-                    alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
-                    className="w-full h-auto object-contain rounded-lg"
-                    loading="lazy"
-                  />
+                  <img src={gdgCoLeadCert} alt="GDG AI-ML Co-Lead Certificate of Appreciation" className="w-full h-auto object-contain rounded-lg" loading="lazy" />
                 </div>
               </div>
               
@@ -603,10 +544,11 @@ const Index = () => {
                 <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
                   <CardContent className="pt-6">
                     <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Event Management</span>
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Communication</span>
                       <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Technical Mentorship</span>
                       <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Community Building</span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Workshop Facilitation</span>
+                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Leadership
+                    </span>
                     </div>
                   </CardContent>
                 </Card>
@@ -672,5 +614,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
