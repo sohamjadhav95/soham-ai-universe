@@ -585,18 +585,16 @@ const Index = () => {
                     </ul>
                   </CardContent>
                 </Card>
-              </div>
-            </div>
-            
-            {/* Certificate Section */}
-            <div className="mt-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-[1.02]">
-                <img 
-                  src={gdgCoLeadCert} 
-                  alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
-                  className="w-full h-auto object-contain rounded-lg"
-                  loading="lazy"
-                />
+                
+                {/* Certificate - Same size as logo card */}
+                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105 aspect-square flex items-center justify-center">
+                  <img 
+                    src={gdgCoLeadCert} 
+                    alt="GDG AI-ML Co-Lead Certificate of Appreciation" 
+                    className="w-full h-full object-contain rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
