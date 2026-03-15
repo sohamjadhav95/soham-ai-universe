@@ -1,617 +1,473 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Download, ExternalLink, Github, Linkedin, Mail, Phone, Twitter, Instagram, Facebook, Code } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import { Github, Linkedin, Mail, Twitter, ExternalLink, X, Download, ArrowUpRight, BookOpen, GitBranch } from 'lucide-react';
 import ibmDeepLearningCert from '@/assets/ibm-deep-learning-cert.png';
 import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
-const Index = () => {
-  const [activeSection, setActiveSection] = useState('home');
-  const [scrollY, setScrollY] = useState(0);
-  const [expandedProjects, setExpandedProjects] = useState<{
-    [key: string]: boolean;
-  }>({});
-  const skills = [{
-    name: 'Python',
-    level: 95
-  }, {
-    name: 'Machine Learning',
-    level: 85
-  }, {
-    name: 'Deep Learning',
-    level: 80
-  }, {
-    name: 'NLP',
-    level: 75
-  }, {
-    name: 'TensorFlow',
-    level: 80
-  }, {
-    name: 'PyTorch',
-    level: 75
-  }, {
-    name: 'Database',
-    level: 75
-  }, {
-    name: 'Data Engineering',
-    level: 75
-  }];
-  const projects = [{
-    title: 'Copilot for Data Science',
-    description: 'AI agent that automates 90% of analytics workflows using natural language, AutoML, and intelligent query execution.',
-    detailedDescription: 'This comprehensive AI-powered data science assistant revolutionizes analytics workflows by combining natural language processing with automated machine learning capabilities. The system intelligently interprets user queries, automatically selects appropriate algorithms, performs feature engineering, and generates insights with minimal human intervention. Built with advanced NLP models for query understanding, integrated AutoML pipelines for model selection and hyperparameter tuning, and sophisticated data processing engines that handle diverse data formats and sources.',
-    tech: ['Python', 'AutoML', 'NLP', 'Data Analytics'],
-    type: 'AI Agent',
-    image: 'https://i.postimg.cc/023DDBFs/Screenshot-2025-06-29-135302.png',
-    github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science',
-    overview: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/readme.md',
-    setup: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science/blob/main/setup.md'
-  }, {
-    title: 'Cover Letter Tailoring Gen AI',
-    description: 'Custom AI solution that automatically generates tailored cover letters from any resume and job description using fine-tuned TinyLlama model.',
-    detailedDescription: 'A comprehensive AI-powered solution designed to automatically generate highly personalized cover letters from any resume and job description. Utilizes a fine-tuned TinyLlama model (1.1B parameters) trained on a high-quality dataset of resume–job description pairs to produce tailored application documents. Features a Gradio-based web interface for real-time cover letter generation, along with scripts and utilities for fine-tuning and model management. Supports both simple and fully customized instruction modes, can be deployed locally or on Colab, and provides downloadable standalone model checkpoints for advanced users with cloud-ready deployment capabilities.',
-    tech: ['Python', 'HuggingFace Transformers', 'PyTorch', 'Gradio', 'LoRA', 'NLP'],
-    type: 'Gen AI',
-    image: '/lovable-uploads/33599dff-7d87-4deb-a724-f5c0a649444b.png',
-    github: 'https://github.com/sohamjadhav95/Cover-Letter-Tailoring-Gen-AI'
-  }, {
-    title: 'NexaOS Flow',
-    description: 'Voice Activated OS Controller with natural language-driven automation using Speech Recognition, NLP, and TTS.',
-    detailedDescription: 'An innovative voice-controlled operating system interface that transforms how users interact with their computers through natural language commands. The system combines advanced speech recognition technology with natural language understanding to execute complex system operations, file management tasks, and application control through voice commands. Features real-time speech processing, context-aware command interpretation, multi-language support, and intelligent automation workflows that learn from user behavior patterns.',
-    tech: ['Python', 'NLP', 'Speech Recognition', 'TTS'],
-    type: 'AI Automation',
-    image: 'https://i.postimg.cc/VL74TghG/4799410.jpg',
-    github: 'https://github.com/sohamjadhav95/Neuro-Intelligence'
-  }, {
-    title: 'Tennis Match Predictor',
-    description: 'ML model with 77% accuracy predicting ATP tennis outcomes using Elo ratings, form, and fatigue analysis.',
-    detailedDescription: 'A sophisticated machine learning system that analyzes comprehensive tennis data to predict match outcomes with high accuracy. The model incorporates multiple advanced features including dynamic Elo rating systems that adjust based on recent performance, detailed player form analysis considering recent match history and surface preferences, fatigue calculations based on tournament schedules and travel patterns, and head-to-head statistical analysis. Uses ensemble methods combining XGBoost and LightGBM with custom feature engineering for optimal prediction performance.',
-    tech: ['XGBoost', 'LightGBM', 'Python', 'ML'],
-    type: 'Machine Learning',
-    image: 'https://i.postimg.cc/QMg7Lxt8/6396.jpg',
-    github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor',
-    liveDemo: 'https://ai-powered-tennis-match-outcome-predict.streamlit.app/'
-  }];
-  const socialLinks = [{
-    name: 'GitHub',
-    icon: Github,
-    url: 'https://github.com/sohamjadhav95'
-  }, {
-    name: 'LinkedIn',
-    icon: Linkedin,
-    url: 'https://linkedin.com/in/sohamjadhav95'
-  }, {
-    name: 'Twitter',
-    icon: Twitter,
-    url: 'https://x.com/sohamjadhav_95'
-  }, {
-    name: 'Instagram',
-    icon: Instagram,
-    url: 'https://instagram.com/sohamjadhav95'
-  }, {
-    name: 'Facebook',
-    icon: Facebook,
-    url: 'https://facebook.com/sohamjadhav95'
-  }, {
-    name: 'LeetCode',
-    icon: Code,
-    url: 'https://leetcode.com/sohamjadhav95'
-  }];
-  const certificates = [{
-    title: 'IBM: AI Engineering Professional Certificate',
-    status: 'Completed',
-    date: 'Dec 7, 2025',
-    image: ibmAiEngineeringCert,
-    verification: 'https://coursera.org/verify/professional-cert/IJ5Z0ADQ8EC2'
-  }, {
-    title: 'Generative AI with Large Language Models',
-    status: 'Completed',
-    date: 'Dec 7, 2025',
-    image: genAiLlmsCert,
-    verification: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD'
-  }, {
-    title: 'IBM: Deep Learning with PyTorch, Keras, TensorFlow',
-    status: 'Completed',
-    date: 'Jun 15, 2025',
-    image: ibmDeepLearningCert,
-    verification: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB'
-  }, {
-    title: 'Machine Learning with Python',
-    status: 'Completed',
-    date: 'Sep 21, 2024',
-    image: '/lovable-uploads/86f9ccbd-bf97-4896-a49f-dcc4fdbe9707.png',
-    verification: 'https://coursera.org/verify/CTGCLPT5MP9N'
-  }, {
-    title: 'HackerRank: SQL (Advanced)',
-    status: 'Completed',
-    date: 'Sep 06, 2024',
-    image: 'https://i.postimg.cc/zD4TRQ91/sql-advanced-certificate.png',
-    verification: null
-  }, {
-    title: 'Career Essentials in Generative AI by Microsoft and LinkedIn',
-    status: 'Completed',
-    date: 'Aug 04, 2024',
-    image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png',
-    verification: null
-  }];
-  const toggleProjectExpansion = (projectTitle: string) => {
-    setExpandedProjects(prev => ({
-      ...prev,
-      [projectTitle]: !prev[projectTitle]
-    }));
-  };
-  const downloadResume = () => {
-    window.open('https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing', '_blank');
-  };
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      const sections = ['home', 'about', 'skills', 'projects', 'certifications', 'featured', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
 
-      // Animate elements on scroll
-      const animateElements = document.querySelectorAll('.scroll-animate');
-      animateElements.forEach(element => {
-        const rect = element.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 0;
-        if (isVisible) {
-          element.classList.add('animate-fade-in');
-          element.classList.remove('opacity-0', 'translate-y-8');
-        }
-      });
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+const NAV = ['Home','About','Projects','Research','OpenSource','Certifications','Freelance','Contact'];
+
+const SKILLS: Record<string, string[]> = {
+  'Core AI/ML': ['PyTorch','TensorFlow','HuggingFace','scikit-learn','OpenCV','LangChain'],
+  'Languages': ['Python','TypeScript','C++','SQL'],
+  'GenAI Stack': ['LLMs','RAG','Fine-tuning','LoRA/QLoRA','Gemma','BLIP-2','Whisper'],
+  'Data': ['NumPy','Pandas','AutoML','XAI','Data Engineering','PostgreSQL'],
+  'Tools': ['Git','Jupyter','Colab','Streamlit','Gradio'],
+};
+
+const STATS = [
+  { value: '2', label: 'Papers Published', sub: 'Springer Nature · ICIA' },
+  { value: '6+', label: 'Projects Shipped', sub: 'Deployed & documented' },
+  { value: '9', label: 'Certifications', sub: 'IBM · Microsoft · GDG' },
+  { value: '500+', label: 'Connections', sub: 'LinkedIn network' },
+];
+
+interface Metric { label: string; value: string; }
+interface Project {
+  id: string; title: string; type: string; tagColor: string; year: string;
+  status: string; description: string; details: string; tech: string[];
+  github?: string; liveDemo?: string; metrics?: Metric[];
+}
+
+const PROJECTS: Project[] = [
+  { id: 'copilot', title: 'Copilot for Data Science', type: 'AI Agent', tagColor: 'tag-cyan', year: '2025', status: 'Active',
+    description: 'Agentic AI system that automates ~90% of data science and analytics workflows using natural language.',
+    details: 'Transforms natural language instructions into executable queries and analysis pipelines. Integrates XAI, AutoML, and RAG for scalable, explainable decision-making. Supports diverse data formats and produces human-readable insights with minimal manual intervention.',
+    tech: ['Python','AutoML','NLP','RAG','XAI','Parallel Processing'],
+    github: 'https://github.com/sohamjadhav95/Copilot-For-Data-Science' },
+  { id: 'deeplense', title: 'ML4Sci DeepLense', type: 'Deep Learning', tagColor: 'tag-purple', year: '2026', status: 'GSoC 2026',
+    description: 'Gravitational lens detection and CAC segmentation for astrophysics data pipelines.',
+    details: 'ResNet18 multi-class lens classifier ~92.5% val accuracy, macro AUC ~0.985. Binary lens finder using WeightedRandomSampler at ~97% test accuracy. PREDICT1: CAC segmentation with U-Net on Stanford COCA dataset targeting Dice > 0.85.',
+    tech: ['PyTorch','ResNet18','U-Net','WeightedRandomSampler','Colab'],
+    github: 'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026',
+    metrics: [{ label: 'Val Acc', value: '92.5%' }, { label: 'AUC', value: '0.985' }, { label: 'Binary Acc', value: '97%' }] },
+  { id: 'convoease', title: 'Convo-Ease', type: 'Multimodal AI', tagColor: 'tag-amber', year: '2025', status: 'Published',
+    description: 'Real-time multimodal content moderation with Gatekeeper Architecture and Policy-as-Prompt.',
+    details: 'Pre-delivery content validation across Text + Image + Audio. Gemma 3 27B for policy enforcement, BLIP-2 for image captioning, Whisper for audio transcription. Validates under 3 seconds with 100K synthetic training examples.',
+    tech: ['Gemma 3','BLIP-2','Whisper','LangChain','PostgreSQL','Streamlit'],
+    metrics: [{ label: 'Latency', value: '<3s' }, { label: 'Train Data', value: '100K' }, { label: 'Modalities', value: '3' }] },
+  { id: 'coverletter', title: 'Gen-AI Cover Letter Tailoring', type: 'Gen AI', tagColor: 'tag-green', year: '2024', status: 'Complete',
+    description: 'TinyLlama (1.1B) fine-tuned with QLoRA to generate personalized cover letters from resume + JD.',
+    details: 'Fine-tuned TinyLlama on high-quality resume-JD pairs using QLoRA. Semantic similarity engine + RAG to align documents to job requirements. Gradio web interface with cloud-ready deployment.',
+    tech: ['PyTorch','TinyLlama','QLoRA','HuggingFace','Gradio','RAG'],
+    github: 'https://github.com/sohamjadhav95/Cover-Letter-Tailoring-Gen-AI' },
+  { id: 'nexaos', title: 'NexaOS Flow', type: 'AI Automation', tagColor: 'tag-rose', year: '2024', status: 'Complete',
+    description: 'Voice-activated OS controller executing system commands via natural language.',
+    details: 'Spoken natural language to system-level automation commands. Integrates Speech Recognition, NLP intent parsing, TTS feedback, and OS-level APIs. Context-aware command chains and multi-language support.',
+    tech: ['Python','NLP','Speech Recognition','TTS','OS APIs'],
+    github: 'https://github.com/sohamjadhav95/Neuro-Intelligence' },
+  { id: 'tennis', title: 'Tennis Match Predictor', type: 'Machine Learning', tagColor: 'tag-cyan', year: '2024', status: 'Complete',
+    description: 'Ensemble ML model predicting ATP match outcomes at 77% accuracy using Elo, form, and fatigue.',
+    details: 'Dynamic Elo ratings, surface preferences, fatigue modelling, and head-to-head stats. XGBoost + LightGBM ensemble with custom feature engineering. Live Streamlit demo.',
+    tech: ['XGBoost','LightGBM','Python','Elo Ratings','Feature Engineering'],
+    github: 'https://github.com/sohamjadhav95/AI-Powered-Tennis-Match-Outcome-Predictor',
+    liveDemo: 'https://ai-powered-tennis-match-outcome-predict.streamlit.app/',
+    metrics: [{ label: 'Accuracy', value: '77%' }] },
+];
+
+interface Paper { title: string; venue: string; year: string; type: string; authors: string; abstract: string; keywords: string[]; link?: string; }
+const PAPERS: Paper[] = [
+  { title: 'Convo-Ease: Intelligent Multi-Modal Moderation for Digital Organizational Communication',
+    venue: 'Cureus — Springer Nature', year: '2025', type: 'Conference Paper',
+    authors: 'Soham S. Jadhav, Nisha D. Patil, Omkar N. Gadakh, Atharv S. Gaikwad',
+    abstract: 'Proposes a Gatekeeper Architecture for pre-delivery content validation across text, image, and audio using Policy-as-Prompt with Gemma 3, BLIP-2, and Whisper. Achieves sub-3-second latency with 100K synthetic training samples.',
+    keywords: ['Multimodal AI','LLMs','Gatekeeper Architecture','Policy-as-Prompt','Enterprise Security'],
+    link: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD' },
+  { title: 'Beyond Text: A Comprehensive Survey of Multimodal Content Moderation Architectures in Enterprise Environments',
+    venue: 'ICIA Conference Proceedings', year: '2025', type: 'Survey Paper',
+    authors: 'Soham S. Jadhav, Omkar N. Gadakh, Nisha D. Patil, Atharv S. Gaikwad',
+    abstract: 'Surveys 26+ content moderation methodologies from LLM guardrails to multimodal fusion architectures. Examines the shift from reactive API-based to dynamic Policy-as-Prompt frameworks. Identifies critical gaps in latency management and on-premise privacy preservation.',
+    keywords: ['Survey','Content Moderation','Audio-Visual Fusion','Enterprise AI','Privacy'] },
+];
+
+interface OssItem { org: string; role: string; status: string; description: string; contributions: string[]; repo: string; tech: string[]; tagColor: string; }
+const OSS: OssItem[] = [
+  { org: 'ML4Sci — DeepLense', role: 'GSoC 2026 Applicant', status: 'Active', tagColor: 'tag-purple',
+    description: 'Contributing gravitational lens detection and segmentation models for astrophysics data pipelines. Three-proposal strategy: DEEPLENSE6, DEEPLENSE7, and PREDICT1.',
+    contributions: ['ResNet18 multi-class lens classifier (~92.5% val accuracy, macro AUC 0.985)','Binary lens finder with WeightedRandomSampler (~97% test accuracy)','CAC segmentation on Stanford COCA dataset targeting Dice > 0.85'],
+    repo: 'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026', tech: ['PyTorch','ResNet18','U-Net','Colab'] },
+  { org: 'pgmpy', role: 'Open Source Contributor', status: 'In Progress', tagColor: 'tag-green',
+    description: 'Contributing to the probabilistic graphical models Python library. Working on doctest coverage improvements under parent tracking issue #2832.',
+    contributions: ['Identifying and fixing failing doctests across the package','Following established contribution pattern from issue #2832'],
+    repo: 'https://github.com/pgmpy/pgmpy', tech: ['Python','Bayesian Networks','Probability'] },
+];
+
+interface FreelanceItem { title: string; description: string; services: string[]; }
+const FREELANCE: FreelanceItem[] = [
+  { title: 'AI/ML Solutions Development', description: 'End-to-end AI application development including model training, API integration, and deployment. NLP pipelines, computer vision systems, and agentic workflows.',
+    services: ['Custom ML Models','LLM Integration','RAG Pipelines','AI API Development'] },
+  { title: 'Data Science Consulting', description: 'Data analysis, predictive modelling, and dashboard development. AutoML pipeline design and feature engineering for structured datasets.',
+    services: ['EDA & Visualization','Predictive Analytics','AutoML Pipelines','Report Generation'] },
+  { title: 'Generative AI Engineering', description: 'Fine-tuning LLMs with QLoRA/LoRA, building RAG systems, prompt engineering, and deploying generative AI applications.',
+    services: ['LLM Fine-tuning','RAG Systems','Prompt Engineering','AI App Deployment'] },
+];
+
+interface Cert { title: string; issuer: string; date: string; image: string; link: string | null; }
+const CERTS: Cert[] = [
+  { title: 'IBM AI Engineering Professional', issuer: 'IBM / Coursera', date: 'Dec 2025', image: ibmAiEngineeringCert, link: 'https://coursera.org/verify/professional-cert/IJ5Z0ADQ8EC2' },
+  { title: 'IBM Deep Learning — PyTorch, Keras & TF', issuer: 'IBM / Coursera', date: 'Jun 2025', image: ibmDeepLearningCert, link: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB' },
+  { title: 'Generative AI Engineering with LLMs', issuer: 'IBM / Coursera', date: 'Dec 2025', image: genAiLlmsCert, link: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD' },
+  { title: 'Machine Learning with Python', issuer: 'IBM / Coursera', date: 'Sep 2024', image: mlPythonCert, link: 'https://coursera.org/verify/CTGCLPT5MP9N' },
+  { title: 'Career Essentials in Generative AI', issuer: 'Microsoft & LinkedIn', date: 'Aug 2024', image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png', link: null },
+  { title: 'GDG AI-ML Co-Lead', issuer: 'Google Developer Groups', date: '2025', image: gdgCoLeadCert, link: null },
+  { title: 'SQL Advanced', issuer: 'HackerRank', date: 'Sep 2024', image: 'https://i.postimg.cc/zD4TRQ91/sql-advanced-certificate.png', link: null },
+  { title: 'Python', issuer: 'HackerRank', date: 'Aug 2024', image: mlPythonCert, link: null },
+];
+
+// ─── TINY STYLE HELPERS ──────────────────────────────────────────────
+const C = { bg: '#080810', surface: '#0f0f1a', border: 'rgba(0,229,255,0.08)', cyan: '#00e5ff', amber: '#ffb347', green: '#00ff80', text: '#f0ece0', muted: 'rgba(240,236,224,0.45)' };
+const mono = { fontFamily: 'JetBrains Mono' };
+const syne = { fontFamily: 'Syne' };
+const cardStyle = { background: C.surface, border: `1px solid ${C.border}`, borderRadius: '3px' };
+
+export default function Index() {
+  const [activeSection, setActiveSection] = useState('home');
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [certModal, setCertModal] = useState<Cert | null>(null);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    const sio = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); }), { threshold: 0.35 });
+    NAV.forEach(n => { const el = document.getElementById(n.toLowerCase()); if (el) sio.observe(el); });
+
+    return () => { io.disconnect(); sio.disconnect(); };
   }, []);
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({
-      behavior: 'smooth'
-    });
-  };
-  return <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-x-hidden">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md border-b border-white/10 transition-all duration-300">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
-              SJ
-            </div>
-            <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Projects', 'Certifications', 'Featured', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${activeSection === item.toLowerCase() ? 'text-blue-400 drop-shadow-lg font-semibold' : 'text-white/90 hover:text-blue-300'}`}>
-                  {item}
-                </button>)}
-            </div>
+
+  const go = (id: string) => document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+
+  return (
+    <div style={{ background: C.bg, minHeight: '100vh' }} className="grid-bg">
+
+      {/* NAV */}
+      <nav style={{ background: 'rgba(8,8,16,0.88)', borderBottom: `1px solid ${C.border}` }} className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+          <button onClick={() => go('home')} style={{ ...mono, color: C.cyan, fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.1em' }}>
+            SJ<span style={{ color: C.amber }}>.</span>
+          </button>
+          <div className="hidden md:flex items-center gap-7">
+            {NAV.map(n => (
+              <button key={n} onClick={() => go(n)} style={{ ...mono, fontSize: '0.68rem', letterSpacing: '0.12em', color: activeSection === n.toLowerCase() ? C.cyan : 'rgba(240,236,224,0.4)', position: 'relative', textTransform: 'lowercase' }}>
+                {activeSection === n.toLowerCase() && <span style={{ position: 'absolute', left: '-10px', top: '50%', transform: 'translateY(-50%)', width: '4px', height: '4px', background: C.cyan, borderRadius: '50%', boxShadow: `0 0 6px ${C.cyan}` }} />}
+                {n.toLowerCase().replace('opensource', 'open_source')}
+              </button>
+            ))}
           </div>
+          <a href="https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+            className="hidden md:flex items-center gap-2"
+            style={{ ...mono, fontSize: '0.68rem', border: `1px solid rgba(0,229,255,0.25)`, color: C.cyan, padding: '5px 14px', borderRadius: '3px' }}>
+            <Download size={11} /> resume
+          </a>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-teal-600/20 animate-pulse"></div>
-          <div className="absolute inset-0 opacity-40" style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-          background: 'radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.2) 0%, transparent 50%)'
-        }}></div>
-          {/* Floating particles */}
-          <div className="absolute inset-0">
-            {[...Array(6)].map((_, i) => <div key={i} className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${i * 0.5}s`,
-            animationDuration: `${3 + Math.random() * 2}s`
-          }}></div>)}
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 text-center relative z-10">
-          {/* Profile Picture */}
-          <div className="mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 mt-8">
-            <div className="relative w-56 h-56 mx-auto group">
-              {/* Animated ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 p-1 animate-spin" style={{
-              animationDuration: '3s'
-            }}>
-                <div className="w-full h-full bg-slate-950 rounded-full"></div>
-              </div>
-              {/* Profile image */}
-              <div className="absolute inset-2 rounded-full overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/10 group-hover:scale-105 transition-all duration-500">
-                <img src="https://i.postimg.cc/44ccsfZW/59.png" alt="Soham Jadhav - AI Engineer" className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700" />
-              </div>
-              {/* Glowing effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
-            </div>
-          </div>
-
-          {/* Name and Title */}
-          <div className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-bold scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              <span className="block">Soham</span>
-              <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Jadhav
-              </span>
-            </h1>
-            
-            <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-              <p className="text-2xl md:text-3xl text-blue-300 font-semibold mb-2 tracking-wide">
-                Aspiring AI Engineer
-              </p>
-              <p className="text-xl md:text-2xl text-purple-300 font-medium">
-                AI & ML Enthusiast
-              </p>
-            </div>
-
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-600">
-              Transforming ideas into intelligent solutions through cutting-edge AI and machine learning technologies. Dedicated to building impactful systems that solve real-world problems and drive innovation forward.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
-              <Button onClick={downloadResume} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0 backdrop-blur-sm">
-                <Download className="mr-3 h-5 w-5" />
-                View Resume
-              </Button>
-              <Button variant="outline" className="border-2 border-blue-400/50 text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 px-10 py-4 text-lg font-semibold transform hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm bg-slate-800/20 hover:bg-slate-800/40" onClick={() => scrollToSection('projects')}>
-                View My Work
-              </Button>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-1000">
-              <div className="flex flex-col items-center space-y-2 animate-bounce">
-                <span className="text-sm text-gray-400 tracking-widest uppercase">Scroll Down</span>
-                <ChevronDown className="h-6 w-6 text-blue-400 animate-pulse" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Decorative gradient orbs */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{
-        animationDelay: '1s'
-      }}></div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-slate-900/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            About <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Me</span>
-          </h2>
+      {/* HERO */}
+      <section id="home" className="min-h-screen flex items-center pt-14 relative overflow-hidden">
+        <div style={{ position: 'absolute', top: '20%', left: '20%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(0,229,255,0.06), transparent)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '20%', right: '15%', width: '280px', height: '280px', background: 'radial-gradient(circle, rgba(255,179,71,0.05), transparent)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div className="max-w-6xl mx-auto px-6 w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                I'm Soham Jadhav, a final-year AI & DS student with hands-on experience in building intelligent systems, 
-                automating data workflows, and creating user-centric AI tools. I'm driven by curiosity and a deep interest 
-                in Generative AI, NLP, and real-time AI applications.
+            <div>
+              <p className="reveal section-label mb-6">// AI Engineer & Researcher</p>
+              <h1 className="reveal text-6xl md:text-7xl font-bold leading-none mb-1" style={syne}>Soham</h1>
+              <h1 className="reveal text-6xl md:text-7xl font-bold leading-none mb-8 cursor text-glow" style={{ ...syne, color: C.cyan, transitionDelay: '0.1s' }}>Jadhav</h1>
+              <p className="reveal text-xs leading-relaxed mb-8 max-w-md" style={{ ...mono, color: C.muted, transitionDelay: '0.2s' }}>
+                Building AI systems that solve real problems — deep learning, generative AI, and agentic workflows. Final-year AI & DS student, published researcher, GSoC 2026 applicant.
               </p>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-blue-400 mb-2">Education</h3>
-                  <p className="text-gray-300">B.E in AI & DS – MET's Institute of Engineering, Nashik (2022–2026)</p>
-                  <p className="text-gray-400">HSC Science – K.K. Wagh Vidyabhavan Junior College (2020–2022)</p>
-                </div>
+              <div className="reveal flex flex-wrap gap-2 mb-8" style={{ transitionDelay: '0.3s' }}>
+                <span className="tag tag-cyan">PyTorch</span>
+                <span className="tag tag-amber">GSoC 2026</span>
+                <span className="tag tag-green">2x Published</span>
+                <span className="tag tag-purple">Generative AI</span>
+              </div>
+              <div className="reveal flex gap-3 flex-wrap mb-8" style={{ transitionDelay: '0.4s' }}>
+                <button onClick={() => go('projects')} style={{ ...syne, background: `linear-gradient(135deg, ${C.cyan}, #0099bb)`, color: C.bg, padding: '8px 20px', borderRadius: '3px', fontSize: '0.78rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  View My Work <ArrowUpRight size={13} />
+                </button>
+                <a href="mailto:soham.ai.engineer@gmail.com" style={{ ...syne, border: `1px solid rgba(255,179,71,0.35)`, color: C.amber, padding: '8px 20px', borderRadius: '3px', fontSize: '0.78rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Mail size={13} /> Contact
+                </a>
+              </div>
+              <div className="reveal flex gap-3" style={{ transitionDelay: '0.5s' }}>
+                {[{ icon: Github, url: 'https://github.com/sohamjadhav95' }, { icon: Linkedin, url: 'https://linkedin.com/in/sohamjadhav95' }, { icon: Twitter, url: 'https://x.com/sohamjadhav_95' }, { icon: Mail, url: 'mailto:soham.ai.engineer@gmail.com' }].map(({ icon: Icon, url }) => (
+                  <a key={url} href={url} target="_blank" rel="noopener noreferrer" className="card-hover" style={{ color: 'rgba(240,236,224,0.3)', border: `1px solid ${C.border}`, borderRadius: '4px', padding: '6px' }}>
+                    <Icon size={15} />
+                  </a>
+                ))}
               </div>
             </div>
-            <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-              <div className="text-center">
-                <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-slate-700/50">
-                  <img src="https://i.postimg.cc/44ccsfZW/59.png" alt="About Soham" className="w-40 h-40 object-cover rounded-full border-4 border-gradient-to-r from-blue-500 to-purple-500" />
+            <div className="reveal grid grid-cols-2 gap-3" style={{ transitionDelay: '0.3s' }}>
+              {STATS.map(s => (
+                <div key={s.label} className="card-hover p-5" style={cardStyle}>
+                  <div className="stat-num">{s.value}</div>
+                  <div className="text-xs font-semibold mt-1 mb-1" style={{ ...syne, color: C.text }}>{s.label}</div>
+                  <div className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.3)' }}>{s.sub}</div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="py-24" style={{ background: 'rgba(15,15,26,0.55)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" />
+          <p className="reveal section-label">01 / about</p>
+          <h2 className="reveal text-4xl font-bold mb-10" style={{ ...syne, transitionDelay: '0.1s' }}>Who I Am</h2>
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="md:col-span-2 space-y-4 reveal" style={{ transitionDelay: '0.2s' }}>
+              <p className="text-xs leading-relaxed" style={{ ...mono, color: C.muted }}>I'm a final-year AI & Data Science Engineering student at MET's Institute of Engineering, Nashik. I design and ship intelligent systems across deep learning, generative AI, and agentic workflows — from gravitational lens classifiers to multimodal content moderation frameworks.</p>
+              <p className="text-xs leading-relaxed" style={{ ...mono, color: C.muted }}>Two peer-reviewed papers published with Springer Nature and the ICIA conference. Co-Lead of the AI & ML domain at Google Developer Groups. Currently applying for GSoC 2026 with ML4Sci. I build AI to work, not for demos.</p>
+              <div className="p-4 rounded-sm mt-4" style={{ background: 'rgba(0,229,255,0.04)', border: `1px solid rgba(0,229,255,0.1)` }}>
+                <p className="text-xs" style={{ ...mono, color: C.cyan }}>
+                  <span style={{ color: 'rgba(240,236,224,0.3)' }}>const </span>
+                  <span style={{ color: C.amber }}>mission</span>
+                  <span style={{ color: 'rgba(240,236,224,0.3)' }}> = </span>
+                  <span style={{ color: 'rgba(240,236,224,0.55)' }}>"Ship AI that actually works. No fluff."</span>
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            Skills & <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Expertise</span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => <div key={skill.name} className="space-y-3 scroll-animate opacity-0 translate-y-8 transition-all duration-1000" style={{
-            transitionDelay: `${index * 100}ms`
-          }}>
-                <div className="flex justify-between">
-                  <span className="text-white font-medium text-lg">{skill.name}</span>
-                  <span className="text-cyan-400 font-bold text-lg">{skill.level}%</span>
+            <div className="space-y-3 reveal" style={{ transitionDelay: '0.3s' }}>
+              {[['Degree','B.E. AI & Data Science'],['College',"MET's Institute of Eng."],['Location','Nashik, Maharashtra'],['Status','Open to Work'],['Email','soham.ai.engineer@gmail.com']].map(([l, v]) => (
+                <div key={l} className="flex gap-3 text-xs" style={mono}>
+                  <span style={{ color: 'rgba(240,236,224,0.28)', minWidth: '60px', flexShrink: 0 }}>{l}</span>
+                  <span style={{ color: l === 'Status' ? C.green : C.muted }}>{v}</span>
                 </div>
-                <div className="relative">
-                  <div className="h-4 bg-slate-800/70 backdrop-blur-sm rounded-full border border-slate-700/50 overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 transition-all duration-1000 ease-out rounded-full shadow-lg shadow-cyan-400/40" style={{
-                  width: `${skill.level}%`
-                }} />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-purple-500/30 rounded-full blur-sm pointer-events-none"></div>
-                </div>
-              </div>)}
+              ))}
+            </div>
           </div>
-          {/* Core Competencies */}
-          <div className="mt-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-800">
-            <h3 className="text-2xl font-semibold text-center mb-6 text-blue-400">Core Competencies</h3>
-            <div className="flex flex-wrap justify-center gap-3">
-              {['AI Agents', 'NLP', 'Deep Learning', 'RAG', 'ML Deployment', 'Statistics', 'AutoML', 'XAI', 'Data Engineering'].map((comp, index) => <Badge key={comp} className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm text-white px-4 py-2 hover:scale-110 transition-all duration-300" style={{
-              animationDelay: `${index * 100}ms`
-            }}>
-                  {comp}
-                </Badge>)}
+          <div className="mt-12 reveal" style={{ transitionDelay: '0.4s' }}>
+            <p className="text-xs mb-5" style={{ ...mono, color: 'rgba(240,236,224,0.25)' }}>// tech stack</p>
+            <div className="space-y-3">
+              {Object.entries(SKILLS).map(([cat, items]) => (
+                <div key={cat} className="flex gap-4 items-start flex-wrap">
+                  <span className="text-xs pt-0.5 flex-shrink-0" style={{ ...mono, color: 'rgba(240,236,224,0.28)', width: '100px' }}>{cat}</span>
+                  <div className="flex flex-wrap gap-1.5">{items.map(s => <span key={s} className="tag tag-cyan">{s}</span>)}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section - Zigzag Layout */}
-      <section id="projects" className="py-20 bg-slate-900/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            Featured <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
-          </h2>
-          <div className="max-w-6xl mx-auto">
-            {projects.map((project, index) => <div key={project.title} className={`mb-20 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
-            transitionDelay: `${index * 200}ms`
-          }}>
-                <div className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                  {/* Project Image */}
-                  <div className={`relative overflow-hidden rounded-xl group ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                    <img src={project.image} alt={project.title} className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      {/* PROJECTS */}
+      <section id="projects" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" />
+          <p className="reveal section-label">02 / projects</p>
+          <h2 className="reveal text-4xl font-bold mb-10" style={{ ...syne, transitionDelay: '0.1s' }}>What I've Built</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PROJECTS.map((p, i) => (
+              <div key={p.id} className="reveal card-hover p-5 cursor-pointer" style={{ ...cardStyle, transitionDelay: `${i * 0.07}s` }}
+                onClick={() => setExpandedProject(expandedProject === p.id ? null : p.id)}>
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex gap-2 flex-wrap">
+                    <span className={`tag ${p.tagColor}`}>{p.type}</span>
+                    {(p.status === 'GSoC 2026') && <span className="tag tag-amber">{p.status}</span>}
+                    {(p.status === 'Published') && <span className="tag tag-green">{p.status}</span>}
+                    {(p.status === 'Active') && <span className="tag tag-cyan">{p.status}</span>}
                   </div>
-                  
-                  {/* Project Details */}
-                  <div className={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                    <div className="flex items-center gap-3">
-                      <h3 className="text-3xl font-bold text-white">{project.title}</h3>
-                      <Badge className="bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1">
-                        {project.type}
-                      </Badge>
-                    </div>
-                    <p className="text-gray-300 text-lg leading-relaxed">
-                      {project.description}
-                    </p>
-                    {expandedProjects[project.title] && <div className="border-t border-slate-700/50 pt-4 mt-4">
-                        <h4 className="text-lg font-semibold text-blue-400 mb-2">Detailed Overview:</h4>
-                        <p className="text-gray-300 text-base leading-relaxed">
-                          {project.detailedDescription}
-                        </p>
-                      </div>}
-                    <Button variant="ghost" size="sm" className="text-xs px-3 py-1 h-7 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-400/30 hover:border-purple-400/50 text-blue-300 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 rounded-full backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-purple-500/20" onClick={() => toggleProjectExpansion(project.title)}>
-                      <span className="animate-[color-shift_6s_ease-in-out_infinite]">
-                        {expandedProjects[project.title] ? 'Show Less' : 'See More'}
-                      </span>
-                    </Button>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map(tech => <Badge key={tech} variant="outline" className="text-blue-400 border-blue-400/50 bg-slate-800/30 backdrop-blur-sm hover:bg-blue-400/20 transition-colors duration-300">
-                          {tech}
-                        </Badge>)}
-                    </div>
-                    <div className="flex gap-4 flex-wrap">
-                      <Button variant="outline" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="mr-2 h-4 w-4" />
-                          View Code
-                        </a>
-                      </Button>
-                      {project.liveDemo && <Button variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
-                          <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Live Demo
-                          </a>
-                        </Button>}
-                      {project.overview && <Button variant="outline" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
-                          <a href={project.overview} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Overview
-                          </a>
-                        </Button>}
-                      {project.setup && <Button variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white transform hover:scale-105 transition-all duration-300 backdrop-blur-sm bg-slate-800/30" asChild>
-                          <a href={project.setup} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Setup
-                          </a>
-                        </Button>}
-                    </div>
-                  </div>
+                  <span className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.25)' }}>{p.year}</span>
                 </div>
-              </div>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section id="certifications" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Certifications</span>
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
-              
-              {certificates.map((cert, index) => <div key={cert.title} className={`mb-16 scroll-animate opacity-0 translate-y-8 transition-all duration-1000`} style={{
-              transitionDelay: `${index * 200}ms`
-            }}>
-                  <div className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                    {/* Certificate Image */}
-                    <div className={`relative ${index % 2 === 1 ? 'md:order-2 md:pl-12' : 'md:pr-12'}`}>
-                      <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                        <img src={cert.image} alt={cert.title} className="w-full h-auto object-contain rounded-lg" style={{
-                      imageRendering: 'crisp-edges'
-                    }} loading="lazy" />
+                <h3 className="text-sm font-bold mb-2" style={{ ...syne, color: C.text }}>{p.title}</h3>
+                <p className="text-xs mb-3 leading-relaxed" style={{ ...mono, color: 'rgba(240,236,224,0.5)' }}>{p.description}</p>
+                {expandedProject === p.id && (
+                  <div className="mt-2 pt-3" style={{ borderTop: `1px solid ${C.border}` }}>
+                    <p className="text-xs leading-relaxed mb-3" style={{ ...mono, color: 'rgba(240,236,224,0.6)' }}>{p.details}</p>
+                    {p.metrics && (
+                      <div className="flex gap-2 mb-3 flex-wrap">
+                        {p.metrics.map(m => (
+                          <div key={m.label} className="text-center px-3 py-1.5 rounded-sm" style={{ background: 'rgba(0,229,255,0.06)', border: `1px solid rgba(0,229,255,0.12)` }}>
+                            <div className="text-sm font-bold" style={{ ...syne, color: C.cyan }}>{m.value}</div>
+                            <div className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }}>{m.label}</div>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                    
-                    {/* Certificate Details */}
-                    <div className={`space-y-4 ${index % 2 === 1 ? 'md:order-1 md:pr-12' : 'md:pl-12'}`}>
-                      <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300">
-                        <CardHeader>
-                          <CardTitle className="text-white text-xl">{cert.title}</CardTitle>
-                          <CardDescription className={`text-lg font-medium ${cert.status === 'Pursuing Professional Certification' ? 'text-yellow-400' : 'text-green-400'}`}>
-                            {cert.status}
-                          </CardDescription>
-                          {cert.date && <CardDescription className="text-gray-400 text-sm">
-                              {cert.date}
-                            </CardDescription>}
-                        </CardHeader>
-                        {cert.verification && <CardContent>
-                            <Button variant="outline" size="sm" asChild className="text-blue-400 border-blue-400/50 hover:bg-blue-400/20">
-                              <a href={cert.verification} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="mr-2 h-4 w-4" />
-                                View Certificate
-                              </a>
-                            </Button>
-                          </CardContent>}
-                      </Card>
-                    </div>
-
-                    {/* Timeline dot */}
-                    <div className={`absolute left-1/2 transform -translate-x-1/2 ${cert.status === 'Pursuing Professional Certification' ? 'w-6 h-6' : 'w-4 h-4'} bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-slate-950 ${cert.status === 'Pursuing Professional Certification' ? 'animate-[pulse_3s_ease-in-out_infinite]' : ''}`}>
-                      {cert.status === 'Pursuing Professional Certification' && <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-[ping_3s_ease-in-out_infinite] opacity-75"></div>}
-                    </div>
+                    )}
                   </div>
-                </div>)}
-            </div>
+                )}
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {p.tech.slice(0, 4).map(t => <span key={t} className="tag" style={{ background: 'rgba(240,236,224,0.03)', borderColor: 'rgba(240,236,224,0.08)', color: 'rgba(240,236,224,0.38)', fontSize: '0.62rem' }}>{t}</span>)}
+                </div>
+                <div className="flex gap-3 items-center">
+                  {p.github && <a href={p.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="flex items-center gap-1 text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }} onMouseEnter={e => (e.currentTarget.style.color = C.cyan)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(240,236,224,0.35)')}><Github size={11} /> repo</a>}
+                  {p.liveDemo && <a href={p.liveDemo} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="flex items-center gap-1 text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }} onMouseEnter={e => (e.currentTarget.style.color = C.amber)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(240,236,224,0.35)')}><ExternalLink size={11} /> demo</a>}
+                  <button onClick={e => { e.stopPropagation(); setExpandedProject(expandedProject === p.id ? null : p.id); }} className="ml-auto text-xs" style={{ ...mono, color: 'rgba(0,229,255,0.4)' }}>{expandedProject === p.id ? '↑ less' : '↓ more'}</button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Section - Zigzag Layout */}
-      <section id="featured" className="py-20 bg-slate-900/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Featured</span>
-          </h2>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              <div className="space-y-4">
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-6 backdrop-blur-sm border border-slate-700/50">
-                  <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-4 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-500">
-                      <img src="https://i.postimg.cc/fWqBq5pH/image.png" alt="Google Developers Groups" className="w-20 h-20 object-contain" />
-                    </div>
-                    <div className="space-y-1">
-                      <div className="flex items-center justify-center gap-2 text-blue-400">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span className="text-xs uppercase tracking-wide">Leadership Role</span>
-                      </div>
-                      <div className="text-purple-300 text-xs font-medium">
-                        Artificial Intelligence and Machine Learning
-                      </div>
-                    </div>
+      {/* RESEARCH */}
+      <section id="research" className="py-24" style={{ background: 'rgba(15,15,26,0.55)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" style={{ background: `linear-gradient(90deg, ${C.amber}, transparent)` }} />
+          <p className="reveal section-label" style={{ color: C.amber }}>03 / research</p>
+          <h2 className="reveal text-4xl font-bold mb-4" style={{ ...syne, transitionDelay: '0.1s' }}>Publications</h2>
+          <p className="reveal text-xs mb-10" style={{ ...mono, color: 'rgba(240,236,224,0.35)', transitionDelay: '0.15s' }}>Peer-reviewed papers in multimodal AI and enterprise communication security</p>
+          <div className="space-y-5">
+            {PAPERS.map((p, i) => (
+              <div key={p.title} className="reveal paper-card p-6 rounded-sm" style={{ ...cardStyle, transitionDelay: `${i * 0.12}s` }}>
+                <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
+                  <div className="flex gap-2"><span className="tag tag-amber">{p.type}</span><span className="tag" style={{ background: 'rgba(240,236,224,0.03)', borderColor: 'rgba(240,236,224,0.08)', color: 'rgba(240,236,224,0.35)' }}>{p.year}</span></div>
+                  {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs" style={{ ...mono, color: C.amber }}><ExternalLink size={11} /> verify</a>}
+                </div>
+                <h3 className="text-sm font-bold mb-1 leading-snug" style={{ ...syne, color: C.text }}>{p.title}</h3>
+                <p className="text-xs mb-2 flex items-center gap-1.5" style={{ ...mono, color: C.amber }}><BookOpen size={10} />{p.venue}</p>
+                <p className="text-xs mb-3" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }}>{p.authors}</p>
+                <p className="text-xs leading-relaxed mb-4" style={{ ...mono, color: 'rgba(240,236,224,0.55)' }}>{p.abstract}</p>
+                <div className="flex flex-wrap gap-2">{p.keywords.map(k => <span key={k} className="tag tag-amber" style={{ fontSize: '0.62rem' }}>{k}</span>)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OPEN SOURCE */}
+      <section id="opensource" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" style={{ background: `linear-gradient(90deg, ${C.green}, transparent)` }} />
+          <p className="reveal section-label" style={{ color: C.green }}>04 / open source</p>
+          <h2 className="reveal text-4xl font-bold mb-10" style={{ ...syne, transitionDelay: '0.1s' }}>Contributions</h2>
+          <div className="grid md:grid-cols-2 gap-5">
+            {OSS.map((o, i) => (
+              <div key={o.org} className="reveal oss-card p-6 rounded-sm" style={{ ...cardStyle, transitionDelay: `${i * 0.12}s` }}>
+                <div className="flex items-start justify-between mb-3">
+                  <div><h3 className="text-sm font-bold" style={{ ...syne, color: C.text }}>{o.org}</h3><p className="text-xs mt-0.5" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }}>{o.role}</p></div>
+                  <span className={`tag ${o.tagColor}`}>{o.status}</span>
+                </div>
+                <p className="text-xs leading-relaxed mb-4" style={{ ...mono, color: 'rgba(240,236,224,0.55)' }}>{o.description}</p>
+                <ul className="space-y-2 mb-4">
+                  {o.contributions.map(c => <li key={c} className="flex gap-2 text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.45)' }}><span style={{ color: C.green, flexShrink: 0 }}>→</span>{c}</li>)}
+                </ul>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-1.5">{o.tech.map(t => <span key={t} className="tag tag-green" style={{ fontSize: '0.62rem' }}>{t}</span>)}</div>
+                  <a href={o.repo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs ml-3 flex-shrink-0" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }} onMouseEnter={e => (e.currentTarget.style.color = C.green)} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(240,236,224,0.35)')}><GitBranch size={11} /> repo</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS */}
+      <section id="certifications" className="py-24" style={{ background: 'rgba(15,15,26,0.55)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" />
+          <p className="reveal section-label">05 / certifications</p>
+          <h2 className="reveal text-4xl font-bold mb-10" style={{ ...syne, transitionDelay: '0.1s' }}>Credentials</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {CERTS.map((c, i) => (
+              <div key={c.title} className="reveal cert-card card-hover cursor-pointer rounded-sm overflow-hidden" style={{ ...cardStyle, transitionDelay: `${i * 0.06}s` }} onClick={() => setCertModal(c)}>
+                <div className="aspect-video overflow-hidden" style={{ background: '#0a0a14' }}>
+                  <img src={c.image} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div className="p-3">
+                  <p className="text-xs font-semibold leading-snug mb-0.5" style={{ ...syne, color: C.text }}>{c.title}</p>
+                  <p className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.3)' }}>{c.issuer}</p>
+                  <p className="text-xs mt-1" style={{ ...mono, color: C.cyan }}>{c.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="reveal text-xs text-center mt-5" style={{ ...mono, color: 'rgba(240,236,224,0.25)', transitionDelay: '0.5s' }}>click any certificate to enlarge</p>
+        </div>
+      </section>
+
+      {/* FREELANCE */}
+      <section id="freelance" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" style={{ background: `linear-gradient(90deg, ${C.green}, transparent)` }} />
+          <p className="reveal section-label" style={{ color: C.green }}>06 / freelance</p>
+          <h2 className="reveal text-4xl font-bold mb-4" style={{ ...syne, transitionDelay: '0.1s' }}>Available for Hire</h2>
+          <p className="reveal text-xs mb-10" style={{ ...mono, color: 'rgba(240,236,224,0.35)', transitionDelay: '0.15s' }}>Open to freelance projects, consulting, and short-term AI/ML contracts</p>
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            {FREELANCE.map((f, i) => (
+              <div key={f.title} className="reveal freelance-card p-6 rounded-sm" style={{ ...cardStyle, transitionDelay: `${i * 0.1}s` }}>
+                <h3 className="text-sm font-bold mb-2" style={{ ...syne, color: C.text }}>{f.title}</h3>
+                <p className="text-xs leading-relaxed mb-4" style={{ ...mono, color: 'rgba(240,236,224,0.5)' }}>{f.description}</p>
+                <div className="space-y-1.5">
+                  {f.services.map(s => <div key={s} className="flex items-center gap-2 text-xs" style={mono}><span style={{ color: C.green }}>✓</span><span style={{ color: 'rgba(240,236,224,0.55)' }}>{s}</span></div>)}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="reveal text-center p-8 rounded-sm" style={{ background: 'rgba(0,229,255,0.03)', border: `1px solid rgba(0,229,255,0.1)`, transitionDelay: '0.35s' }}>
+            <p className="text-sm font-bold mb-2" style={{ ...syne, color: C.text }}>Got a project in mind?</p>
+            <p className="text-xs mb-5" style={{ ...mono, color: C.muted }}>Available for part-time contracts alongside studies. Typical turnaround 1–3 weeks.</p>
+            <a href="mailto:soham.ai.engineer@gmail.com" className="inline-flex items-center gap-2 text-sm font-semibold" style={{ ...syne, background: 'rgba(0,229,255,0.08)', border: `1px solid rgba(0,229,255,0.25)`, color: C.cyan, padding: '9px 22px', borderRadius: '3px' }}>
+              <Mail size={13} /> Get in Touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-24" style={{ background: 'rgba(15,15,26,0.55)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="reveal divider-line" />
+          <p className="reveal section-label">07 / contact</p>
+          <h2 className="reveal text-4xl font-bold mb-10" style={{ ...syne, transitionDelay: '0.1s' }}>Let's Connect</h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="reveal space-y-3" style={{ transitionDelay: '0.2s' }}>
+              {[{ label: 'Email', value: 'soham.ai.engineer@gmail.com', href: 'mailto:soham.ai.engineer@gmail.com', icon: Mail }, { label: 'GitHub', value: 'github.com/sohamjadhav95', href: 'https://github.com/sohamjadhav95', icon: Github }, { label: 'LinkedIn', value: 'linkedin.com/in/sohamjadhav95', href: 'https://linkedin.com/in/sohamjadhav95', icon: Linkedin }, { label: 'Twitter', value: '@sohamjadhav_95', href: 'https://x.com/sohamjadhav_95', icon: Twitter }].map(({ label, value, href, icon: Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="card-hover flex items-center gap-4 p-4 rounded-sm" style={{ ...cardStyle, textDecoration: 'none' }}>
+                  <div style={{ background: 'rgba(0,229,255,0.07)', border: `1px solid rgba(0,229,255,0.15)`, borderRadius: '4px', padding: '7px' }}><Icon size={13} style={{ color: C.cyan }} /></div>
+                  <div><p className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.3)' }}>{label}</p><p className="text-xs" style={{ ...mono, color: C.muted }}>{value}</p></div>
+                  <ArrowUpRight size={11} style={{ color: 'rgba(0,229,255,0.25)', marginLeft: 'auto' }} />
+                </a>
+              ))}
+            </div>
+            <div className="reveal" style={{ transitionDelay: '0.3s' }}>
+              <div className="p-6 rounded-sm h-full" style={cardStyle}>
+                <p className="text-xs mb-5" style={{ ...mono, color: 'rgba(240,236,224,0.25)' }}>// currently open to</p>
+                {[['AI/ML Engineer','Full-time'],['Deep Learning Engineer','Full-time / Internship'],['Generative AI Engineer','Full-time / Internship'],['Research Internship','Remote / On-site'],['Freelance AI Projects','Part-time']].map(([role, type]) => (
+                  <div key={role} className="flex items-center justify-between py-3" style={{ borderBottom: `1px solid rgba(240,236,224,0.04)` }}>
+                    <span className="text-xs font-semibold" style={{ ...syne, color: C.text }}>{role}</span>
+                    <span className="tag tag-green" style={{ fontSize: '0.6rem' }}>{type}</span>
                   </div>
-                </div>
-                
-                {/* Certificate - Below logo card */}
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-3 backdrop-blur-sm border border-slate-700/50 hover:scale-105 transition-all duration-300">
-                  <img src={gdgCoLeadCert} alt="GDG AI-ML Co-Lead Certificate of Appreciation" className="w-full h-auto object-contain rounded-lg" loading="lazy" />
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                  <CardHeader>
-                    <CardTitle className="text-white">Co-Lead – Google Developers Groups (GDG), Nashik</CardTitle>
-                    <CardDescription className="text-blue-400">Sept 2024 – Oct 2025 · 1 Year 1 Month</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="text-gray-300 space-y-2">
-                      <li>• Organized sessions on AI & ML for the developer community</li>
-                      <li>• Mentored peers on AI, ML, and Generative AI tools and technologies</li>
-                      <li>• Led workshops and technical discussions on cutting-edge AI developments</li>
-                      <li>• Collaborated with industry professionals to bring real-world insights to the community</li>
-                      <li>• Facilitated networking opportunities between developers and tech enthusiasts</li>
-                    </ul>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105">
-                  <CardContent className="pt-6">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Communication</span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Technical Mentorship</span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Community Building</span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Leadership</span>
-                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Team</span>
-                    </div>
-                  </CardContent>
-                </Card>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 scroll-animate opacity-0 translate-y-8 transition-all duration-1000">
-            Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
-          </h2>
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-            <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-              <h3 className="text-2xl font-semibold mb-6 text-blue-400">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-300">
-                  <Mail className="h-5 w-5 text-blue-400" />
-                  <span className="text-gray-300">soham.ai.engineer@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-300">
-                  <Phone className="h-5 w-5 text-blue-400" />
-                  <span className="text-gray-300">+91 777-600-2086</span>
-                </div>
-              </div>
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold mb-4 text-white">Connect with me</h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((link, index) => <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-blue-600/80 transition-all duration-300 transform hover:scale-110 hover:rotate-6" style={{
-                  animationDelay: `${index * 100}ms`
-                }}>
-                      <link.icon className="h-5 w-5" />
-                    </a>)}
-                </div>
-              </div>
-            </div>
-            <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-              <h3 className="text-2xl font-semibold mb-6 text-blue-400">Areas of Interest</h3>
-              <div className="space-y-3">
-                {['Machine Learning & AI Research', 'Natural Language Processing', 'Computer Vision Applications', 'Generative AI & LLMs', 'Data Science & Analytics', 'AI-Powered Automation'].map((area, index) => <Card key={area} className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:bg-slate-800/70 transition-all duration-300 transform hover:scale-105" style={{
-                transitionDelay: `${index * 100}ms`
-              }}>
-                    <CardContent className="p-4">
-                      <p className="text-white">{area}</p>
-                    </CardContent>
-                  </Card>)}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 bg-slate-950/80 backdrop-blur-sm border-t border-slate-800/50">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400 hover:text-gray-300 transition-colors duration-300">
-            © 2024 Soham Jadhav. All rights reserved. Built with passion for AI and innovation.
-          </p>
+      {/* FOOTER */}
+      <footer className="py-7" style={{ borderTop: `1px solid ${C.border}` }}>
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between flex-wrap gap-3">
+          <span className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.2)' }}>© 2025 Soham Jadhav — Built with React + Vite + Tailwind</span>
+          <span className="text-xs" style={{ ...mono, color: 'rgba(0,229,255,0.35)' }}>soham.ai.engineer@gmail.com</span>
         </div>
       </footer>
-    </div>;
-};
-export default Index;
+
+      {/* CERT MODAL */}
+      {certModal && (
+        <div className="modal-bg" onClick={() => setCertModal(null)}>
+          <div className="relative max-w-3xl w-full" onClick={e => e.stopPropagation()}>
+            <button onClick={() => setCertModal(null)} style={{ position: 'absolute', top: '-36px', right: '0', color: 'rgba(240,236,224,0.5)', cursor: 'pointer' }}><X size={18} /></button>
+            <div className="rounded-sm overflow-hidden" style={{ border: `1px solid rgba(0,229,255,0.15)` }}>
+              <img src={certModal.image} alt={certModal.title} className="w-full" />
+              <div className="p-4 flex items-center justify-between flex-wrap gap-3" style={{ background: 'rgba(15,15,26,0.97)' }}>
+                <div>
+                  <p className="text-sm font-bold" style={{ ...syne, color: C.text }}>{certModal.title}</p>
+                  <p className="text-xs" style={{ ...mono, color: 'rgba(240,236,224,0.35)' }}>{certModal.issuer} · {certModal.date}</p>
+                </div>
+                {certModal.link && (
+                  <a href={certModal.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs" style={{ ...mono, background: 'rgba(0,229,255,0.07)', border: `1px solid rgba(0,229,255,0.22)`, color: C.cyan, padding: '5px 12px', borderRadius: '3px' }}>
+                    <ExternalLink size={11} /> Verify
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
