@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Github, Linkedin, Mail, Twitter, ExternalLink, X, Download, ArrowUpRight, BookOpen, GitBranch, FileText, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, ExternalLink, X, Download, ArrowUpRight, BookOpen, GitBranch, ArrowRight } from 'lucide-react';
 import ibmDeepLearningCert from '@/assets/ibm-deep-learning-cert.png';
 import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
@@ -467,9 +467,6 @@ export default function Index() {
             ))}
           </div>
           <div className="nav-actions">
-            <button onClick={()=>navigate('/readme')} className="btn btn-outline" style={{padding:'7px 16px',fontSize:'0.75rem',gap:'5px',cursor:'none'}}>
-              <FileText size={12}/> README
-            </button>
             <a href="https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-dark" style={{padding:'7px 16px',fontSize:'0.75rem',gap:'5px'}}>
               <Download size={12}/> Resume
             </a>
@@ -822,9 +819,6 @@ export default function Index() {
       <footer style={{borderTop:'1px solid var(--border)',padding:'1.75rem 2rem',background:'rgba(247,246,243,0.92)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'1rem'}}>
           <span style={{fontFamily:'DM Mono',fontSize:'0.72rem',color:'var(--muted2)'}}>© 2025 Soham Jadhav — Built with React + Vite + Tailwind</span>
-          <button onClick={()=>navigate('/readme')} style={{fontFamily:'DM Mono',fontSize:'0.72rem',color:'var(--accent)',display:'flex',alignItems:'center',gap:'6px',cursor:'none',background:'none',border:'none'}}>
-            <FileText size={12}/> View GitHub README →
-          </button>
         </div>
       </footer>
 
