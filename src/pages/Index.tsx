@@ -467,9 +467,6 @@ export default function Index() {
             ))}
           </div>
           <div className="nav-actions">
-            <button onClick={()=>navigate('/readme')} className="btn btn-outline" style={{padding:'7px 16px',fontSize:'0.75rem',gap:'5px',cursor:'none'}}>
-              <FileText size={12}/> README
-            </button>
             <a href="https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-dark" style={{padding:'7px 16px',fontSize:'0.75rem',gap:'5px'}}>
               <Download size={12}/> Resume
             </a>
