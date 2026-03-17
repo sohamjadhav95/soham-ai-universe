@@ -819,9 +819,6 @@ export default function Index() {
       <footer style={{borderTop:'1px solid var(--border)',padding:'1.75rem 2rem',background:'rgba(247,246,243,0.92)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'1rem'}}>
           <span style={{fontFamily:'DM Mono',fontSize:'0.72rem',color:'var(--muted2)'}}>© 2025 Soham Jadhav — Built with React + Vite + Tailwind</span>
-          <button onClick={()=>navigate('/readme')} style={{fontFamily:'DM Mono',fontSize:'0.72rem',color:'var(--accent)',display:'flex',alignItems:'center',gap:'6px',cursor:'none',background:'none',border:'none'}}>
-            <FileText size={12}/> View GitHub README →
-          </button>
         </div>
       </footer>
 
