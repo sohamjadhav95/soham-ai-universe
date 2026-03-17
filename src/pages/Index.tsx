@@ -7,6 +7,190 @@ import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
 
+
+/* ─── PARTICLE CANVAS ──────────────────────────────── */
+interface Particle {
+  x: number;  y: number;   // current pos
+  ox: number; oy: number;  // resting/origin pos (drifts slowly)
+  vx: number; vy: number;  // velocity
+  size: number;
+  angle: number;           // rotation for dashes
+  av: number;              // angular velocity
+  isDash: boolean;         // dash stroke vs filled circle
+  type: 0|1|2;             // 0=blue, 1=dark, 2=red-purple (rare)
+  baseAlpha: number;
+}
+
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pRef      = useRef<Particle[]>([]);
+  const mouseRef  = useRef({ x: -99999, y: -99999, active: false });
+  const rafRef    = useRef<number>(0);
+  const scrollRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    // ── constants ──────────────────────────────────────
+    const REPEL_R  = 160;          // repel radius px
+    const REPEL_R2 = REPEL_R * REPEL_R;
+    const REPEL_F  = 5.5;          // repel force
+    const ATTRACT  = 0.0018;       // attraction back to origin (very soft)
+    const DRIFT_F  = 0.008;        // gentle random wander force
+    const DAMP     = 0.88;         // velocity damping per frame
+    const DENSITY  = 7200;         // px² per particle
+
+    // colour palettes matching Antigravity screenshots
+    const COLORS = [
+      '66,133,244',    // Google blue
+      '18,18,18',      // near-black
+      '160,80,200',    // red-purple (rare)
+    ];
+
+    // ── build particle grid ──────────────────────────────
+    const init = () => {
+      const W = window.innerWidth;
+      const H = Math.max(document.body.scrollHeight, window.innerHeight);
+      canvas.width  = W;
+      canvas.height = H;
+      pRef.current  = [];
+
+      const count = Math.round((W * H) / DENSITY);
+      for (let i = 0; i < count; i++) {
+        const ox = Math.random() * W;
+        const oy = Math.random() * H;
+        const isDash = Math.random() < 0.52;
+        // type distribution: 55% blue, 38% dark, 7% purple
+        const r = Math.random();
+        const type: 0|1|2 = r < 0.55 ? 0 : r < 0.93 ? 1 : 2;
+        pRef.current.push({
+          x: ox, y: oy, ox, oy,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: isDash
+            ? Math.random() * 3.5 + 2.5
+            : Math.random() * 1.6 + 0.7,
+          angle: Math.random() * Math.PI * 2,
+          av: (Math.random() - 0.5) * 0.004,  // very slow spin
+          isDash, type,
+          baseAlpha: type === 0
+            ? Math.random() * 0.25 + 0.25      // blue: 0.25–0.50
+            : type === 1
+            ? Math.random() * 0.15 + 0.10      // dark: 0.10–0.25
+            : Math.random() * 0.30 + 0.20,     // purple: 0.20–0.50
+        });
+      }
+    };
+
+    // ── per-frame update + draw ─────────────────────────
+    const tick = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y + scrollRef.current;
+
+      for (const p of pRef.current) {
+
+        // 1 ─ mouse repulsion
+        const dx = p.x - mx, dy = p.y - my;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < REPEL_R2 && d2 > 0.5) {
+          const d   = Math.sqrt(d2);
+          const mag = ((REPEL_R - d) / REPEL_R) * REPEL_F;
+          p.vx += (dx / d) * mag;
+          p.vy += (dy / d) * mag;
+        }
+
+        // 2 ─ soft spring back toward floating origin
+        p.vx += (p.ox - p.x) * ATTRACT;
+        p.vy += (p.oy - p.y) * ATTRACT;
+
+        // 3 ─ gentle random wander (origin drifts too)
+        p.ox += (Math.random() - 0.5) * DRIFT_F * 12;
+        p.oy += (Math.random() - 0.5) * DRIFT_F * 12;
+        // clamp origin drift within canvas
+        p.ox = Math.max(4, Math.min(canvas.width  - 4, p.ox));
+        p.oy = Math.max(4, Math.min(canvas.height - 4, p.oy));
+
+        // 4 ─ dampen + integrate
+        p.vx *= DAMP;
+        p.vy *= DAMP;
+        p.x  += p.vx;
+        p.y  += p.vy;
+        p.angle += p.av;
+
+        // 5 ─ alpha boost when displaced from origin (reaction to mouse)
+        const dist2 = (p.x - p.ox) * (p.x - p.ox) + (p.y - p.oy) * (p.y - p.oy);
+        const boost = Math.min(dist2 / 800, 0.55);
+        const alpha = Math.min(p.baseAlpha + boost, 0.92);
+
+        // 6 ─ draw
+        const col = COLORS[p.type];
+        if (p.isDash) {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.strokeStyle = `rgba(${col},${alpha})`;
+          ctx.lineWidth   = p.type === 1 ? 1.0 : 1.5;
+          ctx.lineCap     = 'round';
+          ctx.beginPath();
+          ctx.moveTo(-p.size, 0);
+          ctx.lineTo( p.size, 0);
+          ctx.stroke();
+          ctx.restore();
+        } else {
+          ctx.fillStyle = `rgba(${col},${alpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    init();
+    tick();
+
+    const onMove   = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY, active: true };
+    };
+    const onLeave  = () => { mouseRef.current = { x: -99999, y: -99999, active: false }; };
+    const onScroll = () => { scrollRef.current = window.scrollY; };
+    const onResize = () => { init(); };
+
+    window.addEventListener('mousemove',  onMove);
+    window.addEventListener('mouseleave', onLeave);
+    window.addEventListener('scroll',     onScroll, { passive: true });
+    window.addEventListener('resize',     onResize);
+
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener('mousemove',  onMove);
+      window.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('scroll',     onScroll);
+      window.removeEventListener('resize',     onResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'absolute',
+        top: 0, left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }}
+    />
+  );
+}
+
+
 /* ─── DATA ──────────────────────────────────────── */
 const NAV = ['About','Projects','Research','OSS','Certs','Freelance','Contact'];
 
@@ -240,7 +424,9 @@ export default function Index() {
   },[]);
 
   return (
-    <div style={{background:'var(--white)',minHeight:'100vh'}}>
+    <div style={{background:'var(--white)',minHeight:'100vh',position:'relative'}}>
+      <ParticleCanvas />
+      <div style={{position:'relative',zIndex:1}}>
       {/* Custom cursor */}
       <div id="cursor-dot" ref={cursorDot} />
       <div id="cursor-ring" ref={cursorRing} />
@@ -272,7 +458,7 @@ export default function Index() {
       </nav>
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section id="home" ref={heroRef} style={{minHeight:'100vh',display:'flex',alignItems:'center',paddingTop:'56px',position:'relative',overflow:'hidden',background:'var(--white)'}}>
+      <section id="home" ref={heroRef} style={{minHeight:'100vh',display:'flex',alignItems:'center',paddingTop:'56px',position:'relative',zIndex:1,overflow:'visible',background:'transparent'}}>
         {/* Large decorative floating rings */}
         <div data-depth="0.08" className="float-a" style={{position:'absolute',top:'10%',right:'8%',width:'380px',height:'380px',borderRadius:'50%',border:'1px solid rgba(13,13,11,0.06)',pointerEvents:'none',transition:'transform 0.8s ease'}}/>
         <div data-depth="0.05" className="float-b" style={{position:'absolute',top:'18%',right:'12%',width:'260px',height:'260px',borderRadius:'50%',border:'1px solid rgba(0,87,255,0.08)',pointerEvents:'none',transition:'transform 0.8s ease'}}/>
@@ -337,7 +523,7 @@ export default function Index() {
       </section>
 
       {/* ── MARQUEE ───────────────────────────────────── */}
-      <div className="marquee-track" style={{borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',background:'var(--off)',padding:'14px 0',overflow:'hidden'}}>
+      <div className="marquee-track" style={{borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',background:'rgba(247,246,243,0.9)',padding:'14px 0',overflow:'hidden',position:'relative',zIndex:1}}>
         <div className="marquee-inner">
           {[...MARQUEE_ITEMS,...MARQUEE_ITEMS].map((t,i)=>(
             <span key={i} style={{fontFamily:'DM Mono',fontSize:'0.75rem',color:'var(--muted2)',letterSpacing:'0.1em',whiteSpace:'nowrap',display:'flex',alignItems:'center',gap:'2rem'}}>
@@ -348,7 +534,7 @@ export default function Index() {
       </div>
 
       {/* ── ABOUT ────────────────────────────────────── */}
-      <section id="about" style={{padding:'7rem 2rem',background:'var(--white)'}}>
+      <section id="about" style={{padding:'7rem 2rem',background:'rgba(255,255,255,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'start'}}>
             <div>
@@ -399,7 +585,7 @@ export default function Index() {
       </section>
 
       {/* ── PROJECTS ─────────────────────────────────── */}
-      <section id="projects" style={{padding:'7rem 2rem',background:'var(--off)'}}>
+      <section id="projects" style={{padding:'7rem 2rem',background:'rgba(247,246,243,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div className="section-label reveal" style={{marginBottom:'1.5rem'}}>02 / Projects</div>
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',marginBottom:'3.5rem'}}>
@@ -455,7 +641,7 @@ export default function Index() {
       </section>
 
       {/* ── RESEARCH ─────────────────────────────────── */}
-      <section id="research" style={{padding:'7rem 2rem',background:'var(--white)'}}>
+      <section id="research" style={{padding:'7rem 2rem',background:'rgba(255,255,255,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div className="section-label reveal" style={{marginBottom:'1.5rem',color:'var(--muted2)'}}>03 / Research</div>
           <h2 className="reveal" style={{fontSize:'clamp(2.2rem,5vw,3.8rem)',marginBottom:'3.5rem',transitionDelay:'0.08s'}}>Publications</h2>
@@ -483,7 +669,7 @@ export default function Index() {
       </section>
 
       {/* ── OPEN SOURCE ──────────────────────────────── */}
-      <section id="oss" style={{padding:'7rem 2rem',background:'var(--off)'}}>
+      <section id="oss" style={{padding:'7rem 2rem',background:'rgba(247,246,243,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div className="section-label reveal" style={{marginBottom:'1.5rem'}}>04 / Open Source</div>
           <h2 className="reveal" style={{fontSize:'clamp(2.2rem,5vw,3.8rem)',marginBottom:'3.5rem',transitionDelay:'0.08s'}}>Contributions</h2>
@@ -518,7 +704,7 @@ export default function Index() {
       </section>
 
       {/* ── CERTIFICATIONS ───────────────────────────── */}
-      <section id="certs" style={{padding:'7rem 2rem',background:'var(--white)'}}>
+      <section id="certs" style={{padding:'7rem 2rem',background:'rgba(255,255,255,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div className="section-label reveal" style={{marginBottom:'1.5rem'}}>05 / Certifications</div>
           <h2 className="reveal" style={{fontSize:'clamp(2.2rem,5vw,3.8rem)',marginBottom:'3.5rem',transitionDelay:'0.08s'}}>Credentials</h2>
@@ -545,7 +731,7 @@ export default function Index() {
       </section>
 
       {/* ── FREELANCE ────────────────────────────────── */}
-      <section id="freelance" style={{padding:'7rem 2rem',background:'var(--off)'}}>
+      <section id="freelance" style={{padding:'7rem 2rem',background:'rgba(247,246,243,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div className="section-label reveal" style={{marginBottom:'1.5rem'}}>06 / Freelance</div>
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',marginBottom:'3.5rem',flexWrap:'wrap',gap:'1rem'}}>
@@ -580,7 +766,7 @@ export default function Index() {
       </section>
 
       {/* ── CONTACT ──────────────────────────────────── */}
-      <section id="contact" style={{padding:'7rem 2rem',background:'var(--white)'}}>
+      <section id="contact" style={{padding:'7rem 2rem',background:'rgba(255,255,255,0.82)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto'}}>
           <div className="section-label reveal" style={{marginBottom:'1.5rem'}}>07 / Contact</div>
           <h2 className="reveal" style={{fontSize:'clamp(2.2rem,5vw,3.8rem)',marginBottom:'3.5rem',transitionDelay:'0.08s'}}>Let's Connect</h2>
@@ -613,7 +799,7 @@ export default function Index() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────── */}
-      <footer style={{borderTop:'1px solid var(--border)',padding:'1.75rem 2rem',background:'var(--off)'}}>
+      <footer style={{borderTop:'1px solid var(--border)',padding:'1.75rem 2rem',background:'rgba(247,246,243,0.92)',position:'relative',zIndex:1}}>
         <div style={{maxWidth:'1180px',margin:'0 auto',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'1rem'}}>
           <span style={{fontFamily:'DM Mono',fontSize:'0.72rem',color:'var(--muted2)'}}>© 2025 Soham Jadhav — Built with React + Vite + Tailwind</span>
           <button onClick={()=>navigate('/readme')} style={{fontFamily:'DM Mono',fontSize:'0.72rem',color:'var(--accent)',display:'flex',alignItems:'center',gap:'6px',cursor:'none',background:'none',border:'none'}}>
@@ -622,6 +808,7 @@ export default function Index() {
         </div>
       </footer>
 
+      </div>
       {/* ── CERT MODAL ───────────────────────────────── */}
       {certModal&&(
         <div className="modal-overlay" onClick={()=>setCertModal(null)}>
