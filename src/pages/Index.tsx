@@ -77,7 +77,7 @@ function ParticleCanvas() {
           const cx = c * spacing + (Math.random() - 0.5) * spacing * 0.9;
           const cy = r * spacing + (Math.random() - 0.5) * spacing * 0.9;
           const isBlue  = Math.random() < 0.28;
-          const isDash  = Math.random() < 0.48;
+          const isDash  = Math.random() < 0.25;
 
           ptRef.current.push({
             x: cx, y: cy, cx, cy,
@@ -90,9 +90,9 @@ function ParticleCanvas() {
             dashLen: Math.random() * 6 + 4,
             dashAngle: Math.random() * Math.PI,
             dashRotSpeed: (Math.random() - 0.5) * 0.004,
-            radius: isDash ? 0 : Math.random() * 1.2 + 0.6,
+            radius: isDash ? 0 : Math.random() * 2.5 + 1.5,
             isBlue,
-            baseAlpha: Math.random() * 0.25 + 0.12,
+            baseAlpha: Math.random() * 0.28 + 0.15,
             offX: 0, offY: 0,
           });
           offVX.push(0);
