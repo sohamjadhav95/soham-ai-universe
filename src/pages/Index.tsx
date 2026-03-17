@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Github, Linkedin, Mail, Twitter, ExternalLink, X, Download, ArrowUpRight, BookOpen, GitBranch, FileText, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, ExternalLink, X, Download, ArrowUpRight, BookOpen, GitBranch, ArrowRight } from 'lucide-react';
 import ibmDeepLearningCert from '@/assets/ibm-deep-learning-cert.png';
 import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
