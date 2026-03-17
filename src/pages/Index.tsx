@@ -77,7 +77,7 @@ function ParticleCanvas() {
           const cx = c * spacing + (Math.random() - 0.5) * spacing * 0.9;
           const cy = r * spacing + (Math.random() - 0.5) * spacing * 0.9;
           const isBlue  = Math.random() < 0.28;
-          const isDash  = Math.random() < 0.25;
+          const isDash  = false;
 
           ptRef.current.push({
             x: cx, y: cy, cx, cy,
