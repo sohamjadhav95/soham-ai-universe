@@ -76,23 +76,23 @@ function ParticleCanvas() {
           // Jitter within each cell so it doesn't look like a grid
           const cx = c * spacing + (Math.random() - 0.5) * spacing * 0.9;
           const cy = r * spacing + (Math.random() - 0.5) * spacing * 0.9;
-          const isBlue  = Math.random() < 0.75;
-          const isDash  = Math.random() < 0.75;
+          const isBlue  = Math.random() < 0.28;
+          const isDash  = Math.random() < 0.25;
 
           ptRef.current.push({
             x: cx, y: cy, cx, cy,
             rx: Math.random() * 14 + 4,
             ry: Math.random() * 8  + 2,
             phase: Math.random() * Math.PI * 2,
-            speed: (Math.random() * 0.008 + 0.004) * (Math.random() < 0.5 ? 1 : -1),
+            speed: (Math.random() * 0.004 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
             tiltAngle: Math.random() * Math.PI,
             isDash,
             dashLen: Math.random() * 6 + 4,
             dashAngle: Math.random() * Math.PI,
             dashRotSpeed: (Math.random() - 0.5) * 0.004,
-            radius: isDash ? 0 : Math.random() * 5 + 3,
+            radius: isDash ? 0 : Math.random() * 2.5 + 1.5,
             isBlue,
-            baseAlpha: Math.random() * 1 + 0.5,
+            baseAlpha: Math.random() * 0.28 + 0.15,
             offX: 0, offY: 0,
           });
           offVX.push(0);
