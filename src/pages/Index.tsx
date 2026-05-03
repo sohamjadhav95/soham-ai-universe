@@ -14,6 +14,7 @@ import ExperienceSection from '@/components/ExperienceSection';
 import StatusBadge from '@/components/StatusBadge';
 import SplitHeading from '@/components/SplitHeading';
 import TerminalWidget from '@/components/TerminalWidget';
+import SectionNav from '@/components/SectionNav';
 
 
 /* ─── DATA ──────────────────────────────────────── */
@@ -324,6 +325,7 @@ export default function Index() {
     <div style={{ background: 'var(--white)', minHeight: '100vh', position: 'relative' }}>
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div id="progress-bar" />
+        <SectionNav />
         {/* Custom cursor */}
         <div id="cursor-dot" ref={cursorDot} />
         <div id="cursor-ring" ref={cursorRing} />
