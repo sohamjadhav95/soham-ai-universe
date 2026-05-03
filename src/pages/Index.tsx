@@ -11,6 +11,7 @@ import sqlAdvancedCert from '@/assets/sql_advance.png';
 import pythonCert from '@/assets/python.png';
 import SkillsMarquee from '@/components/SkillsMarquee';
 import ExperienceSection from '@/components/ExperienceSection';
+import StatusBadge from '@/components/StatusBadge';
 
 
 /* ─── DATA ──────────────────────────────────────── */
@@ -327,6 +328,7 @@ export default function Index() {
               <div className="section-label reveal" style={{ marginBottom: '2rem' }}>
                 AI Engineer · Developer · Problem Solver
               </div>
+              <StatusBadge />
 
               <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '2rem', paddingBottom: '0.12em' }}>
                 {[{ text: 'Building', delay: 0 }, { text: 'AI', delay: 0.1 }, { text: 'that', delay: 0.18 }].map(w => (
