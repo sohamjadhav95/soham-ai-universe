@@ -39,7 +39,12 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   margin: 0;
-  background: var(--white);
+  background-color: #ffffff;
+  background-image: 
+    radial-gradient(600px circle at 0% 0%, #e8f1ff, transparent),
+    radial-gradient(400px circle at 100% 100%, #dce8ff, transparent),
+    radial-gradient(300px circle at 100% 50%, #f0f4ff, transparent);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: 'Cabinet Grotesk', sans-serif;
   -webkit-font-smoothing: antialiased;
