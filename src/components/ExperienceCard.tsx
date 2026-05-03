@@ -1,12 +1,22 @@
 import React from 'react';
 import type { ExperienceEntry } from '@/data/experience';
+import gsocLogo from '@/assets/logos/gsoc.png';
+import ml4sciLogo from '@/assets/logos/ml4sci.png';
+import gdgLogo from '@/assets/logos/gdg.png';
+
+const LOGO_MAP: Record<string, string> = {
+  'gsoc-2026': gsocLogo,
+  'ml4sci': ml4sciLogo,
+  'gdg': gdgLogo,
+};
 
 type Props = ExperienceEntry & { revealDelay?: number };
 
 const ExperienceCard: React.FC<Props> = ({
-  role, org, duration, location, type, status,
+  id, role, org, duration, location, type, status,
   description, tags, metrics, accentColor, initials, logoBg, revealDelay = 0,
 }) => {
+  const logoSrc = LOGO_MAP[id];
   return (
     <div
       className="exp-card reveal"
@@ -18,10 +28,12 @@ const ExperienceCard: React.FC<Props> = ({
       <div className="exp-card__head">
         <div
           className="exp-card__logo"
-          style={{ background: logoBg }}
+          style={{ background: logoSrc ? '#fff' : logoBg }}
           aria-hidden="true"
         >
-          {initials}
+          {logoSrc ? (
+            <img src={logoSrc} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '6px' }} />
+          ) : initials}
         </div>
         <div className="exp-card__head-text">
           <div className="exp-card__role">{role}</div>
