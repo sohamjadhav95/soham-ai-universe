@@ -511,7 +511,7 @@ export default function Index() {
         {/* ── OPEN SOURCE ──────────────────────────────── */}
         <section id="oss" style={{ padding: '7rem 2rem', background: 'rgba(247,246,243,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>04 / Open Source</div>
+            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>05 / Open Source</div>
             <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}>Contributions</h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
               {OSS.map((o, i) => (
@@ -546,7 +546,7 @@ export default function Index() {
         {/* ── CERTIFICATIONS ───────────────────────────── */}
         <section id="certs" style={{ padding: '7rem 2rem', background: 'rgba(255,255,255,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>05 / Certifications</div>
+            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>06 / Certifications</div>
             <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}>Credentials</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1rem' }}>
               {CERTS.map((c, i) => (
@@ -573,7 +573,7 @@ export default function Index() {
         {/* ── FREELANCE ────────────────────────────────── */}
         <section id="freelance" style={{ padding: '7rem 2rem', background: 'rgba(247,246,243,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>06 / Freelance</div>
+            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>07 / Freelance</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}>Available for Your Needs</h2>
             </div>
@@ -605,7 +605,7 @@ export default function Index() {
         {/* ── CONTACT ──────────────────────────────────── */}
         <section id="contact" style={{ padding: '7rem 2rem', background: 'rgba(255,255,255,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>07 / Contact</div>
+            <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>08 / Contact</div>
             <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}>Let's Connect</h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
@@ -638,7 +638,7 @@ export default function Index() {
         {/* ── FOOTER ───────────────────────────────────── */}
         <footer style={{ borderTop: '1px solid var(--border)', padding: '1.75rem 2rem', background: 'rgba(247,246,243,0.92)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-            <span style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--muted2)' }}>© 2025 Soham Jadhav — Built with React + Vite + Tailwind</span>
+            <span style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--muted2)' }}>© 2026 Soham Jadhav — Built with React + Vite + Tailwind</span>
           </div>
         </footer>
 
