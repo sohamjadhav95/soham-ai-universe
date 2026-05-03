@@ -94,10 +94,16 @@ const PAPERS = [
 
 const OSS = [
   {
-    org: 'ML4Sci — DeepLense', role: 'GSoC 2026 Applicant', status: 'Active', tag: 'tag-blue',
-    description: 'Three-proposal strategy — DEEPLENSE6, DEEPLENSE7, and PREDICT1 — for astrophysics AI pipelines.',
-    contributions: ['ResNet18 classifier ~92.5% val acc, AUC 0.985', 'Binary lens finder via WeightedRandomSampler ~97%', 'U-Net CAC segmentation on Stanford COCA (Dice > 0.85)'],
-    repo: 'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026', tech: ['PyTorch', 'ResNet18', 'U-Net']
+    org: 'GSoC 2026 @ ML4Sci — CAC Segmentation', role: 'Selected Contributor', status: 'Active', tag: 'tag-blue',
+    description: 'Building and comparing segmentation strategies for Coronary Artery Calcium.',
+    contributions: [
+      'Selected contributor out of global applicant pool — ML4Sci / PREDICT1',
+      'Whole-heart U-Net on Stanford COCA dataset → median Dice 0.9416',
+      '3,157× speedup over TotalSegmentator baseline',
+      'Midterm eval: July 10 · Final submission: Aug 24',
+      'Stack: PyTorch · ResNet · U-Net · Colab'
+    ],
+    repo: 'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026', tech: ['PyTorch', 'ResNet', 'U-Net', 'Colab']
   },
   {
     org: 'pgmpy', role: 'Open Source Contributor', status: 'In Progress', tag: 'tag-green',
