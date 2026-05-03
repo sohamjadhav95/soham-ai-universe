@@ -6,6 +6,9 @@ import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
+import careerEssentialsGenAiCert from '@/assets/Career Essentials in Generative AI.png';
+import sqlAdvancedCert from '@/assets/sql_advance.png';
+import pythonCert from '@/assets/python.png';
 import SkillsMarquee from '@/components/SkillsMarquee';
 
 
@@ -125,10 +128,10 @@ const CERTS = [
   { title: 'IBM Deep Learning — PyTorch, Keras & TF', issuer: 'IBM / Coursera', date: 'Jun 2025', image: ibmDeepLearningCert, link: 'https://coursera.org/verify/professional-cert/LT6ZHJY82CPB' },
   { title: 'Generative AI Engineering with LLMs', issuer: 'IBM / Coursera', date: 'Dec 2025', image: genAiLlmsCert, link: 'https://coursera.org/verify/specialization/4PDD1WMUR5ZD' },
   { title: 'Machine Learning with Python', issuer: 'IBM / Coursera', date: 'Sep 2024', image: mlPythonCert, link: 'https://coursera.org/verify/CTGCLPT5MP9N' },
-  { title: 'Career Essentials in Generative AI', issuer: 'Microsoft & LinkedIn', date: 'Aug 2024', image: 'https://i.postimg.cc/QCgNCV2C/Certificate-Of-Completion-Career-Essentials-in-Generative-AI-by-Microsoft-and-Linked-In.png', link: null },
+  { title: 'Career Essentials in Generative AI', issuer: 'Microsoft & LinkedIn', date: 'Aug 2024', image: careerEssentialsGenAiCert, link: null },
   { title: 'GDG AI-ML Co-Lead', issuer: 'Google Developer Groups', date: '2025', image: gdgCoLeadCert, link: null },
-  { title: 'SQL Advanced', issuer: 'HackerRank', date: 'Sep 2024', image: 'https://i.postimg.cc/zD4TRQ91/sql-advanced-certificate.png', link: null },
-  { title: 'Python', issuer: 'HackerRank', date: 'Aug 2024', image: mlPythonCert, link: null },
+  { title: 'SQL Advanced', issuer: 'HackerRank', date: 'Sep 2024', image: sqlAdvancedCert, link: null },
+  { title: 'Python', issuer: 'HackerRank', date: 'Aug 2024', image: pythonCert, link: null },
 ];
 
 /* ─── COUNT-UP HOOK ─────────────────────────────── */
@@ -309,14 +312,14 @@ export default function Index() {
                 AI Engineer · Developer · Problem Solver
               </div>
 
-              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 0.98, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
+              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '2rem', paddingBottom: '0.12em' }}>
                 {[{ text: 'Building', delay: 0 }, { text: 'AI', delay: 0.1 }, { text: 'that', delay: 0.18 }].map(w => (
-                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden' }}>
+                  <span key={w.text} className="hero-word" style={{ marginRight: '0.22em' }}>
                     <span className="hero-word-inner" style={{ animationDelay: `${w.delay}s` }}>{w.text}</span>
                   </span>
                 ))}
                 <br />
-                <span className="hero-word serif" style={{ display: 'inline-block', overflow: 'hidden', color: 'var(--accent)' }}>
+                <span className="hero-word" style={{ fontFamily: 'Cabinet Grotesk', fontStyle: 'italic', fontWeight: 800, color: 'var(--accent)' }}>
                   <span className="hero-word-inner" style={{ animationDelay: '0.28s' }}>in faith of humanity.</span>
                 </span>
               </h1>
