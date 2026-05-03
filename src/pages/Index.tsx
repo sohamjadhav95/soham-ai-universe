@@ -574,9 +574,6 @@ export default function Index() {
             <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>06 / Freelance</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}>Available for Hire</h2>
-              <p className="reveal" style={{ color: 'var(--muted)', maxWidth: '320px', fontSize: '0.9rem', lineHeight: 1.6, transitionDelay: '0.14s' }}>
-                Open to part-time freelance contracts alongside studies. Typical turnaround 1–3 weeks.
-              </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem', marginBottom: '2.5rem' }}>
               {FREELANCE.map((f, i) => (
