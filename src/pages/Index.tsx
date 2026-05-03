@@ -68,8 +68,7 @@ const PAPERS = [
     venue:'Cureus — Springer Nature', year:'2025', type:'Conference Paper',
     authors:'Soham S. Jadhav, Nisha D. Patil, Omkar N. Gadakh, Atharv S. Gaikwad',
     abstract:'Gatekeeper Architecture for pre-delivery content validation across Text + Image + Audio with Policy-as-Prompt. Sub-3s latency using Gemma 3, BLIP-2, and Whisper.',
-    keywords:['Multimodal AI','LLMs','Gatekeeper','Policy-as-Prompt','Enterprise Security'],
-    link:'https://coursera.org/verify/specialization/4PDD1WMUR5ZD' },
+    keywords:['Multimodal AI','LLMs','Gatekeeper','Policy-as-Prompt','Enterprise Security'] },
   { title:'Beyond Text: A Comprehensive Survey of Multimodal Content Moderation Architectures in Enterprise Environments',
     venue:'ICIA Conference Proceedings', year:'2025', type:'Survey Paper',
     authors:'Soham S. Jadhav, Omkar N. Gadakh, Nisha D. Patil, Atharv S. Gaikwad',
@@ -355,10 +354,10 @@ export default function Index() {
                 Who I Am
               </h2>
               <p className="reveal" style={{color:'var(--muted)',lineHeight:1.8,marginBottom:'1.25rem',transitionDelay:'0.14s'}}>
-                Final-year B.E. in AI & Data Science at MET's Institute of Engineering, Nashik. I design and ship intelligent systems — from gravitational lens classifiers to multimodal content moderation frameworks.
+                Final-year B.E. in AI & Data Science at MET's Institute of Engineering, Nashik. I design and ship intelligent systems — from medical image segmentation to multimodal content moderation frameworks.
               </p>
               <p className="reveal" style={{color:'var(--muted)',lineHeight:1.8,marginBottom:'2rem',transitionDelay:'0.18s'}}>
-                Two peer-reviewed papers published with Springer Nature and the ICIA conference. AI-ML Co-Lead at Google Developer Groups. GSoC 2026 applicant with ML4Sci. Open source contributor.
+                Two peer-reviewed papers published with Springer Nature and the ICIA conference. GDG On Campus AI-ML Co-Lead (Sept 2024 – Oct 2025). GSoC 2026 Contributor at ML4Sci. Open-source contributor to pgmpy (PR #3160) and pyaptamer (ESoC Batch 2).
               </p>
               <div className="reveal" style={{background:'var(--off)',borderRadius:'10px',padding:'1.25rem 1.5rem',fontFamily:'DM Mono',fontSize:'0.8rem',lineHeight:1.8,transitionDelay:'0.22s'}}>
                 <span style={{color:'var(--muted2)'}}>const </span>
@@ -384,7 +383,7 @@ export default function Index() {
             <div className="line reveal" style={{marginBottom:'2rem'}}/>
             <p className="reveal" style={{fontFamily:'DM Mono',fontSize:'0.68rem',color:'var(--muted2)',letterSpacing:'0.12em',marginBottom:'1.5rem',transitionDelay:'0.05s'}}>TECH STACK</p>
             <div className="reveal" style={{display:'flex',flexWrap:'wrap',gap:'0.5rem',transitionDelay:'0.1s'}}>
-              {['PyTorch','TensorFlow','HuggingFace','scikit-learn','OpenCV','LangChain','Python','TypeScript','C++','SQL','LLMs','RAG','Fine-tuning','LoRA/QLoRA','Gemma 3','BLIP-2','Whisper','NumPy','Pandas','AutoML','XAI','Streamlit','Gradio','Git','Colab'].map(t=>(
+              {['PyTorch','TensorFlow','HuggingFace','scikit-learn','OpenCV','FastAPI','Python','TypeScript','C++','SQL','LLMs','RAG','Fine-tuning','LoRA/QLoRA','Gemma 3','BLIP-2','Whisper','NumPy','Pandas','AutoML','XAI','Gradio','MT5 / Algorithmic Trading','Medical Imaging','Git','Colab'].map(t=>(
                 <span key={t} className="tag tag-ghost" style={{transition:'all 0.2s ease'}}
                   onMouseEnter={e=>{(e.currentTarget as HTMLSpanElement).style.background='var(--ink)';(e.currentTarget as HTMLSpanElement).style.color='white';(e.currentTarget as HTMLSpanElement).style.borderColor='var(--ink)';}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLSpanElement).style.background='var(--off)';(e.currentTarget as HTMLSpanElement).style.color='var(--muted)';(e.currentTarget as HTMLSpanElement).style.borderColor='var(--border)';}}>
