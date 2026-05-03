@@ -297,7 +297,7 @@ export default function Index() {
             </h1>
 
             <p className="reveal" style={{color:'var(--muted)',fontSize:'1.1rem',lineHeight:1.65,maxWidth:'500px',marginBottom:'2.5rem',transitionDelay:'0.4s'}}>
-              Deep learning, generative AI, and agentic systems. Published researcher, GSoC 2026 applicant, open source contributor.
+              GSoC 2026 Contributor · ML4Sci · Coronary Artery Calcium Segmentation
             </p>
 
             <div className="reveal" style={{display:'flex',gap:'0.75rem',flexWrap:'wrap',marginBottom:'2.5rem',transitionDelay:'0.5s'}}>
@@ -311,8 +311,8 @@ export default function Index() {
               <button ref={btn1} onClick={()=>go('projects')} className="btn btn-dark magnetic" style={{cursor:'none'}}>
                 View Work <ArrowRight size={15}/>
               </button>
-              <a ref={btn2} href="mailto:soham.ai.engineer@gmail.com" className="btn btn-outline magnetic">
-                Contact Me
+              <a ref={btn2} href="https://drive.google.com/file/d/1MuONHQJkPSyDbuyUYkUHtK257MDDGGQs/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn btn-outline magnetic">
+                Resume
               </a>
             </div>
 
