@@ -1,5 +1,14 @@
 import React from 'react';
 import type { ExperienceEntry } from '@/data/experience';
+import gsocLogo from '@/assets/logos/gsoc.png';
+import ml4sciLogo from '@/assets/logos/ml4sci.png';
+import gdgLogo from '@/assets/logos/gdg.png';
+
+const LOGO_MAP: Record<string, string> = {
+  'gsoc-2026': gsocLogo,
+  'ml4sci': ml4sciLogo,
+  'gdg': gdgLogo,
+};
 
 type Props = ExperienceEntry & { revealDelay?: number };
 
