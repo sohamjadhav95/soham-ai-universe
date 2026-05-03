@@ -288,6 +288,28 @@ h1, h2, h3, h4, h5 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Hero Grid ─────────────────────────────────── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .terminal-wrapper {
+    display: none;
+  }
+}
+
+@keyframes blink { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0; } 
+}
+
 /* ── Stat counter ──────────────────────────────── */
 .stat-num {
   font-family: 'Cabinet Grotesk', sans-serif;

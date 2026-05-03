@@ -13,6 +13,7 @@ import SkillsMarquee from '@/components/SkillsMarquee';
 import ExperienceSection from '@/components/ExperienceSection';
 import StatusBadge from '@/components/StatusBadge';
 import SplitHeading from '@/components/SplitHeading';
+import TerminalWidget from '@/components/TerminalWidget';
 
 
 /* ─── DATA ──────────────────────────────────────── */
@@ -359,8 +360,9 @@ export default function Index() {
           <div data-depth="0.03" style={{ position: 'absolute', top: '50%', right: '3%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(0,87,255,0.04), transparent 70%)', pointerEvents: 'none', transform: 'translateY(-50%)', transition: 'transform 0.8s ease' }} />
 
           <div style={{ maxWidth: '1180px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '3rem', paddingBottom: '3rem' }}>
-            <div style={{ maxWidth: '780px' }}>
-              <div className="section-label reveal" style={{ marginBottom: '2rem' }}>
+            <div className="hero-grid">
+              <div style={{ maxWidth: '780px' }}>
+                <div className="section-label reveal" style={{ marginBottom: '2rem' }}>
                 AI Engineer · Developer · Problem Solver
               </div>
               <StatusBadge />
@@ -409,9 +411,14 @@ export default function Index() {
               </div>
             </div>
 
+            <div className="reveal terminal-wrapper" style={{ transitionDelay: '0.4s' }}>
+              <TerminalWidget />
+            </div>
+
             {/* Stats */}
-            <div className="stats-grid">
+            <div className="stats-grid" style={{ gridColumn: '1 / -1' }}>
               {STATS.map((s, i) => <StatBox key={s.label} {...s} delay={0.1 + i * 0.08} />)}
+            </div>
             </div>
           </div>
         </section>
