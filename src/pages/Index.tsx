@@ -94,10 +94,16 @@ const PAPERS = [
 
 const OSS = [
   {
-    org: 'ML4Sci — DeepLense', role: 'GSoC 2026 Applicant', status: 'Active', tag: 'tag-blue',
-    description: 'Three-proposal strategy — DEEPLENSE6, DEEPLENSE7, and PREDICT1 — for astrophysics AI pipelines.',
-    contributions: ['ResNet18 classifier ~92.5% val acc, AUC 0.985', 'Binary lens finder via WeightedRandomSampler ~97%', 'U-Net CAC segmentation on Stanford COCA (Dice > 0.85)'],
-    repo: 'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026', tech: ['PyTorch', 'ResNet18', 'U-Net']
+    org: 'GSoC 2026 @ ML4Sci — CAC Segmentation', role: 'Selected Contributor', status: 'Active', tag: 'tag-blue',
+    description: 'Building and comparing segmentation strategies for Coronary Artery Calcium.',
+    contributions: [
+      'Selected contributor out of global applicant pool — ML4Sci / PREDICT1',
+      'Whole-heart U-Net on Stanford COCA dataset → median Dice 0.9416',
+      '3,157× speedup over TotalSegmentator baseline',
+      'Midterm eval: July 10 · Final submission: Aug 24',
+      'Stack: PyTorch · ResNet · U-Net · Colab'
+    ],
+    repo: 'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026', tech: ['PyTorch', 'ResNet', 'U-Net', 'Colab']
   },
   {
     org: 'pgmpy', role: 'Open Source Contributor', status: 'In Progress', tag: 'tag-green',
@@ -485,7 +491,7 @@ export default function Index() {
                       <span className="tag tag-blue">{p.type}</span>
                       <span className="tag tag-ghost">{p.year}</span>
                     </div>
-                    {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}><ExternalLink size={11} /> verify</a>}
+                    {(p as any).link && <a href={(p as any).link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}><ExternalLink size={11} /> verify</a>}
                   </div>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.3, letterSpacing: '-0.02em' }}>{p.title}</h3>
                   <p style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--accent)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}><BookOpen size={11} />{p.venue}</p>
@@ -568,9 +574,6 @@ export default function Index() {
             <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>06 / Freelance</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}>Available for Hire</h2>
-              <p className="reveal" style={{ color: 'var(--muted)', maxWidth: '320px', fontSize: '0.9rem', lineHeight: 1.6, transitionDelay: '0.14s' }}>
-                Open to part-time freelance contracts alongside studies. Typical turnaround 1–3 weeks.
-              </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem', marginBottom: '2.5rem' }}>
               {FREELANCE.map((f, i) => (
