@@ -6,6 +6,7 @@ import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
+import SkillsMarquee from '@/components/SkillsMarquee';
 
 
 /* ─── DATA ──────────────────────────────────────── */
