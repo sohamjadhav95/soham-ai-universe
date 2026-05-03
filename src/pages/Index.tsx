@@ -491,7 +491,7 @@ export default function Index() {
                       <span className="tag tag-blue">{p.type}</span>
                       <span className="tag tag-ghost">{p.year}</span>
                     </div>
-                    {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}><ExternalLink size={11} /> verify</a>}
+                    {(p as any).link && <a href={(p as any).link} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}><ExternalLink size={11} /> verify</a>}
                   </div>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.3, letterSpacing: '-0.02em' }}>{p.title}</h3>
                   <p style={{ fontFamily: 'DM Mono', fontSize: '0.72rem', color: 'var(--accent)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '5px' }}><BookOpen size={11} />{p.venue}</p>
