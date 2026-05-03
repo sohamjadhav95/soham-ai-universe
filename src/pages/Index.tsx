@@ -269,9 +269,24 @@ export default function Index() {
     return () => window.removeEventListener('mousemove', move);
   }, []);
 
+  /* Reading Progress Bar */
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollPct = (scrollY / (documentHeight - viewportHeight)) * 100;
+      document.documentElement.style.setProperty('--scroll-pct', `${scrollPct}%`);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
   return (
     <div style={{ background: 'var(--white)', minHeight: '100vh', position: 'relative' }}>
       <div style={{ position: 'relative', zIndex: 1 }}>
+        <div id="progress-bar" />
         {/* Custom cursor */}
         <div id="cursor-dot" ref={cursorDot} />
         <div id="cursor-ring" ref={cursorRing} />

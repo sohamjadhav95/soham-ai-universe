@@ -56,6 +56,19 @@ body {
 ::-webkit-scrollbar-track { background: var(--off); }
 ::-webkit-scrollbar-thumb { background: rgba(13,13,11,0.2); border-radius: 2px; }
 
+/* ── Progress Bar ──────────────────────────────── */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: var(--scroll-pct, 0%);
+  background: #0057ff;
+  z-index: 9999;
+  pointer-events: none;
+  transition: width 0.05s linear;
+}
+
 /* ── Custom Cursor ─────────────────────────────── */
 #cursor-dot {
   position: fixed; width: 8px; height: 8px;
