@@ -309,14 +309,14 @@ export default function Index() {
                 Final Year AI Engineer · Nashik, India
               </div>
 
-              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 0.98, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
+              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
                 {[{ text: 'Building', delay: 0 }, { text: 'AI', delay: 0.1 }, { text: 'that', delay: 0.18 }].map(w => (
-                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden' }}>
+                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden', paddingBottom: '0.12em' }}>
                     <span className="hero-word-inner" style={{ animationDelay: `${w.delay}s` }}>{w.text}</span>
                   </span>
                 ))}
                 <br />
-                <span className="hero-word serif" style={{ display: 'inline-block', overflow: 'hidden', color: 'var(--accent)' }}>
+                <span className="hero-word" style={{ display: 'inline-block', overflow: 'hidden', paddingBottom: '0.18em', color: 'var(--accent)', fontFamily: 'Cabinet Grotesk', fontStyle: 'italic', fontWeight: 800 }}>
                   <span className="hero-word-inner" style={{ animationDelay: '0.28s' }}>in faith of humanity.</span>
                 </span>
               </h1>
