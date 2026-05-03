@@ -476,10 +476,13 @@ export default function Index() {
           </div>
         </section>
 
+        {/* ── EXPERIENCE ───────────────────────────────── */}
+        <ExperienceSection />
+
         {/* ── RESEARCH ─────────────────────────────────── */}
         <section id="research" style={{ padding: '7rem 2rem', background: 'rgba(255,255,255,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-            <div className="section-label reveal" style={{ marginBottom: '1.5rem', color: 'var(--muted2)' }}>03 / Research</div>
+            <div className="section-label reveal" style={{ marginBottom: '1.5rem', color: 'var(--muted2)' }}>04 / Research</div>
             <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}>Publications</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {PAPERS.map((p, i) => (
