@@ -237,7 +237,8 @@ h1, h2, h3, h4, h5 {
 /* ── Hero ──────────────────────────────────────── */
 .hero-word {
   display: inline-block;
-  overflow: hidden;
+  line-height: 1.1;
+  padding-bottom: 0.18em;
 }
 .hero-word-inner {
   display: inline-block;
@@ -245,8 +246,8 @@ h1, h2, h3, h4, h5 {
   opacity: 0;
 }
 @keyframes word-in {
-  from { opacity: 0; transform: translateY(100%) rotate(3deg); }
-  to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+  from { opacity: 0; transform: translateY(40%); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Stat counter ──────────────────────────────── */
