@@ -20,10 +20,16 @@ const NAV = ['About', 'Projects', 'Experience', 'Research', 'OSS', 'Certs', 'Fre
 const MARQUEE_ITEMS = ['PyTorch', 'TensorFlow', 'HuggingFace', 'LangChain', 'OpenCV', 'Python', 'Gemma 3', 'BLIP-2', 'Whisper', 'RAG', 'LoRA', 'AutoML', 'XAI', 'NumPy', 'Pandas', 'Streamlit', 'GSoC 2026', 'Springer Nature'];
 
 const STATS = [
-  { end: 2, suf: '', label: 'Papers Published', sub: 'Springer · ICIA' },
-  { end: 6, suf: '+', label: 'Projects Shipped', sub: 'Production-ready' },
-  { end: 9, suf: '', label: 'Certifications', sub: 'IBM · Microsoft · GDG' },
-  { end: 500, suf: '+', label: 'LinkedIn Connections', sub: 'Growing network' },
+  { 
+    end: 2, suf: '', label: 'Papers Published', 
+    sub: 'Springer Nature · ICIA', 
+    featured: true, 
+    logo: 'springer',
+    detail: 'Peer-reviewed research'
+  },
+  { end: 6, suf: '+', label: 'Projects Shipped', sub: 'Production-ready', featured: false },
+  { end: 9, suf: '', label: 'Certifications', sub: 'IBM · Microsoft · GDG', featured: false },
+  { end: 500, suf: '+', label: 'Connections', sub: 'LinkedIn network', featured: false },
 ];
 
 interface Metric { label: string; value: string }
@@ -153,7 +159,7 @@ function useCountUp(end: number, started: boolean, dur = 1600) {
   return v;
 }
 
-function StatBox({ end, suf, label, sub, delay }: { end: number; suf: string; label: string; sub: string; delay: number }) {
+function StatBox({ end, suf, label, sub, delay, featured, detail, logo }: { end: number; suf: string; label: string; sub: string; delay: number; featured?: boolean; detail?: string; logo?: string }) {
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const val = useCountUp(end, started);
@@ -162,9 +168,28 @@ function StatBox({ end, suf, label, sub, delay }: { end: number; suf: string; la
     if (ref.current) io.observe(ref.current);
     return () => io.disconnect();
   }, []);
+
+  if (featured) {
+    return (
+      <div ref={ref} className="reveal" style={{ transitionDelay: `${delay}s`, padding: '2.5rem 2rem', background: 'white', border: '1px solid var(--border)', borderTop: '3px solid var(--accent)', borderRadius: '16px', gridColumn: '1 / 2', gridRow: '1 / 3', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        {logo === 'springer' && (
+          <div style={{ fontFamily: 'DM Mono', fontSize: '0.62rem', letterSpacing: '0.1em', color: 'var(--muted2)', marginBottom: '1.5rem', textTransform: 'uppercase' }}>
+            SPRINGER NATURE
+          </div>
+        )}
+        <div style={{ fontFamily: 'Cabinet Grotesk', fontSize: '3rem', fontWeight: 900, color: 'var(--ink)', lineHeight: 1, letterSpacing: '-0.04em', marginBottom: '0.5rem' }}>
+          {val}{suf}
+        </div>
+        <div style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>{label}</div>
+        <div style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.6 }}>{sub}</div>
+        {detail && <div style={{ marginTop: '1.5rem' }}><span className="tag tag-ghost">{detail}</span></div>}
+      </div>
+    );
+  }
+
   return (
-    <div ref={ref} className="reveal" style={{ transitionDelay: `${delay}s`, textAlign: 'center', padding: '2rem 1.5rem', background: 'white', border: '1px solid var(--border)', borderRadius: '16px' }}>
-      <div className="stat-num">{val}{suf}</div>
+    <div ref={ref} className="reveal" style={{ transitionDelay: `${delay}s`, textAlign: 'center', padding: '1.5rem', background: 'white', border: '1px solid var(--border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="stat-num" style={{ fontSize: '2.2rem' }}>{val}{suf}</div>
       <div style={{ fontWeight: 700, marginTop: '6px', fontSize: '0.9rem', color: 'var(--ink)' }}>{label}</div>
       <div style={{ fontFamily: 'DM Mono', fontSize: '0.68rem', color: 'var(--muted2)', marginTop: '3px' }}>{sub}</div>
     </div>
@@ -375,7 +400,7 @@ export default function Index() {
             </div>
 
             {/* Stats */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1rem', marginTop: '5rem' }}>
+            <div className="stats-grid">
               {STATS.map((s, i) => <StatBox key={s.label} {...s} delay={0.1 + i * 0.08} />)}
             </div>
           </div>

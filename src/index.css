@@ -280,6 +280,23 @@ h1, h2, h3, h4, h5 {
   color: var(--ink); line-height: 1;
   letter-spacing: -0.04em;
 }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  margin-top: 5rem;
+}
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .stats-grid > div:first-child {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+}
 
 /* ── Modal ─────────────────────────────────────── */
 .modal-overlay {
