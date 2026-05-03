@@ -10,10 +10,11 @@ import careerEssentialsGenAiCert from '@/assets/Career Essentials in Generative 
 import sqlAdvancedCert from '@/assets/sql_advance.png';
 import pythonCert from '@/assets/python.png';
 import SkillsMarquee from '@/components/SkillsMarquee';
+import ExperienceSection from '@/components/ExperienceSection';
 
 
 /* ─── DATA ──────────────────────────────────────── */
-const NAV = ['About', 'Projects', 'Research', 'OSS', 'Certs', 'Freelance', 'Contact'];
+const NAV = ['About', 'Projects', 'Experience', 'Research', 'OSS', 'Certs', 'Freelance', 'Contact'];
 
 const MARQUEE_ITEMS = ['PyTorch', 'TensorFlow', 'HuggingFace', 'LangChain', 'OpenCV', 'Python', 'Gemma 3', 'BLIP-2', 'Whisper', 'RAG', 'LoRA', 'AutoML', 'XAI', 'NumPy', 'Pandas', 'Streamlit', 'GSoC 2026', 'Springer Nature'];
 
