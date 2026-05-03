@@ -110,6 +110,16 @@ h1, h2, h3, h4, h5 {
 .serif { font-family: 'Instrument Serif', serif; font-style: italic; }
 .mono  { font-family: 'DM Mono', monospace; }
 
+/* ── Split Heading ─────────────────────────────── */
+.splitting .split-char {
+  transform: translateY(-6px);
+}
+@media (max-width: 767px) {
+  .splitting .split-char {
+    transform: none !important;
+  }
+}
+
 /* ── Nav ───────────────────────────────────────── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;

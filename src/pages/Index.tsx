@@ -12,6 +12,7 @@ import pythonCert from '@/assets/python.png';
 import SkillsMarquee from '@/components/SkillsMarquee';
 import ExperienceSection from '@/components/ExperienceSection';
 import StatusBadge from '@/components/StatusBadge';
+import SplitHeading from '@/components/SplitHeading';
 
 
 /* ─── DATA ──────────────────────────────────────── */
@@ -477,7 +478,7 @@ export default function Index() {
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
             <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>02 / Projects</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }}>
-              <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}>What I've Built</h2>
+              <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}><SplitHeading text="What I've Built" /></h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
               {PROJECTS.map((p, i) => {
@@ -535,7 +536,7 @@ export default function Index() {
         <section id="research" style={{ padding: '7rem 2rem', background: 'rgba(255,255,255,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
             <div className="section-label reveal" style={{ marginBottom: '1.5rem', color: 'var(--muted2)' }}>04 / Research</div>
-            <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}>Publications</h2>
+            <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}><SplitHeading text="Publications" /></h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {PAPERS.map((p, i) => (
                 <div key={p.title} className="reveal paper-card" style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: '16px', padding: '2.25rem', transitionDelay: `${i * 0.12}s` }}>
@@ -657,7 +658,7 @@ export default function Index() {
         <section id="contact" style={{ padding: '7rem 2rem', background: 'rgba(255,255,255,0.82)', position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
             <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>08 / Contact</div>
-            <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}>Let's Connect</h2>
+            <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', marginBottom: '3.5rem', transitionDelay: '0.08s' }}><SplitHeading text="Let's Connect" /></h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
                 {[{ icon: Mail, l: 'Email', v: 'soham.ai.engineer@gmail.com', href: 'mailto:soham.ai.engineer@gmail.com' }, { icon: Github, l: 'GitHub', v: 'github.com/sohamjadhav95', href: 'https://github.com/sohamjadhav95' }, { icon: Linkedin, l: 'LinkedIn', v: 'linkedin.com/in/sohamjadhav95', href: 'https://linkedin.com/in/sohamjadhav95' }, { icon: Twitter, l: 'Twitter', v: '@sohamjadhav_95', href: 'https://x.com/sohamjadhav_95' }].map(({ icon: Icon, l, v, href }, i) => (
