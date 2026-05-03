@@ -81,7 +81,8 @@ const PAPERS = [
     venue: 'Cureus — Springer Nature', year: '2025', type: 'Conference Paper',
     authors: 'Soham S. Jadhav, Nisha D. Patil, Omkar N. Gadakh, Atharv S. Gaikwad',
     abstract: 'Gatekeeper Architecture for pre-delivery content validation across Text + Image + Audio with Policy-as-Prompt. Sub-3s latency using Gemma 3, BLIP-2, and Whisper.',
-    keywords: ['Multimodal AI', 'LLMs', 'Gatekeeper', 'Policy-as-Prompt', 'Enterprise Security']
+    keywords: ['Multimodal AI', 'LLMs', 'Gatekeeper', 'Policy-as-Prompt', 'Enterprise Security'],
+    link: 'https://www.cureusjournals.com/publish/articles/16499-convo-ease-intelligent-multi-modal-moderation-for-digital-organizational-communication/preview#!/'
   },
   {
     title: 'Beyond Text: A Comprehensive Survey of Multimodal Content Moderation Architectures in Enterprise Environments',
@@ -115,7 +116,7 @@ const OSS = [
 
 const FREELANCE = [
   { title: 'AI/ML Development', desc: 'End-to-end AI apps — model training, API integration, deployment.', services: ['Custom ML Models', 'LLM Integration', 'RAG Pipelines', 'AI APIs'] },
-  { title: 'Data Science Consulting', desc: 'Analytics, predictive modelling, and dashboard development.', services: ['EDA & Visualization', 'Predictive Analytics', 'AutoML', 'Reporting'] },
+  { title: 'Software Development & Deployment', desc: 'End-to-end software builds — backend APIs, frontend apps, and cloud deployment.', services: ['Full-Stack Web Apps', 'REST & GraphQL APIs', 'Docker & CI/CD', 'Cloud Deployment'] },
   { title: 'Generative AI Engineering', desc: 'Fine-tuning LLMs, building RAG systems, deploying GenAI apps.', services: ['LLM Fine-tuning', 'RAG Systems', 'Prompt Engineering', 'Deployment'] },
 ];
 
@@ -308,14 +309,14 @@ export default function Index() {
                 Final Year AI Engineer · Nashik, India
               </div>
 
-              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 0.98, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
+              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
                 {[{ text: 'Building', delay: 0 }, { text: 'AI', delay: 0.1 }, { text: 'that', delay: 0.18 }].map(w => (
-                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden' }}>
+                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden', paddingBottom: '0.12em' }}>
                     <span className="hero-word-inner" style={{ animationDelay: `${w.delay}s` }}>{w.text}</span>
                   </span>
                 ))}
                 <br />
-                <span className="hero-word serif" style={{ display: 'inline-block', overflow: 'hidden', color: 'var(--accent)' }}>
+                <span className="hero-word" style={{ display: 'inline-block', overflow: 'hidden', paddingBottom: '0.18em', color: 'var(--accent)', fontFamily: 'Cabinet Grotesk', fontStyle: 'italic', fontWeight: 800 }}>
                   <span className="hero-word-inner" style={{ animationDelay: '0.28s' }}>in faith of humanity.</span>
                 </span>
               </h1>
@@ -589,13 +590,6 @@ export default function Index() {
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="reveal" style={{ textAlign: 'center', padding: '3rem', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: '20px', transitionDelay: '0.3s' }}>
-              <h3 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '0.75rem', letterSpacing: '-0.03em' }}>Got a project in mind?</h3>
-              <p style={{ color: 'var(--muted)', marginBottom: '2rem' }}>Let's talk about what you need.</p>
-              <a href="mailto:soham.ai.engineer@gmail.com" className="btn btn-accent">
-                <Mail size={15} /> soham.ai.engineer@gmail.com
-              </a>
             </div>
           </div>
         </section>
