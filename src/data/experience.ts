@@ -19,7 +19,7 @@ export type ExperienceEntry = {
 export const EXPERIENCE: ExperienceEntry[] = [
   {
     id: 'gsoc-2026',
-    role: 'Open Source Contributor',
+    role: 'Open Source Developer',
     org: 'Google Summer of Code 2026',
     duration: 'May 2026 – Aug 2026 · 4 months',
     location: 'Remote',
@@ -34,7 +34,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     id: 'ml4sci',
-    role: 'Research Contributor — PREDICT1',
+    role: 'Research & Development - PREDICT1',
     org: 'Machine Learning for Science (ML4Sci)',
     duration: 'May 2026 – Aug 2026 · Ongoing',
     location: 'Remote',
@@ -53,7 +53,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     id: 'gdg',
-    role: 'Co-Lead — Artificial Intelligence and Machine Learning',
+    role: 'Co-Lead - Artificial Intelligence and Machine Learning',
     org: 'Google Developer Groups On Campus, Nashik',
     duration: 'Sep 2024 – Sep 2025 · 1 yr 1 mo',
     location: 'Nashik, Maharashtra, India',

@@ -100,7 +100,7 @@ const PAPERS = [
 const OSS = [
   {
     org: 'GSoC 2026 @ ML4Sci — CAC Segmentation', role: 'Selected to Build and Develop', status: 'Active', tag: 'tag-blue',
-    description: 'Building and comparing segmentation strategies for Coronary Artery Calcium.',
+    description: 'Building new and improving existing segmentation strategies for Coronary Artery Calcium.',
     contributions: [
       'Selected out of global applicant pool — ML4Sci / PREDICT1',
       'Whole-heart U-Net on Stanford COCA dataset → median Dice 0.9416',
