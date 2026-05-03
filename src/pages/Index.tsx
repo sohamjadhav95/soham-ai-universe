@@ -77,7 +77,7 @@ const PAPERS = [
 ];
 
 const OSS = [
-  { org:'ML4Sci — DeepLense', role:'GSoC 2026 Applicant', status:'Active', tag:'tag-blue',
+  { org:'ML4Sci — DeepLense', role:'GSoC 2026 Contributor', status:'Active', tag:'tag-blue',
     description:'Three-proposal strategy — DEEPLENSE6, DEEPLENSE7, and PREDICT1 — for astrophysics AI pipelines.',
     contributions:['ResNet18 classifier ~92.5% val acc, AUC 0.985','Binary lens finder via WeightedRandomSampler ~97%','U-Net CAC segmentation on Stanford COCA (Dice > 0.85)'],
     repo:'https://github.com/sohamjadhav95/ML4Sci-DeepLense-GSoC2026', tech:['PyTorch','ResNet18','U-Net'] },
