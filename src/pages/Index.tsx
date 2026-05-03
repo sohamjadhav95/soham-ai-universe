@@ -81,8 +81,7 @@ const PAPERS = [
     venue: 'Cureus — Springer Nature', year: '2025', type: 'Conference Paper',
     authors: 'Soham S. Jadhav, Nisha D. Patil, Omkar N. Gadakh, Atharv S. Gaikwad',
     abstract: 'Gatekeeper Architecture for pre-delivery content validation across Text + Image + Audio with Policy-as-Prompt. Sub-3s latency using Gemma 3, BLIP-2, and Whisper.',
-    keywords: ['Multimodal AI', 'LLMs', 'Gatekeeper', 'Policy-as-Prompt', 'Enterprise Security'],
-    link: 'https://www.cureusjournals.com/publish/articles/16499-convo-ease-intelligent-multi-modal-moderation-for-digital-organizational-communication/preview#!/'
+    keywords: ['Multimodal AI', 'LLMs', 'Gatekeeper', 'Policy-as-Prompt', 'Enterprise Security']
   },
   {
     title: 'Beyond Text: A Comprehensive Survey of Multimodal Content Moderation Architectures in Enterprise Environments',
@@ -95,10 +94,10 @@ const PAPERS = [
 
 const OSS = [
   {
-    org: 'GSoC 2026 @ ML4Sci — CAC Segmentation', role: 'Selected Contributor', status: 'Active', tag: 'tag-blue',
+    org: 'GSoC 2026 @ ML4Sci — CAC Segmentation', role: 'Selected to Build and Develop', status: 'Active', tag: 'tag-blue',
     description: 'Building and comparing segmentation strategies for Coronary Artery Calcium.',
     contributions: [
-      'Selected contributor out of global applicant pool — ML4Sci / PREDICT1',
+      'Selected out of global applicant pool — ML4Sci / PREDICT1',
       'Whole-heart U-Net on Stanford COCA dataset → median Dice 0.9416',
       '3,157× speedup over TotalSegmentator baseline',
       'Midterm eval: July 10 · Final submission: Aug 24',
@@ -116,7 +115,7 @@ const OSS = [
 
 const FREELANCE = [
   { title: 'AI/ML Development', desc: 'End-to-end AI apps — model training, API integration, deployment.', services: ['Custom ML Models', 'LLM Integration', 'RAG Pipelines', 'AI APIs'] },
-  { title: 'Software Development & Deployment', desc: 'End-to-end software builds — backend APIs, frontend apps, and cloud deployment.', services: ['Full-Stack Web Apps', 'REST & GraphQL APIs', 'Docker & CI/CD', 'Cloud Deployment'] },
+  { title: 'Data Science Consulting', desc: 'Analytics, predictive modelling, and dashboard development.', services: ['EDA & Visualization', 'Predictive Analytics', 'AutoML', 'Reporting'] },
   { title: 'Generative AI Engineering', desc: 'Fine-tuning LLMs, building RAG systems, deploying GenAI apps.', services: ['LLM Fine-tuning', 'RAG Systems', 'Prompt Engineering', 'Deployment'] },
 ];
 
@@ -306,27 +305,27 @@ export default function Index() {
           <div style={{ maxWidth: '1180px', margin: '0 auto', padding: '0 2rem', width: '100%', paddingTop: '3rem', paddingBottom: '3rem' }}>
             <div style={{ maxWidth: '780px' }}>
               <div className="section-label reveal" style={{ marginBottom: '2rem' }}>
-                Final Year AI Engineer · Nashik, India
+                AI Engineer · Developer · Problem Solver
               </div>
 
-              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
+              <h1 style={{ fontFamily: 'Cabinet Grotesk', fontSize: 'clamp(3.5rem,9vw,8rem)', fontWeight: 900, lineHeight: 0.98, letterSpacing: '-0.04em', marginBottom: '2rem' }}>
                 {[{ text: 'Building', delay: 0 }, { text: 'AI', delay: 0.1 }, { text: 'that', delay: 0.18 }].map(w => (
-                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden', paddingBottom: '0.12em' }}>
+                  <span key={w.text} className="hero-word" style={{ display: 'inline-block', marginRight: '0.22em', overflow: 'hidden' }}>
                     <span className="hero-word-inner" style={{ animationDelay: `${w.delay}s` }}>{w.text}</span>
                   </span>
                 ))}
                 <br />
-                <span className="hero-word" style={{ display: 'inline-block', overflow: 'hidden', paddingBottom: '0.18em', color: 'var(--accent)', fontFamily: 'Cabinet Grotesk', fontStyle: 'italic', fontWeight: 800 }}>
+                <span className="hero-word serif" style={{ display: 'inline-block', overflow: 'hidden', color: 'var(--accent)' }}>
                   <span className="hero-word-inner" style={{ animationDelay: '0.28s' }}>in faith of humanity.</span>
                 </span>
               </h1>
 
               <p className="reveal" style={{ color: 'var(--muted)', fontSize: '1.1rem', lineHeight: 1.65, maxWidth: '500px', marginBottom: '2.5rem', transitionDelay: '0.4s' }}>
-                GSoC 2026 Contributor · ML4Sci · Coronary Artery Calcium Segmentation
+                GSoC 2026 · ML4Sci
               </p>
 
               <div className="reveal" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '2.5rem', transitionDelay: '0.5s' }}>
-                <span className="tag tag-ink">PyTorch</span>
+                <span className="tag tag-ink">Research & Development</span>
                 <span className="tag tag-blue">GSoC 2026</span>
                 <span className="tag tag-green">2× Published</span>
                 <span className="tag tag-purple">Generative AI</span>
@@ -396,7 +395,7 @@ export default function Index() {
               </div>
               <div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0', border: '1px solid var(--border)', borderRadius: '16px', overflow: 'hidden' }}>
-                  {[['Degree', 'B.E. Artificial Intelligence & Data Science'], ['College', "MET's Institute of Engineering, Nashik"], ['Period', 'Oct 2022 – Jul 2026'], ['Location', 'Nashik, Maharashtra, India'], ['Status', 'Open to Work'], ['Email', 'soham.ai.engineer@gmail.com']].map(([l, v], i) => (
+                  {[['Degree', 'B.E. Artificial Intelligence & Data Science'], ['College', "MET's Institute of Engineering, Nashik"], ['Period', 'Oct 2022 – Jul 2026'], ['Location', 'Nashik, Maharashtra, India'], ['Status', 'Open to Development'], ['Email', 'soham.ai.engineer@gmail.com']].map(([l, v], i) => (
                     <div key={l} className="reveal" style={{ display: 'flex', padding: '0.875rem 1.5rem', borderBottom: i < 5 ? '1px solid var(--border)' : '', transitionDelay: `${0.08 + i * 0.06}s` }}>
                       <span style={{ fontFamily: 'DM Mono', fontSize: '0.7rem', color: 'var(--muted2)', minWidth: '80px', flexShrink: 0, paddingTop: '2px' }}>{l}</span>
                       <span style={{ fontSize: '0.9rem', color: l === 'Status' ? '#059669' : l === 'Email' ? 'var(--accent)' : 'var(--ink)', fontWeight: l === 'Status' ? 600 : 400 }}>{v}</span>
@@ -574,7 +573,7 @@ export default function Index() {
           <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
             <div className="section-label reveal" style={{ marginBottom: '1.5rem' }}>06 / Freelance</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-              <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}>Available for Hire</h2>
+              <h2 className="reveal" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', transitionDelay: '0.08s' }}>Available for Your Needs</h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem', marginBottom: '2.5rem' }}>
               {FREELANCE.map((f, i) => (
@@ -590,6 +589,13 @@ export default function Index() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="reveal" style={{ textAlign: 'center', padding: '3rem', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: '20px', transitionDelay: '0.3s' }}>
+              <h3 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '0.75rem', letterSpacing: '-0.03em' }}>Got a project in mind?</h3>
+              <p style={{ color: 'var(--muted)', marginBottom: '2rem' }}>Let's talk about what you need.</p>
+              <a href="mailto:soham.ai.engineer@gmail.com" className="btn btn-accent">
+                <Mail size={15} /> soham.ai.engineer@gmail.com
+              </a>
             </div>
           </div>
         </section>
