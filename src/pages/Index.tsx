@@ -218,8 +218,8 @@ function useMagnetic(strength = 0.35) {
   return ref;
 }
 
-/* ─── TILT CARD HOOK ────────────────────────────── */
-function useTilt() {
+/* ─── CARD INTERACTION HOOK ────────────────────────────── */
+function useCardInteraction() {
   const ref = useRef<HTMLDivElement>(null);
   const onMove = useCallback((e: MouseEvent) => {
     const el = ref.current; if (!el) return;
@@ -227,9 +227,18 @@ function useTilt() {
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
     el.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(4px)`;
+    
+    const mouseX = ((e.clientX - r.left) / r.width) * 100;
+    const mouseY = ((e.clientY - r.top) / r.height) * 100;
+    el.style.setProperty('--mouse-x', `${mouseX}%`);
+    el.style.setProperty('--mouse-y', `${mouseY}%`);
   }, []);
   const onLeave = useCallback(() => {
-    if (ref.current) ref.current.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+    if (ref.current) {
+      ref.current.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+      ref.current.style.setProperty('--mouse-x', '50%');
+      ref.current.style.setProperty('--mouse-y', '50%');
+    }
   }, []);
   useEffect(() => {
     const el = ref.current; if (!el) return;
@@ -472,9 +481,9 @@ export default function Index() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }}>
               {PROJECTS.map((p, i) => {
-                const tiltRef = useTilt();
+                const cardRef = useCardInteraction();
                 return (
-                  <div key={p.id} ref={tiltRef} className="card reveal card-tilt" style={{ padding: '1.75rem', cursor: 'pointer', transitionDelay: `${i * 0.07}s`, background: 'white' }}
+                  <div key={p.id} ref={cardRef} className="card reveal card-tilt" style={{ padding: '1.75rem', cursor: 'pointer', transitionDelay: `${i * 0.07}s` }}
                     onClick={() => setExpanded(expanded === p.id ? null : p.id)}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
