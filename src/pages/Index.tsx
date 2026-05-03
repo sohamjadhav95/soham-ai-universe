@@ -6,6 +6,7 @@ import mlPythonCert from '@/assets/ml-python-cert.png';
 import genAiLlmsCert from '@/assets/gen-ai-llms-cert.jpg';
 import ibmAiEngineeringCert from '@/assets/ibm-ai-engineering-cert.jpg';
 import gdgCoLeadCert from '@/assets/gdg-colead-cert.png';
+import SkillsMarquee from '@/components/SkillsMarquee';
 
 
 /* ─── DATA ──────────────────────────────────────── */
@@ -409,14 +410,8 @@ export default function Index() {
             <div style={{ marginTop: '4rem' }}>
               <div className="line reveal" style={{ marginBottom: '2rem' }} />
               <p className="reveal" style={{ fontFamily: 'DM Mono', fontSize: '0.68rem', color: 'var(--muted2)', letterSpacing: '0.12em', marginBottom: '1.5rem', transitionDelay: '0.05s' }}>TECH STACK</p>
-              <div className="reveal" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', transitionDelay: '0.1s' }}>
-                {['PyTorch', 'TensorFlow', 'HuggingFace', 'scikit-learn', 'OpenCV', 'FastAPI', 'Python', 'TypeScript', 'C++', 'SQL', 'LLMs', 'RAG', 'Fine-tuning', 'LoRA/QLoRA', 'Gemma 3', 'BLIP-2', 'Whisper', 'NumPy', 'Pandas', 'AutoML', 'XAI', 'Gradio', 'MT5 / Algorithmic Trading', 'Medical Imaging', 'Git', 'Colab'].map(t => (
-                  <span key={t} className="tag tag-ghost" style={{ transition: 'all 0.2s ease' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLSpanElement).style.background = 'var(--ink)'; (e.currentTarget as HTMLSpanElement).style.color = 'white'; (e.currentTarget as HTMLSpanElement).style.borderColor = 'var(--ink)'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLSpanElement).style.background = 'var(--off)'; (e.currentTarget as HTMLSpanElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLSpanElement).style.borderColor = 'var(--border)'; }}>
-                    {t}
-                  </span>
-                ))}
+              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
+                <SkillsMarquee />
               </div>
             </div>
           </div>
