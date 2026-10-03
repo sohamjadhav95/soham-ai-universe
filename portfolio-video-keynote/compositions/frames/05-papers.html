@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- Chapter 5 — Research (3.0 s): "Published. Twice." Two paper cards with their real titles and venues fan out in 3D. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Geist"; src: url("vendor/fonts/geist-sans-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Geist"; src: url("vendor/fonts/geist-sans-600.woff2") format("woff2"); font-weight: 600; }
+        @font-face { font-family: "Geist"; src: url("vendor/fonts/geist-sans-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Geist Mono"; src: url("vendor/fonts/geist-mono-500.woff2") format("woff2"); font-weight: 500; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #f05-io { position: absolute; inset: 0; }
+        #f05-chapter { position: absolute; left: 120px; top: 214px; font-family: "Geist Mono"; font-weight: 500; font-size: 24px; letter-spacing: 0.18em; color: #2747f5; text-transform: uppercase; }
+        #f05-statement { position: absolute; left: 120px; top: 258px; margin: 0; font-family: "Geist"; font-weight: 700; font-size: 128px; line-height: 1.0; letter-spacing: -0.05em; color: #111317; }
+        .f05-line { display: block; overflow: hidden; padding-bottom: 0.06em; }
+        .f05-line > span { display: block; }
+        #f05-sub { position: absolute; left: 120px; top: 560px; font-family: "Geist"; font-weight: 400; font-size: 36px; color: #454a52; }
+        #f05-venues { position: absolute; left: 120px; top: 640px; font-family: "Geist Mono"; font-weight: 500; font-size: 22px; letter-spacing: 0.14em; color: #454a52; text-transform: uppercase; line-height: 1.9; }
+        #f05-persp { position: absolute; left: 860px; top: 150px; width: 980px; height: 780px; perspective: 1800px; }
+        .f05-paper { position: absolute; width: 420px; height: 580px; border-radius: 26px; background: rgba(255,255,255,0.86); border: 1px solid rgba(17,19,23,0.08);
+          box-shadow: 0 60px 100px -36px rgba(17,19,23,0.26), 0 16px 30px -16px rgba(17,19,23,0.16), inset 0 1px 0 rgba(255,255,255,0.95); }
+        #f05-p1 { left: 60px; top: 110px; }
+        #f05-p2 { left: 500px; top: 70px; }
+        .f05-chip { position: absolute; left: 36px; top: 36px; padding: 8px 14px; border-radius: 999px; background: #e6ebff; font-family: "Geist Mono"; font-weight: 500;
+          font-size: 22px; letter-spacing: 0.08em; color: #1f3ce6; text-transform: uppercase; white-space: nowrap; }
+        .f05-title { position: absolute; left: 36px; right: 36px; top: 112px; font-family: "Geist"; font-weight: 600; font-size: 34px; line-height: 1.2; letter-spacing: -0.02em; color: #111317; }
+        .f05-lines { position: absolute; left: 36px; right: 36px; bottom: 112px; }
+        .f05-lines i { display: block; height: 10px; margin-top: 14px; border-radius: 5px; background: rgba(17,19,23,0.07); }
+        .f05-foot { position: absolute; left: 36px; bottom: 40px; font-family: "Geist Mono"; font-weight: 500; font-size: 22px; letter-spacing: 0.1em; color: #454a52; text-transform: uppercase; }
+      </style>
+
+      <div id="root" data-composition-id="f05-papers" data-width="1920" data-height="1080" data-duration="3">
+        <div id="f05-stage" class="clip" data-start="0" data-duration="3" data-track-index="0">
+          <div id="f05-io">
+            <div id="f05-chapter">Research</div>
+            <h2 id="f05-statement">
+              <span class="f05-line"><span>Published.</span></span>
+              <span class="f05-line"><span>Twice.</span></span>
+            </h2>
+            <div id="f05-sub">Two peer-reviewed papers, 2025.</div>
+            <div id="f05-venues">Cureus · Springer Nature<br />ICIA conference proceedings</div>
+            <div id="f05-persp">
+              <div class="f05-paper" id="f05-p1">
+                <div class="f05-chip">Springer Nature</div>
+                <div class="f05-title">Convo-Ease: Intelligent Multi-Modal Moderation for Digital Organizational Communication</div>
+                <div class="f05-lines"><i style="width: 92%"></i><i style="width: 80%"></i><i style="width: 86%"></i></div>
+                <div class="f05-foot">Cureus · 2025 · Paper</div>
+              </div>
+              <div class="f05-paper" id="f05-p2">
+                <div class="f05-chip">ICIA · 26+ methods</div>
+                <div class="f05-title">Beyond Text: A Comprehensive Survey of Multimodal Content Moderation Architectures in Enterprise Environments</div>
+                <div class="f05-lines"><i style="width: 88%"></i><i style="width: 94%"></i></div>
+                <div class="f05-foot">ICIA · 2025 · Survey</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit;
+          var D = 3;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#f05-io", D);
+          tl.fromTo("#f05-chapter", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+          tl.fromTo(".f05-line > span", { yPercent: 105 }, { yPercent: 0, duration: 0.7, ease: "expo.out", stagger: 0.12 }, 0.12);
+          tl.fromTo("#f05-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.6);
+          tl.fromTo("#f05-venues", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.75);
+          // split-tilt: cards land on the swishes (0.40 / 0.60), then drift apart into a fan.
+          tl.fromTo("#f05-p1", { opacity: 0, y: 200, rotationX: 28, rotationY: 20, rotationZ: -2 },
+            { opacity: 1, y: 0, rotationX: 0, rotationY: 14, rotationZ: -4, duration: 0.8, ease: "back.out(1.2)" }, 0.1);
+          tl.fromTo("#f05-p2", { opacity: 0, y: 220, rotationX: 28, rotationY: -10, rotationZ: 2 },
+            { opacity: 1, y: 0, rotationX: 0, rotationY: -12, rotationZ: 3, duration: 0.8, ease: "back.out(1.2)" }, 0.3);
+          tl.fromTo("#f05-p1", { x: 0 }, { x: -30, duration: 1.8, ease: "sine.inOut", immediateRender: false }, 0.9);
+          tl.fromTo("#f05-p2", { x: 0 }, { x: 24, duration: 1.8, ease: "sine.inOut", immediateRender: false }, 1.1);
+          K.buildReady("f05-papers", K.fontsReady);
+          window.__timelines["f05-papers"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
