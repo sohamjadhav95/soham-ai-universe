@@ -15,6 +15,7 @@ frames are used.
 | `frame.md` | Design system (palette, type voices, motion rules), treated as brand truth |
 | `STORYBOARD.md` / `DIRECTOR.md` | Shot list and director's brief (arc, intent, critique rubric) |
 | `docs/CRITIQUE.md` | Scored critique passes and what each one fixed |
+| `docs/critique-snapshots/` | The contact sheets and frames each critique pass was judged on, plus a sheet from the final render |
 | `docs/VO_SCRIPT.md` | Timed voiceover script and voice direction (the VO slot is optional) |
 | `docs/ASSET_PROMPTS.md` | Optional upgrades: headshot, screen recordings, AI plates, music |
 | `index.html` | Root composition: 9 scenes on a 120 BPM grid, global overlay, 2 audio stems |

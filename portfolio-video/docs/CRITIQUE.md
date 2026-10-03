@@ -51,3 +51,15 @@ Rubric is from `DIRECTOR.md`, scored 1–10. Each pass reviews a snapshot contac
 
   The audio onsets land within 0 ms of the cue table. Soft-attack sounds measure ±25–60 ms.
 - **Fact gate:** no composition, script or kit file contains "3,157". The only mentions are docs rules forbidding it.
+
+## Snapshots (`docs/critique-snapshots/`)
+These are the frames each pass was judged on. PNG frames are stored as JPG.
+
+| Folder | What's in it |
+|---|---|
+| `scenes/01-hook`, `02-identity`, `03-a3-subpixel` | Scene-by-scene build checks of the hook, the 3D name and the A3 coverage grid, made while those scenes were being built |
+| `pass1/` | First full 15 s assembly: 16 frames at scene midpoints and impacts, plus contact sheets |
+| `pass2-b/`, `pass2-c/` | Pass 2 re-shoots of the transitional moments and weak beats: the Convo-Ease orbit, the mission lens, the end-card heartbeat and the CT slice |
+| `final-render-sheet.jpg` | Contact sheet of frames pulled from the final MP4 |
+
+Regenerate fresh snapshots with `npm run snapshot` (they go to `out/snapshots/`).
