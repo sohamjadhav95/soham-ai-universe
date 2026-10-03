@@ -1,0 +1,62 @@
+<!doctype html>
+<!--
+  "Soham, the product": a narrated, story-driven portfolio ad (1920×1080, 60 fps).
+  Voiceover first: scripts/make_vo.py renders the VO, lays it on a 120 BPM grid and writes the scene mounts
+  below plus lib/cues.js (word times every scene reads). Track 0: stage. Track 1: twelve scenes.
+  Tracks 3–5: voiceover, score, SFX.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="vendor/gsap.min.js"></script>
+    <script src="lib/cues.js"></script>
+    <script src="lib/kit.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #f3f2ee; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #f3f2ee; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="52.5" data-fps="60" data-width="1920" data-height="1080">
+      <div id="stage" data-composition-id="stage" data-composition-src="compositions/frames/s00-stage.html"
+        data-start="0" data-duration="52.5" data-track-index="0" data-width="1920" data-height="1080"></div>
+
+      <!-- scenes:begin -->
+      <div id="s01-hook" data-composition-id="s01-hook" data-composition-src="compositions/frames/s01-hook.html"
+        data-start="0" data-duration="3.45" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s02-pain" data-composition-id="s02-pain" data-composition-src="compositions/frames/s02-pain.html"
+        data-start="3.45" data-duration="5.25" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s03-stakes" data-composition-id="s03-stakes" data-composition-src="compositions/frames/s03-stakes.html"
+        data-start="8.7" data-duration="2.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s04-reveal" data-composition-id="s04-reveal" data-composition-src="compositions/frames/s04-reveal.html"
+        data-start="11.2" data-duration="3.6333" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s05-proof" data-composition-id="s05-proof" data-composition-src="compositions/frames/s05-proof.html"
+        data-start="14.8333" data-duration="2.7333" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s06-name" data-composition-id="s06-name" data-composition-src="compositions/frames/s06-name.html"
+        data-start="17.5667" data-duration="2.2667" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s07-speed" data-composition-id="s07-speed" data-composition-src="compositions/frames/s07-speed.html"
+        data-start="19.8333" data-duration="4.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s08-products" data-composition-id="s08-products" data-composition-src="compositions/frames/s08-products.html"
+        data-start="24.3333" data-duration="9.8667" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s09-research" data-composition-id="s09-research" data-composition-src="compositions/frames/s09-research.html"
+        data-start="34.2" data-duration="5.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s10-payoff" data-composition-id="s10-payoff" data-composition-src="compositions/frames/s10-payoff.html"
+        data-start="39.95" data-duration="3" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s11-meta" data-composition-id="s11-meta" data-composition-src="compositions/frames/s11-meta.html"
+        data-start="42.95" data-duration="4.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s12-end" data-composition-id="s12-end" data-composition-src="compositions/frames/s12-end.html"
+        data-start="47.7" data-duration="4.8" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <!-- scenes:end -->
+
+      <audio id="vo" src="assets/audio/vo.flac" data-start="0" data-duration="52.5" data-track-index="3" data-volume="1"></audio>
+      <audio id="score" src="assets/audio/score.flac" data-start="0" data-duration="52.5" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx" src="assets/audio/sfx.flac" data-start="0" data-duration="52.5" data-track-index="5" data-volume="1"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<!--
+  s06 Name (L08). The product reveal, like the reference's logo beat: Pix + the "Soham Jadhav" wordmark pop in
+  together, then "Selected for Google Summer of Code." with chips GSoC 2026 · ML4Sci · PREDICT1 on "Code".
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s06-io { position: absolute; inset: 0; }
+        #s06-lock { position: absolute; left: 0; right: 0; top: 300px; display: flex; justify-content: center; align-items: center; gap: 40px; }
+        #s06-pixbox { position: relative; width: 180px; height: 180px; flex: none; }
+        #s06-word { font-family: "Inter"; font-weight: 700; font-size: 160px; line-height: 1; letter-spacing: -0.055em; color: #141518; white-space: nowrap; }
+        #s06-word span { display: inline-block; }
+        #s06-cap { top: 580px; font-size: 58px; }
+        #s06-chips { position: absolute; left: 0; right: 0; top: 760px; display: flex; justify-content: center; gap: 18px; }
+        .s06-chip { padding: 14px 28px; border-radius: 999px; background: #ffffff; border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 18px 30px -18px rgba(20,21,24,0.3); font-family: "JetBrains Mono"; font-size: 26px; letter-spacing: 0.08em; color: #141518; }
+        .s06-chip b { font-weight: 400; color: #d9400b; }
+      </style>
+
+      <div id="root" data-composition-id="s06-name" data-width="1920" data-height="1080" data-duration="2.2667">
+        <div id="s06-stage" class="clip" data-start="0" data-duration="2.2667" data-track-index="0">
+          <div id="s06-io">
+            <div id="s06-lock">
+              <div id="s06-pixbox"><div id="s06-pix"></div></div>
+              <div id="s06-word"></div>
+            </div>
+            <div id="s06-cap" class="cap"></div>
+            <div id="s06-chips">
+              <div class="s06-chip"><b>●</b> GSoC 2026</div>
+              <div class="s06-chip">ML4Sci</div>
+              <div class="s06-chip">PREDICT1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s06-name"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          var nm = document.getElementById("s06-word");
+          "Soham Jadhav".split("").forEach(function (ch) {
+            var s = document.createElement("span"); s.textContent = ch === " " ? " " : ch; nm.appendChild(s);
+          });
+          K.sceneIO(tl, "#s06-io", D, { noIn: true });
+          var P = K.pix(document.getElementById("s06-pix"), 180, "happy");
+          tl.fromTo("#s06-pixbox", { opacity: 0, scale: 0.3, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }, 0.02);
+          P.squash(tl, 0.42, 0.14);
+          tl.fromTo("#s06-word span", { opacity: 0, y: 60, filter: "blur(8px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.42, ease: "expo.out", stagger: 0.022 }, 0.08);
+          K.caption(tl, document.getElementById("s06-cap"), Q, "L08", ["Google", "Summer", "of", "Code."]);
+          tl.fromTo(".s06-chip", { opacity: 0, y: 24, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.07 }, Q.w("L08", "Code.") - 0.05);
+          P.blink(tl, 1.2);
+
+          K.buildReady("s06-name", K.fontsReady);
+          window.__timelines["s06-name"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

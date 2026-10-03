@@ -1,0 +1,140 @@
+<!doctype html>
+<!--
+  s01 Hook (L01 + L02): "Your AI model says it's accurate." A model-output card with a CT patch and a green
+  "✓ Accurate" badge (popped on "accurate"). On "It's" the card glitches; on "lying" a hard cut to a full orange
+  frame: LYING. slams in letter by letter, card shards fly out, and "to you." lands in italic serif.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s01-io { position: absolute; inset: 0; }
+        #s01-cap { top: 150px; }
+        #s01-card { position: absolute; left: 510px; top: 330px; width: 900px; height: 470px; scale: 1.14; border-radius: 30px;
+          background: rgba(255,255,255,0.92); border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 60px 100px -40px rgba(20,21,24,0.28), 0 14px 30px -16px rgba(20,21,24,0.16); }
+        #s01-head { position: absolute; left: 36px; top: 28px; font-family: "JetBrains Mono"; font-size: 22px; letter-spacing: 0.14em; color: #4a4f57; text-transform: uppercase; }
+        #s01-ct { position: absolute; left: 36px; top: 78px; width: 360px; height: 360px; border-radius: 18px; }
+        .s01-row { position: absolute; left: 440px; right: 36px; height: 60px; border-bottom: 1px solid rgba(20,21,24,0.08); }
+        .s01-row .k { position: absolute; left: 0; top: 18px; font-family: "JetBrains Mono"; font-size: 22px; letter-spacing: 0.12em; color: #4a4f57; text-transform: uppercase; }
+        .s01-row .v { position: absolute; right: 0; top: 13px; font-family: "Inter"; font-weight: 700; font-size: 28px; letter-spacing: -0.02em; color: #141518; }
+        #s01-badge { position: absolute; left: 440px; top: 316px; padding: 16px 30px 16px 24px; border-radius: 999px; background: #e3f6eb;
+          font-family: "Inter"; font-weight: 700; font-size: 44px; letter-spacing: -0.02em; color: #167a43; transform-origin: 20% 50%; }
+        #s01-badge i { font-style: normal; display: inline-block; width: 46px; height: 46px; margin-right: 12px; border-radius: 50%;
+          background: #2fb36b; color: #fff; font-size: 30px; line-height: 46px; text-align: center; vertical-align: 4px; }
+        #s01-bar { position: absolute; left: 440px; right: 36px; top: 274px; height: 8px; border-radius: 4px; background: rgba(20,21,24,0.08); overflow: hidden; }
+        #s01-bar i { position: absolute; inset: 0; background: #2fb36b; transform-origin: 0 50%; }
+        #s01-hot { position: absolute; inset: 0; background: #ff5a1f; overflow: hidden; }
+        .s01-wball { position: absolute; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #ffffff 0%, #fff1ea 40%, #ffc6ad 100%);
+          box-shadow: 0 24px 40px -18px rgba(120,30,0,0.45); }
+        #s01-word { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-family: "Archivo Black"; font-size: 330px; line-height: 1; letter-spacing: -0.02em; color: #141518; white-space: nowrap; }
+        #s01-word span { display: inline-block; }
+        #s01-to { position: absolute; left: 0; right: 0; top: 650px; text-align: center; font-family: "Instrument Serif"; font-style: italic; font-size: 140px; line-height: 1; color: #ffffff; }
+        .s01-shard { position: absolute; left: 960px; top: 540px; background: rgba(255,255,255,0.92); }
+      </style>
+
+      <div id="root" data-composition-id="s01-hook" data-width="1920" data-height="1080" data-duration="3.45">
+        <div id="s01-stage" class="clip" data-start="0" data-duration="3.45" data-track-index="0">
+          <div id="s01-io">
+            <div id="s01-cap" class="cap"></div>
+            <div id="s01-card">
+              <div id="s01-head">Model output · CAC segmentation</div>
+              <canvas id="s01-ct" width="360" height="360"></canvas>
+              <div class="s01-row" style="top: 76px"><div class="k">Scan</div><div class="v">ct_case_0421</div></div>
+              <div class="s01-row" style="top: 140px"><div class="k">Mask</div><div class="v">lesion_0421.png</div></div>
+              <div class="s01-row" style="top: 204px"><div class="k">Pipeline</div><div class="v">Complete</div></div>
+              <div id="s01-bar"><i></i></div>
+              <div id="s01-badge"><i>✓</i>Accurate</div>
+            </div>
+          </div>
+          <div id="s01-hot" data-layout-allow-occlusion>
+            <div id="s01-balls"></div>
+            <div id="s01-shards"></div>
+            <div id="s01-word"><span>L</span><span>Y</span><span>I</span><span>N</span><span>G</span><span>.</span></div>
+            <div id="s01-to">to you.</div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s01-hook"), D = Q.dur;
+          var R = K.prng(421);
+          var tl = gsap.timeline({ paused: true });
+
+          // CT patch: dark tissue, speckle, a vessel, a bright calcified deposit, and the model's (green) outline.
+          var c = document.getElementById("s01-ct").getContext("2d");
+          var g = c.createRadialGradient(170, 170, 20, 180, 180, 260);
+          g.addColorStop(0, "#4a4d54"); g.addColorStop(0.55, "#22252b"); g.addColorStop(1, "#08090b");
+          c.fillStyle = g; c.fillRect(0, 0, 360, 360);
+          for (var i = 0; i < 2600; i++) { c.fillStyle = "rgba(255,255,255," + (R() * 0.07).toFixed(3) + ")"; c.fillRect(R() * 360, R() * 360, 1.6, 1.6); }
+          c.strokeStyle = "rgba(200,200,205,0.35)"; c.lineWidth = 26; c.lineCap = "round";
+          c.beginPath(); c.moveTo(-20, 250); c.bezierCurveTo(90, 190, 200, 200, 380, 120); c.stroke();
+          var les = K.lesion(186, 192, 46, 34);
+          var bg = c.createRadialGradient(180, 186, 4, 186, 192, 60);
+          bg.addColorStop(0, "#ffffff"); bg.addColorStop(0.6, "#e9e7e2"); bg.addColorStop(1, "rgba(233,231,226,0)");
+          c.fillStyle = bg; c.beginPath(); les.forEach(function (p, j) { j ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]); }); c.closePath(); c.fill();
+          c.strokeStyle = "#2fb36b"; c.lineWidth = 4; c.stroke();
+          c.fillStyle = "rgba(47,179,107,0.16)"; c.fill();
+
+          // Orange frame: white glossy balls + card shards.
+          var balls = [[210, 190, 120], [1700, 260, 86], [1580, 860, 150], [330, 860, 70], [1120, 120, 44]];
+          var bh = document.getElementById("s01-balls");
+          balls.forEach(function (b) {
+            var d = document.createElement("div"); d.className = "s01-wball";
+            d.style.width = d.style.height = b[2] + "px"; d.style.left = (b[0] - b[2] / 2) + "px"; d.style.top = (b[1] - b[2] / 2) + "px";
+            bh.appendChild(d);
+          });
+          var sh = document.getElementById("s01-shards"), shards = [];
+          for (var k = 0; k < 18; k++) {
+            var d = document.createElement("div"); d.className = "s01-shard";
+            var w = 40 + R() * 90, h = 30 + R() * 80;
+            d.style.width = w + "px"; d.style.height = h + "px";
+            d.style.clipPath = "polygon(" + [0, 1, 2].map(function () { return (R() * 100).toFixed(0) + "% " + (R() * 100).toFixed(0) + "%"; }).join(",") + ")";
+            sh.appendChild(d);
+            var a = (k / 18) * Math.PI * 2 + R() * 0.3, dist = 600 + R() * 500;
+            shards.push([d, Math.cos(a) * dist, Math.sin(a) * dist * 0.62, (R() - 0.5) * 540]);
+          }
+
+          // Beat 1 — the confident readout.
+          K.sceneIO(tl, "#s01-io", D, { noOut: true, inDur: 0.4 });
+          K.caption(tl, document.getElementById("s01-cap"), Q, "L01", ["accurate."]);
+          tl.fromTo("#s01-card", { y: 60, scale: 0.94 }, { y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 0);
+          tl.fromTo("#s01-bar i", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.inOut" }, 0.45);
+          var acc = Q.w("L01", "accurate.");
+          tl.fromTo("#s01-badge", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2.2)" }, acc - 0.04);
+
+          // Beat 2 — the glitch on "It's", then the hard cut on "lying".
+          var its = Q.w("L02", "It's"), lying = Q.w("L02", "lying");
+          K.shake(tl, "#s01-card", its, 12, 0.14);
+          tl.fromTo("#s01-badge", { opacity: 1 }, { opacity: 0.25, duration: 0.04, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, its + 0.02);
+          var cut = lying - 0.04;
+          tl.fromTo("#s01-io", { opacity: 1 }, { opacity: 0, duration: 0.01, immediateRender: false }, cut);
+          tl.fromTo("#s01-hot", { opacity: 0 }, { opacity: 1, duration: 0.01 }, cut);
+          tl.fromTo("#s01-word span", { opacity: 0, scale: 1.9, filter: "blur(10px)" },
+            { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out", stagger: 0.028 }, cut + 0.01);
+          shards.forEach(function (s) {
+            tl.fromTo(s[0], { x: 0, y: 0, rotation: 0, opacity: 1 }, { x: s[1], y: s[2], rotation: s[3], opacity: 0, duration: 0.7, ease: "power3.out" }, cut);
+          });
+          tl.fromTo(".s01-wball", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)", stagger: 0.04 }, cut + 0.02);
+          K.shake(tl, "#s01-word", cut + 0.06, 16, 0.16);
+          tl.fromTo("#s01-word", { scale: 1 }, { scale: 1.05, duration: D - cut, ease: "sine.out", immediateRender: false }, cut + 0.25);
+          tl.fromTo("#s01-to", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, Q.w("L02", "to") - 0.04);
+
+          K.buildReady("s01-hook", K.fontsReady);
+          window.__timelines["s01-hook"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

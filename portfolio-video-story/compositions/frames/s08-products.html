@@ -1,0 +1,203 @@
+<!doctype html>
+<!--
+  s08 Products (L11 + L12 + L13), three micro-stories in one scene.
+  A "He ships products people use." A dock of five app tiles pops in, then hops on "use".
+  B "Text, image and audio moderation, in under three seconds." Convo-Ease: the three inputs pop in on their
+    words and fly into the shield on "moderation"; a timer ring closes on "three" and "< 3 s" lands with verdicts.
+  C "A copilot that automates about ninety percent of the data-science workflow." A prompt types, bursts into a
+    five-step pipeline on "automates", and ~90% counts up on "ninety".
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s08-io { position: absolute; inset: 0; }
+        #s08-capA, #s08-capB { top: 140px; }
+        #s08-capC { top: 108px; left: 300px; right: 300px; white-space: normal; font-size: 52px; line-height: 1.18; }
+        .s08-g { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+        .s08-mono { position: absolute; left: 0; right: 0; text-align: center; font-family: "JetBrains Mono"; font-size: 24px; letter-spacing: 0.16em; color: #4a4f57; text-transform: uppercase; }
+        /* A — dock */
+        .s08-tile { position: absolute; top: 390px; width: 170px; height: 170px; border-radius: 42px;
+          background: linear-gradient(160deg, #ffffff, #f1efea); border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 40px 60px -30px rgba(20,21,24,0.3), inset 0 2px 0 #fff; transform-origin: 50% 100%; }
+        .s08-tile svg { position: absolute; left: 45px; top: 45px; width: 80px; height: 80px; }
+        .s08-tname { position: absolute; top: 588px; width: 240px; text-align: center; font-family: "Inter"; font-weight: 700; font-size: 26px; letter-spacing: -0.015em; color: #141518; }
+        /* B — Convo-Ease */
+        .s08-in { position: absolute; left: 300px; height: 92px; padding: 0 34px 0 26px; display: flex; align-items: center; gap: 18px; border-radius: 26px;
+          background: #ffffff; border: 1px solid rgba(20,21,24,0.08); box-shadow: 0 24px 40px -24px rgba(20,21,24,0.3);
+          font-family: "Inter"; font-weight: 700; font-size: 38px; letter-spacing: -0.02em; color: #141518; }
+        .s08-in em { font-style: normal; display: inline-block; width: 56px; height: 56px; border-radius: 16px; background: #ffe6db; color: #d9400b;
+          font-family: "Instrument Serif"; font-size: 36px; line-height: 56px; text-align: center; }
+        #s08-shield { position: absolute; left: 850px; top: 450px; width: 220px; height: 220px; border-radius: 56px;
+          background: linear-gradient(160deg, #ffffff, #f1efea); border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 50px 80px -34px rgba(20,21,24,0.35), inset 0 2px 0 #fff; }
+        #s08-shield svg { position: absolute; left: 50px; top: 50px; width: 120px; height: 120px; }
+        #s08-ring { position: absolute; left: 760px; top: 360px; }
+        #s08-fast { position: absolute; left: 1250px; top: 440px; padding: 14px 40px 20px; border-radius: 36px; background: #ff5a1f;
+          box-shadow: 0 34px 56px -24px rgba(255,90,31,0.7); font-family: "Inter"; font-weight: 700; font-size: 128px; line-height: 1;
+          letter-spacing: -0.05em; color: #fff; white-space: nowrap; }
+        .s08-verdict { position: absolute; top: 640px; padding: 12px 24px; border-radius: 999px; font-family: "Inter"; font-weight: 700; font-size: 30px; }
+        #s08-v1 { left: 1250px; background: #e3f6eb; color: #167a43; }
+        #s08-v2 { left: 1440px; background: #ece8fb; color: #5b43bd; }
+        /* C — Copilot */
+        #s08-prompt { position: absolute; left: 460px; top: 300px; width: 1000px; height: 100px; border-radius: 28px; background: #ffffff;
+          border: 1px solid rgba(20,21,24,0.08); box-shadow: 0 40px 60px -30px rgba(20,21,24,0.3); }
+        #s08-ptext { position: absolute; left: 40px; top: 30px; font-family: "JetBrains Mono"; font-size: 36px; color: #141518; white-space: pre; }
+        #s08-ptext b { font-weight: 400; color: #d9400b; }
+        #s08-caret { display: inline-block; width: 3px; height: 40px; margin-left: 4px; background: #ff5a1f; vertical-align: -6px; }
+        .s08-node { position: absolute; top: 470px; width: 196px; height: 90px; border-radius: 24px; background: #ffffff; border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 24px 40px -24px rgba(20,21,24,0.3); font-family: "Inter"; font-weight: 700; font-size: 32px; letter-spacing: -0.02em;
+          color: #141518; line-height: 90px; text-align: center; }
+        .s08-node i { position: absolute; right: 14px; top: 14px; width: 16px; height: 16px; border-radius: 50%; background: #ff5a1f; }
+        .s08-wire { position: absolute; top: 513px; width: 34px; height: 4px; border-radius: 2px; background: #ff5a1f; transform-origin: 0 50%; }
+        #s08-pct { position: absolute; left: 0; right: 0; top: 640px; display: flex; justify-content: center; align-items: center; gap: 36px; }
+        #s08-pnum { font-family: "Inter"; font-weight: 700; font-size: 220px; line-height: 1; letter-spacing: -0.06em; color: #e2470f; white-space: nowrap; }
+        #s08-plab { font-family: "Inter"; font-size: 46px; line-height: 1.15; letter-spacing: -0.02em; color: #4a4f57; }
+        #s08-plab b { color: #141518; font-weight: 700; }
+        #s08-pixbox { position: absolute; left: 1490px; top: 300px; width: 110px; height: 110px; }
+      </style>
+
+      <div id="root" data-composition-id="s08-products" data-width="1920" data-height="1080" data-duration="9.8667">
+        <div id="s08-stage" class="clip" data-start="0" data-duration="9.8667" data-track-index="0">
+          <div id="s08-io">
+            <div id="s08-capA" class="cap"></div>
+            <div id="s08-capB" class="cap"></div>
+            <div id="s08-capC" class="cap"></div>
+
+            <div id="s08-gA" class="s08-g">
+              <div class="s08-tile"><svg viewBox="0 0 36 36"><path d="M4 8a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H15l-7 6v-6H8a4 4 0 0 1-4-4z" fill="#ff5a1f"/></svg></div>
+              <div class="s08-tile"><svg viewBox="0 0 36 36"><path d="M18 2l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#ff5a1f"/></svg></div>
+              <div class="s08-tile"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="14" fill="#ff5a1f"/><path d="M8 9c6 4 6 14 0 18M28 9c-6 4-6 14 0 18" stroke="#ffe6db" stroke-width="2.5" fill="none"/></svg></div>
+              <div class="s08-tile"><svg viewBox="0 0 36 36"><rect x="6" y="3" width="24" height="30" rx="3" fill="#ff5a1f"/><path d="M11 11h14M11 17h14M11 23h9" stroke="#ffe6db" stroke-width="2.5"/></svg></div>
+              <div class="s08-tile"><svg viewBox="0 0 36 36"><g fill="#ff5a1f"><rect x="3" y="14" width="4" height="8" rx="2"/><rect x="10" y="9" width="4" height="18" rx="2"/><rect x="17" y="4" width="4" height="28" rx="2"/><rect x="24" y="10" width="4" height="16" rx="2"/><rect x="31" y="15" width="3" height="6" rx="1.5"/></g></svg></div>
+              <div class="s08-tname">Convo-Ease</div>
+              <div class="s08-tname">Copilot for DS</div>
+              <div class="s08-tname">Tennis Predictor</div>
+              <div class="s08-tname">RenAIssance OCR</div>
+              <div class="s08-tname">NexaOS Flow</div>
+            </div>
+
+            <div id="s08-gB" class="s08-g">
+              <div class="s08-mono" style="top: 300px">Convo-Ease · multimodal moderation · published</div>
+              <div class="s08-in" id="s08-i1" style="top: 400px"><em>Aa</em>Text</div>
+              <div class="s08-in" id="s08-i2" style="top: 514px"><em>▣</em>Image</div>
+              <div class="s08-in" id="s08-i3" style="top: 628px"><em>∿</em>Audio</div>
+              <canvas id="s08-ring" width="400" height="400"></canvas>
+              <div id="s08-shield"><svg viewBox="0 0 36 36"><path d="M18 3l12 5v9c0 8-5.5 13-12 16C11.5 30 6 25 6 17V8z" fill="#ff5a1f"/><path d="M12 18l4 4 8-9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div id="s08-fast">&lt; 3 s</div>
+              <div class="s08-verdict" id="s08-v1">✓ Safe</div>
+              <div class="s08-verdict" id="s08-v2">⚑ Flagged</div>
+            </div>
+
+            <div id="s08-gC" class="s08-g">
+              <div id="s08-prompt"><div id="s08-ptext"><b>›</b> <span id="s08-typed"></span><span id="s08-caret"></span></div></div>
+              <div id="s08-pixbox"><div id="s08-pix"></div></div>
+              <div id="s08-nodes"></div>
+              <div id="s08-pct">
+                <div id="s08-pnum" data-layout-allow-overlap>~<span id="s08-pv">0</span>%</div>
+                <div id="s08-plab">of the data-science<br /><b>workflow, automated</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, E = K.ease, Q = K.cue("s08-products"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#s08-io", D);
+          var lB = Q.l("L12"), lC = Q.l("L13");
+
+          // captions, one slot
+          K.caption(tl, document.getElementById("s08-capA"), Q, "L11", ["use."]);
+          tl.fromTo("#s08-capA", { opacity: 1, y: 0 }, { opacity: 0, y: -16, duration: 0.16, ease: "power2.in", immediateRender: false }, lB.t0 - 0.2);
+          K.caption(tl, document.getElementById("s08-capB"), Q, "L12", ["three", "seconds."]);
+          tl.fromTo("#s08-capB", { opacity: 1, y: 0 }, { opacity: 0, y: -16, duration: 0.16, ease: "power2.in", immediateRender: false }, lC.t0 - 0.2);
+          K.caption(tl, document.getElementById("s08-capC"), Q, "L13", ["ninety"]);
+
+          // group hand-offs
+          function out(sel, at) { tl.fromTo(sel, { opacity: 1, y: 0, filter: "blur(0px)" }, { opacity: 0, y: -30, filter: "blur(6px)", duration: 0.22, ease: "power2.in", immediateRender: false }, at); }
+          function inn(sel, at) { tl.fromTo(sel, { opacity: 0, y: 30, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, at); }
+          out("#s08-gA", lB.t0 - 0.26);
+          inn("#s08-gB", lB.t0 - 0.06);
+          out("#s08-gB", lC.t0 - 0.26);
+          inn("#s08-gC", lC.t0 - 0.06);
+
+          // A — the dock
+          var tiles = Array.prototype.slice.call(document.querySelectorAll(".s08-tile"));
+          var names = Array.prototype.slice.call(document.querySelectorAll(".s08-tname"));
+          tiles.forEach(function (t, i) { t.style.left = (375 + i * 250) + "px"; names[i].style.left = (375 + i * 250 - 35) + "px"; });
+          var tP = Q.w("L11", "products");
+          tl.fromTo(tiles, { opacity: 0, y: 60, scale: 0.5 }, { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: "back.out(2)", stagger: 0.1 }, tP - 0.08);
+          tl.fromTo(names, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", stagger: 0.1 }, tP + 0.06);
+          tl.fromTo(tiles, { y: 0 }, { y: -26, duration: 0.14, ease: "power2.out", yoyo: true, repeat: 1, stagger: 0.05, immediateRender: false }, Q.w("L11", "use.") - 0.02);
+
+          // B — Convo-Ease
+          var ins = ["Text,", "image", "audio"].map(function (w, i) { return [document.getElementById("s08-i" + (i + 1)), Q.w("L12", w)]; });
+          ins.forEach(function (p) { tl.fromTo(p[0], { opacity: 0, x: -60, scale: 0.8 }, { opacity: 1, x: 0, scale: 1, duration: 0.32, ease: "back.out(2)" }, p[1] - 0.05); });
+          tl.fromTo("#s08-shield", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, lB.t0 + 0.05);
+          var tMod = Q.w("L12", "moderation,"), tThree = Q.w("L12", "three");
+          ins.forEach(function (p, i) {
+            tl.fromTo(p[0], { x: 0, y: 0, scale: 1, opacity: 1 }, { x: 560, y: 560 - (400 + i * 114), scale: 0.3, opacity: 0, duration: 0.34, ease: "power3.in", immediateRender: false }, tMod + i * 0.08);
+          });
+          tl.fromTo("#s08-shield", { scale: 1 }, { scale: 1.1, duration: 0.1, yoyo: true, repeat: 3, ease: "power2.out", immediateRender: false }, tMod + 0.36);
+          var rc = document.getElementById("s08-ring").getContext("2d");
+          var ringP = { u: 0 };
+          function ring() {
+            rc.clearRect(0, 0, 400, 400);
+            rc.lineWidth = 10; rc.lineCap = "round";
+            rc.strokeStyle = "rgba(20,21,24,0.07)"; rc.beginPath(); rc.arc(200, 200, 176, 0, Math.PI * 2); rc.stroke();
+            if (ringP.u > 0) { rc.strokeStyle = "#ff5a1f"; rc.beginPath(); rc.arc(200, 200, 176, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * ringP.u); rc.stroke(); }
+          }
+          ring();
+          tl.fromTo("#s08-ring", { opacity: 0 }, { opacity: 1, duration: 0.2 }, tMod + 0.3);
+          tl.fromTo(ringP, { u: 0 }, { u: 1, duration: tThree - tMod - 0.3, ease: "power1.inOut", onUpdate: ring }, tMod + 0.3);
+          tl.fromTo("#s08-fast", { opacity: 0, scale: 0.5, x: -40 }, { opacity: 1, scale: 1, x: 0, duration: 0.36, ease: "back.out(2.2)" }, tThree - 0.04);
+          K.shake(tl, "#s08-fast", tThree + 0.3, 8, 0.12);
+          tl.fromTo(".s08-verdict", { opacity: 0, y: 16, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: "back.out(2)", stagger: 0.12 }, Q.w("L12", "seconds."));
+
+          // C — Copilot
+          var typed = document.getElementById("s08-typed"), PROMPT = "predict churn from sales.csv";
+          var tyP = { u: 0 };
+          tl.fromTo(tyP, { u: 0 }, { u: 1, duration: 0.85, ease: "none", onUpdate: function () { typed.textContent = PROMPT.slice(0, Math.round(tyP.u * PROMPT.length)); } }, lC.t0);
+          typed.textContent = "";
+          tl.fromTo("#s08-caret", { opacity: 1 }, { opacity: 0, duration: 0.01, yoyo: true, repeat: 5, repeatDelay: 0.24, ease: "none" }, lC.t0 + 0.9);
+          var P = K.pix(document.getElementById("s08-pix"), 110, "neutral");
+          tl.fromTo("#s08-pixbox", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, lC.t0 + 0.1);
+          P.look(tl, lC.t0 + 0.3, [0, 0], [-8, 3], 0.2);
+          var nodesHost = document.getElementById("s08-nodes"), STEPS = ["Clean", "Features", "Train", "Explain", "Deploy"];
+          var tAuto = Q.w("L13", "automates");
+          STEPS.forEach(function (s, i) {
+            var n = document.createElement("div"); n.className = "s08-node"; n.innerHTML = s + "<i></i>";
+            n.style.left = (413 + i * 230) + "px"; nodesHost.appendChild(n);
+            tl.fromTo(n, { opacity: 0, y: -60, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, tAuto + i * 0.13);
+            if (i < STEPS.length - 1) {
+              var w = document.createElement("div"); w.className = "s08-wire"; w.style.left = (413 + i * 230 + 196) + "px"; nodesHost.appendChild(w);
+              tl.fromTo(w, { scaleX: 0 }, { scaleX: 1, duration: 0.14, ease: "power2.out" }, tAuto + i * 0.13 + 0.16);
+            }
+          });
+          var tNinety = Q.w("L13", "ninety");
+          tl.fromTo("#s08-pct", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, tNinety - 0.08);
+          K.countUp(tl, document.getElementById("s08-pv"), 0, 90, tNinety, 0.5, null, "power2.out");
+          K.shake(tl, "#s08-pct", tNinety + 0.52, 10, 0.12);
+          P.mood(tl, tNinety + 0.1, "happy", 0.16);
+          P.hop(tl, tNinety + 0.2, 34);
+
+          K.buildReady("s08-products", K.fontsReady);
+          window.__timelines["s08-products"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

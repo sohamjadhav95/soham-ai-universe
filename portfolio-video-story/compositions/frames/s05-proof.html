@@ -1,0 +1,99 @@
+<!doctype html>
+<!--
+  s05 Proof (L07). "Error: from ten percent, to almost nothing." A dashboard card (the reference's "$412.00 —
+  the real one" beat): the hero orange pill counts 10.19% → 0.03% across "ten percent … nothing", a two-bar
+  comparison (binary vs A3) shrinks, and the two supporting results pop in as pills.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s05-io { position: absolute; inset: 0; }
+        #s05-cap { top: 140px; }
+        #s05-card { position: absolute; left: 300px; top: 290px; width: 1320px; height: 560px; border-radius: 32px;
+          background: rgba(255,255,255,0.93); border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 60px 100px -40px rgba(20,21,24,0.26), 0 14px 30px -16px rgba(20,21,24,0.14); }
+        #s05-title { position: absolute; left: 56px; top: 44px; font-family: "Inter"; font-weight: 700; font-size: 44px; letter-spacing: -0.03em; color: #141518; }
+        #s05-live { position: absolute; left: 380px; top: 58px; font-family: "JetBrains Mono"; font-size: 20px; letter-spacing: 0.12em; color: #2fb36b; text-transform: uppercase; }
+        #s05-sub { position: absolute; left: 56px; top: 112px; font-family: "Inter"; font-size: 28px; color: #4a4f57; }
+        #s05-sub i { font-family: "Instrument Serif"; font-style: italic; font-size: 36px; color: #e2470f; }
+        #s05-pill { position: absolute; left: 56px; top: 186px; padding: 18px 48px 24px; border-radius: 40px; background: #ff5a1f;
+          box-shadow: 0 40px 60px -26px rgba(255,90,31,0.7), inset 0 2px 0 rgba(255,255,255,0.35);
+          font-family: "Inter"; font-weight: 700; font-size: 190px; line-height: 1; letter-spacing: -0.05em; color: #ffffff; white-space: nowrap; transform-origin: 30% 50%; }
+        .s05-chip { position: absolute; top: 470px; padding: 14px 26px; border-radius: 999px; background: #ffe6db; font-family: "Inter"; font-weight: 700;
+          font-size: 30px; letter-spacing: -0.015em; color: #b8370a; white-space: nowrap; }
+        #s05-chip1 { left: 56px; }
+        #s05-chip2 { left: 470px; }
+        #s05-bars { position: absolute; left: 870px; top: 200px; width: 400px; }
+        .s05-lab { font-family: "JetBrains Mono"; font-size: 20px; letter-spacing: 0.12em; color: #4a4f57; text-transform: uppercase; }
+        .s05-track { position: relative; margin: 12px 0 34px; height: 30px; border-radius: 15px; background: rgba(20,21,24,0.06); }
+        .s05-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 15px; transform-origin: 0 50%; }
+        #s05-b1 { width: 100%; background: #6e56cf; }
+        #s05-b2 { width: 3.4%; min-width: 14px; background: #ff5a1f; }
+        .s05-val { position: absolute; right: 0; top: -34px; font-family: "Inter"; font-weight: 700; font-size: 26px; color: #141518; }
+        #s05-pixbox { position: absolute; left: 1604px; top: 430px; width: 140px; height: 140px; }
+      </style>
+
+      <div id="root" data-composition-id="s05-proof" data-width="1920" data-height="1080" data-duration="2.7333">
+        <div id="s05-stage" class="clip" data-start="0" data-duration="2.7333" data-track-index="0">
+          <div id="s05-io">
+            <div id="s05-cap" class="cap"></div>
+            <div id="s05-card">
+              <div id="s05-title">Label area error</div>
+              <div id="s05-live">● A3 soft coverage</div>
+              <div id="s05-sub">Every pixel, <i>measured</i> · PrediCT segmentation</div>
+              <div id="s05-pill" data-layout-allow-overlap><span id="s05-val">10.19</span>%</div>
+              <div class="s05-chip" id="s05-chip1">Agatston error 2.2× lower</div>
+              <div class="s05-chip" id="s05-chip2">Risk agreement 77% → 83%</div>
+              <div id="s05-bars">
+                <div class="s05-lab">Binary masks</div>
+                <div class="s05-track"><div class="s05-fill" id="s05-b1"></div><div class="s05-val">10.19%</div></div>
+                <div class="s05-lab">A3 · Soham</div>
+                <div class="s05-track"><div class="s05-fill" id="s05-b2"></div><div class="s05-val">0.03%</div></div>
+              </div>
+            </div>
+            <div id="s05-pixbox"><div id="s05-pix"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s05-proof"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#s05-io", D);
+          K.caption(tl, document.getElementById("s05-cap"), Q, "L07", ["almost", "nothing."]);
+          tl.fromTo("#s05-card", { y: 60, rotationX: 12 }, { y: 0, rotationX: 0, duration: 0.55, ease: "power3.out" }, 0);
+          var tTen = Q.w("L07", "ten"), tTo = Q.w("L07", "to"), tNo = Q.w("L07", "nothing.");
+          tl.fromTo("#s05-pill", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 0.18);
+          K.countUp(tl, document.getElementById("s05-val"), 10.19, 0.03, tTen, tNo + 0.22 - tTen, function (v) { return v.toFixed(2); }, "expo.inOut");
+          tl.fromTo("#s05-pill", { scale: 1 }, { scale: 1.07, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, tNo + 0.22);
+          K.shake(tl, "#s05-card", tNo + 0.24, 6, 0.12);
+          tl.fromTo("#s05-b1", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 0.35);
+          tl.fromTo("#s05-b2", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, tTo);
+          tl.fromTo(".s05-val", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out", stagger: { each: tTo - 0.45 } }, 0.45);
+          tl.fromTo("#s05-chip1", { opacity: 0, y: 20, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, tTo);
+          tl.fromTo("#s05-chip2", { opacity: 0, y: 20, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, tTo + 0.2);
+          var P = K.pix(document.getElementById("s05-pix"), 140, "neutral");
+          tl.fromTo("#s05-pixbox", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(2)" }, 0.3);
+          P.look(tl, 0.7, [0, 0], [-6, 4], 0.2);
+          P.mood(tl, tNo, "proud", 0.16);
+          P.hop(tl, tNo + 0.08, 36);
+
+          K.buildReady("s05-proof", K.fontsReady);
+          window.__timelines["s05-proof"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

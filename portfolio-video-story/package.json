@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-video-story",
+  "private": true,
+  "type": "module",
+  "description": "\"Soham, the product\": 52.5 s narrated story ad for Soham Jadhav (HyperFrames + GSAP, Kokoro voiceover).",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.114 preview",
+    "check": "npx --yes hyperframes@0.8.114 check",
+    "snapshot": "npx --yes hyperframes@0.8.114 snapshot --at 2.9,5.2,9.6,14.4,17.3,18.6,23.8,29.5,33.8,37.5,42.7,47.4,50.5 --no-end -o out/snapshots",
+    "vo": ".venv/bin/python scripts/make_vo.py",
+    "audio": "python3 scripts/synth_audio.py",
+    "render": "npx --yes hyperframes@0.8.114 render --quality looks --fps 60 --output renders/soham-story-16x9.mp4",
+    "render:draft": "npx --yes hyperframes@0.8.114 render --quality draft --fps 30 --output out/draft.mp4",
+    "vendor": "node scripts/vendor.mjs",
+    "postinstall": "node scripts/vendor.mjs",
+    "publish": "npx --yes hyperframes@0.8.114 publish"
+  },
+  "devDependencies": {
+    "gsap": "3.14.2"
+  }
+}

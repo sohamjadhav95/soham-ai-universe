@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  s07 Speed (L09 + L10). "The standard tool takes its time." A two-lane race card: TotalSegmentator's bar crawls
+  (hourglass turning) while Pix waits at the PrediCT start line. "His pipeline runs sixty-three times faster."
+  On "runs" Pix rides the PrediCT bar to the finish (✓ Done); on "sixty-three" 63× counts up and slams.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s07-io { position: absolute; inset: 0; }
+        #s07-capA, #s07-capB { top: 140px; }
+        #s07-card { position: absolute; left: 300px; top: 270px; width: 1320px; height: 350px; border-radius: 32px;
+          background: rgba(255,255,255,0.93); border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 60px 100px -40px rgba(20,21,24,0.26), 0 14px 30px -16px rgba(20,21,24,0.14); }
+        .s07-lab { position: absolute; left: 56px; font-family: "JetBrains Mono"; font-size: 24px; letter-spacing: 0.08em; color: #4a4f57; }
+        .s07-lab b { font-weight: 400; color: #141518; }
+        .s07-track { position: absolute; left: 430px; width: 820px; height: 36px; border-radius: 18px; background: rgba(20,21,24,0.06); }
+        .s07-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 18px; transform-origin: 0 50%; }
+        #s07-f1 { background: #b9bcc3; }
+        #s07-f2 { background: #ff5a1f; box-shadow: 0 10px 24px -10px rgba(255,90,31,0.8); }
+        #s07-glass { position: absolute; left: 356px; top: 66px; width: 40px; height: 52px; }
+        #s07-glass i { position: absolute; left: 4px; width: 32px; height: 22px; background: #b9bcc3; }
+        #s07-glass i:first-child { top: 2px; clip-path: polygon(0 0, 100% 0, 55% 100%, 45% 100%); }
+        #s07-glass i:last-child { bottom: 2px; clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%); }
+        #s07-pixbox { position: absolute; left: 400px; top: 160px; width: 104px; height: 104px; }
+        #s07-done { position: absolute; left: 1160px; top: 270px; padding: 8px 18px; border-radius: 999px; background: #e3f6eb;
+          font-family: "Inter"; font-weight: 700; font-size: 26px; color: #167a43; }
+        #s07-big { position: absolute; left: 0; right: 0; top: 660px; display: flex; justify-content: center; align-items: center; gap: 36px; }
+        #s07-num { font-family: "Archivo Black"; font-size: 290px; line-height: 1; letter-spacing: -0.03em; color: #e2470f; white-space: nowrap; transform-origin: 70% 60%; }
+        #s07-than { font-family: "Inter"; font-size: 44px; line-height: 1.15; letter-spacing: -0.02em; color: #4a4f57; }
+        #s07-than b { font-weight: 700; color: #141518; }
+      </style>
+
+      <div id="root" data-composition-id="s07-speed" data-width="1920" data-height="1080" data-duration="4.5">
+        <div id="s07-stage" class="clip" data-start="0" data-duration="4.5" data-track-index="0">
+          <div id="s07-io">
+            <div id="s07-capA" class="cap"></div>
+            <div id="s07-capB" class="cap"></div>
+            <div id="s07-card">
+              <div class="s07-lab" style="top: 72px"><b>TotalSegmentator</b></div>
+              <div id="s07-glass"><i></i><i></i></div>
+              <div class="s07-track" style="top: 72px"><div class="s07-fill" id="s07-f1"></div></div>
+              <div class="s07-lab" style="top: 212px"><b>PrediCT</b> · Soham</div>
+              <div class="s07-track" style="top: 212px"><div class="s07-fill" id="s07-f2"></div></div>
+              <div id="s07-pixbox"><div id="s07-pix"></div></div>
+              <div id="s07-done">✓ Done</div>
+            </div>
+            <div id="s07-big">
+              <div id="s07-num" data-layout-allow-overlap><span id="s07-n">1</span>×</div>
+              <div id="s07-than">faster than<br /><b>TotalSegmentator</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s07-speed"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#s07-io", D);
+          K.caption(tl, document.getElementById("s07-capA"), Q, "L09", ["time."]);
+          tl.fromTo("#s07-capA", { opacity: 1, y: 0 }, { opacity: 0, y: -16, duration: 0.16, ease: "power2.in", immediateRender: false }, Q.l("L10").t0 - 0.2);
+          K.caption(tl, document.getElementById("s07-capB"), Q, "L10", ["sixty-three"]);
+
+          tl.fromTo("#s07-card", { y: 60, rotationX: 12 }, { y: 0, rotationX: 0, duration: 0.55, ease: "power3.out" }, 0);
+          // the slow lane: crawling the whole scene
+          tl.fromTo("#s07-f1", { scaleX: 0 }, { scaleX: 0.3, duration: D - 0.3, ease: "power1.out" }, 0.3);
+          tl.fromTo("#s07-glass", { rotation: 0 }, { rotation: 540, duration: D, ease: "none" }, 0);
+
+          // Pix waits, then rides the PrediCT bar to the finish on "runs"
+          var P = K.pix(document.getElementById("s07-pix"), 104, "neutral");
+          tl.fromTo("#s07-pixbox", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 0.35);
+          P.look(tl, 0.7, [0, 0], [8, -6], 0.25);
+          P.blink(tl, 1.05);
+          P.mood(tl, Q.w("L09", "time.") - 0.1, "worried", 0.18);
+          P.look(tl, 1.75, [8, -6], [0, 0], 0.2);
+          var tRun = Q.w("L10", "runs");
+          P.mood(tl, tRun - 0.12, "happy", 0.12);
+          tl.fromTo("#s07-f2", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "expo.out" }, tRun);
+          tl.fromTo("#s07-pixbox", { x: 0 }, { x: 790, duration: 0.3, ease: "expo.out" }, tRun);
+          P.squash(tl, tRun + 0.3, 0.16);
+          tl.fromTo("#s07-done", { opacity: 0, scale: 0.6, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.4)" }, tRun + 0.28);
+
+          // 63×
+          var t63 = Q.w("L10", "sixty-three");
+          tl.fromTo("#s07-big", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, t63 - 0.08);
+          K.countUp(tl, document.getElementById("s07-n"), 1, 63, t63, 0.58, null, "power2.in");
+          tl.fromTo("#s07-num", { scale: 1 }, { scale: 1.12, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t63 + 0.6);
+          K.shake(tl, "#s07-big", t63 + 0.62, 14, 0.14);
+
+          K.buildReady("s07-speed", K.fontsReady);
+          window.__timelines["s07-speed"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

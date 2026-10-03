@@ -1,0 +1,165 @@
+<!doctype html>
+<!--
+  s02 Pain (L03 + L04). "Every outline gets snapped to whole pixels." A radiologist's smooth sub-pixel outline
+  on a pixel grid; on "snapped" the binary mask snaps in (cv2.fillPoly-style), and Pix gets pixelated too.
+  "A ten percent error, baked into every label." The wrongly counted pixels flash violet, +10.19% counts up,
+  and a stack of label files slides in, each one carrying the error.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s02-io { position: absolute; inset: 0; }
+        #s02-capA, #s02-capB { top: 140px; }
+        #s02-card { position: absolute; left: 250px; top: 280px; width: 800px; height: 580px; border-radius: 30px;
+          background: rgba(255,255,255,0.92); border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 60px 100px -40px rgba(20,21,24,0.26), 0 14px 30px -16px rgba(20,21,24,0.14); }
+        #s02-state { position: absolute; left: 40px; top: 30px; font-family: "JetBrains Mono"; font-size: 22px; letter-spacing: 0.14em; text-transform: uppercase; }
+        #s02-grid { position: absolute; left: 40px; top: 84px; }
+        #s02-pixbox { position: absolute; left: 1330px; top: 300px; width: 220px; height: 220px; }
+        #s02-pix { position: absolute; inset: 0; }
+        #s02-blocky { position: absolute; left: 0; top: 0; }
+        #s02-drop { position: absolute; left: 1548px; top: 300px; width: 26px; height: 36px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+          background: linear-gradient(180deg, #bfe3ff, #6fb6f0); transform: rotate(18deg); }
+        #s02-err { position: absolute; left: 1180px; top: 572px; width: 520px; text-align: center; }
+        #s02-err .k { font-family: "JetBrains Mono"; font-size: 22px; letter-spacing: 0.16em; color: #6e56cf; text-transform: uppercase; }
+        #s02-err .pill { display: inline-block; margin-top: 12px; padding: 10px 36px 14px; border-radius: 999px; background: #6e56cf;
+          font-family: "Inter"; font-weight: 700; font-size: 104px; line-height: 1; letter-spacing: -0.045em; color: #ffffff;
+          box-shadow: 0 30px 50px -22px rgba(110,86,207,0.6); }
+        #s02-tags { position: absolute; left: 1210px; top: 790px; width: 460px; height: 172px; }
+        .s02-tag { position: absolute; left: 0; width: 460px; height: 52px; border-radius: 14px; background: #ffffff; border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 16px 30px -18px rgba(20,21,24,0.3); }
+        .s02-tag .n { position: absolute; left: 20px; top: 14px; font-family: "JetBrains Mono"; font-size: 22px; color: #141518; }
+        .s02-tag .b { position: absolute; right: 12px; top: 9px; padding: 5px 14px; border-radius: 999px; background: #ece8fb;
+          font-family: "Inter"; font-weight: 700; font-size: 22px; color: #5b43bd; }
+      </style>
+
+      <div id="root" data-composition-id="s02-pain" data-width="1920" data-height="1080" data-duration="5.25">
+        <div id="s02-stage" class="clip" data-start="0" data-duration="5.25" data-track-index="0">
+          <div id="s02-io">
+            <div id="s02-capA" class="cap"></div>
+            <div id="s02-capB" class="cap"></div>
+            <div id="s02-card">
+              <div id="s02-state">Radiologist outline · sub-pixel</div>
+              <canvas id="s02-grid" width="720" height="462"></canvas>
+            </div>
+            <div id="s02-pixbox"><div id="s02-pix"></div><canvas id="s02-blocky" width="220" height="220"></canvas></div>
+            <div id="s02-drop"></div>
+            <div id="s02-err"><div class="k">Label area error</div><div class="pill" data-layout-allow-overlap><span id="s02-val">+0.00</span>%</div></div>
+            <div id="s02-tags">
+              <div class="s02-tag" style="top: 0px"><div class="n">label_0421.png</div><div class="b">error baked in</div></div>
+              <div class="s02-tag" style="top: 60px"><div class="n">label_0422.png</div><div class="b">error baked in</div></div>
+              <div class="s02-tag" style="top: 120px"><div class="n">label_0423.png</div><div class="b">error baked in</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, E = K.ease, Q = K.cue("s02-pain"), D = Q.dur;
+          var COLS = 16, ROWS = 10, CELL = 44, GX = 8, GY = 8;
+          var poly = K.lesion(8.0, 5.0, 4.1, 3.0);
+          var cells = [];
+          for (var y = 0; y < ROWS; y++) for (var x = 0; x < COLS; x++) {
+            var cov = K.coverage(poly, x, y);
+            if (cov > 0.004) cells.push({ x: x, y: y, cov: cov, bin: cov > 0.12 });
+          }
+          var bin = cells.filter(function (c) { return c.bin; });
+          var ctx = document.getElementById("s02-grid").getContext("2d");
+
+          var tSnap = Q.w("L03", "snapped"), tTen = Q.w("L04", "ten"), tErr = Q.w("L04", "error,");
+          function draw(t) {
+            ctx.clearRect(0, 0, 720, 462);
+            var gin = E.expoOut((t - 0.1) / 0.5);
+            ctx.strokeStyle = "rgba(20,21,24,0.10)"; ctx.lineWidth = 1.5;
+            for (var r = 0; r <= ROWS; r++) { ctx.beginPath(); ctx.moveTo(GX, GY + r * CELL); ctx.lineTo(GX + COLS * CELL * gin, GY + r * CELL); ctx.stroke(); }
+            for (var c = 0; c <= COLS; c++) { ctx.globalAlpha = E.clamp01(gin * (COLS + 4) - c); ctx.beginPath(); ctx.moveTo(GX + c * CELL, GY); ctx.lineTo(GX + c * CELL, GY + ROWS * CELL); ctx.stroke(); }
+            ctx.globalAlpha = 1;
+            // binary snap: every boundary pixel becomes all-or-nothing
+            var flash = t > tTen ? 0.5 + 0.5 * Math.sin((t - tTen) * 14) : 0;
+            bin.forEach(function (cl, k) {
+              var on = E.clamp01((t - (tSnap - 0.02 + k * 0.004)) / 0.06);
+              if (on <= 0) return;
+              var s = 0.55 + 0.45 * E.backOut(on, 2.4), w = CELL * s, o = (CELL - w) / 2;
+              var wrong = cl.cov < 0.5;
+              ctx.fillStyle = wrong && t > tTen ? "rgba(110,86,207," + (0.55 + 0.4 * flash).toFixed(3) + ")" : "rgba(20,21,24,0.86)";
+              ctx.fillRect(GX + cl.x * CELL + o + 2, GY + cl.y * CELL + o + 2, w - 4, w - 4);
+            });
+            // pixels the mask dropped although the outline covers most of them
+            if (t > tTen) cells.forEach(function (cl) {
+              if (cl.bin || cl.cov < 0.06) return;
+              ctx.strokeStyle = "rgba(110,86,207," + (0.5 + 0.4 * flash).toFixed(3) + ")"; ctx.lineWidth = 3;
+              ctx.strokeRect(GX + cl.x * CELL + 4, GY + cl.y * CELL + 4, CELL - 8, CELL - 8);
+            });
+            // the radiologist's outline
+            var drawn = E.cubicOut((t - 0.15) / 0.6), n = Math.floor(drawn * poly.length);
+            if (n > 1) {
+              ctx.strokeStyle = "#ff5a1f"; ctx.lineWidth = 5; ctx.lineJoin = "round";
+              ctx.globalAlpha = t > tSnap ? 0.9 : 1;
+              ctx.beginPath();
+              for (var j = 0; j <= n; j++) { var q = poly[j % poly.length], X = GX + q[0] * CELL, Y = GY + q[1] * CELL; j ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }
+              ctx.stroke(); ctx.globalAlpha = 1;
+            }
+          }
+
+          var tl = gsap.timeline({ paused: true });
+          K.drive(tl, D, draw);
+          K.sceneIO(tl, "#s02-io", D);
+
+          // captions: L03 then L04 in the same slot
+          K.caption(tl, document.getElementById("s02-capA"), Q, "L03", ["snapped"]);
+          tl.fromTo("#s02-capA", { opacity: 1, y: 0 }, { opacity: 0, y: -16, duration: 0.16, ease: "power2.in", immediateRender: false }, Q.l("L04").t0 - 0.2);
+          K.caption(tl, document.getElementById("s02-capB"), Q, "L04", ["ten", "percent"]);
+
+          tl.fromTo("#s02-card", { y: 50, rotationX: 10 }, { y: 0, rotationX: 0, duration: 0.6, ease: "power3.out" }, 0);
+          var state = document.getElementById("s02-state");
+          var sp = { s: 0 };
+          tl.fromTo(sp, { s: 0 }, { s: 1, duration: D, ease: "none", onUpdate: function () {
+            var t = sp.s * D;
+            var snapped = t >= tSnap;
+            state.textContent = snapped ? "Binary mask · whole pixels only" : "Radiologist outline · sub-pixel";
+            state.style.color = snapped ? "#5b43bd" : "#4a4f57";
+          } }, 0);
+          K.shake(tl, "#s02-card", tSnap + 0.02, 9, 0.14);
+
+          // Pix: smooth → snapped (pixelated) on "snapped"
+          var P = K.pix(document.getElementById("s02-pix"), 220, "neutral");
+          var bctx = document.getElementById("s02-blocky").getContext("2d");
+          K.drawBlockyPix(bctx, 0, 0, 220, 10);
+          tl.fromTo("#s02-pixbox", { opacity: 0, y: 40, scale: 0.7 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 0.2);
+          P.look(tl, 0.75, [0, 0], [-7, 2], 0.25);
+          P.mood(tl, tSnap - 0.25, "shock", 0.12);
+          tl.fromTo("#s02-pix", { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.92, duration: 0.06, ease: "none", immediateRender: false }, tSnap);
+          tl.fromTo("#s02-blocky", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2.5)" }, tSnap);
+          K.shake(tl, "#s02-pixbox", tSnap + 0.02, 10, 0.14);
+          tl.fromTo("#s02-drop", { opacity: 0, y: -10, scale: 0.4 }, { opacity: 1, y: 14, scale: 1, duration: 0.35, ease: "power2.out" }, tErr);
+          tl.fromTo("#s02-drop", { y: 14 }, { y: 70, opacity: 0, duration: 0.7, ease: "power2.in", immediateRender: false }, tErr + 0.6);
+
+          // the error, counted
+          tl.fromTo("#s02-err", { opacity: 0, y: 30, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.9)" }, tTen - 0.06);
+          K.countUp(tl, document.getElementById("s02-val"), 0, 10.19, tTen, 0.6, function (v) { return "+" + v.toFixed(2); }, "power2.out");
+          K.shake(tl, "#s02-err", tTen + 0.62, 7, 0.12);
+          // …baked into every label
+          [Q.w("L04", "baked"), Q.w("L04", "into"), Q.w("L04", "every")].forEach(function (at, k) {
+            tl.fromTo(".s02-tag:nth-child(" + (k + 1) + ")", { opacity: 0, x: 80, rotation: 6 },
+              { opacity: 1, x: 0, rotation: 0, duration: 0.32, ease: "back.out(1.6)" }, at - 0.04);
+          });
+
+          K.buildReady("s02-pain", K.fontsReady);
+          window.__timelines["s02-pain"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
