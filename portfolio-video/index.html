@@ -1,0 +1,59 @@
+<!doctype html>
+<!--
+  "Heartbeat Signal" — 15 s portfolio motion graphic for Soham Jadhav.
+  Root composition: nine scene sub-compositions cut on the 120 BPM grid (0.5 s beats), a global
+  overlay on top, and two synthesized audio stems (scripts/synth_audio.py).
+  See BRIEF.md (facts), frame.md (design truth), STORYBOARD.md (shots), DIRECTOR.md (intent).
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script type="importmap">
+      { "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
+    </script>
+    <script src="vendor/gsap.min.js"></script>
+    <script src="lib/kit.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #07121a; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #07121a; }
+      #overlay { z-index: 50; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-fps="60" data-width="1920" data-height="1080">
+      <!-- Scenes — boundaries on the beat grid -->
+      <div id="f01-hook" data-composition-id="f01-hook" data-composition-src="compositions/frames/01-hook.html"
+        data-start="0" data-duration="1.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f02-identity" data-composition-id="f02-identity" data-composition-src="compositions/frames/02-identity.html"
+        data-start="1.5" data-duration="2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f03-a3" data-composition-id="f03-a3" data-composition-src="compositions/frames/03-a3-subpixel.html"
+        data-start="3.5" data-duration="2.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f04-speed" data-composition-id="f04-speed" data-composition-src="compositions/frames/04-speed.html"
+        data-start="6" data-duration="1" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f05-studio" data-composition-id="f05-studio" data-composition-src="compositions/frames/05-predict-studio.html"
+        data-start="7" data-duration="1.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f06-convo" data-composition-id="f06-convo" data-composition-src="compositions/frames/06-convo-ease.html"
+        data-start="8.5" data-duration="1.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f07-copilot" data-composition-id="f07-copilot" data-composition-src="compositions/frames/07-copilot.html"
+        data-start="10" data-duration="1.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f08-mission" data-composition-id="f08-mission" data-composition-src="compositions/frames/08-mission.html"
+        data-start="11.5" data-duration="2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="f09-end" data-composition-id="f09-end" data-composition-src="compositions/frames/09-endcard.html"
+        data-start="13.5" data-duration="1.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+
+      <!-- Global overlay: grain, vignette, HUD chrome, beam rail -->
+      <div id="overlay" data-composition-id="overlay" data-composition-src="compositions/frames/00-overlay.html"
+        data-start="0" data-duration="15" data-track-index="2" data-width="1920" data-height="1080"></div>
+
+      <!-- Sound: synthesized stems (music bed + SFX), mastered together to -16 LUFS -->
+      <audio id="bed" src="assets/audio/bed.wav" data-start="0" data-duration="15" data-track-index="3" data-volume="1"></audio>
+      <audio id="sfx" src="assets/audio/sfx.wav" data-start="0" data-duration="15" data-track-index="4" data-volume="1"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

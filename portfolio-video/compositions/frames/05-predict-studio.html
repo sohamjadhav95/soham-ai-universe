@@ -1,0 +1,173 @@
+<!doctype html>
+<!--
+  Frame 5 — Proof 3: PrediCT Studio, shipped at Google Summer of Code (1.5 s).
+  Foreground: a Solari split-flap board (after the split-flap-board registry block) walks each
+  cell's drum to "GOOGLE SUMMER / OF CODE 2026". Background: a code-drawn PrediCT Studio
+  workstation (its real panel names) tilts into perspective with a rack-focus pull.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/archivo-black-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "IBM Plex Mono"; src: url("vendor/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "IBM Plex Mono"; src: url("vendor/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #07121a; }
+        #f05-stage { position: absolute; inset: 0; }
+        #f05-glow { position: absolute; left: 700px; top: 80px; width: 1300px; height: 950px;
+          background: radial-gradient(closest-side, rgba(42,142,156,0.16), rgba(21,97,109,0.06) 60%, transparent); }
+        #f05-persp { position: absolute; left: 760px; top: 150px; width: 1180px; height: 720px; perspective: 1700px; }
+        #f05-ws { position: absolute; inset: 0; transform-origin: 30% 50%; transform-style: preserve-3d;
+          background: #0b1c27; border: 2px solid #15616d; border-radius: 10px; overflow: hidden;
+          box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(42,142,156,0.25); }
+        .f05-bar { position: absolute; left: 0; right: 0; top: 0; height: 64px; background: #0e2230; border-bottom: 2px solid #15616d; }
+        .f05-title { position: absolute; left: 26px; top: 16px; font-family: "Archivo Black"; font-size: 24px; color: #ffecd1; letter-spacing: -0.01em; }
+        .f05-title b { color: #ff7d00; font-weight: 400; }
+        .f05-tabs { position: absolute; left: 290px; top: 20px; font-family: "IBM Plex Mono"; font-size: 18px; letter-spacing: 0.12em; color: #3e9aa6; white-space: nowrap; }
+        .f05-tabs .on { color: #ffecd1; border-bottom: 3px solid #ff7d00; padding-bottom: 8px; }
+        .f05-tabs span { margin-right: 26px; }
+        #f05-slice { position: absolute; left: 28px; top: 92px; width: 420px; height: 420px; border: 2px solid #15616d; border-radius: 6px; background: #07121a; }
+        .f05-panel { position: absolute; left: 480px; top: 92px; right: 28px; bottom: 28px; }
+        .f05-h { font-family: "IBM Plex Mono"; font-weight: 700; font-size: 18px; letter-spacing: 0.14em; color: #3e9aa6; margin-bottom: 18px; }
+        .f05-row { position: relative; height: 62px; border-top: 2px solid rgba(21,97,109,0.6); font-family: "IBM Plex Mono"; font-size: 22px; color: #ffecd1; }
+        .f05-row .k { position: absolute; left: 0; top: 16px; letter-spacing: 0.06em; }
+        .f05-row .bar { position: absolute; left: 260px; top: 24px; height: 14px; background: #ff7d00; border-radius: 2px; transform-origin: 0 50%; }
+        .f05-row.dim { color: #bfb29f; }
+        .f05-row.dim .bar { background: #3e9aa6; }
+        .f05-prov { position: absolute; left: 0; bottom: 0; font-family: "IBM Plex Mono"; font-size: 18px; letter-spacing: 0.1em; color: #3e9aa6; }
+        .f05-prov b { color: #ff7d00; font-weight: 700; }
+        #f05-board { position: absolute; left: 96px; top: 250px; }
+        .f05-line { display: flex; gap: 8px; margin-bottom: 12px; }
+        .f05-cell { position: relative; width: 66px; height: 96px; background: #0e2230; border-radius: 6px; overflow: hidden;
+          box-shadow: inset 0 0 0 2px rgba(21,97,109,0.7), 0 10px 30px rgba(0,0,0,0.5); }
+        .f05-cell.gap { background: transparent; box-shadow: none; width: 22px; }
+        .f05-ch { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+          font-family: "Archivo Black"; font-size: 64px; color: #ffecd1; line-height: 1; transform-origin: 50% 50%; }
+        .f05-split { position: absolute; left: 0; right: 0; top: 47px; height: 2px; background: rgba(7,18,26,0.95); }
+        .f05-mono { position: absolute; font-family: "IBM Plex Mono"; white-space: nowrap; text-transform: uppercase; }
+        #f05-kicker { left: 96px; top: 190px; font-weight: 700; font-size: 24px; letter-spacing: 0.22em; color: #ff7d00; }
+        #f05-cap { position: absolute; left: 96px; top: 560px; font-family: "Archivo Black"; font-size: 66px; line-height: 1;
+          letter-spacing: -0.03em; color: #ffecd1; text-transform: uppercase; white-space: nowrap; }
+        #f05-sub { left: 96px; top: 648px; font-size: 28px; letter-spacing: 0.04em; color: #bfb29f; text-transform: none; }
+      </style>
+
+      <div id="root" data-composition-id="f05-studio" data-width="1920" data-height="1080" data-duration="1.5">
+        <div id="f05-stage" class="clip" data-start="0" data-duration="1.5" data-track-index="0">
+          <div id="f05-glow"></div>
+          <div id="f05-persp">
+            <div id="f05-ws">
+              <div class="f05-bar">
+                <div class="f05-title">PrediCT <b>Studio</b></div>
+                <div class="f05-tabs"><span class="on">ARGUMENT</span><span>INSTRUMENT</span><span>CONTACT SHEET</span><span>ANATOMY</span></div>
+              </div>
+              <canvas id="f05-slice" width="420" height="420"></canvas>
+              <div class="f05-panel">
+                <div class="f05-h">LESIONS · AGATSTON · PER SLICE</div>
+                <div class="f05-row"><span class="k">LESION 01 · LAD</span><span class="bar" style="width: 330px"></span></div>
+                <div class="f05-row"><span class="k">LESION 02 · RCA</span><span class="bar" style="width: 210px"></span></div>
+                <div class="f05-row"><span class="k">LESION 03 · LCX</span><span class="bar" style="width: 150px"></span></div>
+                <div class="f05-row dim"><span class="k">WITHHELD &lt; 1 MM²</span><span class="bar" style="width: 60px"></span></div>
+                <div class="f05-prov">PROVENANCE · run.json · checkpoint SHA-256 <b>✓</b> · 3D total = per-slice total <b>✓</b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="f05-mono" id="f05-kicker">PrediCT Studio · ML4Sci</div>
+          <div id="f05-board">
+            <div class="f05-line" data-text="GOOGLE SUMMER"></div>
+            <div class="f05-line" data-text="OF CODE 2026"></div>
+          </div>
+          <div id="f05-cap">Auditable clinical AI</div>
+          <div class="f05-mono" id="f05-sub">the evidence behind every number</div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit;
+          var E = K.ease;
+          var D = 1.5;
+          var DRUM = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+          // Build the board cells.
+          var cells = [];
+          document.querySelectorAll("#f05-board .f05-line").forEach(function (line, row) {
+            var text = line.getAttribute("data-text");
+            for (var i = 0; i < text.length; i++) {
+              var ch = text[i];
+              var cell = document.createElement("div");
+              cell.className = "f05-cell" + (ch === " " ? " gap" : "");
+              if (ch !== " ") {
+                var glyph = document.createElement("div");
+                glyph.className = "f05-ch";
+                cell.appendChild(glyph);
+                var split = document.createElement("div");
+                split.className = "f05-split";
+                cell.appendChild(split);
+                // Each cell walks its drum forward from a seeded offset to its target letter.
+                var target = DRUM.indexOf(ch);
+                var startIdx = (target + 9 + ((i * 7 + row * 5) % 11)) % DRUM.length;
+                var flips = (target - startIdx + DRUM.length) % DRUM.length || DRUM.length;
+                cells.push({ el: glyph, start: 0.05 + i * 0.03 + row * 0.1, land: 0.5 + i * 0.022 + row * 0.12, from: startIdx, flips: flips });
+              }
+              line.appendChild(cell);
+            }
+          });
+
+          function drawBoard(t) {
+            cells.forEach(function (c) {
+              var u = E.clamp01((t - c.start) / (c.land - c.start));
+              var k = Math.floor(u * c.flips);
+              c.el.textContent = DRUM[(c.from + k) % DRUM.length] || " ";
+              // Each flip squashes the glyph through the split line.
+              var sub = u * c.flips - k;
+              var squash = u >= 1 ? 1 : 0.35 + 0.65 * Math.abs(Math.cos(sub * Math.PI));
+              c.el.style.transform = "scaleY(" + squash.toFixed(3) + ")";
+            });
+          }
+
+          // Tiny CT slice thumbnail inside the workstation.
+          (function () {
+            var g = document.getElementById("f05-slice").getContext("2d");
+            var rnd = K.prng(5);
+            function ell(x, y, rx, ry, f) { g.beginPath(); g.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); g.fillStyle = f; g.fill(); }
+            ell(210, 215, 190, 150, "#23444f");
+            ell(120, 205, 60, 85, "#0a161d"); ell(305, 210, 58, 82, "#0a161d");
+            ell(220, 222, 64, 54, "#4b6a70"); ell(205, 330, 28, 24, "#d9cbb3");
+            g.fillStyle = "#ff7d00";
+            [[198, 205, 7], [236, 234, 6], [214, 248, 4]].forEach(function (l) { g.beginPath(); g.arc(l[0], l[1], l[2], 0, Math.PI * 2); g.fill(); });
+            for (var i = 0; i < 900; i++) {
+              g.fillStyle = "rgba(255,236,209," + (rnd() * 0.06).toFixed(3) + ")";
+              g.fillRect(30 + rnd() * 360, 70 + rnd() * 290, 2, 2);
+            }
+            g.strokeStyle = "#ff7d00"; g.lineWidth = 2; g.strokeRect(184, 190, 70, 70);
+          })();
+
+          var clock = { t: 0 };
+          var tl = gsap.timeline({ paused: true });
+          tl.to(clock, { t: D, duration: D, ease: "none", onUpdate: function () { drawBoard(clock.t); } }, 0);
+
+          // Workstation tilts in (split-tilt) with a rack-focus pull.
+          tl.fromTo("#f05-ws", { rotationY: -52, rotationX: 14, x: 260, opacity: 0.0 },
+            { rotationY: -24, rotationX: 9, x: 0, opacity: 1, duration: 0.85, ease: "power4.out" }, 0.0);
+          tl.fromTo("#f05-ws", { filter: "blur(10px)" }, { filter: "blur(2px)", duration: 0.9, ease: "power2.out", immediateRender: false }, 0.1);
+          tl.fromTo("#f05-ws", { rotationY: -24 }, { rotationY: -18, duration: 0.65, ease: "sine.inOut", immediateRender: false }, 0.85);
+          tl.fromTo(".f05-row .bar", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.out", stagger: 0.07 }, 0.35);
+
+          tl.fromTo("#f05-kicker", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 0.0);
+          tl.fromTo(".f05-cell", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(1.7)", stagger: 0.012 }, 0.0);
+          tl.fromTo("#f05-cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 0.82);
+          tl.fromTo("#f05-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.95);
+          K.shake(tl, "#f05-board", 0.9, 5, 0.08);
+
+          drawBoard(0);
+          K.buildReady("f05-studio", K.fontsReady);
+          window.__timelines["f05-studio"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

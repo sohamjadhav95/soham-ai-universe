@@ -1,0 +1,101 @@
+<!doctype html>
+<!--
+  Frame 9 — Invitation (1.5 s). The callback: the beam draws one last, calmer heartbeat across
+  the frame and settles into the underline of the name; the lockup assembles; the last 0.5 s
+  holds still (only grain + a breathing glow) so the film loops cleanly.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/archivo-black-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "IBM Plex Mono"; src: url("vendor/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "IBM Plex Mono"; src: url("vendor/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #07121a; }
+        #f09-stage { position: absolute; inset: 0; }
+        #f09-glow { position: absolute; left: -200px; top: 120px; width: 1800px; height: 760px;
+          background: radial-gradient(closest-side, rgba(255,125,0,0.13), rgba(120,41,15,0.05) 60%, transparent); }
+        #f09-beam { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+        #f09-name { position: absolute; left: 96px; top: 292px; margin: 0; font-family: "Archivo Black"; font-weight: 400; font-size: 150px;
+          line-height: 1; letter-spacing: -0.04em; color: #ffecd1; white-space: nowrap; overflow: hidden; padding-bottom: 6px; }
+        #f09-name span { display: inline-block; }
+        .f09-mono { position: absolute; font-family: "IBM Plex Mono"; white-space: nowrap; }
+        #f09-facts { left: 96px; top: 560px; font-weight: 700; font-size: 30px; letter-spacing: 0.14em; color: #ffecd1; text-transform: uppercase; }
+        #f09-facts i { font-style: normal; color: #ff7d00; }
+        #f09-open { left: 96px; top: 640px; font-size: 34px; letter-spacing: 0.02em; color: #ffecd1; }
+        #f09-links { left: 96px; top: 712px; font-size: 30px; letter-spacing: 0.02em; color: #bfb29f; }
+        #f09-links i { font-style: normal; color: #ff7d00; padding: 0 14px; }
+        #f09-hud { right: 96px; top: 160px; font-size: 22px; letter-spacing: 0.2em; color: #3e9aa6; text-transform: uppercase; text-align: right; line-height: 1.6; }
+        #f09-dot { color: #ff7d00; }
+      </style>
+
+      <div id="root" data-composition-id="f09-end" data-width="1920" data-height="1080" data-duration="1.5">
+        <div id="f09-stage" class="clip" data-start="0" data-duration="1.5" data-track-index="0">
+          <div id="f09-glow"></div>
+          <canvas id="f09-beam" width="1920" height="1080"></canvas>
+          <h1 id="f09-name"><span>SOHAM</span> <span>JADHAV</span></h1>
+          <div class="f09-mono" id="f09-facts">GSoC '26 <i>·</i> 2 papers <i>·</i> 6+ shipped</div>
+          <div class="f09-mono" id="f09-open">Open to AI/ML engineering roles &amp; research.</div>
+          <div class="f09-mono" id="f09-links">github.com/sohamjadhav95<i>·</i>soham.ai.engineer@gmail.com</div>
+          <div class="f09-mono" id="f09-hud">End of signal <span id="f09-dot">●</span><br />SJ · 2026</div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit;
+          var E = K.ease;
+          var D = 1.5;
+          var X0 = 96, X1 = 1824, BASE = 500, AMP = 150;
+          var SPIKE_T = 0.75; // the last "lub" (14.25 s on the master timeline)
+          var ctx = document.getElementById("f09-beam").getContext("2d");
+
+          function sweep(s) { return X0 + (X1 - X0) * E.clamp01(s / 0.95); } // linear, like a real timebase
+          function beatY(s) {
+            // One calm heartbeat centred on SPIKE_T, flat elsewhere.
+            var ph = (s - SPIKE_T) / 0.8 + 0.3;
+            return ph > 0 && ph < 1 ? BASE - AMP * K.ecg(ph) : BASE;
+          }
+
+          function draw(t) {
+            ctx.clearRect(0, 0, 1920, 1080);
+            var dt = 1 / 600, n = Math.max(2, Math.floor(Math.min(t, 0.95) / dt) + 1);
+            var pts = [], al = [];
+            for (var i = 0; i < n; i++) {
+              var s = i * dt;
+              pts.push([sweep(s), beatY(s)]);
+              al.push(Math.max(0.55, Math.exp(-(t - s) / 0.4)));
+            }
+            K.drawBeam(ctx, pts, al, { width: 3.5 });
+            if (t < 0.95) {
+              var hx = sweep(t), hy = beatY(t);
+              K.glowDot(ctx, hx, hy, 56, "rgba(255,125,0,0.9)", 0.6);
+            } else {
+              // Settled: the end of the line breathes once.
+              var b = 0.35 + 0.25 * Math.sin((t - 0.95) * 6);
+              K.glowDot(ctx, X1, BASE, 40, "rgba(255,125,0,0.9)", b);
+            }
+          }
+
+          var clock = { t: 0 };
+          var tl = gsap.timeline({ paused: true });
+          tl.to(clock, { t: D, duration: D, ease: "none", onUpdate: function () { draw(clock.t); } }, 0);
+
+          tl.fromTo("#f09-name span", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: "expo.out", stagger: 0.08 }, 0.02);
+          tl.fromTo("#f09-facts", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 0.42);
+          tl.fromTo("#f09-open", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.55);
+          tl.fromTo("#f09-links", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.66);
+          tl.fromTo("#f09-hud", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.2);
+          tl.fromTo("#f09-glow", { opacity: 0.6 }, { opacity: 1, duration: 0.75, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+
+          draw(0);
+          K.buildReady("f09-end", K.fontsReady);
+          window.__timelines["f09-end"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
