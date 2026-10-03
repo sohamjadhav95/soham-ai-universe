@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- Stage (whole film, track 0): warm light canvas, soft top light, and glossy orange spheres drifting at
+     three depths along the edges, the ambient layer the reference reel keeps alive under every beat. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #st-layer { position: absolute; inset: 0; background: #f3f2ee; }
+        #st-light { position: absolute; left: 50%; top: -420px; width: 2200px; height: 1300px; margin-left: -1100px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(255,255,255,0.95), rgba(255,255,255,0)); }
+        #st-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 340px;
+          background: linear-gradient(180deg, rgba(234,231,224,0), rgba(234,231,224,0.9)); }
+        .st-orb { position: absolute; border-radius: 50%;
+          background: radial-gradient(circle at 32% 28%, #ffd2bd 0%, #ff8a55 22%, #ff5a1f 55%, #d83d08 100%);
+          box-shadow: 0 18px 30px -14px rgba(200,60,10,0.45); }
+      </style>
+
+      <div id="root" data-composition-id="stage" data-width="1920" data-height="1080" data-duration="52.5">
+        <div id="st-layer" class="clip" data-start="0" data-duration="52.5" data-track-index="0" data-layout-ignore>
+          <div id="st-light"></div>
+          <div id="st-floor"></div>
+          <div id="st-orbs"></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit;
+          var D = window.CUES.total;
+          // [x, y, size, depth 0..1 (0 = far, blurred), phase]: kept to the edges, clear of the caption/proof zones
+          var ORBS = [[70, 140, 46, 0.9, 0.1], [1830, 210, 30, 0.8, 1.7], [190, 930, 64, 1.0, 2.9], [1760, 880, 52, 0.95, 4.2],
+            [1650, 90, 18, 0.35, 0.8], [330, 70, 16, 0.3, 3.3], [40, 560, 22, 0.45, 5.1], [1880, 520, 24, 0.5, 2.2],
+            [980, 1030, 20, 0.4, 3.9], [560, 1000, 14, 0.3, 1.2], [1390, 1010, 16, 0.35, 4.8]];
+          var host = document.getElementById("st-orbs");
+          var els = ORBS.map(function (o) {
+            var d = document.createElement("div");
+            d.className = "st-orb";
+            d.style.width = d.style.height = o[2] + "px";
+            d.style.left = (o[0] - o[2] / 2) + "px";
+            d.style.top = (o[1] - o[2] / 2) + "px";
+            d.style.opacity = (0.35 + 0.6 * o[3]).toFixed(2);
+            if (o[3] < 0.6) d.style.filter = "blur(" + ((0.6 - o[3]) * 10).toFixed(1) + "px)";
+            host.appendChild(d);
+            return d;
+          });
+          var tl = gsap.timeline({ paused: true });
+          K.drive(tl, D, function (t) {
+            ORBS.forEach(function (o, i) {
+              var amp = 10 + 18 * o[3], w = 0.35 + 0.25 * (1 - o[3]);
+              els[i].style.transform = "translate(" + (amp * Math.sin(t * w + o[4])).toFixed(2) + "px," +
+                (amp * 0.8 * Math.cos(t * w * 0.8 + o[4] * 1.3)).toFixed(2) + "px)";
+            });
+          });
+          window.__timelines["stage"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

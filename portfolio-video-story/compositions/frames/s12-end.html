@@ -1,0 +1,85 @@
+<!doctype html>
+<!--
+  s12 End card (L18). "Soham Jadhav. Let's build." Pix pops, the name rises on the voice, the role line, then
+  "Let's build." in italic serif on its words; availability and the three links follow, and the card holds.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s12-io { position: absolute; inset: 0; }
+        #s12-pixbox { position: absolute; left: 885px; top: 140px; width: 150px; height: 150px; }
+        #s12-nm { position: absolute; left: 0; right: 0; top: 330px; text-align: center; white-space: nowrap;
+          font-family: "Inter"; font-weight: 700; font-size: 150px; line-height: 1; letter-spacing: -0.055em; color: #141518; }
+        #s12-nm span { display: inline-block; font-family: "Inter"; font-weight: 700; font-size: 150px; line-height: 1; letter-spacing: -0.055em; color: #141518; }
+        #s12-role { position: absolute; left: 0; right: 0; top: 505px; text-align: center; font-family: "JetBrains Mono"; font-size: 26px; letter-spacing: 0.16em; color: #4a4f57; text-transform: uppercase; }
+        #s12-role b { font-weight: 400; color: #d9400b; }
+        #s12-build { position: absolute; left: 0; right: 0; top: 570px; text-align: center; white-space: nowrap; font-family: "Instrument Serif"; font-style: italic;
+          font-size: 128px; line-height: 1; color: #e2470f; }
+        #s12-build span { display: inline-block; }
+        #s12-open { position: absolute; left: 0; right: 0; top: 742px; text-align: center; font-family: "Inter"; font-size: 40px; letter-spacing: -0.02em; color: #4a4f57; }
+        #s12-open b { font-weight: 700; color: #141518; }
+        #s12-links { position: absolute; left: 0; right: 0; top: 822px; display: flex; justify-content: center; gap: 18px; }
+        .s12-link { padding: 14px 26px; border-radius: 999px; background: #ffffff; border: 1px solid rgba(20,21,24,0.08); box-shadow: 0 18px 30px -18px rgba(20,21,24,0.3);
+          font-family: "JetBrains Mono"; font-size: 26px; color: #141518; white-space: nowrap; }
+      </style>
+
+      <div id="root" data-composition-id="s12-end" data-width="1920" data-height="1080" data-duration="4.8">
+        <div id="s12-stage" class="clip" data-start="0" data-duration="4.8" data-track-index="0">
+          <div id="s12-io">
+            <div id="s12-pixbox"><div id="s12-pix"></div></div>
+            <div id="s12-nm"><span>Soham</span> <span>Jadhav</span></div>
+            <div id="s12-role">AI Engineer <b>·</b> Researcher <b>·</b> GSoC 2026</div>
+            <div id="s12-build"><span>Let's</span> <span>build.</span></div>
+            <div id="s12-open">Open to <b>AI/ML engineering roles</b> &amp; research.</div>
+            <div id="s12-links">
+              <div class="s12-link">github.com/sohamjadhav95</div>
+              <div class="s12-link">soham.ai.engineer@gmail.com</div>
+              <div class="s12-link">linkedin.com/in/sohamjadhav95</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s12-end"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#s12-io", D, { noOut: true });
+          var P = K.pix(document.getElementById("s12-pix"), 150, "happy");
+          tl.fromTo("#s12-pixbox", { opacity: 0, scale: 0.3, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(2.2)" }, 0.06);
+          P.squash(tl, 0.46, 0.14);
+          [["Soham", 1], ["Jadhav.", 2]].forEach(function (w) {
+            tl.fromTo("#s12-nm span:nth-child(" + w[1] + ")", { opacity: 0, y: 70, filter: "blur(8px)" },
+              { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, Q.w("L18", w[0]) - 0.06);
+          });
+          tl.fromTo("#s12-role", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, Q.we("L18", "Jadhav.") - 0.05);
+          [["Let's", 1], ["build.", 2]].forEach(function (w) {
+            tl.fromTo("#s12-build span:nth-child(" + w[1] + ")", { opacity: 0, y: 40, scale: 0.85 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(1.8)" }, Q.w("L18", w[0]) - 0.05);
+          });
+          var tB = Q.w("L18", "build.");
+          P.mood(tl, tB, "proud", 0.16);
+          P.hop(tl, tB + 0.06, 40);
+          tl.fromTo("#s12-open", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, Q.l("L18").t1 + 0.05);
+          tl.fromTo(".s12-link", { opacity: 0, y: 20, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(1.8)", stagger: 0.09 }, Q.l("L18").t1 + 0.22);
+          P.blink(tl, Q.l("L18").t1 + 0.9);
+          P.blink(tl, D - 0.9);
+
+          K.buildReady("s12-end", K.fontsReady);
+          window.__timelines["s12-end"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

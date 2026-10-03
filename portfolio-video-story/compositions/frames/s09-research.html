@@ -1,0 +1,131 @@
+<!doctype html>
+<!--
+  s09 Research + people (L14 + L15). "Published. Twice." Paper 1 drops with a PUBLISHED stamp; paper 2 drops on
+  "Twice." with a ×2 sticker. "He co-leads AI and ML at Google Developer Groups, on campus." The papers slide
+  aside, the GDG Co-Lead badge pops on "co-leads", and a community network lights up around it as the line runs.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s09-io { position: absolute; inset: 0; }
+        #s09-capA { top: 140px; }
+        #s09-capB { top: 146px; font-size: 50px; }
+        #s09-papers { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 30% 55%; }
+        .s09-paper { position: absolute; top: 300px; width: 400px; height: 540px; border-radius: 22px; background: #ffffff; border: 1px solid rgba(20,21,24,0.08);
+          box-shadow: 0 50px 80px -36px rgba(20,21,24,0.32), 0 10px 20px -12px rgba(20,21,24,0.16); }
+        .s09-paper .tag { position: absolute; left: 32px; top: 32px; padding: 7px 14px; border-radius: 999px; background: #ffe6db;
+          font-family: "JetBrains Mono"; font-size: 20px; letter-spacing: 0.1em; color: #b8370a; text-transform: uppercase; }
+        .s09-paper .t { position: absolute; left: 32px; right: 30px; top: 92px; font-family: "Inter"; font-weight: 700; font-size: 31px; line-height: 1.16; letter-spacing: -0.02em; color: #141518; }
+        .s09-paper .ln { position: absolute; left: 32px; height: 9px; border-radius: 5px; background: rgba(20,21,24,0.07); }
+        .s09-paper .ft { position: absolute; left: 32px; bottom: 28px; font-family: "JetBrains Mono"; font-size: 20px; letter-spacing: 0.1em; color: #4a4f57; text-transform: uppercase; }
+        #s09-p1 { left: 500px; }
+        #s09-p2 { left: 1010px; }
+        #s09-stamp { position: absolute; left: 560px; top: 640px; padding: 10px 22px; border: 6px solid #e2470f; border-radius: 14px;
+          font-family: "Archivo Black"; font-size: 46px; letter-spacing: 0.04em; color: #e2470f; background: rgba(255,255,255,0.75); }
+        #s09-x2 { position: absolute; left: 1350px; top: 260px; width: 130px; height: 130px; border-radius: 50%; background: #ff5a1f;
+          box-shadow: 0 24px 40px -18px rgba(255,90,31,0.8); font-family: "Archivo Black"; font-size: 56px; line-height: 130px; text-align: center; color: #141518; }
+        #s09-net { position: absolute; left: 900px; top: 250px; }
+        #s09-badge { position: absolute; left: 1030px; top: 440px; width: 640px; height: 300px; border-radius: 32px; background: rgba(255,255,255,0.95);
+          border: 1px solid rgba(20,21,24,0.08); box-shadow: 0 60px 100px -40px rgba(20,21,24,0.3), 0 14px 30px -16px rgba(20,21,24,0.14); }
+        #s09-badge .o { position: absolute; left: 44px; top: 40px; font-family: "JetBrains Mono"; font-size: 21px; letter-spacing: 0.12em; color: #4a4f57; text-transform: uppercase; }
+        #s09-badge .r { position: absolute; left: 42px; top: 92px; font-family: "Inter"; font-weight: 700; font-size: 74px; line-height: 1; letter-spacing: -0.045em; color: #141518; white-space: nowrap; }
+        #s09-badge .r i { font-family: "Instrument Serif"; font-weight: 400; font-size: 84px; color: #e2470f; }
+        #s09-badge .y { position: absolute; left: 44px; top: 210px; padding: 8px 18px; border-radius: 999px; background: #ffe6db; font-family: "JetBrains Mono"; font-size: 22px; color: #b8370a; }
+        #s09-badge .dots { position: absolute; right: 44px; top: 222px; display: flex; gap: 8px; }
+        #s09-badge .dots i { width: 18px; height: 18px; border-radius: 50%; }
+      </style>
+
+      <div id="root" data-composition-id="s09-research" data-width="1920" data-height="1080" data-duration="5.75">
+        <div id="s09-stage" class="clip" data-start="0" data-duration="5.75" data-track-index="0">
+          <div id="s09-io">
+            <div id="s09-capA" class="cap"></div>
+            <div id="s09-capB" class="cap"></div>
+            <div id="s09-papers">
+              <div class="s09-paper" id="s09-p1"><div class="tag">Springer Nature</div>
+                <div class="t">Convo-Ease: Intelligent Multi-Modal Moderation for Digital Organizational Communication</div>
+                <div class="ln" style="top: 390px; width: 300px"></div><div class="ln" style="top: 412px; width: 260px"></div><div class="ln" style="top: 434px; width: 290px"></div>
+                <div class="ft">Cureus · 2025</div></div>
+              <div class="s09-paper" id="s09-p2"><div class="tag">ICIA · Survey</div>
+                <div class="t">Beyond Text: A Comprehensive Survey of Multimodal Content Moderation…</div>
+                <div class="ln" style="top: 390px; width: 310px"></div><div class="ln" style="top: 412px; width: 250px"></div><div class="ln" style="top: 434px; width: 280px"></div>
+                <div class="ft">ICIA · 2025</div></div>
+              <div id="s09-stamp">PUBLISHED</div>
+              <div id="s09-x2">×2</div>
+            </div>
+            <canvas id="s09-net" width="900" height="760" data-layout-ignore></canvas>
+            <div id="s09-badge">
+              <div class="o">Google Developer Groups · On Campus</div>
+              <div class="r">AI &amp; ML <i>Co-Lead</i></div>
+              <div class="y">2024 – 25 · Nashik</div>
+              <div class="dots"><i style="background:#4285f4"></i><i style="background:#ea4335"></i><i style="background:#fbbc04"></i><i style="background:#34a853"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, E = K.ease, Q = K.cue("s09-research"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#s09-io", D);
+          var lB = Q.l("L15");
+          K.caption(tl, document.getElementById("s09-capA"), Q, "L14", ["Twice."]);
+          tl.fromTo("#s09-capA", { opacity: 1, y: 0 }, { opacity: 0, y: -16, duration: 0.16, ease: "power2.in", immediateRender: false }, lB.t0 - 0.2);
+          K.caption(tl, document.getElementById("s09-capB"), Q, "L15", ["co-leads"]);
+
+          var tPub = Q.w("L14", "Published."), tTw = Q.w("L14", "Twice.");
+          tl.fromTo("#s09-p1", { opacity: 0, y: -520, rotation: -18 }, { opacity: 1, y: 0, rotation: -4, duration: 0.42, ease: "back.out(1.4)" }, tPub - 0.12);
+          tl.fromTo("#s09-stamp", { opacity: 0, scale: 2.2, rotation: -16 }, { opacity: 1, scale: 1, rotation: -9, duration: 0.2, ease: "power4.in" }, tPub + 0.3);
+          K.shake(tl, "#s09-papers", tPub + 0.5, 9, 0.12);
+          tl.fromTo("#s09-p2", { opacity: 0, y: -520, rotation: 18 }, { opacity: 1, y: 0, rotation: 5, duration: 0.42, ease: "back.out(1.4)" }, tTw - 0.12);
+          tl.fromTo("#s09-x2", { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 10, duration: 0.34, ease: "back.out(2.6)" }, tTw + 0.12);
+
+          // hand-off: papers to the left, small; badge + network on the right
+          tl.fromTo("#s09-papers", { x: 0, scale: 1, opacity: 1 }, { x: -340, scale: 0.62, opacity: 0.9, duration: 0.45, ease: "power3.inOut", immediateRender: false }, lB.t0 - 0.15);
+          var tCo = Q.w("L15", "co-leads");
+          tl.fromTo("#s09-badge", { opacity: 0, scale: 0.7, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(1.9)" }, tCo - 0.06);
+
+          // community network: nodes light up and link to the badge while the line runs
+          var R = K.prng(9), nodes = [];
+          for (var i = 0; i < 22; i++) {
+            var a = (i / 22) * Math.PI * 2 + R() * 0.25, rr = 280 + R() * 110;
+            nodes.push([450 + Math.cos(a) * rr * 1.05, 380 + Math.sin(a) * rr * 0.86, 0.3 + R() * 0.7, R()]);
+          }
+          var ctx = document.getElementById("s09-net").getContext("2d");
+          var t0 = tCo + 0.2, t1 = lB.t1 - lB.t0 + lB.t0 - 0.2;
+          K.drive(tl, D, function (t) {
+            ctx.clearRect(0, 0, 900, 760);
+            var u = E.clamp01((t - t0) / (t1 - t0));
+            nodes.forEach(function (n, i) {
+              var on = E.clamp01(u * 22 - i * 0.9);
+              if (on <= 0) return;
+              ctx.globalAlpha = 0.35 * on;
+              ctx.strokeStyle = "#ff5a1f"; ctx.lineWidth = 2;
+              ctx.beginPath(); ctx.moveTo(450, 380); ctx.lineTo(n[0], n[1]); ctx.stroke();
+              if (i > 0 && on > 0.5) { var p = nodes[i - 1]; ctx.globalAlpha = 0.18; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(n[0], n[1]); ctx.stroke(); }
+              ctx.globalAlpha = on;
+              var r = 10 + 10 * n[2];
+              ctx.fillStyle = n[3] > 0.55 ? "#ff5a1f" : "#ffb593";
+              ctx.beginPath(); ctx.arc(n[0], n[1], r * E.backOut(on, 2), 0, Math.PI * 2); ctx.fill();
+            });
+            ctx.globalAlpha = 1;
+          });
+
+          K.buildReady("s09-research", K.fontsReady);
+          window.__timelines["s09-research"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

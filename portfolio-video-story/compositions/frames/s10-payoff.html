@@ -1,0 +1,72 @@
+<!doctype html>
+<!--
+  s10 Payoff (L16). The reference's "Fewer tabs." beat: "Fewer guesses." lands big, word by word, then lifts away
+  for "AI you can actually trust." The mission line arrives on "trust." and Pix gives a proud hop.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s10-io { position: absolute; inset: 0; }
+        #s10-fewer { position: absolute; left: 0; right: 0; top: 330px; text-align: center; white-space: nowrap; transform-origin: 50% 50%;
+          font-family: "Inter"; font-weight: 700; font-size: 190px; line-height: 1; letter-spacing: -0.06em; color: #141518; }
+        #s10-fewer span { display: inline-block; font-family: "Inter"; font-weight: 700; font-size: 190px; line-height: 1; letter-spacing: -0.06em; color: #141518; }
+        #s10-fewer .u { position: relative; }
+        #s10-swoosh { position: absolute; left: 1030px; top: 560px; width: 520px; height: 26px; }
+        #s10-trust { top: 560px; font-size: 96px; letter-spacing: -0.035em; color: #141518; }
+        #s10-trust .acc { font-size: 1.28em; }
+        #s10-mission { position: absolute; left: 0; right: 0; top: 790px; text-align: center; font-family: "Instrument Serif"; font-size: 56px; color: #4a4f57; white-space: nowrap; }
+        #s10-mission i { color: #e2470f; }
+        #s10-pixbox { position: absolute; left: 1640px; top: 760px; width: 130px; height: 130px; }
+      </style>
+
+      <div id="root" data-composition-id="s10-payoff" data-width="1920" data-height="1080" data-duration="3">
+        <div id="s10-stage" class="clip" data-start="0" data-duration="3" data-track-index="0">
+          <div id="s10-io">
+            <div id="s10-fewer"><span>Fewer</span> <span class="u">guesses.</span></div>
+            <svg id="s10-swoosh" viewBox="0 0 520 26"><path id="s10-sw" d="M6 18 C 140 4, 360 4, 514 14" stroke="#ff5a1f" stroke-width="10" fill="none" stroke-linecap="round"/></svg>
+            <div id="s10-trust" class="cap"></div>
+            <div id="s10-mission">Building AI for <i>Good Faith of Humanity.</i></div>
+            <div id="s10-pixbox"><div id="s10-pix"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s10-payoff"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#s10-io", D);
+          var tF = Q.w("L16", "Fewer"), tG = Q.w("L16", "guesses."), tAI = Q.w("L16", "AI"), tTr = Q.w("L16", "trust.");
+          tl.fromTo("#s10-fewer span:nth-child(1)", { opacity: 0, y: 80, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "expo.out" }, tF - 0.05);
+          tl.fromTo("#s10-fewer span:nth-child(2)", { opacity: 0, y: 80, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "expo.out" }, tG - 0.05);
+          var sw = { u: 0 }, path = document.getElementById("s10-sw"), L = 520;
+          path.style.strokeDasharray = L; path.style.strokeDashoffset = L;
+          tl.fromTo(sw, { u: 0 }, { u: 1, duration: 0.3, ease: "power2.out", onUpdate: function () { path.style.strokeDashoffset = (L * (1 - sw.u)).toFixed(1); } }, tG + 0.2);
+          // lift "Fewer guesses." up and out of the way, then the trust line
+          tl.fromTo("#s10-fewer", { y: 0, scale: 1, opacity: 1 }, { y: -150, scale: 0.6, opacity: 0.35, duration: 0.4, ease: "power3.inOut", immediateRender: false }, tAI - 0.3);
+          tl.fromTo("#s10-swoosh", { opacity: 1 }, { opacity: 0, duration: 0.2, immediateRender: false }, tAI - 0.3);
+          K.caption(tl, document.getElementById("s10-trust"), Q, "L16", ["actually"], { only: [2, 7] });
+          tl.fromTo("#s10-mission", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, tTr);
+          var P = K.pix(document.getElementById("s10-pix"), 130, "happy");
+          tl.fromTo("#s10-pixbox", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(2.2)" }, tAI);
+          P.mood(tl, tTr - 0.1, "proud", 0.16);
+          P.hop(tl, tTr, 44);
+
+          K.buildReady("s10-payoff", K.fontsReady);
+          window.__timelines["s10-payoff"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+  s03 Stakes (L05), dark interlude. "Wrong scores. Wrong risk tiers." Hard cut to night: WRONG slams twice on the
+  voice, with the consequence in italic serif. Behind, error cards drift in 3D (the binary-mask numbers from
+  BRIEF.md: Agatston error 2.2× higher, 77% risk agreement).
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s03-bg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: radial-gradient(120% 90% at 50% 40%, #1b1d22 0%, #0f1013 60%, #08090b 100%); }
+        #s03-persp { position: absolute; inset: 0; perspective: 1400px; }
+        .s03-card { position: absolute; padding: 18px 24px; border-radius: 18px; background: rgba(32,34,40,0.9); border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8); white-space: nowrap; }
+        .s03-card .k { font-family: "JetBrains Mono"; font-size: 20px; letter-spacing: 0.14em; color: #9aa0aa; text-transform: uppercase; }
+        .s03-card .v { margin-top: 6px; font-family: "Inter"; font-weight: 700; font-size: 34px; letter-spacing: -0.02em; color: #f2f2f2; }
+        .s03-card .v b { color: #ff6b70; font-weight: 700; }
+        .s03-card .x { position: absolute; right: -14px; top: -14px; width: 38px; height: 38px; border-radius: 50%; background: #e5484d;
+          color: #fff; font-family: "Inter"; font-weight: 700; font-size: 24px; line-height: 38px; text-align: center; }
+        .s03-row { position: absolute; left: 0; right: 0; text-align: center; white-space: nowrap; }
+        #s03-r1 { top: 250px; }
+        #s03-r2 { top: 560px; }
+        .s03-w { display: inline-block; font-family: "Archivo Black"; font-size: 210px; line-height: 1; letter-spacing: -0.02em; color: #ffffff; vertical-align: baseline; }
+        .s03-i { display: inline-block; margin-left: 28px; font-family: "Instrument Serif"; font-style: italic; font-size: 190px; line-height: 1; color: #ff6a33; vertical-align: baseline; }
+      </style>
+
+      <div id="root" data-composition-id="s03-stakes" data-width="1920" data-height="1080" data-duration="2.5">
+        <div id="s03-stage" class="clip" data-start="0" data-duration="2.5" data-track-index="0">
+          <div id="s03-bg"></div>
+          <div id="s03-persp" data-layout-ignore>
+            <div class="s03-card" style="left: 120px; top: 120px"><div class="k">Agatston error</div><div class="v"><b>2.2×</b> higher</div><div class="x">✕</div></div>
+            <div class="s03-card" style="left: 1430px; top: 150px"><div class="k">Risk agreement</div><div class="v"><b>77%</b> agreement</div><div class="x">✕</div></div>
+            <div class="s03-card" style="left: 180px; top: 840px"><div class="k">Mask</div><div class="v">label_0421.png</div><div class="x">✕</div></div>
+            <div class="s03-card" style="left: 1380px; top: 860px"><div class="k">Risk tier</div><div class="v"><b>misclassified</b></div><div class="x">✕</div></div>
+            <div class="s03-card" style="left: 760px; top: 60px"><div class="k">Calcium score</div><div class="v"><b>off</b> by whole pixels</div><div class="x">✕</div></div>
+          </div>
+          <div id="s03-r1" class="s03-row"><span class="s03-w">WRONG</span><span class="s03-i">scores.</span></div>
+          <div id="s03-r2" class="s03-row"><span class="s03-w">WRONG</span><span class="s03-i">risk tiers.</span></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s03-stakes"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+          var cards = Array.prototype.slice.call(document.querySelectorAll(".s03-card"));
+          var drift = cards.map(function (c, i) { return [(i % 2 ? -1 : 1) * (16 + i * 4), -8 - i * 3, (i % 2 ? 1 : -1) * (8 + i * 2)]; });
+          K.drive(tl, D, function (t) {
+            cards.forEach(function (c, i) {
+              var d = drift[i], u = t / D;
+              c.style.transform = "translate3d(" + (d[0] * u * 3).toFixed(1) + "px," + (d[1] * u * 3).toFixed(1) + "px," + (-120 + 80 * u).toFixed(1) + "px) rotateY(" + (d[2] * (1 - u)).toFixed(2) + "deg) rotateZ(" + (d[2] * 0.25).toFixed(2) + "deg)";
+            });
+          });
+          tl.fromTo(cards, { opacity: 0 }, { opacity: 0.85, duration: 0.25, ease: "power2.out", stagger: 0.07 }, 0.05);
+
+          var w1 = Q.w("L05", "Wrong", 0), s1 = Q.w("L05", "scores."), w2 = Q.w("L05", "Wrong", 1), s2 = Q.w("L05", "risk");
+          function slam(sel, at) {
+            tl.fromTo(sel, { opacity: 0, scale: 1.7, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.22, ease: "expo.out" }, at - 0.03);
+            K.shake(tl, "#s03-stage", at + 0.05, 14, 0.14);
+          }
+          slam("#s03-r1 .s03-w", w1);
+          tl.fromTo("#s03-r1 .s03-i", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.24, ease: "power3.out" }, s1 - 0.04);
+          tl.fromTo("#s03-r1", { opacity: 1, y: 0 }, { opacity: 0.32, y: -10, duration: 0.2, ease: "power2.out", immediateRender: false }, w2 - 0.05);
+          slam("#s03-r2 .s03-w", w2);
+          tl.fromTo("#s03-r2 .s03-i", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.24, ease: "power3.out" }, s2 - 0.04);
+
+          K.buildReady("s03-stakes", K.fontsReady);
+          window.__timelines["s03-stakes"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
