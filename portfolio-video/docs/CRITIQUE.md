@@ -35,3 +35,19 @@ Rubric is from `DIRECTOR.md`, scored 1–10. Each pass reviews a snapshot contac
 | 6 | Polish | 8 |
 | 7 | Continuity | 9 |
 | 8 | Accuracy | 10 |
+
+## Render verification (v1)
+- **Master:** `hyperframes render --quality looks --fps 60 --workers 3` took 6 m 43 s (beginframe capture, SwiftShader).
+  The output is 15.000 s, 1920×1080, 60 fps, H.264 + AAC 48 kHz stereo.
+- **Web encode:** `renders/soham-portfolio-16x9.mp4`, two-pass x264 at 7.4 Mbps, +faststart, 14.1 MB, 900 frames.
+  Against the master, PSNR is 34.2 dB (the SSIM gap is mostly the per-frame random grain). 1:1 crops of 17–30 px text stay crisp.
+- **Loudness:** −16.0 LUFS integrated, LRA 1.4 LU, peak −3.0 dBFS.
+- **Picture/sound lock:**
+
+  | | Times (s) |
+  |---|---|
+  | Visual cuts (ffmpeg `scdet`) | 0.500 · 1.000 · 1.500 · 3.500 · 6.000 · 6.467 · 7.000 · 7.917 · 8.500 · 9.600 · 10.000 · 10.917 · 11.500 · 13.500 |
+  | Audio onsets on hard hits | 0.500 · 1.000 · 3.500 · 6.000 · 6.450 · 7.000 · 8.500 · 9.250 · 9.600 · 14.250 |
+
+  The audio onsets land within 0 ms of the cue table. Soft-attack sounds measure ±25–60 ms.
+- **Fact gate:** no composition, script or kit file contains "3,157". The only mentions are docs rules forbidding it.

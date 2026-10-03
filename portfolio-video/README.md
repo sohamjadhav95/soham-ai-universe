@@ -10,7 +10,7 @@ frames are used.
 | File | What it is |
 |---|---|
 | `renders/soham-portfolio-16x9.mp4` | The film |
-| `renders/poster.png` | Poster frame (for `<video poster>`) |
+| `renders/poster.jpg` | Poster frame (for `<video poster>`) |
 | `BRIEF.md` | Intent, plus the **Facts** table: the only numbers allowed on screen |
 | `frame.md` | Design system (palette, type voices, motion rules), treated as brand truth |
 | `STORYBOARD.md` / `DIRECTOR.md` | Shot list and director's brief (arc, intent, critique rubric) |
@@ -46,6 +46,6 @@ carve the bed under it with `/hyperframes-audio` (`scripts/carve.mjs`).
 
 ## Putting it on the site
 
-- **Video:** `<video src="…/soham-portfolio-16x9.mp4" poster="…/poster.png" autoplay muted loop playsinline>`.
+- **Video:** `<video src="…/soham-portfolio-16x9.mp4" poster="…/poster.jpg" autoplay muted loop playsinline>`.
   It reads fully without sound.
 - **Live:** mount the composition with the `@hyperframes/player` web component. It stays crisp at any size.
