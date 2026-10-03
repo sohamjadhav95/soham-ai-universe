@@ -60,3 +60,14 @@ The rubric comes from `DIRECTOR.md` and is scored 1–10. Each pass reviews snap
   - Frames grabbed at cue times show the matching state: 63× landed at 10.36 s, 0.03% at 8.47 s, product 03/05 in focus at 17.06 s, "9 certifications" at 23.42 s, mission complete at 27.0 s, and the end card building at 28.0 s.
 - **Fact gate:** "3,157" appears only in BRIEF.md's prohibition and in this log. It is never on screen.
 - **Site:** nothing outside `portfolio-video-keynote/` changed. The root `eslint .` still reports the same 13 pre-existing findings.
+
+## Snapshots (`docs/critique-snapshots/`)
+These are the frames each pass was judged on. PNG frames are stored as JPG.
+
+| Folder | What's in it |
+|---|---|
+| `pass1/` | First full 30 s assembly, before the fixes: 19 frames at chapter midpoints, plus contact sheets. It shows the short mission hold and the old top-left end card. |
+| `pass2/` | After the fixes: the retimed intro, the held mission line and the centered end card (12 frames, plus contact sheets). |
+| `render-cues/` | Frames grabbed from the final MP4 at the sound-effect cue times, used for the picture/sound lock check (plus `cue-sheet.jpg`). |
+
+Regenerate fresh snapshots with `npm run snapshot` (they go to `out/snapshots/`).

@@ -41,6 +41,7 @@ The music has four sections:
 | `frame.md` | Design system: palette, type, glass cards, motion rules |
 | `STORYBOARD.md` / `DIRECTOR.md` | Shot list and director's brief (arc, clarity rules, critique rubric) |
 | `docs/CRITIQUE.md` | Scored critique passes and what each one fixed |
+| `docs/critique-snapshots/` | The contact sheets and frames each critique pass was judged on, plus cue frames from the final render |
 | `docs/VO_SCRIPT.md` | Optional timed voiceover script and voice direction |
 | `index.html` | Root composition: stage, 9 chapters on a 120 BPM grid, progress rail, 2 audio stems |
 | `compositions/frames/*.html` | One sub-composition per chapter, plus `00-stage.html` and `99-rail.html` |
