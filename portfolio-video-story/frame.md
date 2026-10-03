@@ -14,12 +14,13 @@
 | villain | `#6E56CF` | The error and its "glitch" characters (the reference's purple fees monster) |
 | bad | `#E5484D` | ✕ marks and wrong values, sparingly |
 | good | `#2FB36B` | The "✓ Accurate" lie badge in the hook only |
-| night | `#0F1013` | Dark chaos interlude (s03) and the meta beat (s11) |
+| night | `#0F1013` | Dark chaos interlude (s03) |
 
 ## Type
 - **Fragment voice.** Inter 400 at 50–56 px, ink2. These are the spoken words, appearing word by word on the voice.
-- **Accent word.** Instrument Serif *italic* at 1.25× the fragment size, colour hot. One per line, the emotional word: *lying*, *snapped*, *gone*, *exactly*, *almost nothing*, *sixty-three*, *ninety*, *twice*, *actually*, *every single frame*.
+- **Accent word.** Instrument Serif *italic* at 1.25× the fragment size, colour hot. One per line, the emotional word: *lying*, *snapped*, *gone*, *exactly*, *almost nothing*, *sixty-three*, *ninety*, *twice*, *actually*, *Good Faith of Humanity*, *together*.
 - **Slam type.** Archivo Black, all caps, for the kinetic beats: LYING., WRONG., 63×.
+- **Bookends.** The hook (LYING.) and the mission (Good Faith of Humanity.) both sit on a full hot-orange frame with white glossy balls: the problem and the promise.
 - **UI and numbers.** Inter 700 with tight tracking (−0.04em). Labels are JetBrains Mono 400, uppercase, with 0.14em tracking.
 
 ## The mascot: "Pix"
@@ -33,7 +34,7 @@ A single pixel: a soft rounded square (hot orange, glossy highlight, contact sha
 | happy | ^ ^ eyes and a smile |
 | proud | Smile and a little hop |
 
-Pix gets **snapped** (split into a jagged staircase) in s02 and **rescued** (smooth again) in s04. After that Pix reappears as Soham's sidekick: waiting at the race, handing over the products, and giving the CTA wink.
+Pix gets **snapped** (split into a jagged staircase) in s02 and **rescued** (smooth again) in s04. After that Pix reappears as Soham's sidekick: waiting at the race, handing over the products, and opening the contact card.
 
 ## Layout
 - The fragment caption sits in the top zone (around y 150–260), centred. The visual proof sits below it, centred or slightly offset.

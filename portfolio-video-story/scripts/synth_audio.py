@@ -8,7 +8,8 @@ Writes (48 kHz, 24-bit stereo, full film length, all starting at t=0):
   out/mix_preview.wav      vo + score + sfx, for listening / loudness QA
 
 Music: D minor tension for the problem (0–11.2 s) → a hard boom on "LYING" → drone + hits under "WRONG" → D major
-lift on the reveal (11.2 s) → full groove through the features → filtered for the meta beat → resolve on the end card.
+lift on the reveal (11.2 s) → full groove through the features → drums out and a swelling chord under the mission line
+→ a gentle resolve under "Let's build together." on the contact card.
 All three stems share one limiter gain; target -16 LUFS integrated, sample peak <= -1 dBFS.
 
 Run:  python3 scripts/synth_audio.py      (needs numpy, scipy, ffmpeg on PATH)
@@ -260,7 +261,7 @@ def grid(a, b, step):
 def build_score():
     s, send = Bus(), Bus()
     CUT = W("L02", "lying") - 0.04
-    REV, NAME, SPEED, META, END = S("s04-reveal"), S("s06-name"), S("s07-speed"), S("s11-meta"), S("s12-end")
+    REV, NAME, SPEED, META, END = S("s04-reveal"), S("s06-name"), S("s07-speed"), S("s11-mission"), S("s12-end")
     STAKES = S("s03-stakes")
 
     def chord_at(t):
@@ -323,18 +324,25 @@ def build_score():
         s.add(hat(700 + k), t, 1.0 if k % 2 else 0.55, pan=0.3 if k % 2 else -0.2)
         s.add(bass(chord_at(t)[0] - 12, BEAT / 2 * 0.9), t, 1.0)
     s.add(riser(1.6, 9), SPEED - 1.6, 0.5)
-    # meta: groove drops to kick + sub drone, riser into the end card
-    s.add(pad_chord([38, 45, 50, 54], END - META + 0.2, 650), META, 1.3)
-    for t in grid(META, END - 0.5, BEAT):
-        s.add(kick(0.7), t, 1.0)
-    s.add(riser(1.2, 11), END - 1.2, 0.7)
-    # resolve
+    # mission: drums out, a swelling D major chord under "Building AI for good faith of humanity."
+    s.add(riser(0.9, 11), META - 0.9, 0.5)
     for k, n in enumerate([50, 57, 62, 66, 69, 74, 78]):
-        sig = piano(n, 4.2, 0.62)
-        s.add(sig, END + k * 0.025, 1.0, pan=-0.45 + 0.15 * k)
-        send.add(sig, END + k * 0.025, 0.8)
-    s.add(pad_chord([50, 57, 62, 66, 69], DUR - END, 2000), END, 1.6)
-    tb = W("L18", "build.")
+        sig = piano(n, 4.6, 0.64)
+        s.add(sig, META + k * 0.03, 1.0, pan=-0.45 + 0.15 * k)
+        send.add(sig, META + k * 0.03, 0.9)
+    s.add(pad_chord([50, 57, 62, 66, 69, 74], END - META + 0.8, 2400), META, 1.7)
+    th = W("L17", "humanity.")
+    for k, n in enumerate([81, 86, 90]):
+        b = bell(midi(n), 1.8, 0.7, 0.12)
+        s.add(b, th + k * 0.08, 1.0, pan=-0.2 + 0.2 * k)
+        send.add(b, th + k * 0.08, 0.9)
+    # contact card: a gentle resolve
+    for k, n in enumerate([62, 66, 69, 74]):
+        sig = piano(n, 3.6, 0.48)
+        s.add(sig, END + k * 0.03, 1.0, pan=-0.3 + 0.2 * k)
+        send.add(sig, END + k * 0.03, 0.8)
+    s.add(pad_chord([50, 57, 62, 66, 69], DUR - END, 2000), END, 1.3)
+    tb = W("L18", "together.")
     for k, n in enumerate([74, 78, 81, 86]):
         b = bell(midi(n), 2.2, 0.9, 0.16)
         s.add(b, tb + k * 0.06, 1.0, pan=-0.3 + 0.2 * k)
@@ -430,16 +438,13 @@ def build_sfx():
     hit(thock(81), W("L16", "guesses.") - 0.05, 0.8)
     hit(swish(0.3, 82, True), W("L16", "guesses.") + 0.2, 0.4)
     hit("chime", W("L16", "trust."), 0.7, 0.0, 0.5)
-    # s11 meta
-    for k in range(9):
-        hit("tick", S("s11-meta") + 0.3 + k * 0.28, 0.25, -0.2 + 0.05 * k)
-    hit("switch", W("L17", "Built"), 0.6)
-    hit(riser(0.5, 90), W("L17", "Every") - 0.5, 0.6)
-    hit(boom(91, 1.0), W("L17", "Every") - 0.25, 0.4)
-    hit(thock(92), W("L17", "frame.") + 0.05, 0.8)
+    # s11 mission
+    hit(swish(0.5, 90, True), S("s11-mission") - 0.05, 0.6)
+    hit("pop", S("s11-mission") + 0.25, 0.4, -0.3)
+    hit("star", W("L17", "humanity.") - 0.04, 0.7, 0.0, 0.5)
     # s12 end
     hit("pop", S("s12-end") + 0.06, 0.8)
-    hit("star", W("L18", "build.") - 0.04, 0.6, 0.0, 0.4)
+    hit("star", W("L18", "together.") - 0.04, 0.6, 0.0, 0.4)
     hit("success", L("L18")["t1"] + 0.22, 0.6, 0.0, 0.3)
     return x.buf + reverb(send.buf, 0.4, d=2.2, tau=0.55, seed=211)
 

@@ -51,9 +51,24 @@ The rubric comes from `DIRECTOR.md` and is scored 1–10. Each pass reviews snap
 | 6 | Polish | 8 |
 | 7 | Accuracy | 10 |
 
+## Pass 3: new ending (Soham's edit)
+Soham asked to drop the meta beat ("Built in code, with AI. Every single frame.") and read the mission line in the flow instead, then go straight to the contact page, where the voice says only "Let's build together." and not his name.
+
+| Change | Detail |
+|---|---|
+| L17 | "Building AI for good faith of humanity." Read slower (speed 1.0), with a 0.8 s hold before the contact card. |
+| L18 | "Let's build together." (speed 1.04). The name stays on the card but is no longer spoken. |
+| s11-meta → s11-mission | An orange circle wipe opens a full orange frame, the bookend to the orange LYING. hook. The line rises word by word on the voice, and a warm bloom opens on *humanity*. |
+| s10 | Its small on-screen mission line was removed, since the mission is now spoken next. |
+| s12 | The name and role open the card. *Let's build together.* lands on its three words. |
+| Sound | Drums drop out under a swelling D major chord for the mission, with bells on *humanity*. A gentler chord plus bells on *together*. |
+| Timing | Lines L01–L16 are bit-identical to the previous render (0.0 s change). The film is now **50.75 s**. |
+
+`hyperframes check` passes with 0 errors and 0 warnings. Pix's hop shadow is marked as intentional overflow.
+
 ## Audio
 - −16.0 LUFS integrated, sample peak −1.2 dBFS.
-- The voice sits **10.5 dB above the music** while it is speaking: the music is ducked about 7 dB under the VO envelope.
+- The voice sits **10.5–10.7 dB above the music** while it is speaking: the music is ducked about 7 dB under the VO envelope.
 - All three stems share one limiter gain, so they sum exactly as previewed.
 
 ## Snapshots (`docs/critique-snapshots/`)
@@ -64,22 +79,23 @@ The rubric comes from `DIRECTOR.md` and is scored 1–10. Each pass reviews snap
 | `pass1-fixes/` | The same beats after the fixes |
 | `pass2-scenes-7-12/` | Scenes 7–12 before the fixes: missing word spaces, dock overlap, caption overflow |
 | `pass2-fixes/` | After the fixes |
+| `pass3-ending/` | The new ending: payoff → orange mission wipe → "Let's build together." contact card |
 | `render-cues/` | Frames from the final MP4 at word cues (picture and sound lock) |
 
 PNG frames are stored as JPG. To regenerate, run `npm run snapshot`, which writes to `out/snapshots/`.
 
 ## Render verification (`renders/soham-story-16x9.mp4`)
 - **`ffprobe`:**
-  - **52.500 s**, 3150 frames at 60 fps, 1920×1080
+  - **50.750 s**, 3045 frames at 60 fps, 1920×1080
   - H.264 High, yuv420p, CRF 16, faststart
   - AAC-LC 48 kHz stereo
-  - 18.4 MB
+  - 18.3 MB
 - **Loudness:**
-  - The final MP4 measures **−16.7 LUFS** integrated, with a −1.5 dBFS true peak.
-  - The stems mix to −16.0 LUFS in the preview; the renderer's track mix lands about 0.7 dB lower.
+  - The final MP4 measures **−16.1 LUFS** integrated, with a −1.1 dBFS true peak.
+  - The stems mix to −16.0 LUFS in the preview.
 - **Picture/sound lock:**
-  - The rendered audio cross-correlates with the synth's own mix at **0.0 ms lag** (correlation 0.999).
-  - Frames grabbed just after 12 key words show the matching beat: LYING, snapped, +10.19%, WRONG, Exactly., 0.03%, 63×, < 3 s, ~90%, ×2, frame., Let's build. (`render-cues/`)
+  - The rendered audio cross-correlates with the synth's own mix at **0.0 ms lag** (correlation 1.000).
+  - Frames grabbed just after 12 key words show the matching beat: LYING, snapped, +10.19%, WRONG, Exactly., 0.03%, 63×, < 3 s, ~90%, ×2, Humanity., Let's build together. (`render-cues/`)
 - **Fact gate:**
   - Every on-screen number is from BRIEF.md → Facts: 10.19%, 0.03%, 2.2×, 77% → 83%, 63×, < 3 s, ~90%.
   - "3,157" appears only in BRIEF.md's prohibition and in this log.

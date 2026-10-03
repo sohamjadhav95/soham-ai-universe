@@ -1,10 +1,10 @@
 ---
 format: 1920x1080
-duration: 52.5s (set by the voiceover)
+duration: 50.75s (set by the voiceover)
 fps: 60
 bpm: 120
 message: "Your AI model is lying to you. Soham Jadhav finds the error everyone else ships, and fixes it."
-arc: Hook → Pain → Stakes → Reveal → Proof → Name → Speed → Products → Research + people → Payoff → Meta → End card
+arc: Hook → Pain → Stakes → Reveal → Proof → Name → Speed → Products → Research + people → Payoff → Mission → Contact card
 audience: recruiters, research labs and founders hiring AI/ML engineers
 mode: autonomous, voiceover-first
 ---
@@ -27,5 +27,5 @@ times below are what the current af_heart voiceover produced.
 | 8 | s08-products | 24.33–34.20 | "He ships **products** people use. **Text**, **image** and **audio** **moderation**, in under **three** seconds. A copilot that **automates** about **ninety** percent of the data-science workflow." | First, a dock of five app tiles. Then Convo-Ease: the inputs fly into the shield, the timer ring closes, and **< 3 s** lands with Safe and Flagged verdicts. Then Copilot: a typed prompt bursts into Clean → Features → Train → Explain → Deploy, and **~90%** counts up. |
 | 9 | s09-research | 34.20–39.95 | "**Published.** **Twice.** He **co-leads** AI and ML at Google Developer Groups, on campus." | The Springer Nature paper drops with a PUBLISHED stamp, then the ICIA survey with a ×2 sticker. Both slide aside for the GDG **AI & ML Co-Lead** badge while a community network lights up. |
 | 10 | s10-payoff | 39.95–42.95 | "**Fewer** **guesses.** AI you can actually **trust**." | **Fewer guesses.** with a swoosh, then "AI you can *actually* trust." On *trust.* the mission line appears: *Building AI for Good Faith of Humanity.* |
-| 11 | s11-meta | 42.95–47.70 | "Oh, and this whole video? **Built** in code, with AI. **Every** single **frame**." | Dark. An editor types this film's real source. On *Built* it glows. On *Every* the editor falls away and a 3D wall of this film's own frames flies in under **Every single *frame.*** |
-| 12 | s12-end | 47.70–52.50 | "**Soham** **Jadhav.** Let's **build**." | End card: Pix, the name, AI Engineer · Researcher · GSoC 2026, *Let's build.*, open to AI/ML engineering roles & research, and github · email · linkedin. It holds. |
+| 11 | s11-mission | 42.95–46.57 | "**Building** AI for good faith of **humanity**." (a slower, warmer read, then a 0.8 s hold) | An orange circle wipes open, the bookend to the orange LYING. hook: the film opens on the problem and closes on the promise. "Building AI for" rises word by word on the voice, "*Good Faith of Humanity.*" lands in white italic serif, and a warm bloom opens on *humanity*. |
+| 12 | s12-end | 46.57–50.75 | "Let's **build** **together**." (the name is shown on the card, not spoken) | Contact card: Pix, the name and AI Engineer · Researcher · GSoC 2026 open the card; *Let's build together.* lands word by word on the voice; open to AI/ML engineering roles & research, and github · email · linkedin. It holds. |
