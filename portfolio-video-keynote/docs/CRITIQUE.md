@@ -47,3 +47,16 @@ The rubric comes from `DIRECTOR.md` and is scored 1–10. Each pass reviews snap
 | 5 | Rhythm | 9 |
 | 6 | Polish | 8 |
 | 7 | Accuracy | 10 |
+
+## Render verification (`renders/soham-keynote-16x9.mp4`)
+- `ffprobe`:
+  - **30.000 s**, 1800 frames at 60 fps, 1920×1080
+  - H.264 High, yuv420p, level 4.2, about 3.9 Mbps, moov atom up front (faststart)
+  - AAC-LC 48 kHz stereo
+  - 14.6 MB
+- Loudness (`ebur128`): **−16.0 LUFS** integrated, LRA 3.6 LU, sample peak −2.7 dBFS.
+- **Picture/sound lock:**
+  - The rendered audio cross-correlates with the synth's own mix at **0.0 ms lag** (correlation 1.000).
+  - Frames grabbed at cue times show the matching state: 63× landed at 10.36 s, 0.03% at 8.47 s, product 03/05 in focus at 17.06 s, "9 certifications" at 23.42 s, mission complete at 27.0 s, and the end card building at 28.0 s.
+- **Fact gate:** "3,157" appears only in BRIEF.md's prohibition and in this log. It is never on screen.
+- **Site:** nothing outside `portfolio-video-keynote/` changed. The root `eslint .` still reports the same 13 pre-existing findings.

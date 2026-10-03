@@ -7,7 +7,7 @@
     "dev": "npx --yes hyperframes@0.8.114 preview",
     "check": "npx --yes hyperframes@0.8.114 check",
     "snapshot": "npx --yes hyperframes@0.8.114 snapshot --at 1.8,4.5,8.9,10.8,13.8,16.5,21.2,25.3,27.2,29.95 --no-end -o out/snapshots",
-    "render": "npx --yes hyperframes@0.8.114 render --quality delivery --fps 60 --output renders/soham-keynote-16x9.mp4",
+    "render": "npx --yes hyperframes@0.8.114 render --quality looks --fps 60 --output renders/soham-keynote-16x9.mp4",
     "render:draft": "npx --yes hyperframes@0.8.114 render --quality draft --fps 30 --output out/draft.mp4",
     "audio": "python3 scripts/synth_audio.py",
     "vendor": "node scripts/vendor.mjs",

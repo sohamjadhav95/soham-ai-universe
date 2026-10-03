@@ -35,7 +35,7 @@ The music has four sections:
 
 | File | What it is |
 |---|---|
-| `renders/soham-keynote-16x9.mp4` | The film (web-encoded, about 5.5 Mbps) |
+| `renders/soham-keynote-16x9.mp4` | The film (H.264 High, CRF 16, 60 fps, 14.6 MB, faststart — web-ready as is) |
 | `renders/poster.jpg` | Poster frame (for `<video poster>`) |
 | `BRIEF.md` | Intent, plus the **Facts** table: the only claims allowed on screen |
 | `frame.md` | Design system: palette, type, glass cards, motion rules |
@@ -56,7 +56,7 @@ cd portfolio-video-keynote
 npm install                 # also vendors libs + fonts (postinstall)
 npm run dev                 # HyperFrames Studio preview in the browser
 npm run check               # lint + runtime + layout + motion + WCAG contrast
-npm run render              # → renders/soham-keynote-16x9.mp4 (delivery quality, 60 fps)
+npm run render              # → renders/soham-keynote-16x9.mp4 (CRF 16, 60 fps)
 npm run audio               # re-synthesize the soundtrack (needs python3 + numpy + scipy + ffmpeg)
 ```
 
