@@ -1,4 +1,4 @@
-# Voiceover: "Soham, the product" (52.5 s)
+# Voiceover: "Soham, the product" (50.75 s)
 
 **Voice.** Kokoro-82M, voice `af_heart` (warm US female), speed 1.14. It's open source (Apache-2.0) and runs on CPU from `scripts/make_vo.py`. Soham picked it by ear from a six-voice sample pack: af_heart, af_bella, am_michael, am_fenrir, am_puck and bm_george.
 
@@ -6,7 +6,7 @@
 
 **Direction**, if you re-voice it yourself or with ElevenLabs:
 - Conversational, confident and quick, like a product ad, not a documentary.
-- Lean on the accent word in each line: *accurate*, *lying*, *snapped*, *ten percent*, *Exactly*, *almost nothing*, *sixty-three*, *ninety*, *Twice*, *actually*, *every single frame*, *build*.
+- Lean on the accent word in each line: *accurate*, *lying*, *snapped*, *ten percent*, *Exactly*, *almost nothing*, *sixty-three*, *ninety*, *Twice*, *actually*, *humanity*, *together*. Read the mission slower and warmer.
 
 | # | Line | Scene |
 |---|---|---|
@@ -26,10 +26,10 @@
 | L14 | Published. Twice. | Research |
 | L15 | He co-leads AI and ML at Google Developer Groups, on campus. | People |
 | L16 | Fewer guesses. AI you can actually trust. | Payoff |
-| L17 | Oh, and this whole video? Built in code, with AI. Every single frame. | Meta |
-| L18 | Soham Jadhav. Let's build. | End card |
+| L17 | Building AI for good faith of humanity. | Mission (speed 1.0, then a 0.8 s hold) |
+| L18 | Let's build together. | Contact card (the name is shown, not spoken) |
 
-Total: 124 words.
+Total: 117 words.
 
 ## Using your own voice instead
 

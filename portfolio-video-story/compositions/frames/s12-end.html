@@ -1,7 +1,8 @@
 <!doctype html>
 <!--
-  s12 End card (L18). "Soham Jadhav. Let's build." Pix pops, the name rises on the voice, the role line, then
-  "Let's build." in italic serif on its words; availability and the three links follow, and the card holds.
+  s12 End card (L18). The contact page. The voice says only "Let's build together." — the name is shown, not spoken.
+  Pix pops, the name and role rise as the card opens, "Let's build together." lands word by word in italic serif on
+  the voice; availability and the three links follow, and the card holds.
 -->
 <html lang="en">
   <head>
@@ -34,13 +35,13 @@
           font-family: "JetBrains Mono"; font-size: 26px; color: #141518; white-space: nowrap; }
       </style>
 
-      <div id="root" data-composition-id="s12-end" data-width="1920" data-height="1080" data-duration="4.8">
-        <div id="s12-stage" class="clip" data-start="0" data-duration="4.8" data-track-index="0">
+      <div id="root" data-composition-id="s12-end" data-width="1920" data-height="1080" data-duration="4.1833">
+        <div id="s12-stage" class="clip" data-start="0" data-duration="4.1833" data-track-index="0">
           <div id="s12-io">
             <div id="s12-pixbox"><div id="s12-pix"></div></div>
             <div id="s12-nm"><span>Soham</span> <span>Jadhav</span></div>
             <div id="s12-role">AI Engineer <b>·</b> Researcher <b>·</b> GSoC 2026</div>
-            <div id="s12-build"><span>Let's</span> <span>build.</span></div>
+            <div id="s12-build"><span>Let's</span> <span>build</span> <span>together.</span></div>
             <div id="s12-open">Open to <b>AI/ML engineering roles</b> &amp; research.</div>
             <div id="s12-links">
               <div class="s12-link">github.com/sohamjadhav95</div>
@@ -59,16 +60,16 @@
           var P = K.pix(document.getElementById("s12-pix"), 150, "happy");
           tl.fromTo("#s12-pixbox", { opacity: 0, scale: 0.3, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(2.2)" }, 0.06);
           P.squash(tl, 0.46, 0.14);
-          [["Soham", 1], ["Jadhav.", 2]].forEach(function (w) {
-            tl.fromTo("#s12-nm span:nth-child(" + w[1] + ")", { opacity: 0, y: 70, filter: "blur(8px)" },
-              { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, Q.w("L18", w[0]) - 0.06);
+          [1, 2].forEach(function (k) {
+            tl.fromTo("#s12-nm span:nth-child(" + k + ")", { opacity: 0, y: 70, filter: "blur(8px)" },
+              { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.1 + k * 0.1);
           });
-          tl.fromTo("#s12-role", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, Q.we("L18", "Jadhav.") - 0.05);
-          [["Let's", 1], ["build.", 2]].forEach(function (w) {
+          tl.fromTo("#s12-role", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.45);
+          [["Let's", 1], ["build", 2], ["together.", 3]].forEach(function (w) {
             tl.fromTo("#s12-build span:nth-child(" + w[1] + ")", { opacity: 0, y: 40, scale: 0.85 },
               { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(1.8)" }, Q.w("L18", w[0]) - 0.05);
           });
-          var tB = Q.w("L18", "build.");
+          var tB = Q.w("L18", "together.");
           P.mood(tl, tB, "proud", 0.16);
           P.hop(tl, tB + 0.06, 40);
           tl.fromTo("#s12-open", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" }, Q.l("L18").t1 + 0.05);

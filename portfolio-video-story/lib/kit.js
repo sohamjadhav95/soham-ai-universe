@@ -121,7 +121,7 @@
     var s = size / 200;
     host.innerHTML =
       '<div class="pix" style="width:' + size + "px;height:" + size + 'px">' +
-      '<div class="pix-shadow"></div>' +
+      '<div class="pix-shadow" data-layout-allow-overflow></div>' +
       '<div class="pix-body"><div class="pix-shine"></div>' +
       '<div class="pix-face" style="transform:scale(' + s + ')">' +
       '<div class="pix-brow l"></div><div class="pix-brow r"></div>' +

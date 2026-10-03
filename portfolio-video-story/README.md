@@ -1,4 +1,4 @@
-# Soham, the product: 52.5 s narrated story ad
+# Soham, the product: 50.75 s narrated story ad
 
 This is the third portfolio film, a narrated product ad where the product is Soham:
 - 1920×1080, 60 fps, voiceover plus music plus sound effects
@@ -13,7 +13,7 @@ This is the third portfolio film, a narrated product ad where the product is Soh
 - two published papers
 - GDG AI & ML Co-Lead
 
-It ends with a wink ("Built in code, with AI. Every single frame.") and a call to action.
+It ends on the mission, read in the flow on an orange frame that bookends the hook: "Building AI for good faith of humanity." Then comes the contact card, where the voice says only "Let's build together."
 
 **Pix**, a code-drawn pixel mascot, gets snapped and then rescued.
 

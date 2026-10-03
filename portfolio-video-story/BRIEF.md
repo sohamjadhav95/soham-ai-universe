@@ -7,7 +7,7 @@ destination: website-hero, LinkedIn, YouTube
 aspect: 1920x1080
 language: en
 audience: "recruiters, research labs and founders hiring AI/ML engineers"
-length: 52.5s (voiceover-driven)
+length: 50.75s (voiceover-driven)
 angle: narrated product ad; Soham is the product
 ---
 
@@ -22,13 +22,13 @@ The structure follows the reference reel Soham shared (Damiano Caudullo's "Tally
 3. **The reveal.** Soham is the fix.
 4. **Features as micro-stories.**
 5. **Payoff.**
-6. **Meta twist.** "Built in code, with AI. Every single frame."
-7. **CTA.**
+6. **Mission.** "Building AI for good faith of humanity.", read in the flow, on an orange frame that bookends the orange LYING. hook.
+7. **Contact card.** The voice says only "Let's build together." The name is shown, not spoken.
 
 It stays professional and punchy. The playful elements are a pixel mascot (a nod to his sub-pixel work) and an italic accent word in every line.
 
 **Voice:** Kokoro-82M (open source, Apache-2.0), voice **af_heart** (warm US female). Soham picked it by ear from a six-voice sample pack. Two settings were overridden:
-- **Speed:** 1.14.
+- **Speed:** 1.14, slowed to 1.0 for the mission line and 1.04 for the sign-off.
 - **Name pronunciation:** the phonemes are fixed to "SO-hum JAA-dhuv".
 
 Closing line on screen, verbatim: **"Building AI for Good Faith of Humanity"**.

@@ -46,9 +46,12 @@ LINES = [
     ("L14", "Published. Twice."),
     ("L15", "He co-leads AI and ML at Google Developer Groups, on campus."),
     ("L16", "Fewer guesses. AI you can actually trust."),
-    ("L17", "Oh, and this whole video? Built in code, with AI. Every single frame."),
-    ("L18", "Soham Jadhav. Let's build."),
+    ("L17", "Building AI for good faith of humanity."),
+    ("L18", "Let's build together."),
 ]
+# The mission and the sign-off get a slower, warmer read, and the mission holds before the contact card.
+SPEED_OVERRIDE = {"L17": 1.0, "L18": 1.04}
+HOLD_AFTER = {"L17": 0.8}
 # Kokoro reads the name as "SO-ham JAD-hav"; these phonemes give "SO-hum JAA-dhuv".
 PHONEME_FIX = {"sˈoʊhæm": "sˈoʊhəm", "dʒˈædhæv": "dʒˈɑːdəv"}
 
@@ -64,7 +67,7 @@ SCENES = [
     ("s08-products", ["L11", "L12", "L13"]),
     ("s09-research", ["L14", "L15"]),
     ("s10-payoff", ["L16"]),
-    ("s11-meta", ["L17"]),
+    ("s11-mission", ["L17"]),
     ("s12-end", ["L18"]),
 ]
 FIRST_LINE_AT = 0.5   # the hook card is on screen for half a second before the first word
@@ -168,7 +171,7 @@ def render_lines(use_recorded):
             p = ph(sent)
             for a, b in PHONEME_FIX.items():
                 p = p.replace(a, b)
-            y, sr = k.create(p, voice=VOICE, speed=SPEED, is_phonemes=True)
+            y, sr = k.create(p, voice=VOICE, speed=SPEED_OVERRIDE.get(lid, SPEED), is_phonemes=True)
             parts.append(trim(resample_poly(y, SR_OUT, sr).astype(np.float32)))
         clips[lid] = parts
         print(f"  {lid}  {sum(len(x) for x in parts) / SR_OUT + SENT_PAUSE * (len(parts) - 1):5.2f}s  {text}")
@@ -183,7 +186,7 @@ def main():
     scene_of = {lid: sid for sid, lids in SCENES for lid in lids}
 
     # Trim each clip to its voiced span (+30 ms) and lay the lines on the eighth-note grid.
-    lines, t, prev_scene = {}, None, None
+    lines, t, prev_scene, prev_lid = {}, None, None, None
     for lid, text in LINES:
         parts = clips[lid]
         sents = sentences(text) if len(parts) > 1 else [text]
@@ -193,7 +196,7 @@ def main():
             start = FIRST_LINE_AT
         else:
             gap_s = GAP_IN_SCENE if scene_of[lid] == prev_scene else GAP_SCENE + LEAD
-            start = snap_up(t + gap_s)
+            start = snap_up(t + gap_s + HOLD_AFTER.get(prev_lid, 0.0))
         words, matched, off = [], True, 0.0
         for sent, p in zip(sents, parts):
             segs = voiced_segments(p, SR_OUT)
@@ -207,7 +210,7 @@ def main():
             "words": [{"w": w["w"], "t0": round(start + w["t0"], 3), "t1": round(start + w["t1"], 3)} for w in words],
             "_y": y,
         }
-        t, prev_scene = lines[lid]["t1"], scene_of[lid]
+        t, prev_scene, prev_lid = lines[lid]["t1"], scene_of[lid], lid
 
     total = frames(snap_up(t + END_HOLD))
     scenes, order = {}, [s for s, _ in SCENES]

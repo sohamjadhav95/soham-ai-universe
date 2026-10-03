@@ -1,0 +1,99 @@
+<!doctype html>
+<!--
+  s11 Mission (L17). "Building AI for good faith of humanity." An orange circle wipes open (the bookend to the
+  orange LYING. hook: the film opens on the problem and closes on the promise). The line rises word by word on
+  the voice; "Good Faith of Humanity." lands in white italic serif and a warm bloom opens on "humanity".
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "Inter"; src: url("vendor/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+        @font-face { font-family: "Instrument Serif"; src: url("vendor/fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+        @font-face { font-family: "Archivo Black"; src: url("vendor/fonts/ArchivoBlack-400.woff2") format("woff2"); font-weight: 400; }
+        @font-face { font-family: "JetBrains Mono"; src: url("vendor/fonts/JetBrainsMono-400.woff2") format("woff2"); font-weight: 400; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s11-bg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: #ff5a1f; overflow: hidden; }
+        #s11-bloom { position: absolute; left: 360px; top: 140px; width: 1200px; height: 800px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(255,236,224,0.85), rgba(255,180,140,0.35) 55%, rgba(255,90,31,0)); }
+        .s11-ball { position: absolute; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #ffffff 0%, #fff1ea 40%, #ffc6ad 100%);
+          box-shadow: 0 24px 40px -18px rgba(120,30,0,0.45); }
+        #s11-l1, #s11-l2 { position: absolute; left: 0; right: 0; text-align: center; white-space: nowrap; }
+        #s11-l1 { top: 330px; font-family: "Inter"; font-weight: 700; font-size: 128px; line-height: 1.05; letter-spacing: -0.05em; color: #141518; }
+        #s11-l2 { top: 490px; font-family: "Instrument Serif"; font-style: italic; font-size: 176px; line-height: 1.05; letter-spacing: -0.01em; color: #ffffff;
+          text-shadow: 0 16px 40px rgba(150,40,0,0.35); }
+        .s11-w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.12em; }
+        .s11-w > span { display: inline-block; }
+      </style>
+
+      <div id="root" data-composition-id="s11-mission" data-width="1920" data-height="1080" data-duration="3.6167">
+        <div id="s11-stage" class="clip" data-start="0" data-duration="3.6167" data-track-index="0">
+          <div id="s11-bg">
+            <div id="s11-bloom" data-layout-ignore></div>
+            <div id="s11-balls" data-layout-ignore></div>
+            <div id="s11-l1"></div>
+            <div id="s11-l2"></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit, Q = K.cue("s11-mission"), D = Q.dur;
+          var tl = gsap.timeline({ paused: true });
+
+          // circle wipe open (the orange bookend)
+          var bg = document.getElementById("s11-bg"), wipe = { r: 0 };
+          function clip() { bg.style.clipPath = "circle(" + wipe.r.toFixed(1) + "px at 50% 52%)"; }
+          clip();
+          tl.fromTo(wipe, { r: 0 }, { r: 1150, duration: 0.42, ease: "power3.inOut", onUpdate: clip }, 0);
+
+          // floating white balls
+          var BALLS = [[220, 200, 110, 0.2], [1700, 240, 80, 1.4], [1600, 880, 140, 2.6], [300, 870, 70, 3.8], [1130, 130, 40, 0.9], [760, 960, 52, 2.1]];
+          var host = document.getElementById("s11-balls");
+          var balls = BALLS.map(function (b) {
+            var wrap = document.createElement("div"); wrap.style.position = "absolute";
+            wrap.style.left = (b[0] - b[2] / 2) + "px"; wrap.style.top = (b[1] - b[2] / 2) + "px";
+            var d = document.createElement("div"); d.className = "s11-ball";
+            d.style.width = d.style.height = b[2] + "px"; d.style.position = "relative";
+            wrap.appendChild(d); host.appendChild(wrap); return wrap;
+          });
+          K.drive(tl, D, function (t) {
+            balls.forEach(function (d, i) {
+              var b = BALLS[i];
+              d.style.transform = "translate(" + (14 * Math.sin(t * 0.7 + b[3])).toFixed(2) + "px," + (-12 * t + 10 * Math.cos(t * 0.6 + b[3])).toFixed(2) + "px)";
+            });
+          });
+          tl.fromTo(".s11-ball", { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)", stagger: 0.05 }, 0.2);
+
+          // the line, word by word on the voice
+          var l1 = document.getElementById("s11-l1"), l2 = document.getElementById("s11-l2");
+          var ws = Q.words("L17");
+          var shown = ["Building", "AI", "for", "Good", "Faith", "of", "Humanity."];
+          ws.forEach(function (w, i) {
+            var box = document.createElement("span"); box.className = "s11-w";
+            var inner = document.createElement("span"); inner.textContent = shown[i] || w.w;
+            box.appendChild(inner);
+            var row = i < 3 ? l1 : l2;
+            if (row.childNodes.length) row.appendChild(document.createTextNode(" "));
+            row.appendChild(box);
+            tl.fromTo(inner, { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: "expo.out" }, w.t0 - Q.start - 0.06);
+          });
+          var tHum = Q.w("L17", "humanity.");
+          tl.fromTo("#s11-bloom", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.08, duration: 1.1, ease: "power2.out" }, tHum - 0.1);
+          tl.fromTo("#s11-l2", { scale: 1 }, { scale: 1.04, duration: D - tHum, ease: "sine.out", immediateRender: false }, tHum + 0.2);
+          // hand-off to the end card: the words lift away, the orange holds to the cut
+          tl.fromTo("#s11-l1, #s11-l2", { opacity: 1, y: 0, filter: "blur(0px)" }, { opacity: 0, y: -30, filter: "blur(6px)", duration: 0.24, ease: "power2.in", immediateRender: false }, D - 0.26);
+
+          K.buildReady("s11-mission", K.fontsReady);
+          window.__timelines["s11-mission"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
