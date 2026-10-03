@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- Chapter progress rail (top of the stack): seven segments that fill as the film moves through its chapters (3.0–25.5 s). -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        #rl-layer { position: absolute; inset: 0; }
+        #rl-rail { position: absolute; left: 50%; top: 1004px; width: 812px; margin-left: -406px; height: 6px; }
+        .rl-seg { position: absolute; top: 0; width: 104px; height: 6px; border-radius: 3px; background: rgba(17,19,23,0.10); overflow: hidden; }
+        .rl-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: #2747f5; border-radius: 3px; transform-origin: 0 50%; }
+      </style>
+
+      <div id="root" data-composition-id="rail" data-width="1920" data-height="1080" data-duration="30">
+        <div id="rl-layer" class="clip" data-start="0" data-duration="30" data-track-index="0">
+          <div id="rl-rail" data-layout-ignore></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var CH = [[3.0, 5.5], [5.5, 9.5], [9.5, 12.0], [12.0, 15.0], [15.0, 19.5], [19.5, 22.5], [22.5, 25.5]];
+          var rail = document.getElementById("rl-rail");
+          var fills = CH.map(function (c, i) {
+            var s = document.createElement("div");
+            s.className = "rl-seg";
+            s.style.left = (i * 118) + "px";
+            var f = document.createElement("div");
+            f.className = "rl-fill";
+            s.appendChild(f);
+            rail.appendChild(s);
+            return f;
+          });
+          var clock = { t: 0 };
+          var tl = gsap.timeline({ paused: true });
+          tl.to(clock, { t: 30, duration: 30, ease: "none", onUpdate: function () {
+            var t = clock.t;
+            fills.forEach(function (f, i) {
+              var u = Math.min(1, Math.max(0, (t - CH[i][0]) / (CH[i][1] - CH[i][0])));
+              f.style.transform = "scaleX(" + u.toFixed(4) + ")";
+              f.style.opacity = t >= CH[i][1] ? "0.35" : "1";
+            });
+          } }, 0);
+          tl.fromTo("#rl-rail", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.0);
+          tl.fromTo("#rl-rail", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, 25.2);
+          window.__timelines["rail"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

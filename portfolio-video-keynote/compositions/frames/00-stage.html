@@ -1,0 +1,44 @@
+<!doctype html>
+<!--
+  The keynote stage (30 s, bottom of the stack): studio-white ground, a soft floor horizon and two
+  slowly breathing light pools, so every chapter sits on a real space instead of a flat page.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: #f6f6f3; }
+        #st-layer { position: absolute; inset: 0; }
+        #st-floor { position: absolute; left: -10%; right: -10%; top: 58%; bottom: -30%;
+          background: radial-gradient(ellipse 60% 55% at 50% 0%, #ffffff 0%, #f1f1ed 45%, #e6e6e0 100%); }
+        #st-horizon { position: absolute; left: 0; right: 0; top: 58%; height: 2px;
+          background: linear-gradient(90deg, rgba(17,19,23,0) 0%, rgba(17,19,23,0.06) 50%, rgba(17,19,23,0) 100%); }
+        #st-key { position: absolute; left: 50%; top: -38%; width: 1700px; height: 1100px; margin-left: -850px;
+          background: radial-gradient(closest-side, rgba(255,255,255,0.95), rgba(255,255,255,0)); }
+        #st-tint { position: absolute; left: 50%; top: 52%; width: 1500px; height: 560px; margin-left: -750px;
+          background: radial-gradient(closest-side, rgba(39,71,245,0.07), rgba(39,71,245,0)); }
+      </style>
+
+      <div id="root" data-composition-id="stage" data-width="1920" data-height="1080" data-duration="30">
+        <div id="st-layer" class="clip" data-start="0" data-duration="30" data-track-index="0">
+          <div id="st-floor" data-layout-ignore></div>
+          <div id="st-horizon" data-layout-ignore></div>
+          <div id="st-key" data-layout-ignore></div>
+          <div id="st-tint" data-layout-ignore></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var tl = gsap.timeline({ paused: true });
+          tl.fromTo("#st-key", { opacity: 0.75, scale: 0.96 }, { opacity: 1, scale: 1.04, duration: 7.5, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0);
+          tl.fromTo("#st-tint", { opacity: 0.6, x: -60 }, { opacity: 1, x: 60, duration: 10, ease: "sine.inOut", yoyo: true, repeat: 2 }, 0);
+          window.__timelines["stage"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

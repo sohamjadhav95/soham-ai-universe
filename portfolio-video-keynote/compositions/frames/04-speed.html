@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+  Chapter 4 — Speed (2.5 s): 63× faster than TotalSegmentator.
+  The numeral counts up and settles; on a glass card, an inference-time race: the TotalSegmentator bar
+  takes its full length, the PrediCT bar finishes at 1/63 of it.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Geist"; src: url("vendor/fonts/geist-sans-500.woff2") format("woff2"); font-weight: 500; }
+        @font-face { font-family: "Geist"; src: url("vendor/fonts/geist-sans-600.woff2") format("woff2"); font-weight: 600; }
+        @font-face { font-family: "Geist"; src: url("vendor/fonts/geist-sans-800.woff2") format("woff2"); font-weight: 800; }
+        @font-face { font-family: "Geist Mono"; src: url("vendor/fonts/geist-mono-500.woff2") format("woff2"); font-weight: 500; }
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #f04-io { position: absolute; inset: 0; }
+        #f04-chapter { position: absolute; left: 120px; top: 190px; font-family: "Geist Mono"; font-weight: 500; font-size: 24px; letter-spacing: 0.18em; color: #2747f5; text-transform: uppercase; }
+        #f04-num { position: absolute; left: 104px; top: 222px; font-family: "Geist"; font-weight: 800; font-size: 330px; line-height: 1; letter-spacing: -0.065em; color: #111317; white-space: nowrap; transform-origin: 0 70%; }
+        #f04-num .x { color: #2747f5; }
+        #f04-cap { position: absolute; left: 120px; top: 584px; font-family: "Geist"; font-weight: 500; font-size: 52px; letter-spacing: -0.03em; color: #111317; }
+        #f04-meta { position: absolute; left: 120px; top: 664px; font-family: "Geist Mono"; font-weight: 500; font-size: 22px; letter-spacing: 0.14em; color: #454a52; text-transform: uppercase; }
+        #f04-persp { position: absolute; left: 1010px; top: 330px; width: 790px; height: 430px; perspective: 2000px; }
+        #f04-card { position: absolute; inset: 0; border-radius: 32px; background: rgba(255,255,255,0.8); border: 1px solid rgba(17,19,23,0.08);
+          box-shadow: 0 60px 100px -36px rgba(17,19,23,0.24), 0 16px 30px -16px rgba(17,19,23,0.14), inset 0 1px 0 rgba(255,255,255,0.95); }
+        #f04-ctitle { position: absolute; left: 56px; top: 50px; font-family: "Geist Mono"; font-weight: 500; font-size: 22px; letter-spacing: 0.14em; color: #454a52; text-transform: uppercase; }
+        .f04-row { position: absolute; left: 56px; right: 56px; height: 120px; }
+        .f04-row .lab { position: absolute; left: 0; top: 0; font-family: "Geist"; font-weight: 600; font-size: 32px; letter-spacing: -0.015em; color: #111317; }
+        .f04-row .track { position: absolute; left: 0; right: 0; top: 58px; height: 30px; border-radius: 15px; background: rgba(17,19,23,0.06); overflow: hidden; }
+        .f04-row .bar { position: absolute; left: 0; top: 0; height: 30px; border-radius: 15px; transform-origin: 0 50%; }
+        #f04-bar1 { width: 100%; background: #2b2f36; }
+        #f04-bar2 { width: 1.59%; min-width: 12px; background: #2747f5; }
+        #f04-tag { position: absolute; left: 34px; top: 56px; font-family: "Geist"; font-weight: 800; font-size: 30px; letter-spacing: -0.02em; color: #1f3ce6; white-space: nowrap; }
+      </style>
+
+      <div id="root" data-composition-id="f04-speed" data-width="1920" data-height="1080" data-duration="2.5">
+        <div id="f04-stage" class="clip" data-start="0" data-duration="2.5" data-track-index="0">
+          <div id="f04-io">
+            <div id="f04-chapter">Speed</div>
+            <div id="f04-num" data-layout-allow-overlap><span id="f04-n" data-layout-allow-overlap>1</span><span class="x">×</span></div>
+            <div id="f04-cap">faster than TotalSegmentator.</div>
+            <div id="f04-meta">PrediCT · CAC inference</div>
+            <div id="f04-persp">
+              <div id="f04-card">
+                <div id="f04-ctitle">Inference time</div>
+                <div class="f04-row" style="top: 110px"><span class="lab">TotalSegmentator</span><div class="track"><div class="bar" id="f04-bar1"></div></div></div>
+                <div class="f04-row" style="top: 250px"><span class="lab">PrediCT</span><div class="track" style="overflow: visible; background: transparent"><div class="bar" id="f04-bar2"></div><div id="f04-tag">63× faster</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var K = window.HFKit;
+          var D = 2.5;
+          var tl = gsap.timeline({ paused: true });
+          K.sceneIO(tl, "#f04-io", D);
+          tl.fromTo("#f04-chapter", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+          tl.fromTo("#f04-num", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1.0, duration: 0.6, ease: "power3.out" }, 0.15);
+          K.countUp(tl, document.getElementById("f04-n"), 1, 63, 0.25, 0.55, null, "power2.in");
+          tl.fromTo("#f04-num", { scale: 1.0 }, { scale: 1.04, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 0.85);
+          tl.fromTo("#f04-cap", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.9);
+          tl.fromTo("#f04-meta", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.05);
+          tl.fromTo("#f04-card", { opacity: 0, y: 110, rotationX: 16, rotationY: -14 },
+            { opacity: 1, y: 0, rotationX: 0, rotationY: -6, duration: 0.8, ease: "back.out(1.2)" }, 0.15);
+          tl.fromTo("#f04-card", { rotationY: -6 }, { rotationY: -1, duration: 1.5, ease: "sine.inOut", immediateRender: false }, 0.96);
+          // The race: TotalSegmentator takes the full run; PrediCT finishes 63× sooner.
+          tl.fromTo("#f04-bar1", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "none" }, 1.05);
+          tl.fromTo("#f04-bar2", { scaleX: 0 }, { scaleX: 1, duration: 0.05, ease: "none" }, 1.05);
+          tl.fromTo("#f04-tag", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }, 1.12);
+          K.buildReady("f04-speed", K.fontsReady);
+          window.__timelines["f04-speed"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
