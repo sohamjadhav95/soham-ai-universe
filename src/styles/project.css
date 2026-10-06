@@ -219,38 +219,82 @@
 .next-case .link {
   position: relative;
   display: block;
-  padding-bottom: calc(var(--section-padding) * 0.8);
+  padding: 0 var(--container-padding);
+  overflow: hidden;
 }
 
 .next-case .link p {
-  margin-bottom: 1em;
+  margin-bottom: 2.25em;
   opacity: 0.6;
 }
 
-.next-case .link h1 {
+.next-case .next-case-title {
+  font-size: 80px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  max-width: 1100px;
+  margin: 0 auto 0.75em;
+  overflow-wrap: anywhere;
   transition: opacity var(--primary) var(--ease);
 }
 
-.next-case .link:hover h1 {
-  opacity: 0.25;
+.next-case-preview {
+  position: relative;
+  height: 180px;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .next-case .thumb {
   position: absolute;
   left: 50%;
-  bottom: 0;
-  width: clamp(14em, 25vw, 22em);
+  top: 0;
+  width: 100%;
   aspect-ratio: 1.25;
-  transform: translate(-50%, 35%);
-  opacity: 0;
-  transition: transform var(--smooth) var(--ease), opacity var(--primary) var(--ease);
+  transform: translate(-50%, 65px);
+  transition: transform var(--smooth) var(--ease);
   pointer-events: none;
   z-index: 2;
 }
 
-.next-case .link:hover .thumb {
+.next-case-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-blue);
+  color: var(--color-light);
+  transform: translate(-50%, 15px) scale(0);
+  transition: transform var(--primary) var(--ease);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.next-case .link:focus-visible .thumb {
   transform: translate(-50%, 0);
-  opacity: 1;
+}
+
+.next-case .link:focus-visible .next-case-badge {
+  transform: translate(-50%, 0) scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .next-case .link:hover .next-case-title {
+    opacity: 0.25;
+  }
+
+  .next-case .link:hover .thumb {
+    transform: translate(-50%, 0);
+  }
+
+  .next-case .link:hover .next-case-badge {
+    transform: translate(-50%, 0) scale(1);
+  }
 }
 
 .next-case .all {
@@ -297,7 +341,16 @@
     right: var(--container-padding);
   }
 
+  .next-case .next-case-title {
+    font-size: 40px;
+  }
+
+  .next-case-preview {
+    height: 140px;
+    max-width: 360px;
+  }
+
   .next-case .thumb {
-    display: none;
+    transform: translate(-50%, 35px);
   }
 }
