@@ -20,26 +20,11 @@
   fill: var(--color-dark);
 }
 
-/* Glass: white continents on a see-through ocean, for coloured circles. */
-.globe.is-glass .globe-ocean {
+/* Dark: a black sphere with white continents, for coloured circles. */
+.globe.is-dark .globe-ocean {
+  fill: #0d0e10;
+}
+
+.globe.is-dark .globe-land {
   fill: #fff;
-  fill-opacity: 0.12;
-}
-
-.globe.is-glass .globe-grid {
-  fill: none;
-  stroke: #fff;
-  stroke-opacity: 0.22;
-  stroke-width: 0.35;
-}
-
-.globe.is-glass .globe-land {
-  fill: #fff;
-}
-
-.globe.is-glass .globe-rim {
-  fill: none;
-  stroke: #fff;
-  stroke-opacity: 0.55;
-  stroke-width: 0.6;
 }

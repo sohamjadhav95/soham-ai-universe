@@ -6,7 +6,7 @@
 // To add a live demo later: add { label: 'Live demo', href: '...' } to `links`.
 // To add a screen recording: put the MP4 in public/videos/ and set
 // `video: { src: '/videos/<name>.mp4', poster: '/videos/<name>.webp' }`.
-// It plays inside a laptop on the project page.
+// It plays in a clean video frame on the project page.
 
 export type Category = 'research' | 'engineering';
 
