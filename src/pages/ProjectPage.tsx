@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import SplitWords from '@/components/SplitWords';
 import ProjectVisual from '@/components/ProjectVisual';
 import { FooterBottom } from '@/components/Footer';
-import { getProject, nextProject } from '@/data/projects';
+import { getProject, nextProject, PROJECTS, type Project } from '@/data/projects';
 import { SITE } from '@/data/site';
 import { TLink } from '@/lib/transition';
 import { gsap, useGsap } from '@/lib/motion';
@@ -18,12 +18,11 @@ export default function ProjectPage() {
   const { slug = '' } = useParams();
   const project = getProject(slug);
   if (!project) return <NotFound />;
-  return <Case key={slug} slug={slug} />;
+  return <Case key={slug} p={project} />;
 }
 
-function Case({ slug }: { slug: string }) {
-  const p = getProject(slug)!;
-  const next = nextProject(slug);
+function Case({ p }: { p: Project }) {
+  const next = nextProject(p.slug);
   const root = useRef<HTMLDivElement>(null);
   useTitle(`${p.title} • ${SITE.name}`);
   useEntrance(root);
@@ -124,7 +123,7 @@ function Case({ slug }: { slug: string }) {
             style={{ '--n': p.flow.steps.length } as CSSProperties}
           >
             {p.flow.steps.map((s, i) => (
-              <li className={`flow-step${i === p.flow!.steps.length - 1 ? ' is-accent' : ''}`} key={s.label}>
+              <li className={`flow-step${i === (p.flow?.steps.length ?? 0) - 1 ? ' is-accent' : ''}`} key={s.label}>
                 <span className="nr">{String(i + 1).padStart(2, '0')}</span>
                 <h4>{s.label}</h4>
                 <p>{s.detail}</p>
@@ -165,19 +164,22 @@ function Case({ slug }: { slug: string }) {
         </section>
       )}
 
-      <section className="next-case">
+      <section className="next-case theme-dark">
         <TLink to={`/work/${next.slug}`} className="link">
           <p>Next project</p>
-          <h1 className="big">{next.title}</h1>
-          <div className="thumb">
-            <ProjectVisual project={next} />
+          <h2 className="next-case-title">{next.title}</h2>
+          <div className="next-case-preview">
+            <div className="thumb">
+              <ProjectVisual project={next} />
+            </div>
+            <span className="next-case-badge" aria-hidden="true">Next project</span>
           </div>
         </TLink>
         <div className="container medium">
           <div className="stripe" />
         </div>
         <div className="all">
-          <Button to="/work">
+          <Button to="/work" count={PROJECTS.length}>
             All work
           </Button>
         </div>

@@ -1,4 +1,5 @@
 // Small inline icons, drawn with currentColor so they follow the text colour.
+import RotatingGlobe from './RotatingGlobe';
 
 export function SocialIcon({ label }: { label: string }) {
   return (
@@ -51,17 +52,7 @@ export function GridIcon() {
   );
 }
 
-/** Wireframe globe; the meridians sweep to suggest rotation (see globe.css). */
+/** Rotating continental globe, shared by every location badge. */
 export function Globe({ className = '' }: { className?: string }) {
-  return (
-    <span className={`globe ${className}`} aria-hidden="true">
-      <span className="globe-ring" />
-      <span className="globe-meridian m1" />
-      <span className="globe-meridian m2" />
-      <span className="globe-meridian m3" />
-      <span className="globe-lat l1" />
-      <span className="globe-lat l2" />
-      <span className="globe-lat l3" />
-    </span>
-  );
+  return <RotatingGlobe className={className} />;
 }

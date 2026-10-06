@@ -1,3 +1,5 @@
 - [x] Crop the front-page portrait at the last shirt button.
 - [x] Restore button colors after hover.
 - [x] Match the reference pointer and footer icon dock, retaining existing social destinations.
+- [ ] Fix next-project previews across all projects to match the supplied examples.
+- [ ] Replace the wireframe with a continuously rotating continental globe.
