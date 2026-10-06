@@ -1,0 +1,145 @@
+.footer-wrap {
+  position: relative;
+  background: var(--color-dark);
+  color: var(--color-light);
+  overflow: hidden;
+}
+
+/* The previous section's colour bulging into the footer, flattening on scroll. */
+.footer-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.footer-curve .shape {
+  position: absolute;
+  bottom: 0;
+  left: -25%;
+  width: 150%;
+  height: 750%;
+  border-radius: 50%;
+  background: var(--curve-color, var(--color-light));
+}
+
+.footer {
+  padding-top: calc(var(--section-padding) * 1.33);
+}
+
+.footer-title {
+  position: relative;
+}
+
+.footer-title h2 {
+  font-size: calc(clamp(3.25em, 7vw, 8em) * 0.875);
+  line-height: 1.065;
+}
+
+.footer-title .avatar {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.25em;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: -0.12em;
+  background: var(--color-gray);
+}
+
+.footer-title .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-title .arrow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 1.1em;
+  height: 1.1em;
+  opacity: 0.8;
+}
+
+.footer-line {
+  position: relative;
+  margin-top: calc(var(--section-padding) * 0.66);
+}
+
+.footer-line .btn-round {
+  position: absolute;
+  right: 12%;
+  top: 0;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding-top: calc(var(--section-padding) * 0.5);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2em;
+  padding: calc(var(--section-padding) * 0.66) 2.5em 2.5em;
+}
+
+.footer-bottom .meta {
+  display: flex;
+  gap: 3em;
+}
+
+.footer-bottom h5 {
+  margin-bottom: 0.9em;
+}
+
+.footer-bottom p,
+.footer-bottom a {
+  font-size: 0.85em;
+}
+
+.footer-bottom .socials ul {
+  display: flex;
+  gap: 0 1.75em;
+  flex-wrap: wrap;
+}
+
+.footer-bottom .link-line {
+  padding: 0;
+}
+
+.footer-bottom .link-line::after {
+  bottom: -0.15em;
+}
+
+@media (max-width: 800px) {
+  .footer-line .btn-round {
+    right: 0;
+  }
+
+  .footer-contacts {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-contacts .btn,
+  .footer-contacts .btn-click {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    padding: 4em 1.5em 2em;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}

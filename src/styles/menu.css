@@ -1,0 +1,183 @@
+/* Round button that pops in once the top bar has scrolled away. */
+.menu-btn {
+  position: fixed;
+  top: clamp(1em, 2vw, 1.8em);
+  right: clamp(1em, 2vw, 1.8em);
+  z-index: 820;
+  transform: scale(0);
+  transition: transform 0.4s var(--ease-pop);
+}
+
+.menu-btn.is-visible,
+.menu-btn.is-open {
+  transform: scale(1);
+}
+
+.menu-btn .btn-click {
+  width: clamp(4em, 5.5vw, 5em);
+  height: clamp(4em, 5.5vw, 5em);
+  border-radius: 50%;
+  background: var(--color-dark);
+  box-shadow: inset 0 0 0 1px var(--color-border-dark);
+  transition: background var(--fast) var(--ease);
+}
+
+.menu-btn.is-open .btn-click {
+  background: var(--color-blue);
+}
+
+.menu-bars {
+  position: relative;
+  width: 1.6em;
+  height: 0.6em;
+}
+
+.menu-bars::before,
+.menu-bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-light);
+  transition: transform var(--primary) var(--ease), top var(--primary) var(--ease);
+}
+
+.menu-bars::before {
+  top: 0;
+}
+
+.menu-bars::after {
+  top: 100%;
+}
+
+.menu-btn.is-open .menu-bars::before {
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.menu-btn.is-open .menu-bars::after {
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+/* Side panel */
+.side-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 810;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.side-menu.is-open {
+  pointer-events: all;
+  visibility: visible;
+}
+
+.side-menu-backdrop {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+}
+
+.side-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(100%, max(28em, 37.5vw));
+  background: var(--color-dark);
+  color: var(--color-light);
+  transform: translateX(calc(100% + 6vw));
+  will-change: transform;
+}
+
+/* Curved left edge that flattens as the panel settles. */
+.side-menu-curve {
+  position: absolute;
+  top: 0;
+  right: calc(100% - 1px);
+  width: 6vw;
+  height: 100%;
+  overflow: hidden;
+  transform-origin: right;
+}
+
+.side-menu-curve .shape {
+  position: absolute;
+  top: -25%;
+  left: 0;
+  width: 1200%;
+  height: 150%;
+  border-radius: 50%;
+  background: var(--color-dark);
+}
+
+.side-menu-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15vh 7.5vw 10vh;
+  overflow-y: auto;
+}
+
+.side-menu-inner .stripe {
+  margin: 1.75em 0 2.5em;
+}
+
+.side-menu-links li {
+  overflow: hidden;
+}
+
+.side-menu-links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(2.6em, 3.6vw, 3.6em);
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+}
+
+.side-menu-links a::before {
+  content: '';
+  position: absolute;
+  left: -0.55em;
+  top: 50%;
+  width: 0.16em;
+  height: 0.16em;
+  margin-top: -0.08em;
+  border-radius: 50%;
+  background: var(--color-light);
+  transform: scale(0);
+  transition: transform var(--fast) var(--ease);
+}
+
+.side-menu-links a:hover::before,
+.side-menu-links a.is-active::before {
+  transform: scale(1);
+}
+
+.side-menu-socials ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.6em;
+  margin-top: 0.6em;
+}
+
+.side-menu-socials a {
+  font-size: 0.9em;
+}
+
+@media (max-width: 800px) {
+  .side-menu-inner {
+    padding: 18vh 12vw 8vh;
+  }
+
+  .side-menu-curve {
+    width: 12vw;
+  }
+}

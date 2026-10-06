@@ -1,0 +1,214 @@
+/* ── Hero ───────────────────────────────────────────── */
+.home-hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 36em;
+  overflow: hidden;
+  background: var(--color-gray);
+  color: var(--color-light);
+}
+
+.hero-photo {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 94%;
+  transform: translateX(-50%);
+  will-change: transform;
+}
+
+.hero-photo img {
+  height: 100%;
+  width: auto;
+  max-width: none;
+  user-select: none;
+}
+
+/* Dark tab hanging from the left edge: "Located in India" + spinning globe. */
+.hero-hanger {
+  position: absolute;
+  left: 0;
+  top: 44%;
+  display: flex;
+  align-items: center;
+  gap: 1.4em;
+  padding: 0.75em 0.75em 0.75em clamp(1.5em, 3vw, 2.75em);
+  border-radius: 0 999px 999px 0;
+  background: var(--color-dark);
+  line-height: 1.25;
+}
+
+.hero-hanger p {
+  line-height: 1.25;
+}
+
+.hero-hanger p span {
+  display: block;
+}
+
+.hero-hanger .ball {
+  width: clamp(3.5em, 5vw, 4.6em);
+  height: clamp(3.5em, 5vw, 4.6em);
+  border-radius: 50%;
+  background: var(--color-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-light);
+}
+
+.hero-role {
+  position: absolute;
+  top: 44%;
+  right: var(--container-padding);
+  width: max-content;
+}
+
+.hero-role .arrow {
+  width: 0.9em;
+  height: 0.9em;
+  margin-bottom: 1.3em;
+  font-size: 1.4em;
+}
+
+.hero-role h4 span {
+  display: block;
+}
+
+.hero-name {
+  position: absolute;
+  left: 0;
+  bottom: 5vh;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.name-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.name-track h1 {
+  font-size: max(15vw, 4.6em);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+  padding-right: 0.25em;
+  user-select: none;
+}
+
+.name-track .spacer {
+  display: inline-block;
+  padding-left: 0.25em;
+}
+
+/* ── Intro ──────────────────────────────────────────── */
+.home-intro {
+  padding: var(--section-padding) 0 calc(var(--section-padding) * 1.1);
+  background: var(--color-light);
+}
+
+.home-intro .row {
+  justify-content: space-between;
+  gap: 3em;
+}
+
+.home-intro .statement {
+  flex: 0 1 68%;
+}
+
+.home-intro .aside {
+  position: relative;
+  flex: 0 1 25%;
+  padding-top: 0.5em;
+}
+
+.home-intro .aside .btn-round {
+  position: absolute;
+  top: calc(100% + 2em);
+  left: 0;
+}
+
+/* ── Recent work ────────────────────────────────────── */
+.home-work {
+  background: var(--color-light);
+  padding-top: calc(var(--section-padding) * 0.8);
+}
+
+.home-work > h5 {
+  padding: 0 calc(var(--container-padding) * 2) 3em;
+}
+
+.home-work .work-rows {
+  margin: 0 var(--container-padding);
+}
+
+.home-work .project-grid {
+  padding: 0 var(--container-padding);
+}
+
+.home-more {
+  display: flex;
+  justify-content: center;
+  padding: calc(var(--section-padding) * 0.5) 0 calc(var(--section-padding) * 0.9);
+  background: var(--color-light);
+}
+
+@media (max-width: 800px) {
+  .hero-photo {
+    height: 92%;
+  }
+
+  .hero-hanger {
+    top: auto;
+    bottom: 26vh;
+    font-size: 0.8em;
+    gap: 1em;
+  }
+
+  .hero-role {
+    top: auto;
+    bottom: 26vh;
+    right: 1.5em;
+    text-align: right;
+  }
+
+  .hero-role .arrow {
+    margin: 0 0 1em auto;
+  }
+
+  .hero-role h4 {
+    font-size: 1.1em;
+  }
+
+  .hero-name {
+    bottom: 4vh;
+  }
+
+  .name-track h1 {
+    font-size: 24vw;
+  }
+
+  .home-intro .row {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .home-intro .aside {
+    padding-bottom: 10em;
+  }
+
+  .home-intro .aside .btn-round {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+  }
+
+  .home-work > h5 {
+    padding: 0 var(--container-padding) 2em;
+  }
+}
