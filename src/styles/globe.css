@@ -1,0 +1,77 @@
+.globe {
+  position: relative;
+  display: block;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.globe-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+}
+
+.globe-meridian {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  margin-left: -50%;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  animation: globe-spin 3.6s linear infinite;
+}
+
+.globe-meridian.m2 {
+  animation-delay: -1.2s;
+}
+
+.globe-meridian.m3 {
+  animation-delay: -2.4s;
+}
+
+.globe-lat {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.globe-lat.l1 {
+  top: 50%;
+  margin-top: -0.75px;
+}
+
+.globe-lat.l2 {
+  top: 25%;
+  left: 7%;
+  width: 86%;
+}
+
+.globe-lat.l3 {
+  top: 75%;
+  left: 7%;
+  width: 86%;
+}
+
+/* A meridian squeezes from a full circle to a line and back, offset in time,
+   which reads as a slowly turning sphere. */
+@keyframes globe-spin {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scaleX(-1);
+    opacity: 1;
+  }
+}

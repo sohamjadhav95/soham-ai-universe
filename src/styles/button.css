@@ -1,0 +1,176 @@
+.btn {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-click {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.btn-fill {
+  position: absolute;
+  left: -25%;
+  top: -50%;
+  width: 150%;
+  height: 200%;
+  border-radius: 50%;
+  background: var(--color-blue);
+  transform: translate3d(0, 76%, 0);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.btn-text {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  transition: color var(--fast) var(--ease);
+  pointer-events: none;
+}
+
+.btn-count {
+  font-size: 0.7em;
+  opacity: 0.6;
+  margin-left: 0.3em;
+  line-height: 1;
+}
+
+.btn-arrow {
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.5em;
+  align-self: center;
+}
+
+/* Round: the big circle buttons ("About me", "Get in touch"). */
+.btn-round .btn-click {
+  width: var(--btn-round);
+  height: var(--btn-round);
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-light);
+}
+
+.btn-round.is-blue .btn-click {
+  background: var(--color-blue);
+}
+
+.btn-round.is-blue .btn-fill {
+  background: var(--color-blue-dark);
+}
+
+/* Pill: outlined, fills blue on hover. */
+.btn-pill .btn-click {
+  height: 4.25em;
+  padding: 0 2.5em;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.theme-dark .btn-pill .btn-click {
+  box-shadow: inset 0 0 0 1px var(--color-border-dark);
+}
+
+.btn-pill:hover .btn-text,
+.btn-pill.is-active .btn-text {
+  color: var(--color-light);
+}
+
+.btn-pill.is-active .btn-click {
+  background: var(--color-dark);
+  box-shadow: none;
+}
+
+.btn-pill.is-dark .btn-click {
+  background: var(--color-dark);
+  color: var(--color-light);
+  box-shadow: none;
+}
+
+/* Icon: small circles (list / grid toggles). */
+.btn-icon .btn-click {
+  width: 4.25em;
+  height: 4.25em;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.btn-icon.is-active .btn-click {
+  background: var(--color-dark);
+  color: var(--color-light);
+  box-shadow: none;
+}
+
+.btn-icon:hover .btn-click {
+  color: var(--color-light);
+}
+
+.btn-icon svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+/* Text link with a dot (nav) or underline (footer / socials). */
+.link-dot,
+.link-line {
+  position: relative;
+  display: inline-flex;
+  padding: 0.6em 0;
+}
+
+.link-dot::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.2em;
+  width: 0.36em;
+  height: 0.36em;
+  margin-left: -0.18em;
+  border-radius: 50%;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform var(--fast) var(--ease);
+}
+
+.link-dot:hover::after,
+.link-dot.is-active::after {
+  transform: scale(1);
+}
+
+.link-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.35em;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--primary) var(--ease);
+}
+
+.link-line:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 800px) {
+  .btn-round .btn-click {
+    width: 8.5em;
+    height: 8.5em;
+  }
+
+  .btn-pill .btn-click {
+    height: 3.75em;
+    padding: 0 1.75em;
+  }
+}

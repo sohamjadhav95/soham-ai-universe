@@ -1,0 +1,76 @@
+.project-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-visual .project-art {
+  width: 86%;
+  height: 86%;
+}
+
+/* Floating preview that follows the cursor over project / certificate lists. */
+.hover-modal,
+.hover-cursor,
+.hover-label {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 700;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.hover-modal {
+  width: clamp(14em, 27vw, 25em);
+  height: clamp(12em, 23vw, 21.5em);
+  overflow: hidden;
+  background: var(--color-light-gray);
+}
+
+.hover-modal.is-square {
+  height: clamp(14em, 27vw, 25em);
+}
+
+.hover-slider {
+  position: absolute;
+  inset: 0;
+  transition: transform var(--primary) cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.hover-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover-slide img.contain {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+}
+
+.hover-cursor {
+  width: clamp(4.5em, 5.5vw, 5.25em);
+  height: clamp(4.5em, 5.5vw, 5.25em);
+  border-radius: 50%;
+  background: var(--color-blue);
+}
+
+.hover-label {
+  color: var(--color-light);
+  font-size: 0.9em;
+}

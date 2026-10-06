@@ -1,28 +1,37 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { TransitionProvider } from './lib/transition';
+import { initScroll } from './lib/scroll';
+import Preloader from './components/Preloader';
+import Menu from './components/Menu';
+import Home from './pages/Home';
+import Work from './pages/Work';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import ProjectPage from './pages/ProjectPage';
+import NotFound from './pages/NotFound';
 
-import NotFound from "./pages/NotFound";
+export default function App() {
+  useEffect(() => {
+    initScroll();
+  }, []);
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+  return (
+    <BrowserRouter>
+      <TransitionProvider>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/work/:slug" element={<ProjectPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Menu />
+        <Preloader />
+      </TransitionProvider>
+    </BrowserRouter>
+  );
+}

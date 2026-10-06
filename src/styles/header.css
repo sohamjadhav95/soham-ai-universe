@@ -1,0 +1,78 @@
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35em;
+  color: var(--color-dark);
+}
+
+.nav-bar.is-light {
+  color: var(--color-light);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6em 1.25em;
+  line-height: 1.6;
+}
+
+.nav-logo .copyright {
+  display: inline-block;
+  margin-right: 0.35em;
+  transition: transform var(--slow) var(--ease);
+}
+
+.nav-logo:hover .copyright {
+  transform: rotate(360deg);
+}
+
+/* Name rolls up to reveal the role on hover. */
+.nav-logo .roll {
+  display: inline-block;
+  height: 1.6em;
+  overflow: hidden;
+}
+
+.nav-logo .roll-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--primary) var(--ease);
+}
+
+.nav-logo:hover .roll-inner {
+  transform: translateY(-50%);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  padding: 0 1.25em;
+}
+
+.nav-menu-text {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .nav-bar {
+    padding: 1em 0.5em;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-menu-text {
+    display: inline-flex;
+    padding: 0.6em 1em;
+  }
+}

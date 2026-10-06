@@ -1,0 +1,247 @@
+.about-globe {
+  position: relative;
+  margin-top: calc(var(--section-padding) * 0.2);
+}
+
+.about-globe .ball-wrap {
+  position: absolute;
+  left: 72%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.about-globe .ball {
+  width: var(--btn-round);
+  height: var(--btn-round);
+  border-radius: 50%;
+  background: var(--color-blue);
+  color: var(--color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--smooth) var(--ease);
+}
+
+.about-globe .ball:hover {
+  background: var(--color-blue-dark);
+}
+
+.about-globe .globe {
+  width: 3.3em;
+  height: 3.3em;
+}
+
+.about-intro {
+  padding-top: calc(var(--section-padding) * 0.9);
+  padding-bottom: var(--section-padding);
+}
+
+.about-intro .row {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.about-intro .text {
+  flex: 0 0 32%;
+  position: relative;
+  padding-top: 3.5em;
+}
+
+.about-intro .text .arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.about-intro .text p + p {
+  margin-top: 1.4em;
+}
+
+.about-intro .text .small {
+  opacity: 0.6;
+}
+
+.about-intro .image {
+  flex: 0 0 60%;
+  aspect-ratio: 1 / 1.35;
+  overflow: hidden;
+  background: var(--color-light-gray);
+}
+
+.about-intro .image img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Services */
+.about-services {
+  background: var(--color-light-gray);
+  padding: calc(var(--section-padding) * 0.75) 0 var(--section-padding);
+}
+
+.about-services h2 {
+  margin-bottom: calc(var(--section-padding) * 0.5);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 clamp(2em, 5vw, 5em);
+}
+
+.services-grid h5 {
+  font-size: 0.8em;
+  margin-bottom: 2em;
+}
+
+.services-grid .stripe {
+  margin-bottom: 2.4em;
+}
+
+.services-grid h4 {
+  margin-bottom: 0.9em;
+}
+
+/* Lists: papers, experience, certificates */
+.about-block {
+  padding: var(--section-padding) 0 0;
+}
+
+.about-block > .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2em;
+  padding: 0 calc(var(--container-padding) * 2) 3em;
+}
+
+.about-block > .head p {
+  max-width: 22em;
+}
+
+.about-block .list {
+  padding: 0 var(--container-padding);
+}
+
+.paper-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(14em, 30%) auto;
+  gap: 1em 3em;
+  align-items: start;
+  padding: 2.2em var(--container-padding);
+  border-top: 1px solid var(--color-border);
+}
+
+.paper-list > li:last-child .paper-row,
+.exp-list > li:last-child .exp-row {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.paper-row h4 {
+  font-size: clamp(1.25em, 1.8vw, 1.9em);
+  line-height: 1.35;
+  transition: transform var(--primary) var(--ease);
+}
+
+.paper-row:hover h4 {
+  transform: translateX(-0.4em);
+}
+
+.paper-row .authors,
+.paper-row .doi {
+  margin-top: 0.8em;
+  font-size: 0.85em;
+  opacity: 0.6;
+}
+
+.paper-row .meta p:first-child {
+  margin-bottom: 0.35em;
+}
+
+.paper-row .arrow {
+  width: 1.1em;
+  height: 1.1em;
+  margin-top: 0.4em;
+  transition: transform var(--primary) var(--ease);
+}
+
+.paper-row:hover .arrow {
+  transform: rotate(45deg);
+}
+
+.exp-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(14em, 30%) 11em;
+  gap: 0.6em 3em;
+  padding: 2.2em var(--container-padding);
+  border-top: 1px solid var(--color-border);
+}
+
+.exp-row .text {
+  grid-column: 1;
+  opacity: 0.6;
+  max-width: 34em;
+}
+
+.exp-row .period {
+  text-align: right;
+}
+
+.about-resume {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  padding: calc(var(--section-padding) * 0.75) 0 calc(var(--section-padding) * 0.9);
+}
+
+@media (max-width: 800px) {
+  .about-globe .ball-wrap {
+    left: auto;
+    right: 0;
+    transform: translate(0, -50%);
+  }
+
+  .about-intro .row {
+    flex-direction: column-reverse;
+    gap: 3em;
+  }
+
+  .about-intro .text,
+  .about-intro .image {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 3em;
+  }
+
+  .about-block > .head {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 var(--container-padding) 2em;
+  }
+
+  .paper-row,
+  .exp-row {
+    grid-template-columns: 1fr;
+    padding: 1.75em 0;
+    gap: 0.6em;
+  }
+
+  .paper-row .arrow {
+    display: none;
+  }
+
+  .exp-row .period {
+    text-align: left;
+    opacity: 0.6;
+  }
+}
