@@ -1,23 +1,10 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap, isTouch } from '@/lib/motion';
+import { pointer } from '@/lib/pointer';
 import '@/styles/hover.css';
 
 type Slide = { key: string; bg: string; content: ReactNode };
-
-// Last known pointer position, kept across pages so a preview that opens
-// before the mouse moves (e.g. rows scrolling under a still cursor) starts in
-// the right place instead of the corner.
-const pointer = { x: -500, y: -500 };
-if (typeof window !== 'undefined')
-  window.addEventListener(
-    'pointermove',
-    e => {
-      pointer.x = e.clientX;
-      pointer.y = e.clientY;
-    },
-    { passive: true },
-  );
 
 /**
  * The floating preview + round "View" cursor shown while hovering a list row.

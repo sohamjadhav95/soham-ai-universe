@@ -1,9 +1,11 @@
-import { useRef, type CSSProperties } from 'react';
+import { useRef, useState, type CSSProperties } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import Button from '@/components/Button';
 import SplitWords from '@/components/SplitWords';
 import ProjectVisual from '@/components/ProjectVisual';
+import FollowBall from '@/components/FollowBall';
+import DeviceVideo from '@/components/DeviceVideo';
 import { FooterBottom } from '@/components/Footer';
 import { getProject, nextProject, PROJECTS, type Project } from '@/data/projects';
 import { SITE } from '@/data/site';
@@ -24,6 +26,7 @@ export default function ProjectPage() {
 function Case({ p }: { p: Project }) {
   const next = nextProject(p.slug);
   const root = useRef<HTMLDivElement>(null);
+  const [overNext, setOverNext] = useState(false);
   useTitle(`${p.title} • ${SITE.name}`);
   useEntrance(root);
 
@@ -86,6 +89,20 @@ function Case({ p }: { p: Project }) {
           </Button>
         )}
       </section>
+
+      {p.video && (
+        <section className="case-device container">
+          <div className="device-block" style={{ background: p.video.bg ?? p.tone.bg }}>
+            <DeviceVideo
+              src={p.video.src}
+              webm={p.video.webm}
+              poster={p.video.poster}
+              title={`${p.title} demo`}
+              sound={p.video.sound}
+            />
+          </div>
+        </section>
+      )}
 
       {p.highlights && (
         <section
@@ -165,16 +182,22 @@ function Case({ p }: { p: Project }) {
       )}
 
       <section className="next-case theme-dark">
-        <TLink to={`/work/${next.slug}`} className="link">
+        <TLink
+          to={`/work/${next.slug}`}
+          className="link"
+          onPointerEnter={() => setOverNext(true)}
+          onPointerLeave={() => setOverNext(false)}
+          onClick={() => setOverNext(false)}
+        >
           <p>Next project</p>
           <h2 className="next-case-title">{next.title}</h2>
           <div className="next-case-preview">
             <div className="thumb">
               <ProjectVisual project={next} />
             </div>
-            <span className="next-case-badge" aria-hidden="true">Next project</span>
           </div>
         </TLink>
+        <FollowBall active={overNext} label="Next project" />
         <div className="container medium">
           <div className="stripe" />
         </div>
