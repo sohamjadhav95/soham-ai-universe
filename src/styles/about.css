@@ -28,8 +28,13 @@
 }
 
 .about-globe .globe {
-  width: 3.3em;
-  height: 3.3em;
+  width: 62%;
+  height: 62%;
+  transition: transform var(--slow) var(--ease);
+}
+
+.about-globe .ball:hover .globe {
+  transform: scale(1.06);
 }
 
 .about-intro {
@@ -76,6 +81,23 @@
   height: 120%;
   object-fit: cover;
   object-position: top;
+}
+
+/* Story film */
+.about-film {
+  padding-bottom: var(--section-padding);
+}
+
+.about-film .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2em;
+  margin-bottom: 3em;
+}
+
+.about-film .head p {
+  max-width: 20em;
 }
 
 /* Services */
@@ -221,6 +243,12 @@
   .services-grid {
     grid-template-columns: 1fr;
     gap: 3em;
+  }
+
+  .about-film .head {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2em;
   }
 
   .about-block > .head {

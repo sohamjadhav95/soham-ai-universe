@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import SplitWords from '@/components/SplitWords';
 import HoverPreview from '@/components/HoverPreview';
+import DeviceVideo from '@/components/DeviceVideo';
 import { ArrowIcon, Globe } from '@/components/Icons';
 import { SITE } from '@/data/site';
 import { CERTIFICATES, EXPERIENCE, PAPERS, SERVICES } from '@/data/about';
@@ -92,7 +93,7 @@ export default function About() {
         <div className="stripe" />
         <div className="ball-wrap">
           <div className="ball" aria-hidden="true">
-            <Globe />
+            <Globe variant="glass" />
           </div>
         </div>
       </div>
@@ -114,6 +115,24 @@ export default function About() {
           </div>
           <div className="image">
             <img src={SITE.photos.about} alt={`${SITE.name} smiling`} loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section className="about-film">
+        <div className="head container medium">
+          <h2>The short version</h2>
+          <p>A 50-second film about what I build and why. Turn the sound on.</p>
+        </div>
+        <div className="container">
+          <div className="device-block" style={{ background: '#ece6df' }}>
+            <DeviceVideo
+              src="/videos/soham-story.mp4"
+              webm="/videos/soham-story.webm"
+              poster="/videos/soham-story-poster.webp"
+              title="Soham Jadhav, a 50-second story film"
+              sound
+            />
           </div>
         </div>
       </section>

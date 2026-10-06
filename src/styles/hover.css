@@ -74,3 +74,22 @@
   color: var(--color-light);
   font-size: 0.9em;
 }
+
+/* Round label that trails the cursor (next-project link). */
+.follow-ball {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 700;
+  width: clamp(7em, 9.5vw, 9.4em);
+  height: clamp(7em, 9.5vw, 9.4em);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-blue);
+  color: var(--color-light);
+  font-size: 0.95em;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+}

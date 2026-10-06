@@ -4,6 +4,9 @@
 // `cover` (shown in lists and at the top of the project page) or add it to
 // `gallery`. Until a cover exists, a drawn illustration is used instead.
 // To add a live demo later: add { label: 'Live demo', href: '...' } to `links`.
+// To add a screen recording: put the MP4 in public/videos/ and set
+// `video: { src: '/videos/<name>.mp4', poster: '/videos/<name>.webp' }`.
+// It plays inside a laptop on the project page.
 
 export type Category = 'research' | 'engineering';
 
@@ -25,6 +28,7 @@ export type Project = {
   flow?: { title: string; steps: { label: string; detail: string }[] };
   sample?: { title: string; code: string };
   gallery?: { src: string; alt: string; caption: string }[];
+  video?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean };
   note?: string;
 };
 

@@ -43,6 +43,13 @@ Text and links live in `src/data/`. You never need to touch components for conte
 Add `{ label: 'Live demo', href: 'https://…' }` to the project's `links`.
 The first link becomes the round blue button on the project page.
 
+### Add a screen recording (shown in a laptop)
+
+1. Put the video in `public/videos/` (MP4, 1280×720 or 1920×1080, under 25 MB).
+2. On the project in `projects.ts`, set
+   `video: { src: '/videos/<name>.mp4', poster: '/videos/<name>.webp' }`.
+   Add `webm` for a WebM copy and `sound: true` if it has narration.
+
 ### Projects without a website
 
 A project page tells the story on its own: the problem, the approach, big result
