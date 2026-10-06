@@ -29,8 +29,8 @@ export function FooterBottom() {
             <li key={s.href}>
               <Button variant="icon" href={s.href} label={s.label} className="social-dock-button" strength={12}>
                 <SocialIcon label={s.label} />
-                <span className="social-tooltip">{s.label}</span>
               </Button>
+              <span className="social-tooltip">{s.label}</span>
             </li>
           ))}
         </ul>

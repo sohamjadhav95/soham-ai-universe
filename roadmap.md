@@ -1,3 +1,3 @@
-- [ ] Crop the front-page portrait at the last shirt button.
-- [ ] Restore button colors after hover.
-- [ ] Match the reference pointer and footer icon dock.
+- [x] Crop the front-page portrait at the last shirt button.
+- [x] Restore button colors after hover.
+- [x] Match the reference pointer and footer icon dock, retaining existing social destinations.

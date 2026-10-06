@@ -138,9 +138,13 @@
   height: 1.65em;
 }
 
+.social-dock li {
+  position: relative;
+}
+
 .social-tooltip {
-  position: fixed;
-  bottom: 4.5em;
+  position: absolute;
+  bottom: calc(100% + 1em);
   left: 50%;
   transform: translateX(-50%);
   padding: 0.3em 0.7em;
@@ -149,10 +153,12 @@
   color: var(--color-light);
   font-size: 0.75em;
   visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
-.social-dock-button:has(:focus-visible) .social-tooltip,
-.social-dock-button:hover .social-tooltip {
+.social-dock li:has(:focus-visible) .social-tooltip,
+.social-dock li:hover .social-tooltip {
   visibility: visible;
 }
 
