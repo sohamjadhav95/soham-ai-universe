@@ -53,6 +53,6 @@ export function GridIcon() {
 }
 
 /** Rotating continental globe, shared by every location badge. */
-export function Globe({ className = '', variant }: { className?: string; variant?: 'solid' | 'glass' }) {
+export function Globe({ className = '', variant }: { className?: string; variant?: 'solid' | 'dark' }) {
   return <RotatingGlobe className={className} variant={variant} />;
 }

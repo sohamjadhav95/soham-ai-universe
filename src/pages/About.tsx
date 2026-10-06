@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import SplitWords from '@/components/SplitWords';
 import HoverPreview from '@/components/HoverPreview';
-import DeviceVideo from '@/components/DeviceVideo';
+import VideoPlayer from '@/components/VideoPlayer';
 import { ArrowIcon, Globe } from '@/components/Icons';
 import { SITE } from '@/data/site';
 import { CERTIFICATES, EXPERIENCE, PAPERS, SERVICES } from '@/data/about';
@@ -93,7 +93,7 @@ export default function About() {
         <div className="stripe" />
         <div className="ball-wrap">
           <div className="ball" aria-hidden="true">
-            <Globe variant="glass" />
+            <Globe variant="dark" />
           </div>
         </div>
       </div>
@@ -125,8 +125,8 @@ export default function About() {
           <p>A 50-second film about what I build and why. Turn the sound on.</p>
         </div>
         <div className="container">
-          <div className="device-block" style={{ background: '#ece6df' }}>
-            <DeviceVideo
+          <div className="video-block">
+            <VideoPlayer
               src="/videos/soham-story.mp4"
               webm="/videos/soham-story.webm"
               poster="/videos/soham-story-poster.webp"

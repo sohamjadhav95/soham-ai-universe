@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import SplitWords from '@/components/SplitWords';
 import ProjectVisual from '@/components/ProjectVisual';
 import FollowBall from '@/components/FollowBall';
-import DeviceVideo from '@/components/DeviceVideo';
+import VideoPlayer from '@/components/VideoPlayer';
 import { FooterBottom } from '@/components/Footer';
 import { getProject, nextProject, PROJECTS, type Project } from '@/data/projects';
 import { SITE } from '@/data/site';
@@ -92,8 +92,8 @@ function Case({ p }: { p: Project }) {
 
       {p.video && (
         <section className="case-device container">
-          <div className="device-block" style={{ background: p.video.bg ?? p.tone.bg }}>
-            <DeviceVideo
+          <div className="video-block" style={p.video.bg ? { background: p.video.bg } : undefined}>
+            <VideoPlayer
               src={p.video.src}
               webm={p.video.webm}
               poster={p.video.poster}
