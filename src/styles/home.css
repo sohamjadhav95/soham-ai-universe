@@ -14,13 +14,15 @@
   left: 50%;
   bottom: 0;
   height: 94%;
+  aspect-ratio: 520 / 930;
+  overflow: hidden;
   transform: translateX(-50%);
   will-change: transform;
 }
 
 .hero-photo img {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
   max-width: none;
   user-select: none;
 }

@@ -1,0 +1,3 @@
+- [ ] Crop the front-page portrait at the last shirt button.
+- [ ] Restore button colors after hover.
+- [ ] Match the reference pointer and footer icon dock.

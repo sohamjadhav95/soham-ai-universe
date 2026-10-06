@@ -23,6 +23,7 @@
   border-radius: 50%;
   background: var(--color-blue);
   transform: translate3d(0, 76%, 0);
+  transition: transform var(--primary) var(--ease);
   z-index: -1;
   pointer-events: none;
 }
@@ -79,7 +80,6 @@
   box-shadow: inset 0 0 0 1px var(--color-border-dark);
 }
 
-.btn-pill:hover .btn-text,
 .btn-pill.is-active .btn-text {
   color: var(--color-light);
 }
@@ -109,8 +109,24 @@
   box-shadow: none;
 }
 
-.btn-icon:hover .btn-click {
+.btn-click:focus-visible .btn-fill {
+  transform: translate3d(0, 0, 0);
+}
+
+.btn-pill .btn-click:focus-visible,
+.btn-icon .btn-click:focus-visible {
   color: var(--color-light);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-click:hover .btn-fill {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .btn-pill .btn-click:hover,
+  .btn-icon .btn-click:hover {
+    color: var(--color-light);
+  }
 }
 
 .btn-icon svg {
