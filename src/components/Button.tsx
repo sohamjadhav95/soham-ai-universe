@@ -1,5 +1,4 @@
 import { useRef, type ReactNode } from 'react';
-import { gsap, EASE, isTouch } from '@/lib/motion';
 import { useMagnetic } from '@/lib/useMagnetic';
 import { TLink } from '@/lib/transition';
 import '@/styles/button.css';
@@ -40,21 +39,11 @@ export default function Button({
 }: Props) {
   const click = useRef<HTMLElement>(null);
   const text = useRef<HTMLElement>(null);
-  const fill = useRef<HTMLSpanElement>(null);
   useMagnetic(click, text, strength ?? (variant === 'round' ? 60 : 25));
-
-  const enter = () => {
-    if (isTouch()) return;
-    gsap.fromTo(fill.current, { yPercent: 76 }, { yPercent: 0, duration: 0.5, ease: EASE, overwrite: true });
-  };
-  const leave = () => {
-    if (isTouch()) return;
-    gsap.to(fill.current, { yPercent: -76, duration: 0.5, ease: EASE, overwrite: true });
-  };
 
   const inner = (
     <>
-      <span className="btn-fill" ref={fill} />
+      <span className="btn-fill" />
       <span className="btn-text" ref={text}>
         {children}
         {count !== undefined && <span className="btn-count">{count}</span>}
@@ -64,8 +53,6 @@ export default function Button({
 
   const common = {
     className: 'btn-click',
-    onPointerEnter: enter,
-    onPointerLeave: leave,
     'aria-label': label,
   };
 

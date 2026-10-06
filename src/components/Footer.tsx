@@ -3,7 +3,7 @@ import { SITE } from '@/data/site';
 import { gsap, useGsap } from '@/lib/motion';
 import { useLocalTime } from '@/lib/useLocalTime';
 import Button from './Button';
-import { ArrowIcon } from './Icons';
+import { ArrowIcon, SocialIcon } from './Icons';
 import '@/styles/footer.css';
 
 export function FooterBottom() {
@@ -24,12 +24,13 @@ export function FooterBottom() {
       </div>
       <div className="socials">
         <h5>Socials</h5>
-        <ul>
+        <ul className="social-dock">
           {SITE.socials.map(s => (
             <li key={s.href}>
-              <a className="link-line" href={s.href} target="_blank" rel="noopener noreferrer">
-                {s.label}
-              </a>
+              <Button variant="icon" href={s.href} label={s.label} className="social-dock-button" strength={12}>
+                <SocialIcon label={s.label} />
+              </Button>
+              <span className="social-tooltip">{s.label}</span>
             </li>
           ))}
         </ul>

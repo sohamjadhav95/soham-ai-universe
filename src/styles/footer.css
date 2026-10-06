@@ -114,6 +114,54 @@
   flex-wrap: wrap;
 }
 
+.footer-bottom .socials .social-dock {
+  gap: 0.25em;
+  padding: 0.55em;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 999px;
+  background: var(--color-dock);
+  box-shadow: var(--shadow-dock);
+}
+
+.social-dock-button .btn-click {
+  width: 3.25em;
+  height: 3.25em;
+  box-shadow: none;
+}
+
+.social-dock-button .btn-text {
+  align-items: center;
+}
+
+.social-dock-button svg {
+  width: 1.65em;
+  height: 1.65em;
+}
+
+.social-dock li {
+  position: relative;
+}
+
+.social-tooltip {
+  position: absolute;
+  bottom: calc(100% + 1em);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.3em 0.7em;
+  border-radius: 4px;
+  background: var(--color-dark);
+  color: var(--color-light);
+  font-size: 0.75em;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.social-dock li:has(:focus-visible) .social-tooltip,
+.social-dock li:hover .social-tooltip {
+  visibility: visible;
+}
+
 .footer-bottom .link-line {
   padding: 0;
 }
