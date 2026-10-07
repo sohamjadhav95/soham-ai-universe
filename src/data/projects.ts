@@ -34,6 +34,59 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'multimodal-agentic-system',
+    title: 'Multimodal Agentic System',
+    org: 'Agentic Research',
+    services: 'Multimodal AI & Research',
+    year: '2026',
+    categories: ['research'],
+    featured: true,
+    tone: { bg: '#2C3E50', ink: '#FFFFFF', accent: '#3498DB' },
+    summary:
+      'A research paper introducing a multimodal agentic system for real-time moderation, evaluating text, image, and audio content through a unified policy-as-prompt gatekeeper.',
+    intro: {
+      role: 'Lead author',
+      stack: 'LLMs, BLIP-2, Whisper',
+      context: 'Cureus Journal of Computer Science, Sep 2026',
+    },
+    links: [
+      {
+        label: 'Paper',
+        href: 'https://www.cureusjournals.com/articles/19859-convo-ease-a-policy-as-prompt-gatekeeper-for-real-time-multimodal-moderation-in-enterprise-communication',
+      },
+    ],
+    highlights: [
+      { value: '46 → 77%', label: 'Recall with natural-language rules vs a generic filter' },
+      { value: '15', label: 'Rule sets handled with zero retraining' },
+      { value: 'p = 0.004', label: 'Statistically significant paired difference' },
+    ],
+    sections: [
+      {
+        heading: 'Abstract',
+        body: [
+          'Enterprise communication platforms carry text, image, and audio content across organizational contexts that public-facing moderation systems were never designed to serve. This paper contributes an applied moderation architecture defined by four design decisions and realized as a working system.',
+          'A pre-delivery gatekeeper validates content structurally in the message-send path. A unified text abstraction reduces every modality to a single representation before evaluation. A Policy-as-Prompt mechanism reads organizational rules as plain-language instructions at inference time, avoiding any need for model retraining.',
+        ],
+      },
+      {
+        heading: 'Architecture',
+        body: [
+          'The system uses a modular separation where each modality has its own processing path, running independently behind a shared plugin interface. A unified text abstraction ensures images are captioned and audio is transcribed, allowing a single policy layer to govern all three.',
+          'The architecture externalizes policy in two dimensions: rules are kept outside the model and assembled into the evaluation prompt at inference time, while a separate sensitivity setting controls enforcement intensity independently.',
+        ],
+      },
+    ],
+    flow: {
+      title: 'Multimodal processing pipeline',
+      steps: [
+        { label: 'Ingest', detail: 'Receive text, image, or audio input' },
+        { label: 'Reduce', detail: 'Convert image to caption, audio to transcript' },
+        { label: 'Assemble', detail: 'Combine with natural language policy' },
+        { label: 'Evaluate', detail: 'Gatekeeper allows or blocks message' },
+      ],
+    },
+  },
+  {
     slug: 'subpixel-cac-segmentation',
     title: 'Sub-pixel CAC Segmentation',
     org: 'ML4Sci · GSoC 2026',
@@ -175,7 +228,7 @@ $ python -m src.backend.run --model a3-coverage-v2`,
   {
     slug: 'convo-ease',
     title: 'Convo-Ease',
-    org: 'Cureus Journal of Computer Science',
+    org: 'B.E. Project',
     services: 'Multimodal AI & Research',
     year: '2026',
     categories: ['research', 'engineering'],
@@ -186,7 +239,7 @@ $ python -m src.backend.run --model a3-coverage-v2`,
     intro: {
       role: 'Lead author and engineer',
       stack: 'LLMs via NVIDIA NIM, BLIP-2, Whisper, Python',
-      context: 'Cureus Journal of Computer Science, Sep 2026',
+      context: 'B.E. Project, Sep 2026',
     },
     links: [
       {
