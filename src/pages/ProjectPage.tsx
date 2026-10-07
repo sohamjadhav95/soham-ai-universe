@@ -125,7 +125,16 @@ function Case({ p }: { p: Project }) {
         const isFirst = i === 0;
         return (
           <section key={i} className={`case-device${!isFirst ? ' container medium' : ''}`}>
-            {v.title && <h5 style={{ marginBottom: '1.5em' }}>{v.title}</h5>}
+            {v.title && (
+              <h3 style={{
+                fontSize: 'calc(clamp(3.25em, 5vw, 4.5em) * 0.9)',
+                lineHeight: 1.1,
+                letterSpacing: '-0.04em',
+                marginBottom: '0.4em'
+              }}>
+                {v.title}
+              </h3>
+            )}
             <div className="video-block" style={{
               background: v.bg || 'transparent',
               borderRadius: !isFirst ? 'clamp(12px, 2vw, 24px)' : undefined,
