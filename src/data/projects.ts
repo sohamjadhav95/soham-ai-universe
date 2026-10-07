@@ -29,7 +29,7 @@ export type Project = {
   sample?: { title: string; code: string };
   gallery?: { src: string; alt: string; caption: string }[];
   video?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean; crop?: boolean };
-  videos?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean; crop?: boolean }[];
+  videos?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean; crop?: boolean; title?: string }[];
   iframe?: { src: string; bg?: string };
   note?: string;
 };
@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
     links: [{ label: 'Code', href: 'https://github.com/ML4SCI/PrediCT/tree/predict_software' }],
     videos: [
       { src: '/videos/predict-studio.mp4', bg: '#1C1D20', sound: false },
-      { src: '/videos/predict-studio-2.mp4', bg: '#1C1D20', sound: true, speedup: true, crop: true }
+      { src: '/videos/predict-studio-2.mp4', bg: '#1C1D20', sound: true, speedup: true, title: 'Workflow Tutorial' }
     ],
     highlights: [
       { value: '9', label: 'Steps from raw DICOM to a full report' },

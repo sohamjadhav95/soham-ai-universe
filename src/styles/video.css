@@ -20,10 +20,6 @@
   object-fit: cover;
 }
 
-.video-frame video.crop-bars {
-  transform: scale(1.164);
-}
-
 /* The whole frame is the play / pause control. */
 .video-surface {
   position: absolute;
