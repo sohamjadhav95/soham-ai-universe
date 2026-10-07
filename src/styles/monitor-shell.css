@@ -66,6 +66,30 @@
   box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
 }
 
+.fabric-monitor-menu {
+  position: absolute;
+  z-index: 5;
+  top: clamp(.25rem, .4vw, .5rem);
+  right: clamp(.35rem, 1.15vw, 1.2rem);
+  width: clamp(76px, 7vw, 120px);
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  gap: .45rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #151619;
+  cursor: pointer;
+}
+
+.fabric-monitor-menu span {
+  display: block;
+  width: clamp(1.15rem, 1.8vw, 1.7rem);
+  height: 1px;
+  background: #fff;
+}
+
 @media (max-width: 700px) {
   .fabric-monitor-stage {
     padding-inline: 1rem;
@@ -73,5 +97,10 @@
 
   .fabric-monitor-device {
     width: 96vw;
+  }
+
+  .fabric-monitor-menu {
+    right: .2rem;
+    width: 64px;
   }
 }

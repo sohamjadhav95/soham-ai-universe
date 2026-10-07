@@ -13,6 +13,9 @@ export default function MonitorShell({ children }: { children: ReactNode }) {
         <div className="fabric-monitor-neck" aria-hidden="true"></div>
         <div className="fabric-monitor-base" aria-hidden="true"></div>
       </div>
+      <button className="fabric-monitor-menu" aria-label="Open menu" onClick={() => setMenuOpen(true)}>
+        <span></span><span></span>
+      </button>
     </section>
   );
 }
