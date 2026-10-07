@@ -8,9 +8,7 @@ export default function DeviceIframe({ src, title, bg }: { src: string; title: s
           <iframe src={src} title={title} className="imac-iframe" />
         </div>
       </div>
-      <div className="imac-stand">
-        <div className="imac-stand-base" />
-      </div>
+      <div className="imac-stand" />
     </div>
   );
 }
