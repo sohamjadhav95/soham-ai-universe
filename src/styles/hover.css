@@ -9,14 +9,14 @@
 }
 
 .project-visual img {
-  width: 86%;
-  height: 86%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project-visual .project-art {
-  width: 86%;
-  height: 86%;
+  width: 100%;
+  height: 100%;
 }
 
 /* Floating preview that follows the cursor over project / certificate lists. */
