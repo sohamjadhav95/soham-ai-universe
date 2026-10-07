@@ -122,8 +122,12 @@ function Case({ p }: { p: Project }) {
       </section>
 
       {(p.videos || (p.video ? [p.video] : [])).map((v, i) => (
-        <section key={i} className="case-device">
-          <div className="video-block" style={v.bg ? { background: v.bg } : undefined}>
+        <section key={i} className="case-device container medium">
+          <div className="video-block" style={{
+            background: v.bg || 'transparent',
+            borderRadius: 'clamp(12px, 2vw, 24px)',
+            overflow: 'hidden'
+          }}>
             <VideoPlayer
               src={v.src}
               webm={v.webm}
@@ -131,6 +135,7 @@ function Case({ p }: { p: Project }) {
               title={`${p.title} demo ${i + 1}`}
               sound={v.sound}
               speedup={v.speedup}
+              crop={v.crop}
             />
           </div>
         </section>

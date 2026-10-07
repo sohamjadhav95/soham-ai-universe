@@ -11,6 +11,8 @@ type Props = {
   sound?: boolean;
   /** Show the speedup toggle (top right). */
   speedup?: boolean;
+  /** Crop letterboxing bars from the video */
+  crop?: boolean;
 };
 
 function SoundIcon({ muted }: { muted: boolean }) {
@@ -34,7 +36,7 @@ function SoundIcon({ muted }: { muted: boolean }) {
  * pause, a sound toggle bottom-right, and a hairline progress bar along the
  * bottom edge that can be clicked or dragged to seek.
  */
-export default function VideoPlayer({ src, webm, poster, title, sound = false, speedup = false }: Props) {
+export default function VideoPlayer({ src, webm, poster, title, sound = false, speedup = false, crop = false }: Props) {
   const video = useRef<HTMLVideoElement>(null);
   const fill = useRef<HTMLSpanElement>(null);
   const userPaused = useRef(false);
@@ -128,6 +130,7 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false, s
     <div className={`video-frame${paused ? ' is-paused' : ''}`}>
       <video
         ref={video}
+        className={crop ? 'crop-bars' : undefined}
         poster={poster}
         muted
         loop
