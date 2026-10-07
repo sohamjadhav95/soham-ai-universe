@@ -26,6 +26,7 @@ export const SITE = {
     { label: 'GitHub', href: 'https://github.com/sohamjadhav95' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sohamjadhav95' },
     { label: 'X / Twitter', href: 'https://x.com/sohamjadhav_95' },
+    { label: 'Instagram', href: 'https://www.instagram.com/sohamjadhav95' },
   ],
   photos: {
     hero: '/images/soham/hero.webp',

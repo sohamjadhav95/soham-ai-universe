@@ -12,6 +12,12 @@ export function SocialIcon({ label }: { label: string }) {
           <circle cx="6.8" cy="7" r="1.4" />
           <path d="M5.5 10h2.6v8.5H5.5zm5 0H13v1.2c.7-1 1.6-1.5 2.9-1.5 2.3 0 3.1 1.5 3.1 3.8v5h-2.6v-4.6c0-1.2-.3-2-1.5-2-1.3 0-1.8.9-1.8 2.1v4.5h-2.6z" />
         </>
+      ) : label === 'Instagram' ? (
+        <>
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="17.5" cy="6.5" r="1.2" />
+        </>
       ) : (
         <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l8.2-9.4L.8 2h6.5l4.5 6.7L18.9 2ZM17.9 20h1.8L6.2 4H4.3z" />
       )}
