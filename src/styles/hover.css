@@ -9,9 +9,9 @@
 }
 
 .project-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
 }
 
 .project-visual .project-art {
