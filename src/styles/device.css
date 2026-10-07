@@ -7,19 +7,22 @@
 
 .monitor {
   position: relative;
-  width: min(80vw, 1100px);
-  padding-bottom: clamp(5rem, 9vw, 9rem);
+  width: min(75vw, 1000px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .monitor-screen {
   position: relative;
+  width: 100%;
   z-index: 2;
   aspect-ratio: 1.72 / 1;
   overflow: hidden;
-  border: clamp(5px, 0.55vw, 9px) solid #050505;
-  border-radius: clamp(9px, 1vw, 15px);
-  background: #050505;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  border: clamp(10px, 1.2vw, 20px) solid #0a0a0a;
+  border-radius: clamp(12px, 1.5vw, 20px);
+  background: #0a0a0a;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
 .monitor-iframe {
@@ -30,28 +33,23 @@
 }
 
 .monitor-neck {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  left: 50%;
-  bottom: 0;
   width: 25%;
-  height: 13%;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, #a4a4a4, #d1d1d1 48%, #9b9b9b);
-  box-shadow: inset 0 0 1rem rgba(0,0,0,0.18);
+  height: clamp(30px, 5vw, 70px);
+  background: linear-gradient(90deg, #8a8c8e, #a7a9ac 30%, #a7a9ac 70%, #8a8c8e);
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.15);
+  margin-top: -2px; /* Pull up slightly to ensure no gap */
 }
 
 .monitor-base {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  left: 50%;
-  bottom: 0;
   width: 27%;
-  height: 1.1%;
-  transform: translateX(-50%);
+  height: clamp(4px, 0.6vw, 8px);
   border-radius: 0 0 5px 5px;
-  background: linear-gradient(#9b9b9b, #c8c8c8 45%, #777);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+  background: linear-gradient(to bottom, #dcdcdc, #919396);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 @media (max-width: 700px) {
