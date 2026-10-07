@@ -222,13 +222,7 @@ $ python -m src.backend.server
 # or straight from the command line
 $ python -m src.backend.run --model a3-coverage-v2`,
     },
-    gallery: [
-      {
-        src: '/images/projects/predict-studio/pipeline.webp',
-        alt: 'Diagram of the PrediCT Studio pipeline from loading a scan to the report',
-        caption: 'The full pipeline: load, prepare, model, score, report. One patient or two hundred, the same path.',
-      },
-    ],
+
     note: 'Research software. Not a cleared medical device.',
   },
   {
