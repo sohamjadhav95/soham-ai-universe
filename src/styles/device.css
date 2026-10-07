@@ -1,51 +1,61 @@
-.device-imac {
+.monitor-stage {
   position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
 
-.device-imac .imac-body {
+.monitor {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border-radius: 12px 12px 0 0;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: min(90vw, 1440px);
+  padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+.monitor-screen {
+  position: relative;
   z-index: 2;
-}
-
-.device-imac .imac-screen {
-  position: absolute;
-  inset: 0;
-  background: #111;
+  aspect-ratio: 1.72 / 1;
   overflow: hidden;
+  border: clamp(5px, 0.55vw, 9px) solid #050505;
+  border-radius: clamp(9px, 1vw, 15px);
+  background: #050505;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
 }
 
-.device-imac .imac-iframe {
+.monitor-iframe {
   width: 100%;
   height: 100%;
   border: none;
   background: white;
 }
 
-.device-imac .imac-stand {
-  width: 240px;
-  height: 160px;
-  background: linear-gradient(180deg, #8e8e93 0%, #636366 80%, #48484a 100%);
-  border-radius: 0 0 4px 4px;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 20px rgba(0, 0, 0, 0.08);
-  position: relative;
+.monitor-neck {
+  position: absolute;
   z-index: 1;
+  left: 50%;
+  bottom: 0;
+  width: 25%;
+  height: 13%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #a4a4a4, #d1d1d1 48%, #9b9b9b);
+  box-shadow: inset 0 0 1rem rgba(0,0,0,0.18);
 }
 
-@media (max-width: 800px) {
-  .device-imac .imac-stand {
-    width: 30%;
-    height: 100px;
+.monitor-base {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 0;
+  width: 27%;
+  height: 1.1%;
+  transform: translateX(-50%);
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(#9b9b9b, #c8c8c8 45%, #777);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 700px) {
+  .monitor {
+    width: 100%;
   }
 }
