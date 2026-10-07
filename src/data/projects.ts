@@ -106,6 +106,7 @@ export const PROJECTS: Project[] = [
     categories: ['engineering'],
     featured: true,
     tone: { bg: '#1C1D20', ink: '#FFFFFF', accent: '#E5603A' },
+    cover: '/images/projects/predict-studio/cover.png',
     summary:
       'An auditable workstation that turns a cardiac CT scan into a calcium score and shows the evidence behind every number.',
     intro: {
@@ -114,6 +115,7 @@ export const PROJECTS: Project[] = [
       context: 'Research software for ML4Sci PrediCT',
     },
     links: [{ label: 'Code', href: 'https://github.com/ML4SCI/PrediCT/tree/predict_software' }],
+    video: { src: '/videos/predict-studio.mp4', bg: '#1C1D20', sound: false },
     highlights: [
       { value: '9', label: 'Steps from raw DICOM to a full report' },
       { value: '4', label: 'Ways to review every result' },

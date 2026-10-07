@@ -91,7 +91,7 @@ function Case({ p }: { p: Project }) {
       </section>
 
       {p.video && (
-        <section className="case-device container">
+        <section className="case-device">
           <div className="video-block" style={p.video.bg ? { background: p.video.bg } : undefined}>
             <VideoPlayer
               src={p.video.src}
