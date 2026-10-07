@@ -144,7 +144,7 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false, s
         {webm && <source src={webm} type="video/webm" />}
       </video>
 
-      <button className="video-surface" onClick={toggle} aria-label={`${paused ? 'Play' : 'Pause'} video: ${title}`} />
+      <button className="video-surface" onClick={toggle} onKeyDown={onSeekKey} aria-label={`${paused ? 'Play' : 'Pause'} video: ${title}`} />
 
       {sound && (
         <button
