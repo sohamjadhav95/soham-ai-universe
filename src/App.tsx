@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TransitionProvider } from './lib/transition';
+import { TransitionProvider, useShownLocation } from './lib/transition';
 import { initScroll } from './lib/scroll';
 import Preloader from './components/Preloader';
 import Menu from './components/Menu';
@@ -11,6 +11,21 @@ import Contact from './pages/Contact';
 import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
 
+/** Renders the page on screen, which lags the URL until the curtain covers it. */
+function PageRoutes() {
+  const location = useShownLocation();
+  return (
+    <Routes location={location}>
+      <Route path="/" element={<Home />} />
+      <Route path="/work" element={<Work />} />
+      <Route path="/work/:slug" element={<ProjectPage />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
 export default function App() {
   useEffect(() => {
     initScroll();
@@ -20,14 +35,7 @@ export default function App() {
     <BrowserRouter>
       <TransitionProvider>
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/work/:slug" element={<ProjectPage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <PageRoutes />
         </main>
         <Menu />
         <Preloader />

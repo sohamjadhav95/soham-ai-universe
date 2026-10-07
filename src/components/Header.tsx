@@ -1,7 +1,6 @@
 import { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
 import { NAV, SITE } from '@/data/site';
-import { TLink, useSite } from '@/lib/transition';
+import { TLink, useShownLocation, useSite } from '@/lib/transition';
 import { useMagnetic } from '@/lib/useMagnetic';
 import '@/styles/header.css';
 
@@ -17,7 +16,7 @@ function NavLink({ to, label, active }: { to: string; label: string; active: boo
 
 /** Top bar: logo on the left, page links on the right. `light` = white text. */
 export default function Header({ light = false }: { light?: boolean }) {
-  const { pathname } = useLocation();
+  const { pathname } = useShownLocation();
   const { setMenuOpen } = useSite();
   const logo = useRef<HTMLAnchorElement>(null);
   useMagnetic(logo, undefined, 18);

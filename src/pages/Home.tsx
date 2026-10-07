@@ -65,7 +65,7 @@ function Hero() {
   return (
     <header className="home-hero" ref={root}>
       <div className="hero-photo once-in">
-        <img src={SITE.photos.hero} alt={`Portrait of ${SITE.name}`} fetchPriority="high" />
+        <img src={SITE.photos.hero} alt={`Portrait of ${SITE.name}`} fetchpriority="high" />
       </div>
       <Header light />
       <div className="hero-hanger once-in">

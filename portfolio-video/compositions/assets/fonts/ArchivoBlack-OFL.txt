@@ -1,1 +1,0 @@
-Archivo Black — SIL Open Font License 1.1 (via @fontsource/archivo-black). Converted to three.js typeface JSON by scripts/make-typeface.mjs.

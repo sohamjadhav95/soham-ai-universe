@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { gsap, ScrollTrigger } from '@/lib/motion';
-import { useSite, TLink } from '@/lib/transition';
+import { useSite, useShownLocation, TLink } from '@/lib/transition';
 import { lockScroll } from '@/lib/scroll';
 import { NAV, SITE } from '@/data/site';
 import Button from './Button';
@@ -10,7 +9,7 @@ import '@/styles/menu.css';
 /** Fixed round menu button (appears after scrolling) and the curved side panel it opens. */
 export default function Menu() {
   const { menuOpen, setMenuOpen } = useSite();
-  const { pathname } = useLocation();
+  const { pathname } = useShownLocation();
   const [visible, setVisible] = useState(false);
   const panel = useRef<HTMLDivElement>(null);
   const curve = useRef<HTMLDivElement>(null);

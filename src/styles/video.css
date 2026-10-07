@@ -1,10 +1,8 @@
-/* Light-grey block with a clean video frame (About film, project demos). */
+/* Full-width block holding a clean video frame (About film, project demos).
+   No matte: the frame itself is the block, edge to edge within the container. */
 .video-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(2em, 7vw, 7.5em) clamp(1.25em, 9vw, 9.5em);
-  background: var(--color-light-gray);
+  display: block;
+  width: 100%;
 }
 
 .video-frame {
@@ -13,7 +11,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 5px;
-  background: #000;
+  background: var(--color-light-gray);
 }
 
 .video-frame video {

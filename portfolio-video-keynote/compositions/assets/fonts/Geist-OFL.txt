@@ -1,1 +1,0 @@
-Geist — SIL Open Font License 1.1 (via @fontsource/geist-sans). Converted to three.js typeface JSON by scripts/make-typeface.mjs.
