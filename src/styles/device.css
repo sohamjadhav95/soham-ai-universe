@@ -7,7 +7,7 @@
 
 .monitor {
   position: relative;
-  width: min(90vw, 1440px);
+  width: min(80vw, 1100px);
   padding-bottom: clamp(5rem, 9vw, 9rem);
 }
 
