@@ -189,7 +189,7 @@ function Case({ p }: { p: Project }) {
           onPointerLeave={() => setOverNext(false)}
           onClick={() => setOverNext(false)}
         >
-          <p>Next project</p>
+          <p>Next case</p>
           <h2 className="next-case-title">{next.title}</h2>
           <div className="next-case-preview">
             <div className="thumb">
@@ -197,7 +197,7 @@ function Case({ p }: { p: Project }) {
             </div>
           </div>
         </TLink>
-        <FollowBall active={overNext} label="Next project" />
+        <FollowBall active={overNext} label="Next case" />
         <div className="container medium">
           <div className="stripe" />
         </div>
