@@ -100,6 +100,7 @@ export const PROJECTS: Project[] = [
     categories: ['research'],
     featured: true,
     tone: { bg: '#E4E2DD', ink: '#1C1D20', accent: '#455CE9' },
+    cover: '/images/projects/subpixel-cac-segmentation/cover.png',
     summary:
       'My own contribution to the field: training coronary calcium models on exact sub-pixel coverage instead of pixel-snapped masks.',
     intro: {

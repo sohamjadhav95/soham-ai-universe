@@ -223,31 +223,31 @@ function Case({ p }: { p: Project }) {
           <div className="shape" />
         </div>
         <div className="next-case-inner">
-        <TLink
-          to={`/work/${next.slug}`}
-          className="link"
-          onPointerEnter={() => setOverNext(true)}
-          onPointerLeave={() => setOverNext(false)}
-          onClick={() => setOverNext(false)}
-        >
-          <p>Next case</p>
-          <h2 className="next-case-title">{next.title}</h2>
-          <div className="next-case-preview">
-            <div className="thumb">
-              <ProjectVisual project={next} />
+          <TLink
+            to={`/work/${next.slug}`}
+            className="link"
+            onPointerEnter={() => setOverNext(true)}
+            onPointerLeave={() => setOverNext(false)}
+            onClick={() => setOverNext(false)}
+          >
+            <p>Next case</p>
+            <h2 className="next-case-title">{next.title}</h2>
+            <div className="next-case-preview">
+              <div className="thumb">
+                <ProjectVisual project={next} />
+              </div>
             </div>
+          </TLink>
+          <FollowBall active={overNext} label="Next case" />
+          <div className="container medium">
+            <div className="stripe" />
           </div>
-        </TLink>
-        <FollowBall active={overNext} label="Next case" />
-        <div className="container medium">
-          <div className="stripe" />
-        </div>
-        <div className="all">
-          <Button to="/work" count={PROJECTS.length}>
-            All work
-          </Button>
-        </div>
-        <FooterBottom />
+          <div className="all">
+            <Button to="/work" count={PROJECTS.length}>
+              All work
+            </Button>
+          </div>
+          <FooterBottom />
         </div>
       </section>
     </div>
