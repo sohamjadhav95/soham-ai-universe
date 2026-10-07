@@ -44,8 +44,9 @@ function Case({ p }: { p: Project }) {
       );
       gsap.fromTo(
         '.case-hero .btn-wrapper',
-        { y: 120 },
+        { yPercent: -50, y: 120 },
         {
+          yPercent: -50,
           y: -120,
           ease: 'none',
           scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
