@@ -128,7 +128,6 @@ export default function About() {
           <div className="video-block">
             <VideoPlayer
               src="/videos/soham-story.mp4"
-              webm="/videos/soham-story.webm"
               poster="/videos/soham-story-poster.webp"
               title="Soham Jadhav, a 50-second story film"
               sound
