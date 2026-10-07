@@ -29,6 +29,7 @@ export type Project = {
   sample?: { title: string; code: string };
   gallery?: { src: string; alt: string; caption: string }[];
   video?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean };
+  iframe?: { src: string; bg?: string };
   note?: string;
 };
 
@@ -55,6 +56,10 @@ export const PROJECTS: Project[] = [
         href: 'https://www.cureusjournals.com/articles/19859-convo-ease-a-policy-as-prompt-gatekeeper-for-real-time-multimodal-moderation-in-enterprise-communication',
       },
     ],
+    iframe: {
+      src: 'https://assets.cureusjournals.com/artifacts/upload/original_article/pdf/19859/CureusJournals_1985920260909-72011-vl4prj.pdf',
+      bg: '#ffffff'
+    },
     highlights: [
       { value: '46 → 77%', label: 'Recall with natural-language rules vs a generic filter' },
       { value: '15', label: 'Rule sets handled with zero retraining' },

@@ -6,6 +6,7 @@ import SplitWords from '@/components/SplitWords';
 import ProjectVisual from '@/components/ProjectVisual';
 import FollowBall from '@/components/FollowBall';
 import VideoPlayer from '@/components/VideoPlayer';
+import DeviceIframe from '@/components/DeviceIframe';
 import { FooterBottom } from '@/components/Footer';
 import { getProject, nextProject, PROJECTS, type Project } from '@/data/projects';
 import { SITE } from '@/data/site';
@@ -119,6 +120,12 @@ function Case({ p }: { p: Project }) {
               sound={p.video.sound}
             />
           </div>
+        </section>
+      )}
+
+      {p.iframe && (
+        <section className="case-device">
+          <DeviceIframe src={p.iframe.src} title={`${p.title} demo`} bg={p.iframe.bg} />
         </section>
       )}
 
