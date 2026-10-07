@@ -41,6 +41,24 @@ function Case({ p }: { p: Project }) {
           scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
         },
       );
+      gsap.fromTo(
+        '.next-case-curve',
+        { height: '10vh' },
+        {
+          height: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: '.next-case', start: 'top bottom', end: 'top 25%', scrub: true },
+        },
+      );
+      gsap.fromTo(
+        '.next-case-inner',
+        { yPercent: -25 },
+        {
+          yPercent: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: '.next-case', start: 'top bottom', end: 'bottom bottom', scrub: true },
+        },
+      );
     },
     root,
   );
@@ -181,7 +199,11 @@ function Case({ p }: { p: Project }) {
         </section>
       )}
 
-      <section className="next-case theme-dark">
+      <section className="next-case theme-dark footer-wrap" style={{ ['--curve-color' as string]: '#ffffff' }}>
+        <div className="footer-curve next-case-curve">
+          <div className="shape" />
+        </div>
+        <div className="next-case-inner">
         <TLink
           to={`/work/${next.slug}`}
           className="link"
@@ -207,6 +229,7 @@ function Case({ p }: { p: Project }) {
           </Button>
         </div>
         <FooterBottom />
+        </div>
       </section>
     </div>
   );
