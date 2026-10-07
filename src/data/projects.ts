@@ -28,7 +28,8 @@ export type Project = {
   flow?: { title: string; steps: { label: string; detail: string }[] };
   sample?: { title: string; code: string };
   gallery?: { src: string; alt: string; caption: string }[];
-  video?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean };
+  video?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean };
+  videos?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean }[];
   iframe?: { src: string; bg?: string };
   note?: string;
 };
@@ -174,7 +175,10 @@ export const PROJECTS: Project[] = [
       context: 'Research software for ML4Sci PrediCT',
     },
     links: [{ label: 'Code', href: 'https://github.com/ML4SCI/PrediCT/tree/predict_software' }],
-    video: { src: '/videos/predict-studio.mp4', bg: '#1C1D20', sound: false },
+    videos: [
+      { src: '/videos/predict-studio.mp4', bg: '#1C1D20', sound: false },
+      { src: '/videos/predict-studio-2.mp4', bg: '#1C1D20', sound: true, speedup: true }
+    ],
     highlights: [
       { value: '9', label: 'Steps from raw DICOM to a full report' },
       { value: '4', label: 'Ways to review every result' },

@@ -9,6 +9,8 @@ type Props = {
   title: string;
   /** Show the sound toggle (only for videos with narration or music). */
   sound?: boolean;
+  /** Show the speedup toggle (top right). */
+  speedup?: boolean;
 };
 
 function SoundIcon({ muted }: { muted: boolean }) {
@@ -32,12 +34,13 @@ function SoundIcon({ muted }: { muted: boolean }) {
  * pause, a sound toggle bottom-right, and a hairline progress bar along the
  * bottom edge that can be clicked or dragged to seek.
  */
-export default function VideoPlayer({ src, webm, poster, title, sound = false }: Props) {
+export default function VideoPlayer({ src, webm, poster, title, sound = false, speedup = false }: Props) {
   const video = useRef<HTMLVideoElement>(null);
   const fill = useRef<HTMLSpanElement>(null);
   const userPaused = useRef(false);
   const [muted, setMuted] = useState(true);
   const [paused, setPaused] = useState(true);
+  const [playbackRate, setPlaybackRate] = useState(1);
 
   // Autoplay only while visible, unless the viewer paused it themselves.
   useEffect(() => {
@@ -87,6 +90,14 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false }:
       userPaused.current = false;
       el.play().catch(() => {});
     }
+  };
+
+  const toggleSpeed = () => {
+    const el = video.current;
+    if (!el) return;
+    const nextRate = el.playbackRate === 1 ? 2 : 1;
+    el.playbackRate = nextRate;
+    setPlaybackRate(nextRate);
   };
 
   const seekTo = (clientX: number, bar: HTMLElement) => {
@@ -140,6 +151,16 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false }:
           aria-pressed={!muted}
         >
           <SoundIcon muted={muted} />
+        </button>
+      )}
+
+      {speedup && (
+        <button
+          className="video-speed"
+          onClick={toggleSpeed}
+          aria-label="Toggle speed"
+        >
+          {playbackRate}x
         </button>
       )}
 

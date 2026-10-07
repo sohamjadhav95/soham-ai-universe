@@ -121,19 +121,20 @@ function Case({ p }: { p: Project }) {
         )}
       </section>
 
-      {p.video && (
-        <section className="case-device">
-          <div className="video-block" style={p.video.bg ? { background: p.video.bg } : undefined}>
+      {(p.videos || (p.video ? [p.video] : [])).map((v, i) => (
+        <section key={i} className="case-device">
+          <div className="video-block" style={v.bg ? { background: v.bg } : undefined}>
             <VideoPlayer
-              src={p.video.src}
-              webm={p.video.webm}
-              poster={p.video.poster}
-              title={`${p.title} demo`}
-              sound={p.video.sound}
+              src={v.src}
+              webm={v.webm}
+              poster={v.poster}
+              title={`${p.title} demo ${i + 1}`}
+              sound={v.sound}
+              speedup={v.speedup}
             />
           </div>
         </section>
-      )}
+      ))}
 
       {p.iframe && (
         <section className="case-device">

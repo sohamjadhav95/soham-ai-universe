@@ -96,3 +96,28 @@
   transform: scaleX(0);
   transform-origin: left;
 }
+
+.video-speed {
+  position: absolute;
+  right: clamp(0.75em, 1.6vw, 1.4em);
+  top: clamp(0.9em, 1.8vw, 1.6em);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.4em, 3vw, 2.9em);
+  height: clamp(2.4em, 3vw, 2.9em);
+  border-radius: 50%;
+  background: rgba(20, 21, 23, 0.55);
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+}
+
+.video-speed:hover {
+  background: rgba(20, 21, 23, 0.8);
+  transform: scale(1.06);
+}
