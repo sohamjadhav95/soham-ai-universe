@@ -43,6 +43,15 @@ function Case({ p }: { p: Project }) {
         },
       );
       gsap.fromTo(
+        '.case-hero .btn-round',
+        { y: 120 },
+        {
+          y: -120,
+          ease: 'none',
+          scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
+        },
+      );
+      gsap.fromTo(
         '.next-case-curve',
         { height: '10vh' },
         {
