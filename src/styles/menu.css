@@ -68,11 +68,13 @@
   z-index: 810;
   pointer-events: none;
   visibility: hidden;
+  transition: visibility 0s linear 0.8s;
 }
 
 .side-menu.is-open {
   pointer-events: all;
   visibility: visible;
+  transition: visibility 0s linear 0s;
 }
 
 .side-menu-backdrop {
@@ -163,9 +165,9 @@
 
 .side-menu-socials ul {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.6em;
+  gap: 0 1.25em;
   margin-top: 0.6em;
+  white-space: nowrap;
 }
 
 .side-menu-socials a {
