@@ -121,25 +121,28 @@ function Case({ p }: { p: Project }) {
         )}
       </section>
 
-      {(p.videos || (p.video ? [p.video] : [])).map((v, i) => (
-        <section key={i} className="case-device container medium">
-          <div className="video-block" style={{
-            background: v.bg || 'transparent',
-            borderRadius: 'clamp(12px, 2vw, 24px)',
-            overflow: 'hidden'
-          }}>
-            <VideoPlayer
-              src={v.src}
-              webm={v.webm}
-              poster={v.poster}
-              title={`${p.title} demo ${i + 1}`}
-              sound={v.sound}
-              speedup={v.speedup}
-              crop={v.crop}
-            />
-          </div>
-        </section>
-      ))}
+      {(p.videos || (p.video ? [p.video] : [])).map((v, i) => {
+        const isFirst = i === 0;
+        return (
+          <section key={i} className={`case-device${!isFirst ? ' container medium' : ''}`}>
+            <div className="video-block" style={{
+              background: v.bg || 'transparent',
+              borderRadius: !isFirst ? 'clamp(12px, 2vw, 24px)' : undefined,
+              overflow: !isFirst ? 'hidden' : undefined
+            }}>
+              <VideoPlayer
+                src={v.src}
+                webm={v.webm}
+                poster={v.poster}
+                title={`${p.title} demo ${i + 1}`}
+                sound={v.sound}
+                speedup={v.speedup}
+                crop={v.crop}
+              />
+            </div>
+          </section>
+        );
+      })}
 
       {p.iframe && (
         <section className="case-device">
