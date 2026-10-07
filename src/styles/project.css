@@ -38,7 +38,7 @@
   height: 70%;
 }
 
-.case-hero .btn-round {
+.case-hero .btn-wrapper {
   position: absolute;
   right: calc(var(--container-padding) + 6%);
   top: 0;

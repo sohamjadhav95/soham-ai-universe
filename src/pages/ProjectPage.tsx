@@ -43,7 +43,7 @@ function Case({ p }: { p: Project }) {
         },
       );
       gsap.fromTo(
-        '.case-hero .btn-round',
+        '.case-hero .btn-wrapper',
         { y: 120 },
         {
           y: -120,
@@ -107,14 +107,16 @@ function Case({ p }: { p: Project }) {
         </div>
       </section>
 
-      <section className="case-hero container once-in">
-        <div className="frame" style={{ background: p.tone.bg }}>
+      <section className="case-hero container">
+        <div className="frame once-in" style={{ background: p.tone.bg }}>
           <ProjectVisual project={p} />
         </div>
         {primary && (
-          <Button variant="round" blue href={primary.href} strength={90}>
-            {primary.label} ↗
-          </Button>
+          <div className="btn-wrapper once-in">
+            <Button variant="round" blue href={primary.href} strength={90}>
+              {primary.label} ↗
+            </Button>
+          </div>
         )}
       </section>
 
