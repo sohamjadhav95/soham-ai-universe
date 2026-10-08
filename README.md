@@ -72,16 +72,31 @@ Add an entry to `CERTIFICATES` in `about.ts`.
 
 ## Site buddy
 
-A small character (Nimbus, the cloud) lives in the bottom-right corner. It
-follows the cursor, gives tips for each page, takes visitors where a tip points,
-gives a five-stop tour and reacts to what they do. Visitors can close it with the
-× (it blows away like dust) and bring it back with the small dot left behind.
+A small character (Nimbus, the cloud) lives in the bottom-right corner and guides visitors:
 
-- **Switch character:** in `src/data/buddy.ts`, set `character` to `'bit'`,
-  `'nimbus'` or `'pico'` and `name` to match. All three are in `src/components/buddy/`.
-  Compare them at `/lab/buddy` (hidden page, not linked or indexed).
-- **Change what it says:** tips per page (`PAGE_TIPS`), tour stops (`TOUR`) and
-  every other line (`LINES`) are in the same file.
+- **Intro:** when someone opens a page, it says in a few words what the page is,
+  offers a tour of that page and suggests somewhere else to go (once per page per visit).
+- **Suggestions:** every hover or click shows a different one: tips for the page,
+  random projects (ones the visitor hasn't opened first), About, Contact, the big tour.
+- **Tours play on their own:** the buddy floats next to each part of the page, points at it
+  with its hand and explains it. The rest of the page dims for about 2.5 seconds.
+  Under the buddy: pause / carry on, next, and **End tour**. Scrolling pauses the tour;
+  going to another page by yourself ends it; Esc ends it too.
+  - **1-minute tour** of the whole site: About first, then the projects, then Contact.
+  - **Page tours** for Home, Work, About, Contact and every project.
+- Visitors can close it with the × (it blows away like dust) and bring it back with the small dot.
+
+To change it:
+
+- **Switch character:** in `src/data/buddy.ts`, set `character` to `'bit'`, `'nimbus'` or
+  `'pico'` and `name` to match. Compare them at `/lab/buddy` (hidden page).
+- **Words and tours** are all in `src/data/buddy.ts`:
+  - `PAGES`: intro, tour stops and tips for Home, Work, About and Contact.
+  - `NOTES`: a one-line intro and explanations for each project (its tour is built from
+    what the project page shows: videos, highlights, flow, code link).
+  - `SITE_TOUR`: the 1-minute tour. Each stop is `{ to, target, text }`, where `target` is a
+    CSS selector on that page, plus optional buttons (play a video with sound, open a link).
+  - `LINES`: everything else it says.
 - **From a page:** `buddy.say('Hi!')` or `buddy.feel('proud', 3000)` from `src/lib/buddy.ts`.
 - **Test the idle moods quickly:** add `?buddyfast` to the URL (sad after 2.5 s, asleep after 6 s).
 
