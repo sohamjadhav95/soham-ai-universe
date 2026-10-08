@@ -4,6 +4,7 @@ import { TransitionProvider, useShownLocation } from './lib/transition';
 import { initScroll } from './lib/scroll';
 import Preloader from './components/Preloader';
 import Menu from './components/Menu';
+import Buddy from './components/buddy/Buddy';
 import Home from './pages/Home';
 import Work from './pages/Work';
 import About from './pages/About';
@@ -49,6 +50,7 @@ export default function App() {
           <PageRoutes />
         </main>
         <Menu />
+        <Buddy />
         <Preloader />
       </TransitionProvider>
     </BrowserRouter>

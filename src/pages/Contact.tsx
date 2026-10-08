@@ -5,6 +5,8 @@ import SplitWords from '@/components/SplitWords';
 import { FooterBottom } from '@/components/Footer';
 import { ArrowIcon } from '@/components/Icons';
 import { SITE } from '@/data/site';
+import { LINES } from '@/data/buddy';
+import { buddy } from '@/lib/buddy';
 import { useEntrance, useTitle } from '@/lib/useEntrance';
 import '@/styles/footer.css';
 import '@/styles/contact.css';
@@ -57,8 +59,12 @@ export default function Contact() {
       if (!json.success) throw new Error(json.message);
       setStatus('sent');
       form.reset();
+      buddy.feel('proud', 3000);
+      buddy.say(LINES.sent, { ms: 4000 });
     } catch {
       setStatus('error');
+      buddy.feel('sad', 3000);
+      buddy.say(LINES.error, { ms: 4000 });
     }
   };
 
