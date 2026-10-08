@@ -10,6 +10,17 @@
 
 export type Category = 'research' | 'engineering';
 
+export type ProjectVideo = {
+  src: string;
+  webm?: string;
+  poster?: string;
+  bg?: string;
+  sound?: boolean;
+  speedup?: boolean;
+  crop?: boolean;
+  title?: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -28,8 +39,8 @@ export type Project = {
   flow?: { title: string; steps: { label: string; detail: string }[] };
   sample?: { title: string; code: string };
   gallery?: { src: string; alt: string; caption: string }[];
-  video?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean; crop?: boolean };
-  videos?: { src: string; webm?: string; poster?: string; bg?: string; sound?: boolean; speedup?: boolean; crop?: boolean; title?: string }[];
+  video?: ProjectVideo;
+  videos?: ProjectVideo[];
   iframe?: { src: string; bg?: string };
   note?: string;
 };
@@ -176,8 +187,8 @@ export const PROJECTS: Project[] = [
     },
     links: [{ label: 'Code', href: 'https://github.com/ML4SCI/PrediCT/tree/predict_software' }],
     videos: [
-      { src: '/videos/predict-studio.mp4', bg: '#1C1D20', sound: false },
-      { src: '/videos/predict-studio-2.mp4', bg: '#1C1D20', sound: true, speedup: true, title: 'Workflow Tutorial' }
+      { src: '/videos/predict-studio.mp4', webm: '/videos/predict-studio.webm', bg: '#1C1D20', sound: false },
+      { src: '/videos/predict-studio-2.mp4', webm: '/videos/predict-studio-2.webm', bg: '#1C1D20', sound: true, speedup: true, title: 'Workflow Tutorial' }
     ],
     highlights: [
       { value: '9', label: 'Steps from raw DICOM to a full report' },

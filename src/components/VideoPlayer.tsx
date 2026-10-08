@@ -117,7 +117,7 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false, s
   const onSeekMove = (e: PointerEvent<HTMLDivElement>) => {
     if (e.currentTarget.hasPointerCapture(e.pointerId)) seekTo(e.clientX, e.currentTarget);
   };
-  const onSeekKey = (e: KeyboardEvent<HTMLDivElement>) => {
+  const onSeekKey = (e: KeyboardEvent<HTMLElement>) => {
     const el = video.current;
     if (!el) return;
     if (e.key === 'ArrowRight') el.currentTime = Math.min(el.currentTime + 5, el.duration || 0);

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TransitionProvider, useShownLocation } from './lib/transition';
 import { initScroll } from './lib/scroll';
@@ -11,6 +11,9 @@ import Contact from './pages/Contact';
 import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
 
+// Hidden test page for choosing the site buddy; loaded only when visited.
+const BuddyLab = lazy(() => import('./pages/BuddyLab'));
+
 /** Renders the page on screen, which lags the URL until the curtain covers it. */
 function PageRoutes() {
   const location = useShownLocation();
@@ -21,6 +24,14 @@ function PageRoutes() {
       <Route path="/work/:slug" element={<ProjectPage />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route
+        path="/lab/buddy"
+        element={
+          <Suspense fallback={null}>
+            <BuddyLab />
+          </Suspense>
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

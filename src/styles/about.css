@@ -14,22 +14,14 @@
 .about-globe .ball {
   width: var(--btn-round);
   height: var(--btn-round);
-  border-radius: 50%;
-  background: var(--color-blue);
-  color: var(--color-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--smooth) var(--ease);
-}
-
-.about-globe .ball:hover {
-  background: var(--color-blue-dark);
 }
 
 .about-globe .globe {
-  width: 62%;
-  height: 62%;
+  width: 100%;
+  height: 100%;
   transition: transform var(--slow) var(--ease);
 }
 
