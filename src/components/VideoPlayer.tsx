@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
+import type Hls from 'hls.js/light';
 import { prefersReducedMotion } from '@/lib/motion';
 import '@/styles/video.css';
 
 type Props = {
   src: string; // MP4 (H.264)
   webm?: string; // optional WebM fallback for browsers without H.264
+  /**
+   * HLS playlist made by scripts/make-hls.sh. Preferred when set: the video
+   * arrives in small pieces, so jumping anywhere works even on hosts that
+   * can't send part of a file (Cloudflare Pages). `src` / `webm` are the fallback.
+   */
+  stream?: string;
   poster?: string;
   title: string;
   /** Show the sound toggle (only for videos with narration or music). */
@@ -59,13 +66,16 @@ function FullscreenIcon({ on }: { on: boolean }) {
  * and a hairline progress bar along the bottom edge that can be clicked or
  * dragged to seek.
  */
-export default function VideoPlayer({ src, webm, poster, title, sound = false, speedup = false, crop = false, fullscreen = false }: Props) {
+export default function VideoPlayer({ src, webm, stream, poster, title, sound = false, speedup = false, crop = false, fullscreen = false }: Props) {
   const frame = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const fill = useRef<HTMLSpanElement>(null);
   const bar = useRef<HTMLDivElement>(null);
   const userPaused = useRef(false);
+  const inView = useRef(false);
   const resumeAfterSeek = useRef(false);
+  // Plain files are used only without a stream, or if the stream can't play here.
+  const [useFiles, setUseFiles] = useState(!stream);
   const [muted, setMuted] = useState(true);
   const [paused, setPaused] = useState(true);
   const [playbackRate, setPlaybackRate] = useState(1);
@@ -78,6 +88,7 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false, s
     if (!el || prefersReducedMotion()) return;
     const io = new IntersectionObserver(
       ([entry]) => {
+        inView.current = entry.isIntersecting;
         if (entry.isIntersecting && !userPaused.current) el.play().catch(() => {});
         else if (!entry.isIntersecting) el.pause();
       },
@@ -86,6 +97,78 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false, s
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  const autoplay = () => {
+    const el = video.current;
+    if (el && inView.current && !userPaused.current && !prefersReducedMotion()) el.play().catch(() => {});
+  };
+
+  // Attach the stream once the video is close to the screen: Safari's own HLS
+  // on Apple devices, hls.js (loaded only then) elsewhere, and the plain files
+  // if neither can play it.
+  useEffect(() => {
+    const el = video.current;
+    if (!el || !stream) return;
+    let hls: Hls | null = null;
+    let cancelled = false;
+    const fallBack = () => {
+      hls?.destroy();
+      hls = null;
+      if (!cancelled) setUseFiles(true);
+    };
+    const native = () => {
+      el.src = stream;
+      autoplay();
+    };
+    const attach = async () => {
+      if (/apple/i.test(navigator.vendor) && el.canPlayType('application/vnd.apple.mpegurl')) {
+        native();
+        return;
+      }
+      if ('MediaSource' in window || 'ManagedMediaSource' in window) {
+        try {
+          const { default: HlsJs } = await import('hls.js/light');
+          if (cancelled) return;
+          if (HlsJs.isSupported()) {
+            const player = new HlsJs({ maxBufferLength: 30 });
+            hls = player;
+            player.on(HlsJs.Events.ERROR, (_event, data) => {
+              if (data.fatal) fallBack();
+            });
+            player.on(HlsJs.Events.MANIFEST_PARSED, autoplay);
+            player.loadSource(stream);
+            player.attachMedia(el);
+            return;
+          }
+        } catch {
+          /* the hls.js chunk failed to load: try the next option */
+        }
+      }
+      if (el.canPlayType('application/vnd.apple.mpegurl')) native();
+      else fallBack();
+    };
+    const near = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        near.disconnect();
+        attach();
+      },
+      { rootMargin: '50% 0px' },
+    );
+    near.observe(el);
+    return () => {
+      cancelled = true;
+      near.disconnect();
+      hls?.destroy();
+    };
+  }, [stream]);
+
+  // Switching to the plain files: load them and carry on.
+  useEffect(() => {
+    if (!useFiles || !stream) return;
+    video.current?.load();
+    autoplay();
+  }, [useFiles, stream]);
 
   // Smooth progress: read the playhead every frame instead of on timeupdate.
   useEffect(() => {
@@ -221,8 +304,8 @@ export default function VideoPlayer({ src, webm, poster, title, sound = false, s
         onPause={() => setPaused(true)}
         aria-hidden="true"
       >
-        <source src={src} type="video/mp4" />
-        {webm && <source src={webm} type="video/webm" />}
+        {useFiles && <source src={src} type="video/mp4" />}
+        {useFiles && webm && <source src={webm} type="video/webm" />}
       </video>
 
       <button className="video-surface" onClick={toggle} onKeyDown={onSeekKey} aria-label={`${paused ? 'Play' : 'Pause'} video: ${title}`} />

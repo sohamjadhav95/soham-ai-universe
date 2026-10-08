@@ -46,8 +46,10 @@ The first link becomes the round blue button on the project page.
 ### Add a screen recording
 
 1. Put the video in `public/videos/` (MP4, 1280×720 or 1920×1080, under 25 MB).
-2. On the project in `projects.ts`, set
-   `video: { src: '/videos/<name>.mp4', poster: '/videos/<name>.webp' }`.
+2. Turn it into a stream: `scripts/make-hls.sh public/videos/<name>.mp4` (needs ffmpeg).
+   This writes `public/videos/<name>/` with a playlist and small pieces.
+3. On the project in `projects.ts`, set
+   `video: { src: '/videos/<name>.mp4', stream: '/videos/<name>/index.m3u8', poster: '/videos/<name>.webp' }`.
    Add `webm` for a WebM copy and `sound: true` if it has narration.
    For a long tutorial, `fullscreen: true` adds a full-screen button that also turns the sound on.
 
@@ -87,6 +89,15 @@ gives a five-stop tour and reacts to what they do. Visitors can close it with th
 
 The form posts to [Web3Forms](https://web3forms.com). Messages go to
 soham.ai.engineer@gmail.com. The access key is in `site.ts`; it's public by design.
+
+## Videos stream in small pieces
+
+The host (Cloudflare Pages) can't send part of a file, so a browser can't jump
+into the middle of one big MP4: clicking the timeline would restart the video.
+That's why every video also has an HLS stream (`stream`), made by
+`scripts/make-hls.sh`. Each ~4-second piece is its own small file, so jumping
+anywhere just loads the right piece. The MP4 (and WebM) stay as a fallback.
+If you replace a video, run the script again for it.
 
 ## Hosting
 

@@ -4,8 +4,9 @@
 // `cover` (shown in lists and at the top of the project page) or add it to
 // `gallery`. Until a cover exists, a drawn illustration is used instead.
 // To add a live demo later: add { label: 'Live demo', href: '...' } to `links`.
-// To add a screen recording: put the MP4 in public/videos/ and set
-// `video: { src: '/videos/<name>.mp4', poster: '/videos/<name>.webp' }`.
+// To add a screen recording: put the MP4 in public/videos/, run
+// scripts/make-hls.sh public/videos/<name>.mp4, and set
+// `video: { src: '/videos/<name>.mp4', stream: '/videos/<name>/index.m3u8' }`.
 // It plays in a clean video frame on the project page.
 
 export type Category = 'research' | 'engineering';
@@ -13,6 +14,8 @@ export type Category = 'research' | 'engineering';
 export type ProjectVideo = {
   src: string;
   webm?: string;
+  /** HLS stream from scripts/make-hls.sh (`/videos/<name>/index.m3u8`); makes seeking work on any host. */
+  stream?: string;
   poster?: string;
   bg?: string;
   sound?: boolean;
@@ -189,8 +192,8 @@ export const PROJECTS: Project[] = [
     },
     links: [{ label: 'Code', href: 'https://github.com/ML4SCI/PrediCT/tree/predict_software' }],
     videos: [
-      { src: '/videos/predict-studio.mp4', webm: '/videos/predict-studio.webm', bg: '#1C1D20', sound: false },
-      { src: '/videos/predict-studio-2.mp4', webm: '/videos/predict-studio-2.webm', bg: '#1C1D20', sound: true, speedup: true, fullscreen: true, title: 'Workflow Tutorial' }
+      { src: '/videos/predict-studio.mp4', webm: '/videos/predict-studio.webm', stream: '/videos/predict-studio/index.m3u8', bg: '#1C1D20', sound: false },
+      { src: '/videos/predict-studio-2.mp4', webm: '/videos/predict-studio-2.webm', stream: '/videos/predict-studio-2/index.m3u8', bg: '#1C1D20', sound: true, speedup: true, fullscreen: true, title: 'Workflow Tutorial' }
     ],
     highlights: [
       { value: '9', label: 'Steps from raw DICOM to a full report' },
