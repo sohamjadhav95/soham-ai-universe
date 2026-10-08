@@ -33,6 +33,10 @@
   height: 110%;
 }
 
+.case-hero .frame .project-visual img {
+  object-fit: cover;
+}
+
 .case-hero .frame .project-art {
   width: 70%;
   height: 70%;
