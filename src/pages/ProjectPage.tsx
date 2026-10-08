@@ -157,8 +157,8 @@ function Case({ p }: { p: Project }) {
       {p.iframe && (
         <section className={`case-device${p.iframe.frameless ? ' container' : ' case-monitor'}`}>
           {p.iframe.frameless ? (
-            <div className="once-in">
-              <iframe src={p.iframe.src} title={`${p.title}`} style={{ width: '100%', height: '85vh', border: 'none', display: 'block' }} loading="lazy" />
+            <div className="once-in" style={{ overflow: 'hidden' }}>
+              <iframe src={p.iframe.src} title={`${p.title}`} style={{ width: '100%', height: '85vh', border: 'none', display: 'block', transform: 'scale(1.03)', transformOrigin: 'center' }} loading="lazy" />
             </div>
           ) : (
             <div className="container medium">
