@@ -49,6 +49,7 @@ export type Project = {
   /** A live page or PDF shown on a desktop monitor. `cover` is what phones see instead (they can't show a PDF in a page). */
   iframe?: { src: string; bg?: string; frameless?: boolean; cover?: { venue: string; title: string; authors: string; href: string } };
   note?: string;
+  heroText?: boolean;
 };
 
 export const PROJECTS: Project[] = [
@@ -123,8 +124,9 @@ export const PROJECTS: Project[] = [
     year: '2026',
     categories: ['research'],
     featured: true,
+    heroText: true,
     tone: { bg: '#E4E2DD', ink: '#1C1D20', accent: '#455CE9' },
-    cover: '/images/projects/subpixel-cac-segmentation/cover.png',
+    cover: '/images/projects/subpixel-cac-segmentation/cover.jpg',
     summary:
       'My own contribution to the field: training coronary calcium models on exact sub-pixel coverage instead of pixel-snapped masks.',
     intro: {
@@ -187,8 +189,9 @@ export const PROJECTS: Project[] = [
     year: '2026',
     categories: ['engineering'],
     featured: true,
+    heroText: true,
     tone: { bg: '#1C1D20', ink: '#FFFFFF', accent: '#E5603A' },
-    cover: '/images/projects/predict-studio/cover.png',
+    cover: '/images/projects/predict-studio/cover.jpg',
     summary:
       'An auditable workstation that turns a cardiac CT scan into a calcium score and shows the evidence behind every number.',
     intro: {
@@ -404,6 +407,7 @@ $ python -m src.backend.run --model a3-coverage-v2`,
     year: '2025',
     categories: ['engineering'],
     featured: true,
+    heroText: true,
     tone: { bg: '#E2E8F0', ink: '#1E293B', accent: '#0EA5E9' },
     cover: '/images/projects/note-insight/cover.jpg',
     summary:

@@ -122,9 +122,11 @@ function Case({ p }: { p: Project }) {
       <section className="case-hero container">
         <div className="frame once-in" style={{ background: p.tone.bg }}>
           <ProjectVisual project={p} />
-          <div className="case-hero-title-wrapper">
-            <h2 className="case-hero-title">{p.title}</h2>
-          </div>
+          {p.heroText && (
+            <div className="case-hero-title-wrapper">
+              <h2 className="case-hero-title">{p.title}</h2>
+            </div>
+          )}
         </div>
         {primary && (
           <div className="btn-wrapper once-in">
