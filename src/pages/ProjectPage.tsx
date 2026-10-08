@@ -141,6 +141,7 @@ function Case({ p }: { p: Project }) {
               <VideoPlayer
                 src={v.src}
                 webm={v.webm}
+                stream={v.stream}
                 poster={v.poster}
                 title={`${p.title} demo ${i + 1}`}
                 sound={v.sound}

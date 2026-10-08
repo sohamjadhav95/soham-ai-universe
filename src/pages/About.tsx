@@ -128,6 +128,7 @@ export default function About() {
           <div className="video-block">
             <VideoPlayer
               src="/videos/soham-story.mp4"
+              stream="/videos/soham-story/index.m3u8"
               poster="/videos/soham-story-poster.webp"
               title="Soham Jadhav, a 50-second story film"
               sound

@@ -6,3 +6,4 @@
 - [x] Show the story film on About in a clean video frame.
 - [x] Add the PrediCT Studio screen recording (`video` in `src/data/projects.ts`).
 - [x] Put Nimbus, the site buddy, on every page (tips, travel, tour, play), with a × that blows it away like dust and a dot to bring it back.
+- [x] Stream videos in small HLS pieces so the timeline can jump anywhere on Cloudflare Pages (no range requests there).
