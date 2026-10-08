@@ -202,6 +202,30 @@ export default function About() {
         </div>
       </section>
 
+      <section className="about-block">
+        <div className="head">
+          <h2>Writings</h2>
+          <p>Blogs and technical writing.</p>
+        </div>
+        <div className="list">
+          <ul className="paper-list">
+            <li>
+              <a className="paper-row" href="https://sohamjadhav95.github.io/gsoc-2026-predict-blog/" target="_blank" rel="noopener noreferrer">
+                <div>
+                  <h4>GSoC 2026: Sub-pixel CAC Segmentation</h4>
+                  <p className="authors">PrediCT Blog</p>
+                </div>
+                <div className="meta">
+                  <p>Read post</p>
+                  <p className="small">Technical · 2026</p>
+                </div>
+                <ArrowIcon className="arrow" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <Certificates />
 
       <div className="about-resume">

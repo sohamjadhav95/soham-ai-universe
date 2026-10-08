@@ -167,18 +167,16 @@ export const PROJECTS: Project[] = [
         ],
       },
     ],
-    gallery: [
-      {
-        src: '/images/projects/subpixel-cac-segmentation/mask-vs-outline.webp',
-        alt: 'CT slice comparing a pixel mask with the radiologist’s sub-pixel outline',
-        caption: 'The problem in one slice. Orange: the pixel mask models usually train on. Green: where the radiologist actually drew.',
+    iframe: {
+      src: 'https://sohamjadhav95.github.io/gsoc-2026-predict-blog/',
+      bg: '#E4E2DD',
+      cover: {
+        venue: 'PrediCT Blog',
+        title: 'GSoC 2026: Sub-pixel CAC Segmentation',
+        authors: 'Soham Jadhav',
+        href: 'https://sohamjadhav95.github.io/gsoc-2026-predict-blog/',
       },
-      {
-        src: '/images/projects/subpixel-cac-segmentation/error-comparison.webp',
-        alt: 'Bar chart comparing errors of the labelling approaches',
-        caption: 'Error comparison across the labelling approaches.',
-      },
-    ],
+    },
   },
   {
     slug: 'predict-studio',
