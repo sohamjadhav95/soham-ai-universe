@@ -42,15 +42,6 @@ function Case({ p }: { p: Project }) {
           scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
         },
       );
-      gsap.fromTo(
-        '.case-hero-title-wrapper',
-        { yPercent: 15 },
-        {
-          yPercent: -15,
-          ease: 'none',
-          scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
-        },
-      );
       // Only projects with a link have the round button.
       if (p.links.length)
         gsap.fromTo(
@@ -122,11 +113,6 @@ function Case({ p }: { p: Project }) {
       <section className="case-hero container">
         <div className="frame once-in" style={{ background: p.tone.bg }}>
           <ProjectVisual project={p} />
-          {p.heroText && (
-            <div className="case-hero-title-wrapper">
-              <h2 className="case-hero-title">{p.title}</h2>
-            </div>
-          )}
         </div>
         {primary && (
           <div className="btn-wrapper once-in">
@@ -169,18 +155,12 @@ function Case({ p }: { p: Project }) {
       })}
 
       {p.iframe && (
-        <section className={`case-device${p.iframe.frameless ? ' container' : ' case-monitor'}`}>
-          {p.iframe.frameless ? (
-            <div className="once-in" style={{ overflow: 'hidden' }}>
-              <iframe src={p.iframe.src} title={`${p.title}`} style={{ width: '100%', height: '85vh', border: 'none', display: 'block', transform: 'scale(1.03)', transformOrigin: 'center' }} loading="lazy" />
+        <section className="case-device case-monitor">
+          <div className="container medium">
+            <div className="once-in">
+              <DeviceIframe src={p.iframe.src} title={`${p.title}: ${p.iframe.cover?.title ?? 'live view'}`} bg={p.iframe.bg} cover={p.iframe.cover} />
             </div>
-          ) : (
-            <div className="container medium">
-              <div className="once-in">
-                <DeviceIframe src={p.iframe.src} title={`${p.title}: ${p.iframe.cover?.title ?? 'live view'}`} bg={p.iframe.bg} cover={p.iframe.cover} />
-              </div>
-            </div>
-          )}
+          </div>
         </section>
       )}
 
