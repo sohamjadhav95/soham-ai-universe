@@ -3,7 +3,8 @@
 This is the third portfolio film, a narrated product ad where the product is Soham:
 - 1920×1080, 60 fps, voiceover plus music plus sound effects
 - built the way the reference reel Soham shared is built (Damiano Caudullo's "Tally" ad, made with his HyperFrames *Motion Graphics with Claude Code* starter kit)
-- it sits beside `../portfolio-video/` ("Heartbeat Signal", 15 s) and `../portfolio-video-keynote/` ("Keynote", 30 s)
+- two earlier films ("Heartbeat Signal", 15 s, and "Keynote", 30 s) used to sit beside it; they were removed from the repo on 2026-10-07
+- its render plays on the site's About page (`public/videos/soham-story.mp4`, streamed from `public/videos/soham-story/`)
 
 **The idea.** "Your AI model says it's accurate. It's *lying* to you." The film opens on a real problem: binary masks snap sub-pixel outlines to whole pixels, which puts about a 10% error into every label. It then shows Soham fixing it with A3, taking the error from 10.19% to 0.03%. From there it runs through the rest of his work as micro-stories:
 - Google Summer of Code 2026

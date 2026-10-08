@@ -155,8 +155,12 @@ function Case({ p }: { p: Project }) {
       })}
 
       {p.iframe && (
-        <section className="case-device">
-          <DeviceIframe src={p.iframe.src} title={`${p.title} demo`} bg={p.iframe.bg} />
+        <section className="case-device case-monitor">
+          <div className="container medium">
+            <div className="once-in">
+              <DeviceIframe src={p.iframe.src} title={`${p.title}: ${p.iframe.cover?.title ?? 'live view'}`} bg={p.iframe.bg} cover={p.iframe.cover} />
+            </div>
+          </div>
         </section>
       )}
 

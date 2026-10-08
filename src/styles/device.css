@@ -1,59 +1,150 @@
-.monitor-stage {
-  position: relative;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
+/* Desktop monitor drawn in CSS (Monitor.tsx), shaped after a studio display.
+   All sizes are shares of the monitor's width (cqw):
+   frame 62.95 (16:10 screen + 0.6 bezel) + neck 19.85 + seam 0.67 + base 1.33 + shadow 0.45
+   + 0.25 spare = 85.5% of the width tall (the monitor box keeps that exact ratio). */
 
 .monitor {
   position: relative;
-  width: min(75vw, 1000px);
+  width: 100%;
+  aspect-ratio: 1000 / 855;
+  container-type: inline-size;
+}
+
+.monitor-frame {
+  position: relative;
+  z-index: 1;
+  padding: 0.6cqw;
+  border-radius: 0.5cqw;
+  background: #000;
+}
+
+.monitor-screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 0.12cqw;
+  background: var(--color-light-gray);
+}
+
+.monitor-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.monitor-stand {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.monitor-screen {
-  position: relative;
-  width: 100%;
-  z-index: 2;
-  aspect-ratio: 1.72 / 1;
-  overflow: hidden;
-  border: clamp(10px, 1.2vw, 20px) solid #0a0a0a;
-  border-radius: clamp(12px, 1.5vw, 20px);
-  background: #0a0a0a;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.05);
-}
-
-.monitor-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: white;
-}
-
-.monitor-neck {
-  position: relative;
-  z-index: 1;
-  width: 25%;
-  height: clamp(30px, 5vw, 70px);
-  background: linear-gradient(90deg, #8a8c8e, #a7a9ac 30%, #a7a9ac 70%, #8a8c8e);
-  box-shadow: inset 0 10px 20px rgba(0,0,0,0.15);
-  margin-top: -2px; /* Pull up slightly to ensure no gap */
-}
-
+.monitor-neck,
+.monitor-seam,
 .monitor-base {
-  position: relative;
-  z-index: 2;
-  width: 27%;
-  height: clamp(4px, 0.6vw, 8px);
-  border-radius: 0 0 5px 5px;
-  background: linear-gradient(to bottom, #dcdcdc, #919396);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  width: 25.3cqw;
 }
 
-@media (max-width: 700px) {
-  .monitor {
-    width: 100%;
-  }
+/* The arm, darker where it meets the screen. */
+.monitor-neck {
+  height: 19.85cqw;
+  background:
+    linear-gradient(100deg, transparent 45%, rgba(255, 255, 255, 0.035) 70%, transparent 90%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.05), transparent 8%, transparent 92%, rgba(0, 0, 0, 0.06)),
+    linear-gradient(to bottom, #5d5d5d 0%, #666 8%, #787878 22%, #868686 58%, #8c8c8c 100%);
+}
+
+/* Where the neck curves into the base: it darkens over a few pixels. */
+.monitor-seam {
+  height: 0.67cqw;
+  background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.12), transparent 4%, transparent 96%, rgba(255, 255, 255, 0.12)),
+    linear-gradient(to bottom, #8c8c8c, #6e6e6e 55%, #5f5f5f 85%, #7d7d7d);
+}
+
+/* Base plate: brushed metal, lighter at both rounded ends, a dark line where it meets the floor. */
+.monitor-base {
+  height: 1.33cqw;
+  border-radius: 0.35cqw;
+  background: linear-gradient(
+    to right,
+    #c8c8c8 0%,
+    #c0c0c0 1%,
+    #b2b2b2 1.5%,
+    #999 2.3%,
+    #7e7e7e 3.5%,
+    #767676 4.7%,
+    #787878 5.8%,
+    #909090 50%,
+    #c0c0c0 93.6%,
+    #d2d2d2 94.7%,
+    #d4d4d4 95.9%,
+    #c4c4c4 97%,
+    #adadad 98%,
+    #8a8a8a 98.8%,
+    #848484 100%
+  );
+  box-shadow: inset 0 -0.12cqw 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Short, soft contact shadow on the floor, a little wider than the base. */
+.monitor-shadow {
+  width: 32cqw;
+  height: 0.45cqw;
+  background: radial-gradient(50% 100% at 50% 0%, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.06) 55%, transparent 100%);
+}
+
+/* Phones: a page-1-style cover of the paper inside the screen. */
+.monitor-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.6em;
+  height: 100%;
+  padding: 7cqw 8cqw;
+  color: var(--color-dark);
+  background: #fff;
+  font-size: clamp(10px, 3.4cqw, 15px);
+}
+
+.monitor-cover-venue {
+  color: var(--color-gray);
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.monitor-cover-title {
+  font-size: 1.15em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.monitor-cover-authors {
+  color: var(--color-gray);
+  font-size: 0.78em;
+  line-height: 1.35;
+}
+
+.monitor-cover-link {
+  margin-top: 0.3em;
+  padding: 0.55em 1.1em;
+  border-radius: 999px;
+  color: var(--color-light);
+  background: var(--color-blue);
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--fast) ease;
+}
+
+.monitor-cover-link:hover,
+.monitor-cover-link:focus-visible {
+  background: var(--color-blue-dark);
 }
