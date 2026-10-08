@@ -67,6 +67,21 @@ and `about.webp`. Replace a file with the same name to swap a photo.
 Images are in `public/images/certificates/` and PDFs in `public/certificates/`.
 Add an entry to `CERTIFICATES` in `about.ts`.
 
+## Site buddy
+
+A small character (Nimbus, the cloud) lives in the bottom-right corner. It
+follows the cursor, gives tips for each page, takes visitors where a tip points,
+gives a five-stop tour and reacts to what they do. Visitors can close it with the
+× (it blows away like dust) and bring it back with the small dot left behind.
+
+- **Switch character:** in `src/data/buddy.ts`, set `character` to `'bit'`,
+  `'nimbus'` or `'pico'` and `name` to match. All three are in `src/components/buddy/`.
+  Compare them at `/lab/buddy` (hidden page, not linked or indexed).
+- **Change what it says:** tips per page (`PAGE_TIPS`), tour stops (`TOUR`) and
+  every other line (`LINES`) are in the same file.
+- **From a page:** `buddy.say('Hi!')` or `buddy.feel('proud', 3000)` from `src/lib/buddy.ts`.
+- **Test the idle moods quickly:** add `?buddyfast` to the URL (sad after 2.5 s, asleep after 6 s).
+
 ## Contact form
 
 The form posts to [Web3Forms](https://web3forms.com). Messages go to

@@ -4,4 +4,5 @@
 - [x] Fix next-project previews across all projects to match the supplied examples (ball now follows the cursor).
 - [x] Replace the wireframe with a continuously rotating continental globe (black `dark` variant on About).
 - [x] Show the story film on About in a clean video frame.
-- [ ] Add the PrediCT Studio screen recording (`video` in `src/data/projects.ts`).
+- [x] Add the PrediCT Studio screen recording (`video` in `src/data/projects.ts`).
+- [x] Put Nimbus, the site buddy, on every page (tips, travel, tour, play), with a × that blows it away like dust and a dot to bring it back.
