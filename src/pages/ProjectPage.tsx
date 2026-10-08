@@ -155,16 +155,18 @@ function Case({ p }: { p: Project }) {
       })}
 
       {p.iframe && (
-        <section className={`case-device${p.iframe.frameless ? '' : ' case-monitor'}`}>
-          <div className="container medium">
+        <section className={`case-device${p.iframe.frameless ? ' container' : ' case-monitor'}`}>
+          {p.iframe.frameless ? (
             <div className="once-in">
-              {p.iframe.frameless ? (
-                <iframe src={p.iframe.src} title={`${p.title}`} className="monitor-iframe" style={{aspectRatio: '16/10', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.1)'}} loading="lazy" />
-              ) : (
-                <DeviceIframe src={p.iframe.src} title={`${p.title}: ${p.iframe.cover?.title ?? 'live view'}`} bg={p.iframe.bg} cover={p.iframe.cover} />
-              )}
+              <iframe src={p.iframe.src} title={`${p.title}`} style={{ width: '100%', height: '85vh', border: 'none', display: 'block' }} loading="lazy" />
             </div>
-          </div>
+          ) : (
+            <div className="container medium">
+              <div className="once-in">
+                <DeviceIframe src={p.iframe.src} title={`${p.title}: ${p.iframe.cover?.title ?? 'live view'}`} bg={p.iframe.bg} cover={p.iframe.cover} />
+              </div>
+            </div>
+          )}
         </section>
       )}
 
