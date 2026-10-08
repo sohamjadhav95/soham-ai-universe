@@ -19,6 +19,8 @@ export type ProjectVideo = {
   speedup?: boolean;
   crop?: boolean;
   title?: string;
+  /** Full-screen button; sound turns on in full screen (good for tutorials). */
+  fullscreen?: boolean;
 };
 
 export type Project = {
@@ -188,7 +190,7 @@ export const PROJECTS: Project[] = [
     links: [{ label: 'Code', href: 'https://github.com/ML4SCI/PrediCT/tree/predict_software' }],
     videos: [
       { src: '/videos/predict-studio.mp4', webm: '/videos/predict-studio.webm', bg: '#1C1D20', sound: false },
-      { src: '/videos/predict-studio-2.mp4', webm: '/videos/predict-studio-2.webm', bg: '#1C1D20', sound: true, speedup: true, title: 'Workflow Tutorial' }
+      { src: '/videos/predict-studio-2.mp4', webm: '/videos/predict-studio-2.webm', bg: '#1C1D20', sound: true, speedup: true, fullscreen: true, title: 'Workflow Tutorial' }
     ],
     highlights: [
       { value: '9', label: 'Steps from raw DICOM to a full report' },
