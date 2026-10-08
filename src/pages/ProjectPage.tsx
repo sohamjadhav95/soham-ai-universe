@@ -42,6 +42,15 @@ function Case({ p }: { p: Project }) {
           scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
         },
       );
+      gsap.fromTo(
+        '.case-hero-title-wrapper',
+        { yPercent: 15 },
+        {
+          yPercent: -15,
+          ease: 'none',
+          scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
+        },
+      );
       // Only projects with a link have the round button.
       if (p.links.length)
         gsap.fromTo(
@@ -113,6 +122,9 @@ function Case({ p }: { p: Project }) {
       <section className="case-hero container">
         <div className="frame once-in" style={{ background: p.tone.bg }}>
           <ProjectVisual project={p} />
+          <div className="case-hero-title-wrapper">
+            <h2 className="case-hero-title">{p.title}</h2>
+          </div>
         </div>
         {primary && (
           <div className="btn-wrapper once-in">
