@@ -53,6 +53,61 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'note-insight',
+    title: 'Note Insight',
+    org: 'Personal project',
+    services: 'Clinical AI Software',
+    year: '2025',
+    categories: ['engineering'],
+    featured: true,
+    tone: { bg: '#E2E8F0', ink: '#1E293B', accent: '#0EA5E9' },
+    cover: '/images/projects/note-insight/cover.jpg',
+    summary:
+      'An enterprise-grade clinical documentation improvement workspace that extracts structured conditions and diagnostic codes from unstructured SOAP narratives.',
+    intro: {
+      role: 'Solo project',
+      stack: 'React, TypeScript, FastAPI, PostgreSQL, Google Gemini',
+      context: 'Personal project',
+    },
+    links: [
+      { label: 'Live demo', href: 'https://note-insight-app.vercel.app' },
+      { label: 'Code', href: 'https://github.com/sohamjadhav95/note-insight-app' },
+    ],
+    highlights: [
+      { value: '3-Tier', label: 'Relational persistence isolating state' },
+      { value: 'Exact', label: 'Deterministic substring grounding with offsets' },
+    ],
+    sections: [
+      {
+        heading: 'What it is',
+        body: [
+          'Note Insight is an enterprise-grade clinical documentation workspace. It extracts structured clinical conditions, ICD-10 codes, and documentation queries directly from unstructured SOAP narratives.',
+        ],
+      },
+      {
+        heading: 'The approach',
+        body: [
+          'To prevent LLM hallucination contamination and maintain medical audit standards, the application enforces cryptographic multi-tenant isolation and a three-tier relational persistence model. LLMs extract verbatim evidence phrases, which are deterministically grounded to exact character offsets within the source narrative using a fallback string validation algorithm.',
+        ],
+      },
+      {
+        heading: 'Features',
+        body: [
+          'Clinicians interact with a card-based editor to correct ICD-10 suggestions, update status, or reject false positives. A side-by-side audit modal allows comparing the initial machine-generated draft against human sign-offs.',
+        ],
+      },
+    ],
+    flow: {
+      title: 'Data Flow',
+      steps: [
+        { label: 'Input', detail: 'Unstructured SOAP clinical narrative' },
+        { label: 'Extract', detail: 'Gemini isolates conditions and quotes' },
+        { label: 'Ground', detail: 'Deterministic matching finds offsets' },
+        { label: 'Audit', detail: 'Clinician reviews and signs off' },
+      ],
+    },
+  },
+  {
     slug: 'multimodal-agentic-system',
     title: 'Multimodal Agentic System',
     org: 'Agentic Research',
