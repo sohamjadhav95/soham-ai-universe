@@ -7,10 +7,18 @@ Built with Vite, React, TypeScript, GSAP and Lenis (smooth scroll).
 
 ```sh
 npm install
-npm run dev       # local dev server
+npm run dev       # local dev server (port 8080)
 npm run build     # production build in dist/
 npm run preview   # serve the build
+npm run qa        # check every page at desktop and phone size (needs the preview running)
+npm run qa:buddy  # check that the buddy's tours still point at real things on each page
+npm run hls -- public/videos/<name>.mp4   # turn a video into a stream (needs ffmpeg)
 ```
+
+## Documentation
+
+How it's built and how to change it safely: **[docs/README.md](docs/README.md)**. It covers architecture,
+the content model, the site buddy, videos, testing, workflow and past decisions. Agents: read `AGENTS.md` first.
 
 ## Pages
 
@@ -21,6 +29,7 @@ npm run preview   # serve the build
 | `/work/<slug>` | One page per project (case study) |
 | `/about` | Story, services, papers, experience, certificates |
 | `/contact` | Contact form (Web3Forms) and details |
+| `/lab/buddy` | Hidden page for comparing the buddy characters (not linked, not indexed) |
 
 ## Updating content
 
@@ -99,6 +108,9 @@ To change it:
   - `LINES`: everything else it says.
 - **From a page:** `buddy.say('Hi!')` or `buddy.feel('proud', 3000)` from `src/lib/buddy.ts`.
 - **Test the idle moods quickly:** add `?buddyfast` to the URL (sad after 2.5 s, asleep after 6 s).
+- **Keep it in sync:** whenever you change site content (a project, numbers, a video, a paper, a page section),
+  update the buddy's lines and tours in `src/data/buddy.ts` too, then run `npm run qa:buddy`.
+  The table in [docs/buddy.md](docs/buddy.md#keep-the-buddy-in-sync-with-the-site) says what to update for each change.
 
 ## Contact form
 

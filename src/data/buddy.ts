@@ -52,7 +52,7 @@ type Note = {
 export const NOTES: Record<string, Note> = {
   'multimodal-agentic-system': {
     intro: 'The research paper behind Convo-Ease: one AI that moderates text, images and audio.',
-    iframe: 'Want to read the paper? It’s right here. Scroll inside this screen.',
+    iframe: 'Want to read the paper? It’s right here on this screen.',
     highlights: 'Plain-English rules lift recall from 46% to 77%, and the gain is statistically real.',
     flow: 'How text, images and audio flow through one gatekeeper.',
   },
@@ -126,7 +126,15 @@ function projectTour(p: Project): Step[] {
           : undefined,
     });
   });
-  if (p.iframe) steps.push({ to, target: '.monitor-stage', text: n.iframe ?? 'Try it right here on this screen.' });
+  if (p.iframe) {
+    const href = p.iframe.cover?.href;
+    steps.push({
+      to,
+      target: '.case-monitor .monitor-frame',
+      text: n.iframe ?? 'Try it right here on this screen.',
+      actions: href ? [{ kind: 'link', label: 'Open the paper ↗', href }] : undefined,
+    });
+  }
   if (!videos.length && !p.iframe) steps.push({ to, target: '.case-hero .frame', text: n.intro });
   if (p.highlights) {
     const h = p.highlights[0];
@@ -314,7 +322,12 @@ export const SITE_TOUR: Step[] = [
     text: 'Watch this to learn how to use it, step by step.',
     actions: [{ kind: 'play', label: 'Watch full screen', target: '.case-device .video-frame', nth: 1, fullscreen: true }],
   },
-  { to: '/work/multimodal-agentic-system', target: '.monitor-stage', text: 'Want to read a paper? This one is right here. Scroll inside the screen.' },
+  {
+    to: '/work/multimodal-agentic-system',
+    target: '.case-monitor .monitor-frame',
+    text: 'Want to read a paper? This one is right here on the screen.',
+    actions: [{ kind: 'link', label: 'Open the paper ↗', href: PAPERS[0].href }],
+  },
   { to: '/contact', target: '.contact-form', text: 'And this is where you say hi. I’ll wait right here.' },
 ];
 

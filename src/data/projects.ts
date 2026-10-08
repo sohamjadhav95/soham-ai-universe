@@ -46,7 +46,8 @@ export type Project = {
   gallery?: { src: string; alt: string; caption: string }[];
   video?: ProjectVideo;
   videos?: ProjectVideo[];
-  iframe?: { src: string; bg?: string };
+  /** A live page or PDF shown on a desktop monitor. `cover` is what phones see instead (they can't show a PDF in a page). */
+  iframe?: { src: string; bg?: string; cover?: { venue: string; title: string; authors: string; href: string } };
   note?: string;
 };
 
@@ -75,7 +76,13 @@ export const PROJECTS: Project[] = [
     ],
     iframe: {
       src: 'https://assets.cureusjournals.com/artifacts/upload/original_article/pdf/19859/CureusJournals_1985920260909-72011-vl4prj.pdf',
-      bg: '#ffffff'
+      bg: '#ffffff',
+      cover: {
+        venue: 'Cureus Journal of Computer Science · Springer Nature',
+        title: 'Convo-Ease: A Policy-as-Prompt Gatekeeper for Real-Time Multimodal Moderation in Enterprise Communication',
+        authors: 'Soham S. Jadhav, Omkar N. Gadakh, Atharv Gaikwad, Nisha D. Patil',
+        href: 'https://www.cureusjournals.com/articles/19859-convo-ease-a-policy-as-prompt-gatekeeper-for-real-time-multimodal-moderation-in-enterprise-communication',
+      },
     },
     highlights: [
       { value: '46 → 77%', label: 'Recall with natural-language rules vs a generic filter' },
