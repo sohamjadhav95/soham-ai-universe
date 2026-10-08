@@ -47,7 +47,7 @@ export type Project = {
   video?: ProjectVideo;
   videos?: ProjectVideo[];
   /** A live page or PDF shown on a desktop monitor. `cover` is what phones see instead (they can't show a PDF in a page). */
-  iframe?: { src: string; bg?: string; cover?: { venue: string; title: string; authors: string; href: string } };
+  iframe?: { src: string; bg?: string; frameless?: boolean; cover?: { venue: string; title: string; authors: string; href: string } };
   note?: string;
 };
 
@@ -170,6 +170,7 @@ export const PROJECTS: Project[] = [
     iframe: {
       src: 'https://sohamjadhav95.github.io/gsoc-2026-predict-blog/',
       bg: '#E4E2DD',
+      frameless: true,
       cover: {
         venue: 'PrediCT Blog',
         title: 'GSoC 2026: Sub-pixel CAC Segmentation',
