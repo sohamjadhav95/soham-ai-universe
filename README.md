@@ -49,6 +49,7 @@ The first link becomes the round blue button on the project page.
 2. On the project in `projects.ts`, set
    `video: { src: '/videos/<name>.mp4', poster: '/videos/<name>.webp' }`.
    Add `webm` for a WebM copy and `sound: true` if it has narration.
+   For a long tutorial, `fullscreen: true` adds a full-screen button that also turns the sound on.
 
 ### Projects without a website
 

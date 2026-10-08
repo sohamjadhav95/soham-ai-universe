@@ -137,11 +137,7 @@ function Case({ p }: { p: Project }) {
                 {v.title}
               </h3>
             )}
-            <div className="video-block" style={{
-              background: v.bg || 'transparent',
-              borderRadius: !isFirst ? 'clamp(12px, 2vw, 24px)' : undefined,
-              overflow: !isFirst ? 'hidden' : undefined
-            }}>
+            <div className={`video-block${!isFirst ? ' is-rounded' : ''}`} style={{ background: v.bg || 'transparent' }}>
               <VideoPlayer
                 src={v.src}
                 webm={v.webm}
@@ -150,6 +146,7 @@ function Case({ p }: { p: Project }) {
                 sound={v.sound}
                 speedup={v.speedup}
                 crop={v.crop}
+                fullscreen={v.fullscreen}
               />
             </div>
           </section>
