@@ -117,7 +117,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'subpixel-cac-segmentation',
-    title: 'Sub-pixel CAC Segmentation',
+    title: 'PrediCT',
     org: 'ML4Sci · GSoC 2026',
     services: 'Research & Deep Learning',
     year: '2026',
