@@ -42,16 +42,18 @@ function Case({ p }: { p: Project }) {
           scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
         },
       );
-      gsap.fromTo(
-        '.case-hero .btn-wrapper',
-        { yPercent: -50, y: 120 },
-        {
-          yPercent: -50,
-          y: -120,
-          ease: 'none',
-          scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
-        },
-      );
+      // Only projects with a link have the round button.
+      if (p.links.length)
+        gsap.fromTo(
+          '.case-hero .btn-wrapper',
+          { yPercent: -50, y: 120 },
+          {
+            yPercent: -50,
+            y: -120,
+            ease: 'none',
+            scrollTrigger: { trigger: '.case-hero', start: 'top bottom', end: 'bottom top', scrub: true },
+          },
+        );
       gsap.fromTo(
         '.next-case-curve',
         { height: '10vh' },

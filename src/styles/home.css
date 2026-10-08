@@ -52,12 +52,15 @@
 .hero-hanger .ball {
   width: clamp(3.5em, 5vw, 4.6em);
   height: clamp(3.5em, 5vw, 4.6em);
-  border-radius: 50%;
-  background: var(--color-gray);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-light);
+}
+
+.hero-hanger .ball .globe {
+  width: 100%;
+  height: 100%;
 }
 
 .hero-role {
