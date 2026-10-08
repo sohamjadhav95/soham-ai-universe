@@ -432,9 +432,14 @@
   margin: 0;
 }
 
-.buddy-bubble-action {
-  display: inline-block;
+.buddy-bubble-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45em;
   margin-top: 0.65em;
+}
+
+.buddy-bubble-action {
   padding: 0.45em 0.95em;
   border-radius: 999px;
   color: var(--color-light);
@@ -449,32 +454,46 @@
   background: var(--color-blue-dark);
 }
 
-.buddy-bubble-tour {
-  display: flex;
-  align-items: center;
-  gap: 0.75em;
-  margin-top: 0.65em;
-  font-size: 13px;
+.buddy-bubble-action:not(:first-child) {
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.buddy-bubble-tour span {
-  color: var(--color-gray);
-  font-variant-numeric: tabular-nums;
+.buddy-bubble-action:not(:first-child):hover,
+.buddy-bubble-action:not(:first-child):focus-visible {
+  background: rgba(255, 255, 255, 0.22);
 }
 
-.buddy-bubble-tour > button:not(.buddy-bubble-action) {
-  margin-left: auto;
-  color: var(--color-gray);
-  transition: color var(--fast) ease;
+/* Keep the bubble on screen: open rightwards near the left edge, below near the top. */
+.buddy.bubble-start .buddy-bubble-slot {
+  right: auto;
+  left: 0;
 }
 
-.buddy-bubble-tour > button:not(.buddy-bubble-action):hover,
-.buddy-bubble-tour > button:not(.buddy-bubble-action):focus-visible {
-  color: var(--color-light);
+.buddy.bubble-start .buddy-bubble {
+  transform-origin: 15% 100%;
 }
 
-.buddy-bubble-tour .buddy-bubble-action {
-  margin-top: 0;
+.buddy.bubble-start .buddy-bubble::after {
+  right: auto;
+  left: 44px;
+}
+
+.buddy.bubble-below .buddy-bubble-slot {
+  bottom: auto;
+  top: 96%;
+}
+
+.buddy.has-tour.bubble-below .buddy-bubble-slot {
+  top: calc(100% + 46px);
+}
+
+.buddy.bubble-below .buddy-bubble {
+  transform-origin: 85% 0;
+}
+
+.buddy.bubble-below .buddy-bubble::after {
+  bottom: auto;
+  top: -6px;
 }
 
 @keyframes buddy-pop {
@@ -493,17 +512,148 @@
   right: 24px;
 }
 
-/* Tour spotlight: dims everything except the stop. */
+.buddy.is-mobile.bubble-start .buddy-bubble::after {
+  right: auto;
+  left: 24px;
+}
+
+/* Gliding over to the next thing it wants to show. */
+.buddy.is-moving .buddy-figure {
+  animation: buddy-glide 0.45s ease-in-out infinite alternate;
+}
+
+@keyframes buddy-glide {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -5px;
+  }
+}
+
+/* Tour controls, under the buddy: pause / carry on, stop count, next, end. */
+.buddy-tour {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 5px 4px 6px;
+  border-radius: 999px;
+  color: var(--color-light);
+  background: var(--color-dark);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: auto;
+  animation: buddy-pop 0.4s var(--ease-pop) both;
+}
+
+.buddy.bubble-start .buddy-tour {
+  right: auto;
+  left: 0;
+}
+
+.buddy-tour-track {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.buddy-tour-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--color-blue);
+  transform-origin: left;
+  animation: buddy-tour-fill linear forwards;
+}
+
+.buddy-tour.is-paused .buddy-tour-fill,
+.buddy-tour.is-held .buddy-tour-fill {
+  animation-play-state: paused;
+}
+
+@keyframes buddy-tour-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.buddy-tour-btn {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--color-light);
+  transition: background var(--fast) ease;
+}
+
+.buddy-tour-btn:hover,
+.buddy-tour-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.buddy-tour-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.buddy-tour-count {
+  min-width: 2.6em;
+  text-align: center;
+  color: var(--color-gray);
+  font-variant-numeric: tabular-nums;
+}
+
+.buddy-tour-end {
+  margin-left: 4px;
+  padding: 0.45em 0.9em;
+  border-radius: 999px;
+  color: var(--color-light);
+  background: rgba(255, 255, 255, 0.12);
+  font-weight: 500;
+  transition: background var(--fast) ease;
+}
+
+.buddy-tour-end:hover,
+.buddy-tour-end:focus-visible {
+  background: var(--color-blue);
+}
+
+/* Tour spotlight: a ring around the stop; the rest of the page dims for a moment. */
 .buddy-spot {
   position: fixed;
   left: 0;
   top: 0;
   z-index: 790;
-  border-radius: 14px;
-  box-shadow: 0 0 0 200vmax rgba(14, 15, 18, 0.5);
+  width: 0;
+  height: 0;
+  border-radius: 16px;
+  box-shadow: 0 0 0 2px rgba(69, 92, 233, 0.7), 0 0 0 200vmax rgba(14, 15, 18, 0);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition:
+    opacity 0.35s ease,
+    box-shadow 0.7s ease;
+}
+
+.buddy-spot.is-on {
+  opacity: 1;
+}
+
+.buddy-spot.is-dim {
+  box-shadow: 0 0 0 2px rgba(69, 92, 233, 0.7), 0 0 0 200vmax rgba(14, 15, 18, 0.5);
 }
 
 /* Grains of the dust effect. */
@@ -599,7 +749,8 @@
   .buddy-wobble,
   .buddy-orbit,
   .buddy-bob,
-  .buddy-dot {
+  .buddy-dot,
+  .buddy.is-moving .buddy-figure {
     animation: none;
   }
 
