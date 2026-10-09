@@ -1,7 +1,11 @@
-// Buddy sync check: every tour stop and every "show me" tip in src/data/buddy.ts
-// points at a CSS selector on some page. When content or class names change,
-// a stop can point at nothing. This opens each page and checks that every
-// target exists.
+// Buddy sync check. Two parts:
+// 1. buddyProblems() from src/data/buddy.ts: stops and buttons that go to a
+//    route that doesn't exist, and NOTES for projects that don't exist
+//    (usually a renamed slug). The site hides these from visitors, so this is
+//    the only place they show up.
+// 2. Every tour stop and "show me" tip points at a CSS selector on some page.
+//    When content or class names change, a stop can point at nothing. This
+//    opens each page and checks that every target exists.
 //
 // 1. npm run build && npm run preview -- --host 127.0.0.1 --port 4173
 // 2. npm run qa:buddy        (or: node scripts/qa/buddy-targets.mjs [baseUrl])
@@ -17,7 +21,7 @@ const root = new URL('../..', import.meta.url).pathname;
 // Bundle the buddy data (TypeScript) so Node can read it.
 const out = await build({
   stdin: {
-    contents: "export { SITE_TOUR, guideFor } from './src/data/buddy.ts'; export { PROJECTS } from './src/data/projects.ts';",
+    contents: "export { SITE_TOUR, guideFor, buddyProblems } from './src/data/buddy.ts'; export { PROJECTS } from './src/data/projects.ts';",
     resolveDir: root,
     loader: 'ts',
   },
@@ -27,7 +31,10 @@ const out = await build({
   write: false,
   logLevel: 'silent',
 });
-const { SITE_TOUR, guideFor, PROJECTS } = await import(`data:text/javascript;base64,${Buffer.from(out.outputFiles[0].text).toString('base64')}`);
+const { SITE_TOUR, guideFor, buddyProblems, PROJECTS } = await import(`data:text/javascript;base64,${Buffer.from(out.outputFiles[0].text).toString('base64')}`);
+
+const problems = buddyProblems();
+for (const p of problems) console.log(`OUT OF SYNC ${p}`);
 
 const routes = ['/', '/work', '/about', '/contact', ...PROJECTS.map(p => `/work/${p.slug}`)];
 const stops = new Map(); // key -> { to, target, nth, from }
@@ -65,4 +72,5 @@ console.log(
     ? `\n${missing.length} buddy target(s) point at nothing. Update src/data/buddy.ts:\n${missing.join('\n')}`
     : `\nAll ${stops.size} buddy targets found.`,
 );
-process.exit(missing.length ? 1 : 0);
+if (problems.length) console.log(`\n${problems.length} out-of-sync item(s) in src/data/buddy.ts (listed at the top).`);
+process.exit(missing.length || problems.length ? 1 : 0);

@@ -22,6 +22,8 @@ Why things are the way they are. Newest last. Before reversing one, read why it 
 | 2026-10-08 | **One step engine** for site tours, page tours and "here it is"; tours are data (`{ to, target, text }`). | One code path to get right; content changes are data edits. |
 | 2026-10-08 | **Buddy content must follow site content** (`src/data/buddy.ts` updated in the same change), enforced by `npm run qa:buddy`. | Soham's request: the buddy should always showcase what's actually on the site. |
 | 2026-10-08 | **Monitor drawn in CSS** to the reference's proportions (85.5% tall, 16:10 screen, 0.6% bezel, 25.3% neck), on a `#e6e8eb` band. Live PDF on computers, paper cover on phones, scrolling over it scrolls the PDF. | The reference uses a photo of a monitor, which we can't copy. Phones can't show a PDF inside a page. Soham chose "always live" scrolling. |
+| 2026-10-09 | **Buddy route guard:** stops, tips and buttons for a page that doesn't exist are dropped, warned about in dev, and reported by `npm run qa:buddy`. | A slug renamed in Lovable sent the 1-minute tour and a Home tip to "Page not found". Content is edited outside the QA flow, so visitors need a safety net. |
+| 2026-10-09 | **Note Insight gets a drawn illustration** (`ProjectArt` `Notes`: a SOAP note whose highlighted phrases link to signed-off ICD-10 codes) instead of an AI-generated cover. | Soham's call: match the other projects' illustrations. Real-looking AI scenes read as stock art. |
 
 ## Lessons
 

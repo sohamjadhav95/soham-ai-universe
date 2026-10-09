@@ -56,11 +56,18 @@ export const NOTES: Record<string, Note> = {
     highlights: 'Plain-English rules lift recall from 46% to 77%, and the gain is statistically real.',
     flow: 'How text, images and audio flow through one gatekeeper.',
   },
-  'subpixel-cac-segmentation': {
+  'predict-cac-segmentation': {
     intro: 'Soham’s own idea: train calcium models on exact sub-pixel labels, not blocky pixels.',
+    iframe: 'His GSoC blog, live on this screen: how the sub-pixel idea came together.',
     highlights: 'These numbers show the gain: label error from 10.19% down to 0.03%, scoring error halved.',
     section: { nth: 1, text: 'This is the new part: Approach 3, the sub-pixel labels.' },
     link: 'All the code is open. Have a look.',
+  },
+  'note-insight': {
+    intro: 'A clinical notes workspace: it pulls conditions and ICD-10 codes out of doctors’ free-text notes.',
+    highlights: 'Every phrase it extracts is matched back to its exact place in the note, so nothing is made up.',
+    flow: 'From a doctor’s note to signed-off codes, in four steps.',
+    link: 'There’s a live demo. Want to try it?',
   },
   'predict-studio': {
     intro: 'A workstation that turns a heart CT scan into a calcium score, with all the evidence.',
@@ -127,12 +134,12 @@ function projectTour(p: Project): Step[] {
     });
   });
   if (p.iframe) {
-    const href = p.iframe.cover?.href;
+    const cover = p.iframe.cover;
     steps.push({
       to,
       target: '.case-monitor .monitor-frame',
       text: n.iframe ?? 'Try it right here on this screen.',
-      actions: href ? [{ kind: 'link', label: 'Open the paper ↗', href }] : undefined,
+      actions: cover ? [{ kind: 'link', label: `${cover.cta ?? 'Read the paper'} ↗`, href: cover.href }] : undefined,
     });
   }
   if (!videos.length && !p.iframe) steps.push({ to, target: '.case-hero .frame', text: n.intro });
@@ -160,6 +167,9 @@ function projectTour(p: Project): Step[] {
 
 type Page = { intro: string; tour: Step[]; tips: Tip[] };
 
+/** Soham's GSoC blog (shown on the PrediCT CAC monitor and in About → Writings). */
+const BLOG = getProject('predict-cac-segmentation')?.iframe?.cover?.href;
+
 const PAGES: Record<string, Page> = {
   '/': {
     intro: 'This is Soham’s corner of the web: who he is and his best work.',
@@ -172,7 +182,7 @@ const PAGES: Record<string, Page> = {
     tips: [
       {
         text: 'Hey! Want to see how I got un-pixelated?',
-        actions: [go('Sub-pixel CAC →', '/work/subpixel-cac-segmentation', '.case-highlights')],
+        actions: [go('PrediCT CAC →', '/work/predict-cac-segmentation', '.case-highlights')],
       },
       { text: 'Hover a project in Recent work and a preview pops up.', actions: [go('Show me ↓', '/', '.home-work')] },
     ],
@@ -204,6 +214,12 @@ const PAGES: Record<string, Page> = {
         actions: [{ kind: 'link', label: 'Read the paper ↗', href: PAPERS[0].href }],
       },
       { to: '/about', target: '.exp-list', text: 'Right now: Google Summer of Code with ML4Sci. That’s where PrediCT began.' },
+      {
+        to: '/about',
+        target: '.writing-list',
+        text: 'He writes too: his GSoC blog on how the sub-pixel idea came together.',
+        actions: BLOG ? [{ kind: 'link', label: 'Read the blog ↗', href: BLOG }] : undefined,
+      },
       { to: '/about', target: '.about-block .table-list', text: `And ${CERTIFICATES.length} certificates. Hover one to see it.` },
     ],
     tips: [
@@ -212,6 +228,7 @@ const PAGES: Record<string, Page> = {
         actions: [go('Take me there ↓', '/about', '.about-film .video-frame')],
       },
       { text: 'Two papers, both published!', actions: [go('See the papers ↓', '/about', '.paper-list')] },
+      { text: 'Soham writes too. His GSoC blog is down here.', actions: [go('Show me ↓', '/about', '.writing-list')] },
     ],
   },
   '/contact': {
@@ -224,8 +241,35 @@ const PAGES: Record<string, Page> = {
   },
 };
 
+/* ── Route guard ──────────────────────────────────────────
+   Content is also edited in Lovable and on GitHub, where nobody runs the
+   checks. So the buddy never offers a page that doesn't exist: stops, tips
+   and buttons for a missing route are dropped (and listed by buddyProblems()). */
+
+const PAGE_ROUTES = ['/', '/work', '/about', '/contact'];
+
+export const routeExists = (to: string) => PAGE_ROUTES.includes(to) || (to.startsWith('/work/') && !!getProject(to.slice(6)));
+
+const actionOk = (a: BuddyAction) => a.kind !== 'go' || routeExists(a.to);
+
+/** A tip whose only buttons lead nowhere is dropped; otherwise its dead buttons are. */
+const cleanTips = (tips: Tip[]) =>
+  tips.flatMap(t => {
+    if (!t.actions?.length) return [t];
+    const actions = t.actions.filter(actionOk);
+    return actions.length ? [{ ...t, actions }] : [];
+  });
+
+const cleanSteps = (steps: Step[]) =>
+  steps.filter(s => routeExists(s.to)).map(s => (s.actions ? { ...s, actions: s.actions.filter(actionOk) } : s));
+
 /** Intro, tour and tips for any route. */
 export function guideFor(path: string): Page {
+  const page = rawGuideFor(path);
+  return { ...page, tour: cleanSteps(page.tour), tips: cleanTips(page.tips) };
+}
+
+function rawGuideFor(path: string): Page {
   if (path.startsWith('/work/')) {
     const p = getProject(path.slice(6));
     if (p) {
@@ -292,9 +336,9 @@ export function introFor(path: string, seen: string[]): Tip {
 
 /* ── The one-minute tour: About first, then the projects, then Contact ── */
 
-const subpixel = getProject('subpixel-cac-segmentation');
+const cac = getProject('predict-cac-segmentation');
 
-export const SITE_TOUR: Step[] = [
+const RAW_SITE_TOUR: Step[] = [
   { to: '/about', target: '.about-intro .text', text: 'First, meet Soham: an AI / ML engineer and researcher from Pune.' },
   {
     to: '/about',
@@ -310,9 +354,9 @@ export const SITE_TOUR: Step[] = [
   },
   { to: '/about', target: '.exp-list', text: 'Right now: Google Summer of Code with ML4Sci. That’s where the next two came from.' },
   {
-    to: '/work/subpixel-cac-segmentation',
+    to: '/work/predict-cac-segmentation',
     target: '.case-highlights',
-    text: NOTES['subpixel-cac-segmentation'].highlights ?? subpixel?.summary ?? '',
+    text: NOTES['predict-cac-segmentation']?.highlights ?? cac?.summary ?? '',
   },
   { to: '/work/predict-studio', target: '.case-device .video-frame', nth: 0, text: 'PrediCT Studio: a heart CT scan goes in, a calcium score comes out.' },
   {
@@ -330,6 +374,35 @@ export const SITE_TOUR: Step[] = [
   },
   { to: '/contact', target: '.contact-form', text: 'And this is where you say hi. I’ll wait right here.' },
 ];
+
+export const SITE_TOUR: Step[] = cleanSteps(RAW_SITE_TOUR);
+
+/**
+ * Everything in this file that no longer matches the site's content: tour
+ * stops and buttons for routes that don't exist, and notes for projects that
+ * don't exist (usually a renamed slug). Shown by `npm run qa:buddy`, and as a
+ * warning in the dev console.
+ */
+export function buddyProblems(): string[] {
+  const out: string[] = [];
+  RAW_SITE_TOUR.forEach((s, i) => {
+    if (!routeExists(s.to)) out.push(`1-minute tour stop ${i + 1} goes to ${s.to}, which doesn't exist`);
+  });
+  for (const route of [...PAGE_ROUTES, ...PROJECTS.map(p => `/work/${p.slug}`)]) {
+    const page = rawGuideFor(route);
+    for (const t of page.tips)
+      for (const a of t.actions ?? []) if (!actionOk(a)) out.push(`tip on ${route} ("${t.text.slice(0, 40)}…") links to ${(a as { to: string }).to}, which doesn't exist`);
+    for (const s of page.tour)
+      for (const a of s.actions ?? []) if (!actionOk(a)) out.push(`tour stop on ${route} links to ${(a as { to: string }).to}, which doesn't exist`);
+  }
+  for (const slug of Object.keys(NOTES)) if (!getProject(slug)) out.push(`NOTES['${slug}'] is for a project that doesn't exist (renamed slug?)`);
+  return out;
+}
+
+if (import.meta.env?.DEV) {
+  const problems = buddyProblems();
+  if (problems.length) console.warn(`[buddy] src/data/buddy.ts is out of sync with the content:\n- ${problems.join('\n- ')}`);
+}
 
 /* ── Everything else it says ──────────────────────────── */
 

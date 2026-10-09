@@ -209,6 +209,9 @@ Small things found while documenting. None break the site.
 - **List view on wide touch screens.** `useIsMobile` also matches `(hover: none)`, so the Work grid is forced there, but
   the list/grid toggles are only hidden at ≤ 800 px. "List view" does nothing on those screens.
 - **`multimodal-agentic-system` has no cover and no `ProjectArt` entry,** so it shows an empty illustration.
+- **Unused cover images:** `public/images/projects/predict-studio/cover.jpg` and
+  `public/images/projects/subpixel-cac-segmentation/cover.jpg` are AI images that the data no longer points to
+  (the projects use their `cover.png`).
 - **Unused:**
   - `MonitorShell.tsx` and `monitor-shell.css`
   - `VideoPlayer`'s `crop` (no `.crop-bars` CSS)

@@ -271,8 +271,76 @@ function Voice({ tone }: { tone: Tone }) {
   );
 }
 
+/* ── Note Insight: phrases in a clinical note, grounded to the codes they support ── */
+
+function Notes({ tone }: { tone: Tone }) {
+  const lines: [number, number][] = [
+    [118, 90],
+    [104, 116],
+    [112, 84],
+    [96, 108],
+  ];
+  const codes = [
+    { y: 70, code: 'E11.9', ok: true },
+    { y: 142, code: 'I10', ok: true },
+    { y: 214, code: 'R07.9', ok: false },
+  ];
+  return (
+    <>
+      {/* The note: Subjective, Objective, Assessment, Plan */}
+      <rect x="56" y="50" width="160" height="200" rx="10" fill="#ffffff" />
+      <rect x="70" y="64" width="56" height="6" rx="3" fill={tone.ink} fillOpacity="0.7" />
+      <rect x="176" y="64" width="26" height="6" rx="3" fill={tone.ink} fillOpacity="0.2" />
+      {/* Evidence the model quoted, highlighted where it sits in the note */}
+      <rect x="81" y="97" width="62" height="11" rx="3" fill={tone.accent} fillOpacity="0.22" />
+      <rect x="81" y="167" width="76" height="11" rx="3" fill={tone.accent} fillOpacity="0.22" />
+      {['S', 'O', 'A', 'P'].map((k, i) => {
+        const y = 90 + i * 40;
+        return (
+          <g key={k}>
+            <text x="70" y={y + 5.5} fontSize="9" fontWeight="600" fill={tone.accent}>
+              {k}
+            </text>
+            <rect x="84" y={y} width={lines[i][0]} height="5" rx="2.5" fill={tone.ink} fillOpacity="0.5" />
+            <rect x="84" y={y + 11} width={lines[i][1]} height="5" rx="2.5" fill={tone.ink} fillOpacity="0.22" />
+          </g>
+        );
+      })}
+      <rect x="84" y="101" width="54" height="5" rx="2.5" fill={tone.accent} />
+      <rect x="84" y="170" width="68" height="5" rx="2.5" fill={tone.accent} />
+      {/* Each phrase tied to the code it supports */}
+      <path d="M143 102.5 C 200 102.5, 206 93, 252 93" fill="none" stroke={tone.accent} strokeWidth="1.5" />
+      <path d="M157 172.5 C 206 172.5, 212 165, 252 165" fill="none" stroke={tone.accent} strokeWidth="1.5" />
+      <circle cx="143" cy="102.5" r="2.4" fill={tone.accent} />
+      <circle cx="157" cy="172.5" r="2.4" fill={tone.accent} />
+      {/* Code cards: two signed off, one suggestion rejected */}
+      {codes.map(c => (
+        <g key={c.code} opacity={c.ok ? 1 : 0.55}>
+          <rect x="252" y={c.y} width="108" height="46" rx="8" fill="#ffffff" />
+          <rect x="264" y={c.y + 11} width="38" height="14" rx="7" fill={c.ok ? tone.accent : tone.ink} fillOpacity={c.ok ? 1 : 0.18} />
+          <text x="283" y={c.y + 20.8} fontSize="8" fontWeight="600" textAnchor="middle" fill={c.ok ? '#ffffff' : tone.ink}>
+            {c.code}
+          </text>
+          <rect x="264" y={c.y + 31} width="58" height="4" rx="2" fill={tone.ink} fillOpacity="0.28" />
+          {c.ok ? (
+            <>
+              <circle cx="344" cy={c.y + 23} r="8" fill={tone.accent} />
+              <path d={`M340 ${c.y + 23} l3 3 l5 -6`} fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </>
+          ) : (
+            <>
+              <circle cx="344" cy={c.y + 23} r="8" fill="none" stroke={tone.ink} strokeOpacity="0.35" />
+              <path d={`M341 ${c.y + 20} l6 6 M347 ${c.y + 20} l-6 6`} stroke={tone.ink} strokeOpacity="0.45" strokeWidth="1.6" strokeLinecap="round" />
+            </>
+          )}
+        </g>
+      ))}
+    </>
+  );
+}
+
 const ART: Record<string, (p: { tone: Tone }) => JSX.Element> = {
-  'subpixel-cac-segmentation': Subpixel,
+  'predict-cac-segmentation': Subpixel,
   'predict-studio': Studio,
   'convo-ease': Gate,
   'copilot-for-data-science': Copilot,
@@ -280,6 +348,7 @@ const ART: Record<string, (p: { tone: Tone }) => JSX.Element> = {
   'renaissance-ocr': Script,
   'tennis-match-predictor': Court,
   'nexaos-flow': Voice,
+  'note-insight': Notes,
 };
 
 export default function ProjectArt({ project }: { project: Project }) {

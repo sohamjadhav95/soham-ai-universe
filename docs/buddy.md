@@ -30,6 +30,7 @@ When you change content, update `src/data/buddy.ts` in the same change, then run
 
 | You changed… | Update in `src/data/buddy.ts` |
 |---|---|
+| **Renamed a project's slug** | Rename its `NOTES` key, and update every `go` action, tip and `SITE_TOUR` stop with the old `/work/<slug>` |
 | Added a project | A `NOTES['<slug>']` entry: a one-line `intro`, plus lines for its `highlights`, `video`, `iframe` and `flow`. Its page tour is built automatically from what the page shows. If it's a headline project, consider a stop in `SITE_TOUR`. |
 | Removed or renamed a project (slug) | Its `NOTES` entry, and any `SITE_TOUR` stop or tip `go` action with that route |
 | Changed a project's numbers, video or paper | The matching `NOTES` lines (they quote numbers), plus `play` / `link` actions |
@@ -38,9 +39,24 @@ When you change content, update `src/data/buddy.ts` in the same change, then run
 | Added a paper, film or tutorial | A stop with a `link` or `play` action, so the buddy can open it |
 | Changed a page's purpose or title | That page's `intro` |
 
-`npm run qa:buddy` (`scripts/qa/buddy-targets.mjs`) opens every page and checks that every tour stop and
-"show me" tip still points at something that exists. It exits 1 and lists any stop that points at nothing.
+`npm run qa:buddy` (`scripts/qa/buddy-targets.mjs`) does two checks and exits 1 if either fails:
+1. `buddyProblems()` lists anything out of sync: stops or buttons that go to a route that doesn't exist, and
+   `NOTES` for projects that don't exist (usually a renamed slug).
+2. It opens every page and checks that every tour stop and "show me" tip still points at something that exists.
+
 The words can still go stale: when a number or title changes, re-read the lines that mention it.
+
+### The route guard (safety net)
+
+Content is also edited in Lovable and on GitHub, where nobody runs the checks. So the buddy **never offers a
+page that doesn't exist.**
+- `routeExists(to)` in `src/data/buddy.ts` is true for `/`, `/work`, `/about` and `/contact`, or for a `/work/<slug>` that is in `PROJECTS`.
+- `guideFor()` and `SITE_TOUR` drop stops whose route is missing, and buttons that go to one. A tip whose only button
+  went there is dropped too.
+- In dev (`npm run dev`, Lovable's preview), the console shows a `[buddy] … out of sync` warning listing them.
+
+The guard keeps visitors safe; it doesn't fix the content. A dropped stop is still a gap in the tour, so fix
+the data when the warning or `npm run qa:buddy` reports one.
 
 ## Characters
 
@@ -70,7 +86,7 @@ The cloud-shaped "bring back" dot is Nimbus-only; other characters show a mini v
 | `guideFor(path)` | `{ intro, tour, tips }` for any route. |
 | `suggestionsFor(path, seen)` | Shuffled pool for hover and click: page tips, 3 random projects (unseen first), page-tour offer, the 1-minute tour, About, Contact. |
 | `introFor(path, seen)` | The intro bubble: page intro + "Tour this page · N s" + one recommendation. |
-| `SITE_TOUR` | The 1-minute tour: About (intro text, film, papers, experience), then Sub-pixel CAC, the PrediCT Studio videos and the paper on its screen, then Contact. 9 stops, about 68 s. |
+| `SITE_TOUR` | The 1-minute tour: About (intro text, film, papers, experience), then PrediCT CAC's numbers, the PrediCT Studio videos and the paper on its screen, then Contact. 9 stops, about 68 s. |
 | `LINES` | Everything else: greetings, reactions, paused, tour done. |
 | `stepTime(step)` | How long a stop stays: `clamp(2600 + 48 ms × characters, 5200, 9000)`. |
 
