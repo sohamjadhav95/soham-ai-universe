@@ -208,7 +208,7 @@ export default function About() {
           <p>Blogs and technical writing.</p>
         </div>
         <div className="list">
-          <ul className="paper-list">
+          <ul className="paper-list writing-list">
             <li>
               <a className="paper-row" href="https://sohamjadhav95.github.io/gsoc-2026-predict-blog/" target="_blank" rel="noopener noreferrer">
                 <div>

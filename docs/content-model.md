@@ -53,7 +53,7 @@ Helpers: `getProject(slug)` and `nextProject(slug)`.
 | `intro` (`role`, `stack`, `context`) | The three columns under the title |
 | `links` (`{ label, href }[]`) | **The first link** is the big round blue button on the hero; all links appear as pills lower down. Empty, and there's no button. |
 | `video` / `videos` | One or more `VideoPlayer` blocks after the hero (`videos` wins). See below. |
-| `iframe` (`{ src, bg?, cover? }`) | A live page or PDF on a CSS desktop monitor, in a full-width grey band (`DeviceIframe`, `Monitor`). PDFs get `#toolbar=0&navpanes=0&view=FitH` added so Chrome and Edge hide the viewer toolbar. `cover` (`{ venue, title, authors, href }`) is what **phones** show instead, a page-1-style cover with *Read the paper*, because phones can't show a PDF inside a page. |
+| `iframe` (`{ src, bg?, cover? }`) | A live page or PDF on a CSS desktop monitor, in a full-width grey band (`DeviceIframe`, `Monitor`). PDFs get `#toolbar=0&navpanes=0&view=FitH` added so Chrome and Edge hide the viewer toolbar. `cover` (`{ venue, title, authors, href, cta? }`) is what **phones** show instead: a page-1-style cover with a button, because phones can't show a PDF inside a page. The button says `cta` (default "Read the paper", e.g. "Read the blog"), and the buddy's link on that stop uses the same words. |
 | `highlights` (`{ value, label }[]`) | Big numbers row (`.case-highlights`) |
 | `sections` (`{ heading, body: string[] }[]`) | Text sections, one paragraph per `body` string |
 | `flow` (`{ title, steps: { label, detail }[] }`) | Numbered "how it works" steps; more than 5 steps wraps to 4 columns |

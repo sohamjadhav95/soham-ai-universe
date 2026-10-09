@@ -15,6 +15,14 @@ git fetch origin main
 git checkout -B claude/<branch> origin/main   # if the branch's earlier PR is already merged
 ```
 
+## Edits made in Lovable or on GitHub
+
+They follow the same rules as everything else, above all **keeping the buddy in sync**
+(`src/data/buddy.ts`, see [buddy.md](buddy.md#keep-the-buddy-in-sync-with-the-site)): rename a project's slug,
+add a project or section, or change a class, and the buddy's data must change too. Lovable can't run the checks,
+so when in doubt, ask Claude to run `npm run qa:buddy`. The buddy's route guard hides broken links from visitors,
+but the tour still has a gap until the data is fixed.
+
 ## Shipping
 
 1. **Make the change on a branch.** Keep it to one topic where you can.

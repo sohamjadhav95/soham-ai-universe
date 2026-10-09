@@ -47,7 +47,7 @@ export type Project = {
   video?: ProjectVideo;
   videos?: ProjectVideo[];
   /** A live page or PDF shown on a desktop monitor. `cover` is what phones see instead (they can't show a PDF in a page). */
-  iframe?: { src: string; bg?: string; cover?: { venue: string; title: string; authors: string; href: string } };
+  iframe?: { src: string; bg?: string; cover?: { venue: string; title: string; authors: string; href: string; cta?: string } };
   note?: string;
 };
 
@@ -175,6 +175,7 @@ export const PROJECTS: Project[] = [
         title: 'GSoC 2026: PrediCT CAC Segmentation',
         authors: 'Soham Jadhav',
         href: 'https://sohamjadhav95.github.io/gsoc-2026-predict-blog/',
+        cta: 'Read the blog',
       },
     },
   },
@@ -404,7 +405,6 @@ $ python -m src.backend.run --model a3-coverage-v2`,
     categories: ['engineering'],
     featured: true,
     tone: { bg: '#E2E8F0', ink: '#1E293B', accent: '#0EA5E9' },
-    cover: '/images/projects/note-insight/cover.jpg',
     summary:
       'An enterprise-grade clinical documentation improvement workspace that extracts structured conditions and diagnostic codes from unstructured SOAP narratives.',
     intro: {

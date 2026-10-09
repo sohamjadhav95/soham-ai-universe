@@ -573,7 +573,8 @@ export default function Buddy() {
     const over = (e: PointerEvent) => {
       const t = e.target as Element | null;
       if (!t?.closest || live.current.phase !== 'live' || run.current) return;
-      if (t.closest('.paper-row') && !once.current.has('papers')) {
+      // Papers get a cheer; the blog rows under Writings share the look but aren't papers.
+      if (t.closest('.paper-row') && !t.closest('.writing-list') && !once.current.has('papers')) {
         once.current.add('papers');
         api.current.flash('excited', 1800);
         api.current.say(LINES.papers, { ms: 2200 });
